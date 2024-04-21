@@ -1,5 +1,5 @@
 import { BreadcrumbResponsive } from '@components/Breadcrumbs';
-import { MarkdownRenderer } from '@components/MarkdownRenderer';
+import MarkdownRenderer from '@components/MarkdownRenderer';
 import { Card, CardDescription, CardHeader } from '@components/ui/card';
 import { normalizeDate } from '@lib/utils';
 import { projectQueryOptions } from '@services/hooks/postQueryOptions';

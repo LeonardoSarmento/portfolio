@@ -10,18 +10,20 @@ import rehypeHighlight from 'rehype-highlight';
 import Markdown from 'react-markdown';
 import 'katex/dist/katex.min.css';
 import { Card } from './ui/card';
+import { CustomPre } from './CodeCopyButton';
 
 type TMarkdownRenderer = {
   markdown: string;
 };
 
-export function MarkdownRenderer({ markdown }: TMarkdownRenderer) {
+export default function MarkdownRenderer({ markdown }: TMarkdownRenderer) {
   return (
     <Card className="col-span-12  row-start-5 m-10 grid h-fit p-10">
       <Markdown
         className="markdown-body rounded p-6"
         remarkPlugins={[remarkGfm, remarkGemoji, remarkMath]}
         rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeSlug, rehypeKatex, rehypeAutoLinkHeadings, rehypeHighlight]}
+        components={{ pre: CustomPre }}
       >
         {markdown}
       </Markdown>
