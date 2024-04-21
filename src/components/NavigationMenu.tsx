@@ -8,107 +8,108 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from '@components/ui/navigation-menu';
 import { Link, LinkOptions } from '@tanstack/react-router';
 import { ModeToggle } from './Mode-toggle';
-
-const components: { title: string; to: LinkOptions['to']; description: string }[] = [
-  {
-    title: 'Alert Dialog',
-    to: '/about',
-    description: 'A modal dialog that interrupts the user with important content and expects a response.',
-  },
-  {
-    title: 'Hover Card',
-    to: '/',
-    description: 'For sighted users to preview content available behind a link.',
-  },
-];
+import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
+import { posts } from '@assets/data/posts';
+import { useAuth } from '@services/hooks/auth';
+export const MY_PHOTO = new URL('/public/assets/my-photo.JPG', import.meta.url).href;
 
 export function NavigationMenuGroup() {
+  const auth = useAuth();
   return (
-    <div className="flex min-w-full justify-end">
-      <NavigationMenu>
+    <div className="right-32 m-5 flex items-center justify-between sm:grid sm:grid-cols-10 sm:justify-end">
+      <NavigationMenu className="col-span-9 justify-self-end text-center">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="px-2 sm:px-8">About Me !</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
                   <NavigationMenuLink asChild>
                     <Link
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      to="/about"
+                      to="/"
                     >
-                      <div className="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
+                      <img className="h-full w-full rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
+                      <div className="mb-2 mt-4 text-lg font-medium">Leonardo</div>
                       <p className="text-sm leading-tight text-muted-foreground">
-                        Beautifully designed components built with Radix UI and Tailwind CSS.
+                        Hi!, welcome to my portfolio. Be free to explore my site.
                       </p>
                     </Link>
                   </NavigationMenuLink>
                 </li>
-                <ListItem to="/about" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
+                <ListItem to="/introduction" title="Introduction" params={false} icon={<Handshake size={16} />}>
+                  How I got here? Who I am? Come with me and i'll explain.
                 </ListItem>
-                <ListItem to="/" title="Installation">
-                  How to install dependencies and structure your app.
+                <ListItem to="/experience" title="Experience" params={false} icon={<GraduationCap size={16} />}>
+                  The roadmap I followed to be here.
                 </ListItem>
-                <ListItem to="/" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
+                <ListItem to="/projects" title="Projects" params={false} icon={<FolderGit2 size={16} />}>
+                  Some of the projects I did and what's to come.
                 </ListItem>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="px-4 sm:px-8">Posts</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {components.map((component) => (
+              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {posts.map((component) => (
                   <ListItem
-                    key={component.title}
+                    key={component.id}
                     title={component.title}
-                    to={component.to}
+                    to="/posts/$postId"
+                    params={{ postId: component.id }}
                     children={component.description}
                   />
                 ))}
+                <ListItem
+                  key={'AllPosts'}
+                  title="All Posts"
+                  to="/posts/"
+                  params={false}
+                  children={'See the list for all posts.'}
+                />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link
-              to={'/about'}
-              activeProps={{
-                className: 'font-bold',
-              }}
-            >
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>About</NavigationMenuLink>
-            </Link>
+            <ListItem
+              params
+              to="/contact"
+              key={'contact'}
+              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 sm:px-8"
+              title="Contact"
+              icon={<Contact size={16} />}
+            />
           </NavigationMenuItem>
         </NavigationMenuList>
-        <ModeToggle className="ml-52" />
       </NavigationMenu>
+      <ModeToggle className="justify-self-end" />
     </div>
   );
 }
 
-type ListItemType = { className?: string; title: string; children: React.ReactNode } & LinkOptions;
-const ListItem = ({ className, title, children, ...props }: ListItemType) => {
+type ListItemType = { className?: string; title: string; children?: React.ReactNode; icon?: JSX.Element } & LinkOptions;
+const ListItem = ({ className, title, children, icon, ...props }: ListItemType) => {
   return (
-    <li>
-      <NavigationMenuLink asChild>
-        <Link
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className,
-          )}
-          {...props}
-        >
+    <NavigationMenuLink asChild>
+      <Link
+        className={cn(
+          'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+          className,
+        )}
+        {...props}
+      >
+        <div className="flex justify-center">
           <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-        </Link>
-      </NavigationMenuLink>
-    </li>
+          <div className="ml-2">{icon}</div>
+        </div>
+        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground ">{children}</p>
+      </Link>
+    </NavigationMenuLink>
   );
 };
 ListItem.displayName = 'ListItem';

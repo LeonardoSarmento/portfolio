@@ -8,13 +8,28 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 import './index.css';
 import './App.css';
+import './github-markdown.css';
+import './githubFlavor.css'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 import { ThemeProvider } from '@components/Theme-provider';
+import { AuthProvider, useAuth } from '@services/hooks/auth';
+
+const queryClient = new QueryClient();
 
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  context: {
+    queryClient,
+    auth: undefined!,
+  },
+  defaultPreload: 'intent',
+  // Since we're using React Query, we don't want loader calls to ever be stale
+  // This will ensure that the loader is always called when the route is preloaded or visited
+  defaultPreloadStaleTime: 0,
+});
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
@@ -23,7 +38,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const queryClient = new QueryClient();
+function InnerApp() {
+  const auth = useAuth();
+  return <RouterProvider router={router} context={{ auth }} />;
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            <InnerApp />
+          </ThemeProvider>
+        </QueryClientProvider>
+      </Provider>
+    </AuthProvider>
+  );
+}
 
 const container = document.getElementById('root');
 if (container) {
@@ -31,13 +63,7 @@ if (container) {
 
   root.render(
     <React.StrictMode>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-            <RouterProvider router={router} />
-          </ThemeProvider>
-        </QueryClientProvider>
-      </Provider>
+      <App />
     </React.StrictMode>,
   );
 } else {

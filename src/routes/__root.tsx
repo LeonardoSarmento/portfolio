@@ -1,5 +1,9 @@
+import Container from '@components/Container';
 import { NavigationMenuGroup } from '@components/NavigationMenu';
-import { Outlet, createRootRoute } from '@tanstack/react-router';
+// import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
+import { type AuthContext } from '@services/hooks/auth';
+import { QueryClient } from '@tanstack/react-query';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import React, { Suspense } from 'react';
 
 const TanStackRouterDevtools =
@@ -14,18 +18,25 @@ const TanStackRouterDevtools =
         })),
       );
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+  auth: AuthContext;
+}>()({
   component: RootComponent,
 });
 
 function RootComponent() {
   return (
     <>
+      {/* <BackgroundGradientAnimation> */}
       <NavigationMenuGroup />
+      {/* <Container> */}
       <Outlet />
+      {/* </Container> */}
       <Suspense>
         <TanStackRouterDevtools position="bottom-right" />
       </Suspense>
+      {/* </BackgroundGradientAnimation> */}
     </>
   );
 }
