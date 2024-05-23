@@ -1,4 +1,5 @@
 // ref: https://philstainer.io/blog/copy-code-button-markdown
+// ref: https://ithelp.ithome.com.tw/articles/10302397
 
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
@@ -122,3 +123,4 @@ export const removeDuplicateNewLine = (text: string): string => {
     .replace(/(\n\n)/gm, `\n`)
     .replace(/(\r\r)/gm, `\r`);
 };
+

@@ -1,4 +1,5 @@
 import BlogPost from '@assets/data/markdown.md';
+import gfmFlavorMarkdown from '@assets/data//gfmFlavorMarkdown.md';
 
 export type ProjectMenuNavigation = {
   id: string;
@@ -17,7 +18,7 @@ export const projects: ProjectMenuNavigation[] = [
     date: new Date(),
     title: 'Big project forty two trust it.',
     description: 'Description as response.',
-    body: 'This should be markdown.',
+    body: gfmFlavorMarkdown,
   },
   {
     id: 'project-based-tanstack-router',
