@@ -1,5 +1,6 @@
 import Container from '@components/Container';
 import { NavigationMenuGroup } from '@components/NavigationMenu';
+import { Toaster } from '@components/ui/sonner';
 // import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
 import { type AuthContext } from '@services/hooks/auth';
 import { QueryClient } from '@tanstack/react-query';
@@ -18,10 +19,12 @@ const TanStackRouterDevtools =
         })),
       );
 
-export const Route = createRootRouteWithContext<{
+interface MyRouterContext {
   queryClient: QueryClient;
   auth: AuthContext;
-}>()({
+}
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: RootComponent,
 });
 
@@ -32,6 +35,7 @@ function RootComponent() {
       <NavigationMenuGroup />
       {/* <Container> */}
       <Outlet />
+      <Toaster richColors closeButton />
       {/* </Container> */}
       <Suspense>
         <TanStackRouterDevtools position="bottom-right" />

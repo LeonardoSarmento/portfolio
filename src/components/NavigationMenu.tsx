@@ -13,14 +13,13 @@ import { Link, LinkOptions } from '@tanstack/react-router';
 import { ModeToggle } from './Mode-toggle';
 import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
 import { posts } from '@assets/data/posts';
-import { useAuth } from '@services/hooks/auth';
+import { UserToggle } from './UserToggle';
 export const MY_PHOTO = new URL('/public/assets/my-photo.JPG', import.meta.url).href;
 
 export function NavigationMenuGroup() {
-  const auth = useAuth();
   return (
-    <div className="right-32 m-5 flex items-center justify-between sm:grid sm:grid-cols-10 sm:justify-end">
-      <NavigationMenu className="col-span-9 justify-self-end text-center">
+    <div className="m-5 flex items-center justify-between sm:grid sm:grid-cols-12 sm:justify-end">
+      <NavigationMenu className="col-span-10 justify-self-end text-center">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2 sm:px-8">About Me !</NavigationMenuTrigger>
@@ -87,6 +86,7 @@ export function NavigationMenuGroup() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <UserToggle className="justify-self-end" />
       <ModeToggle className="justify-self-end" />
     </div>
   );
