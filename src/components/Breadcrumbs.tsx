@@ -61,8 +61,8 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
       () => options && options.filter((option) => option.to === id)[0],
       [options, id],
     );
-    console.log(id);
-    console.log(filtredOption);
+    // console.log(id);
+    // console.log(filtredOption);
 
     return (
       <Breadcrumb ref={ref} className={className} {...props}>

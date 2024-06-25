@@ -11,6 +11,7 @@ export interface UserState {
   token: string | null;
   refreshToken: string | null;
   modal: ModalType;
+  loggedInPressed: boolean;
 }
 
 const initialState: UserState = {
@@ -18,11 +19,13 @@ const initialState: UserState = {
     id: 0,
     firstName: '',
     lastName: '',
+    birthDate: '',
   },
   modal: {
     isModalOpen: true,
     modal: 'primary',
   },
+  loggedInPressed: false,
   token: null,
   refreshToken: null,
 };
@@ -43,14 +46,12 @@ const userSlice = createSlice({
     setModal: (state, action: PayloadAction<ModalType>) => {
       state.modal = { ...state.modal, ...action.payload };
     },
+    setLoggedInPressed: (state, action: PayloadAction<boolean>) => {
+      state.loggedInPressed = action.payload;
+    },
   },
 });
 
-export const {
-  setUser,
-  setToken,
-  setRefreshToken,
-  setModal,
-} = userSlice.actions;
+export const { setUser, setToken, setRefreshToken, setModal, setLoggedInPressed } = userSlice.actions;
 
 export default userSlice.reducer;

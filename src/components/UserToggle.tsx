@@ -22,11 +22,13 @@ import { useState } from 'react';
 import { Label } from './ui/label';
 import { ScanFace, Skull } from 'lucide-react';
 import { ToggleProps } from '@radix-ui/react-toggle';
+import { useRouter } from '@tanstack/react-router';
 
 type UserToggleBtn = ToggleProps & React.RefAttributes<HTMLButtonElement>;
 
 export function UserToggle({ ...props }: UserToggleBtn) {
   const auth = useAuth();
+  const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [pressed, setPressed] = useState<boolean>(auth.isAuthenticated);
   const form = useForm<LoginType>({
@@ -50,7 +52,14 @@ export function UserToggle({ ...props }: UserToggleBtn) {
   });
 
   function LogoutUser() {
-    auth.logout();
+    auth
+      .logout()
+      .then(() => {
+        router.invalidate();
+      })
+      // .finally(() => {
+      //   router.navigate({ to: '/' });
+      // });
     setPressed(false);
   }
 

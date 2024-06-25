@@ -71,6 +71,13 @@ export function NavigationMenuGroup() {
                   params={false}
                   children={'See the list for all posts.'}
                 />
+                <ListItem
+                  key={'CreatePost'}
+                  title="New Post"
+                  to='/posts/create'
+                  params={false}
+                  children={'Create a new post here'}
+                />
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>

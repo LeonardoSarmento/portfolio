@@ -95,3 +95,11 @@ npx tsx src/lib/generate-markdown-css.ts
 ```
 
 ---
+
+Generate sha256 hash in terminal
+
+```bash
+
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+```

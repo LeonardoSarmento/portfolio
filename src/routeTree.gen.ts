@@ -13,15 +13,18 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as ProjectsImport } from './routes/projects'
 import { Route as PostsImport } from './routes/posts'
+import { Route as LoginImport } from './routes/login'
 import { Route as IntroductionImport } from './routes/introduction'
 import { Route as ExperienceImport } from './routes/experience'
 import { Route as ContactImport } from './routes/contact'
 import { Route as AboutImport } from './routes/about'
+import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProjectsIndexImport } from './routes/projects.index'
 import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as AuthPostsCreateImport } from './routes/_auth.posts.create'
 
 // Create/Update Routes
 
@@ -32,6 +35,11 @@ const ProjectsRoute = ProjectsImport.update({
 
 const PostsRoute = PostsImport.update({
   path: '/posts',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -52,6 +60,11 @@ const ContactRoute = ContactImport.update({
 
 const AboutRoute = AboutImport.update({
   path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthRoute = AuthImport.update({
+  id: '/_auth',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -80,12 +93,21 @@ const PostsPostIdRoute = PostsPostIdImport.update({
   getParentRoute: () => PostsRoute,
 } as any)
 
+const AuthPostsCreateRoute = AuthPostsCreateImport.update({
+  path: '/posts/create',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth': {
+      preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
     '/about': {
@@ -102,6 +124,10 @@ declare module '@tanstack/react-router' {
     }
     '/introduction': {
       preLoaderRoute: typeof IntroductionImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/posts': {
@@ -128,6 +154,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexImport
       parentRoute: typeof ProjectsImport
     }
+    '/_auth/posts/create': {
+      preLoaderRoute: typeof AuthPostsCreateImport
+      parentRoute: typeof AuthImport
+    }
   }
 }
 
@@ -135,10 +165,12 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  AuthRoute.addChildren([AuthPostsCreateRoute]),
   AboutRoute,
   ContactRoute,
   ExperienceRoute,
   IntroductionRoute,
+  LoginRoute,
   PostsRoute.addChildren([PostsPostIdRoute, PostsIndexRoute]),
   ProjectsRoute.addChildren([ProjectsProjectIdRoute, ProjectsIndexRoute]),
 ])
