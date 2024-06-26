@@ -13,7 +13,7 @@ const AuthContext = React.createContext<AuthContext | null>(null);
 
 const key = 'portifolio.auth.user';
 
-function getStoredUser() {
+export function getStoredUser() {
   return localStorage.getItem(key);
 }
 

@@ -23,14 +23,17 @@ import { Label } from './ui/label';
 import { ScanFace, Skull } from 'lucide-react';
 import { ToggleProps } from '@radix-ui/react-toggle';
 import { useRouter } from '@tanstack/react-router';
+import { useAppDispatch, useAppSelector } from '@services/state/store';
+import { setLoggedInPressed } from '@services/state/slice';
 
 type UserToggleBtn = ToggleProps & React.RefAttributes<HTMLButtonElement>;
 
 export function UserToggle({ ...props }: UserToggleBtn) {
   const auth = useAuth();
   const router = useRouter();
+  const dispatch = useAppDispatch();
+  const pressed = useAppSelector((select) => select.user.loggedInPressed);
   const [open, setOpen] = useState<boolean>(false);
-  const [pressed, setPressed] = useState<boolean>(auth.isAuthenticated);
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
     mode: 'onChange',
@@ -45,22 +48,17 @@ export function UserToggle({ ...props }: UserToggleBtn) {
     }
     auth.login(values);
     toast.success(`Compra de R$ ${getRandomNumberWithDecimals()} aprovada com sucesso!`, {
-      description: `Por favor ${values.username} não verifique com seu banco :)`,
+      description: `Por favor ${values.username}, não verifique com seu banco :)`,
     });
-    setPressed(true);
+    dispatch(setLoggedInPressed(true));
     setOpen(false);
   });
 
   function LogoutUser() {
-    auth
-      .logout()
-      .then(() => {
-        router.invalidate();
-      })
-      // .finally(() => {
-      //   router.navigate({ to: '/' });
-      // });
-    setPressed(false);
+    auth.logout().then(() => {
+      router.invalidate();
+    });
+    dispatch(setLoggedInPressed(false));
   }
 
   return (

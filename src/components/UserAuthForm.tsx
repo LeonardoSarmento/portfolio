@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { Spinner } from './Spinner';
-import { GitHubLogoIcon } from '@radix-ui/react-icons';
 import { useForm } from 'react-hook-form';
 import { LoginSchema, LoginType } from '@services/types/User';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,11 +9,14 @@ import { useAuth } from '@services/hooks/auth';
 import { getRandomNumberWithDecimals } from '@services/utils/utils';
 import { useRouter } from '@tanstack/react-router';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import { useAppDispatch } from '@services/state/store';
+import { setLoggedInPressed } from '@services/state/slice';
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const auth = useAuth();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
@@ -31,8 +31,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       return;
     }
     auth.login(values).then(() => router.invalidate());
+    dispatch(setLoggedInPressed(true));
     toast.success(`Compra de R$ ${getRandomNumberWithDecimals()} aprovada com sucesso!`, {
-      description: `Por favor ${values.username} não verifique com seu banco :)`,
+      description: `Por favor ${values.username}, não verifique com seu banco :)`,
     });
   });
 
@@ -71,21 +72,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 )}
               />
             </div>
-            <Button type='submit'>Sign In with Email</Button>
+            <Button type="submit">Acessar</Button>
           </div>
         </form>
       </Form>
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t" />
-        </div>
-        <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
-        </div>
-      </div>
-      <Button variant="outline" type="button">
-        <GitHubLogoIcon className="mr-2 h-4 w-4" /> GitHub
-      </Button>
     </div>
   );
 }

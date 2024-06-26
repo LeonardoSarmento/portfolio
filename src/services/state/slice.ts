@@ -1,4 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { getStoredUser } from '@services/hooks/auth';
 import { UserType } from '@services/types/User';
 
 export type ModalType = {
@@ -25,7 +26,7 @@ const initialState: UserState = {
     isModalOpen: true,
     modal: 'primary',
   },
-  loggedInPressed: false,
+  loggedInPressed: !!getStoredUser(),
   token: null,
   refreshToken: null,
 };

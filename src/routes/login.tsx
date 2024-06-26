@@ -15,7 +15,7 @@ export function Login() {
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight">Crie sua conta</h1>
               <p className="text-sm text-muted-foreground">
-                faça sua conta para poder utilizar todas funcionalidades incriveis desse site portfolio
+                Faça sua conta para poder utilizar todas funcionalidades incriveis desse site portfolio
               </p>
             </div>
             <UserAuthForm />
@@ -40,13 +40,13 @@ export function Login() {
             </div>
             <UserAuthForm />
             <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{' '}
+              Clicando em acessar, você concorda com todos os{' '}
               <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                Terms of Service
+                Termos de serviço
               </Link>{' '}
-              and{' '}
+              e{' '}
               <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                Privacy Policy
+                Políticas de Compras e Privacidades
               </Link>
               .
             </p>
