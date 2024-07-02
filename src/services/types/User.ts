@@ -23,6 +23,13 @@ export const UserSchema = z.object({
 
 export type UserType = z.infer<typeof UserSchema>;
 
+const tagSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+  disable: z.boolean().optional(),
+});
+export type TagType = z.infer<typeof tagSchema>;
+
 export const PostSchema = z.object({
   id: z.number(),
   date: z.date(),
@@ -32,6 +39,7 @@ export const PostSchema = z.object({
   description: z
     .string({ required_error: 'Sem descrição fica dificil dos outros te entenderam' })
     .min(1, { message: 'Faz um esforço de uma descriçãozinha pfv ajuda ai' }),
+  tags: z.array(tagSchema).optional(),
   body: z
     .string({ required_error: 'Ué?? achei que vc tava aqui pra compartilhar td seu conhecimento, escreve algo ai' })
     .min(1, { message: 'Vc tem que escrever mais que isso cara, para de preguiça...' }),
@@ -39,6 +47,7 @@ export const PostSchema = z.object({
     .instanceof(File)
     .refine((file) => (file ? file : null), 'File is required.')
     .nullable(),
+  thumbnail: z.string().optional(),
 });
 
 export type PostType = z.infer<typeof PostSchema>;

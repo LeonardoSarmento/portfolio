@@ -1,25 +1,30 @@
 import Dropzone from '@components/Dropzone';
 import MarkdownRenderer from '@components/MarkdownRenderer';
 import { Button } from '@components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@components/ui/card';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@components/ui/form';
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreatePostSchema, CreatePostType, PostSchema, PostType } from '@services/types/User';
-import { createFileRoute, redirect } from '@tanstack/react-router';
+import { CreatePostSchema, CreatePostType } from '@services/types/User';
+import { createFileRoute } from '@tanstack/react-router';
 import { FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import * as fs from 'fs';
-import { Textarea } from '@components/ui/textarea';
 import { AutosizeTextarea } from '@components/ui/autosize-textarea';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
+import MultipleSelector from '@components/ui/multiple-selector';
+import { tagsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const Route = createFileRoute('/_auth/posts/create')({
+  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
   component: CreatePostsComponent,
 });
 
 function CreatePostsComponent() {
+  const tagsQuery = useSuspenseQuery(tagsQueryOptions);
+  const TAGS = tagsQuery.data;
   const auth = useAuth();
   const form = useForm<CreatePostType>({
     resolver: zodResolver(CreatePostSchema),
@@ -40,15 +45,6 @@ function CreatePostsComponent() {
       description: `Não tem como criar um post ainda mas quem sabe um dia...`,
     });
   });
-  const defaultValues: { file: null | File } = {
-    file: null,
-  };
-  // const methods = useForm({
-  //   defaultValues,
-  //   shouldFocusError: true,
-  //   shouldUnregister: false,
-  //   shouldUseNativeValidation: false,
-  // });
 
   type AllowedTypes = {
     name: string;
@@ -63,8 +59,8 @@ function CreatePostsComponent() {
     // },
     { name: 'image/png', types: ['image/png'] },
     // { name: 'pdf', types: ['application/pdf'] },
-    { name: 'md', types: ['text/markdown'] },
-    { name: 'json', types: ['application/json'] },
+    // { name: 'md', types: ['text/markdown'] },
+    // { name: 'json', types: ['application/json'] },
   ];
 
   function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
@@ -115,6 +111,7 @@ function CreatePostsComponent() {
                 name="file"
                 render={({ field }) => (
                   <>
+                    <CardTitle>Thumbnail</CardTitle>
                     {form.watch('file') && field.value ? (
                       <div className="relative flex flex-col items-center justify-center gap-3">
                         <>
@@ -137,7 +134,7 @@ function CreatePostsComponent() {
                         <FormControl>
                           <Dropzone
                             {...field}
-                            dropMessage="Drop files or click here"
+                            dropMessage="Solte seu arquivo ou clique aqui"
                             accept={getAllowedMimeTypes(allowedTypes)}
                             handleOnDrop={handleOnDrop}
                           />
@@ -179,34 +176,66 @@ function CreatePostsComponent() {
                   </FormItem>
                 )}
               />
-            </CardContent>
-          </Card>
-          <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4">
-            <CardContent className="col-span-4 space-y-3 text-center">
               <FormField
                 control={form.control}
-                name="body"
+                name="tags"
                 render={({ field }) => (
                   <FormItem className="grid grid-cols-12 items-center">
-                    <FormLabel className="col-span-12">Conteúdo</FormLabel>
-                    <FormControl className="col-span-12">
-                      <AutosizeTextarea placeholder="Diga oq vc tem guardado no coração." {...field} />
-                    </FormControl>
-                    <FormDescription className="col-span-12">
-                      Se você não mentiu aqui então bora postar mlk
-                    </FormDescription>
+                    <FormLabel className="col-span-1">Tags</FormLabel>
+                    <div className="col-span-11">
+                      <FormControl>
+                        <MultipleSelector
+                          {...field}
+                          defaultOptions={TAGS}
+                          creatable
+                          placeholder="Selecione alguma tag..."
+                          emptyIndicator={
+                            <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
+                              no results found.
+                            </p>
+                          }
+                        />
+                      </FormControl>
+                    </div>
                     <FormMessage className="col-span-12" />
                   </FormItem>
                 )}
               />
-              <Button className="w-full" type="submit">
-                Enviar
-              </Button>
             </CardContent>
-            <CardContent className="col-span-8 space-y-1">
-              <CardTitle className="flex justify-center mb-2">Preview</CardTitle>
-              <MarkdownRenderer className="p-5" markdown={form.watch('body')} />
-            </CardContent>
+          </Card>
+          <Card className="col-span-12 mx-10 mb-10 grid h-fit grid-cols-12 p-4">
+            <ResizablePanelGroup direction="horizontal" className="col-span-12">
+              <ResizablePanel>
+                <CardContent className="col-span-4 space-y-3 text-center">
+                  <FormField
+                    control={form.control}
+                    name="body"
+                    render={({ field }) => (
+                      <FormItem className="grid grid-cols-12 items-center">
+                        <FormLabel className="col-span-12">Conteúdo</FormLabel>
+                        <FormControl className="col-span-12">
+                          <AutosizeTextarea placeholder="Diga oq vc tem guardado no coração." {...field} />
+                        </FormControl>
+                        <FormDescription className="col-span-12">
+                          Se você não mentiu aqui então bora postar mlk
+                        </FormDescription>
+                        <FormMessage className="col-span-12" />
+                      </FormItem>
+                    )}
+                  />
+                  <Button className="w-full" type="submit">
+                    Criar
+                  </Button>
+                </CardContent>
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel>
+                <CardContent className="col-span-8 space-y-1">
+                  <CardTitle className="mb-2 flex justify-center">Preview</CardTitle>
+                  <MarkdownRenderer className="p-5" markdown={form.watch('body')} />
+                </CardContent>
+              </ResizablePanel>
+            </ResizablePanelGroup>
           </Card>
         </div>
       </form>

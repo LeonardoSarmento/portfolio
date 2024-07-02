@@ -1,10 +1,11 @@
 import { posts as AllPosts } from '@assets/data/posts';
+import { TAGS } from '@assets/data/posts';
 
-export type PostType = {
-  id: string;
-  title: string;
-  description: string;
-};
+// export type PostType = {
+//   id: string;
+//   title: string;
+//   description: string;
+// };
 
 export class PostNotFoundError extends Error {}
 
@@ -32,4 +33,11 @@ export const fetchPostsUrl = async () => {
   await new Promise((r) => setTimeout(r, 500));
   const posts = AllPosts.map((post) => ({ to: post.id, title: post.title }));
   return posts;
+};
+
+export const fetchTags = async () => {
+  console.log('Fetching tags...');
+  await new Promise((r) => setTimeout(r, 500));
+  const tags = TAGS;
+  return tags;
 };

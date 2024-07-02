@@ -37,7 +37,7 @@ function PostModalComponent() {
     >
       <DialogContent className="flex w-full flex-col">
         <div className="flex w-full justify-center">
-          <img src={post.image} className="flex aspect-video w-80 rounded-md" />
+          <img src={post.thumbnail} className="flex aspect-video w-80 rounded-md" />
         </div>
         <Separator className="mt-2" />
         <div className="flex justify-evenly">

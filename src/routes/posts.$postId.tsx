@@ -28,7 +28,7 @@ function PostComponent() {
   return (
     <>
       <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4 text-center">
-        <img src={post.image} className="col-span-12 mx-auto h-32 w-1/5 justify-center rounded" />
+        <img src={post.thumbnail} className="col-span-12 mx-auto h-32 w-1/5 justify-center rounded" />
         <CardHeader className="col-span-12">{post.title}</CardHeader>
         <BreadcrumbResponsive
           currentFolder={{ title: 'Posts' }}
