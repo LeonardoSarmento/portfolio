@@ -4,7 +4,7 @@ import { Toaster } from '@components/ui/sonner';
 // import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
 import { type AuthContext } from '@services/hooks/auth';
 import { QueryClient } from '@tanstack/react-query';
-import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
+import { Outlet, ScrollRestoration, createRootRouteWithContext } from '@tanstack/react-router';
 import React, { Suspense } from 'react';
 
 const TanStackRouterDevtools =
@@ -34,6 +34,7 @@ function RootComponent() {
       {/* <BackgroundGradientAnimation> */}
       <NavigationMenuGroup />
       {/* <Container> */}
+      <ScrollRestoration getKey={(location) => location.pathname} />
       <Outlet />
       <Toaster richColors closeButton />
       {/* </Container> */}

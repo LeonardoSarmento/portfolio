@@ -18,10 +18,10 @@ import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-di
 
 type TMarkdownRenderer = {
   markdown: string;
-};
-export default function MarkdownRenderer({ markdown }: TMarkdownRenderer) {
+} & React.HTMLAttributes<HTMLDivElement>;
+export default function MarkdownRenderer({ markdown, ...props }: TMarkdownRenderer) {
   return (
-    <Card className="col-span-12  row-start-5 m-10 grid h-fit p-10">
+    <Card className="col-span-12 row-start-5 m-10 grid h-fit p-10" {...props}>
       <Markdown
         className="markdown-body rounded p-6"
         remarkPlugins={[remarkDirective, remarkGfm, remarkGemoji, remarkMath, remarkGithubAdmonitionsToDirectives]}
@@ -77,7 +77,6 @@ export default function MarkdownRenderer({ markdown }: TMarkdownRenderer) {
       >
         {markdown}
       </Markdown>
-      {/* <MarkdownPreview source={markdown} style={{ padding: 16 }} /> */}
     </Card>
   );
 }

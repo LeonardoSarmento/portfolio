@@ -24,6 +24,9 @@ import { Route as ProjectsIndexImport } from './routes/projects.index'
 import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as ProjectsProjectIdModalImport } from './routes/projects_.$projectId.modal'
+import { Route as PostsPostIdModalImport } from './routes/posts_.$postId.modal'
+import { Route as AuthProjectsCreateImport } from './routes/_auth.projects.create'
 import { Route as AuthPostsCreateImport } from './routes/_auth.posts.create'
 
 // Create/Update Routes
@@ -93,6 +96,21 @@ const PostsPostIdRoute = PostsPostIdImport.update({
   getParentRoute: () => PostsRoute,
 } as any)
 
+const ProjectsProjectIdModalRoute = ProjectsProjectIdModalImport.update({
+  path: '/projects/$projectId/modal',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PostsPostIdModalRoute = PostsPostIdModalImport.update({
+  path: '/posts/$postId/modal',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AuthProjectsCreateRoute = AuthProjectsCreateImport.update({
+  path: '/projects/create',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 const AuthPostsCreateRoute = AuthPostsCreateImport.update({
   path: '/posts/create',
   getParentRoute: () => AuthRoute,
@@ -158,6 +176,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthPostsCreateImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/projects/create': {
+      preLoaderRoute: typeof AuthProjectsCreateImport
+      parentRoute: typeof AuthImport
+    }
+    '/posts/$postId/modal': {
+      preLoaderRoute: typeof PostsPostIdModalImport
+      parentRoute: typeof rootRoute
+    }
+    '/projects/$projectId/modal': {
+      preLoaderRoute: typeof ProjectsProjectIdModalImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -165,7 +195,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  AuthRoute.addChildren([AuthPostsCreateRoute]),
+  AuthRoute.addChildren([AuthPostsCreateRoute, AuthProjectsCreateRoute]),
   AboutRoute,
   ContactRoute,
   ExperienceRoute,
@@ -173,6 +203,8 @@ export const routeTree = rootRoute.addChildren([
   LoginRoute,
   PostsRoute.addChildren([PostsPostIdRoute, PostsIndexRoute]),
   ProjectsRoute.addChildren([ProjectsProjectIdRoute, ProjectsIndexRoute]),
+  PostsPostIdModalRoute,
+  ProjectsProjectIdModalRoute,
 ])
 
 /* prettier-ignore-end */

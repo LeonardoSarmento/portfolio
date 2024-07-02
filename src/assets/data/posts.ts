@@ -1,4 +1,5 @@
 import BlogPost from '@assets/data/markdown.md';
+import MultipleSSHPost from '@assets/data/multipleSSH.md';
 import ReadMe from '../../../README.md';
 
 export type PostMenuNavigation = {
@@ -26,5 +27,13 @@ export const posts: PostMenuNavigation[] = [
     title: 'Shadcn/ui',
     description: 'For sighted users to preview content available behind a link.',
     body: ReadMe,
+  },
+  {
+    id: 'multiple-ssh-keys',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_kDcMLGuxtHh4k6Q1WQ-vx4FyktGt27jyOxlcLD8F_Q&s',
+    date: new Date(),
+    title: 'Using multiple ssh keys',
+    description: 'For those that got 2 accounts in github.',
+    body: MultipleSSHPost,
   },
 ];

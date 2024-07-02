@@ -26,12 +26,22 @@ export type UserType = z.infer<typeof UserSchema>;
 export const PostSchema = z.object({
   id: z.number(),
   date: z.date(),
-  title: z.string(),
-  description: z.string(),
-  body: z.string(),
+  title: z
+    .string({ required_error: 'Como vc quer que o pessoal leia se nem titulo tu ta colocando??' })
+    .min(1, { message: 'Título vazio não vale amigão' }),
+  description: z
+    .string({ required_error: 'Sem descrição fica dificil dos outros te entenderam' })
+    .min(1, { message: 'Faz um esforço de uma descriçãozinha pfv ajuda ai' }),
+  body: z
+    .string({ required_error: 'Ué?? achei que vc tava aqui pra compartilhar td seu conhecimento, escreve algo ai' })
+    .min(1, { message: 'Vc tem que escrever mais que isso cara, para de preguiça...' }),
+  file: z
+    .instanceof(File)
+    .refine((file) => (file ? file : null), 'File is required.')
+    .nullable(),
 });
 
 export type PostType = z.infer<typeof PostSchema>;
 
-const CreatePostSchema = PostSchema.omit({ id: true });
+export const CreatePostSchema = PostSchema.omit({ id: true });
 export type CreatePostType = z.infer<typeof CreatePostSchema>;

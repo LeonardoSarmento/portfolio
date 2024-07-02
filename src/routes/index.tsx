@@ -15,7 +15,7 @@ function Index() {
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="grid h-full max-h-screen max-w-full grid-cols-12 grid-rows-12 gap-4 px-16">
+    <div className="grid h-screen max-w-full grid-cols-12 gap-4 px-16">
       <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
