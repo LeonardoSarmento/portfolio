@@ -5,7 +5,7 @@ export const THUMBSUP = new URL('/public/assets/thumbs-up.svg', import.meta.url)
 
 export function Footer() {
   return (
-    <div className="relative mx-auto flex w-[98%] flex-col">
+    <div className="relative m-16 mb-0 flex w-[95%] flex-col">
       <Card className="mb-4 flex w-full justify-between">
         <Link
           to="https://linkedin.com/in/leonardo-araujo-sarmento"
