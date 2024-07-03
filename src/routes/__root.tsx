@@ -1,4 +1,5 @@
 import Container from '@components/Container';
+import { Footer } from '@components/Footer';
 import { NavigationMenuGroup } from '@components/NavigationMenu';
 import { Toaster } from '@components/ui/sonner';
 // import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
@@ -35,7 +36,12 @@ function RootComponent() {
       <NavigationMenuGroup />
       {/* <Container> */}
       <ScrollRestoration getKey={(location) => location.pathname} />
-      <Outlet />
+      <div className="flex h-screen flex-col justify-between">
+        <Outlet />
+        <div className="flex flex-col justify-self-end">
+          <Footer />
+        </div>
+      </div>
       <Toaster richColors closeButton />
       {/* </Container> */}
       <Suspense>

@@ -14,6 +14,7 @@ import {
 } from '@components/ui/dropdown-menu';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { Separator } from '@components/ui/separator';
+import { useAuth } from '@services/hooks/auth';
 import { postsQueryOptions } from '@services/hooks/postsQueryOptions';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link, Navigate, Outlet, createFileRoute, useRouter } from '@tanstack/react-router';
@@ -26,6 +27,7 @@ export const Route = createFileRoute('/posts/')({
 });
 
 function PostsComponent() {
+  const auth = useAuth();
   const postsQuery = useSuspenseQuery(postsQueryOptions);
   const posts = postsQuery.data;
   function copyPostRoute(postId: string) {
@@ -54,15 +56,23 @@ function PostsComponent() {
                 <CardHeader className="flex flex-1">{post.title}</CardHeader>
               </div>
               <div className="grid grid-cols-4 gap-2 px-4">
-                <>{post.tags ? post.tags.map((tag) => <Badge className="col-span-1 justify-center">{tag.value}</Badge>) : null}</>
+                <>
+                  {post.tags
+                    ? post.tags.map((tag) => (
+                        <Badge key={tag.value} className="col-span-1 justify-center">
+                          {tag.value}
+                        </Badge>
+                      ))
+                    : null}
+                </>
               </div>
-              <div className="flex h-full w-full flex-col mt-4 justify-between">
+              <div className="mt-4 flex h-full w-full flex-col justify-between">
                 <CardDescription>{post.description}</CardDescription>
                 <CardFooter className="mt-4 flex w-full">
                   <p className="w-full justify-center">{post.date.toLocaleDateString()}</p>
                   <div className="flex justify-end">
                     <DropdownMenuTrigger asChild>
-                      <Button variant="outline">
+                      <Button variant="ghost">
                         <Menu />
                       </Button>
                     </DropdownMenuTrigger>
@@ -74,27 +84,31 @@ function PostsComponent() {
               <DropdownMenuLabel>Postagem</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <Link to="/posts/$postId/edit" params={{ postId: post.id }}>
-                  <DropdownMenuItem>
-                    Editar
-                    {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
-                  </DropdownMenuItem>
-                </Link>
                 <DropdownMenuItem onClick={() => copyPostRoute(post.id)}>Compartilhar</DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() =>
-                    toast.error('Sem deletar post por aqui malandro', {
-                      icon: <Angry />,
-                      description: 'Deixa isso pra uma outra hora',
-                      classNames: {
-                        title: 'ml-2',
-                        description: 'ml-2',
-                      },
-                    })
-                  }
-                >
-                  Deletar
-                </DropdownMenuItem>
+                {auth.isAuthenticated ? (
+                  <>
+                    <Link to="/posts/$postId/edit" params={{ postId: post.id }}>
+                      <DropdownMenuItem>
+                        Editar
+                        {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+                      </DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        toast.error('Sem deletar post por aqui malandro', {
+                          icon: <Angry />,
+                          description: 'Deixa isso pra uma outra hora',
+                          classNames: {
+                            title: 'ml-2',
+                            description: 'ml-2',
+                          },
+                        })
+                      }
+                    >
+                      Deletar
+                    </DropdownMenuItem>
+                  </>
+                ) : null}
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>

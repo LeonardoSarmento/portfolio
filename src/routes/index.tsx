@@ -15,7 +15,7 @@ function Index() {
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="grid h-screen max-w-full grid-cols-12 gap-4 px-16">
+    <div className="grid h-screen max-w-full grid-cols-12 gap-4 px-16 mb-24">
       <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
@@ -79,7 +79,7 @@ function Index() {
           </CardHeader>
         </CardContent>
       </Card>
-      <Card className="col-span-3 col-start-10 h-fit px-4">
+      <Card className="col-span-3 col-start-10 row-span-6 px-4">
         <CardHeader>
           <CardTitle>Virtual Systems Fellow</CardTitle>
           <CardDescription>
@@ -128,7 +128,7 @@ function Index() {
           </p>
         </CardContent>
       </Card>
-      <div className=" col-span-9 row-span-3 row-start-7 mt-3 h-fit">
+      <div className=" col-span-12 row-span-3 row-start-7 mt-3 h-fit">
         <Carousel
           opts={{ loop: true }}
           plugins={[plugin.current]}
@@ -150,38 +150,6 @@ function Index() {
           <CarouselNext />
         </Carousel>
       </div>
-      <Card className="col-span-3 row-span-2 row-start-9 mt-24 flex h-32 items-center justify-between">
-        <Link to="https://linkedin.com/in/leonardo-araujo-sarmento" target="_blank" rel="noopener noreferrer">
-          <CardHeader className="items-center">
-            <Linkedin />
-            <CardDescription>
-              <CardDescription>LinkedIn</CardDescription>
-            </CardDescription>
-          </CardHeader>
-        </Link>
-        <Link to="https://instagram.com/leonardo.a.sarmento" target="_blank" rel="noopener noreferrer">
-          <CardHeader className="items-center">
-            <Instagram />
-            <CardDescription>Instagram</CardDescription>
-          </CardHeader>
-        </Link>
-        <Link
-          to="mailto: leonardo.a.sarmento@gmail.com?subject=ThisIsMyFeedback&body=Hello!"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <CardHeader className="items-center">
-            <Mail />
-            <CardDescription>Email</CardDescription>
-          </CardHeader>
-        </Link>
-        <Link to="https://github.com/LeonardoSarmento" target="_blank" rel="noopener noreferrer">
-          <CardHeader className="items-center">
-            <Github />
-            <CardDescription>Github</CardDescription>
-          </CardHeader>
-        </Link>
-      </Card>
     </div>
   );
 }

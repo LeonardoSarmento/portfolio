@@ -1,6 +1,7 @@
 import { BreadcrumbResponsive } from '@components/Breadcrumbs';
 import MarkdownRenderer from '@components/MarkdownRenderer';
-import { Card, CardDescription, CardHeader } from '@components/ui/card';
+import { Badge } from '@components/ui/badge';
+import { Card, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import { normalizeDate } from '@lib/utils';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
 import { PostNotFoundError } from '@services/hooks/posts';
@@ -29,11 +30,24 @@ function PostComponent() {
     <>
       <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4 text-center">
         <img src={post.thumbnail} className="col-span-12 mx-auto h-32 w-1/5 justify-center rounded" />
-        <CardHeader className="col-span-12">{post.title}</CardHeader>
+        <CardHeader className="col-span-12 gap-3">
+          <CardTitle>{post.title}</CardTitle>
+          <div className="col-span-12 flex w-full justify-center gap-2">
+            <>
+              {post.tags
+                ? post.tags.map((tag) => (
+                    <Badge key={tag.value} className="justify-center">
+                      {tag.value}
+                    </Badge>
+                  ))
+                : null}
+            </>
+          </div>
+        </CardHeader>
         <BreadcrumbResponsive
           currentFolder={{ title: 'Posts' }}
           options={optionsUrl}
-          className="col-span-12 flex justify-center py-2"
+          className="col-span-12 flex justify-center"
         />
         <CardDescription className="col-span-12">{normalizeDate(post.date)}</CardDescription>
         <CardDescription className="col-span-12">{post.description}</CardDescription>
