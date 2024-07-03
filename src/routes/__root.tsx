@@ -38,9 +38,7 @@ function RootComponent() {
       <ScrollRestoration getKey={(location) => location.pathname} />
       <div className="flex h-screen flex-col justify-between">
         <Outlet />
-        <div className="flex flex-col justify-self-end">
-          <Footer />
-        </div>
+        <Footer />
       </div>
       <Toaster richColors closeButton />
       {/* </Container> */}

@@ -1,4 +1,3 @@
-import { copyToClipboard } from '@components/CodeCopyButton';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Card, CardDescription, CardFooter, CardHeader } from '@components/ui/card';
@@ -9,15 +8,13 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@components/ui/dropdown-menu';
-import { ScrollArea } from '@components/ui/scroll-area';
-import { Separator } from '@components/ui/separator';
 import { useAuth } from '@services/hooks/auth';
 import { postsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { CopyToClipboardRoute } from '@services/utils/utils';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { Link, Navigate, Outlet, createFileRoute, useRouter } from '@tanstack/react-router';
+import { Link, createFileRoute } from '@tanstack/react-router';
 import { Angry, Menu } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -30,15 +27,6 @@ function PostsComponent() {
   const auth = useAuth();
   const postsQuery = useSuspenseQuery(postsQueryOptions);
   const posts = postsQuery.data;
-  function copyPostRoute(postId: string) {
-    const url = `${import.meta.env.VITE_BASE_URL}/posts/${postId}`;
-    try {
-      copyToClipboard(url);
-      toast.success('Link salvo no ctrl+v patrão', { description: `Pediu tá feito, ${url} tá na mão` });
-    } catch (error) {
-      toast.error('Não foi possível copiar o link', { description: 'Sinto mt falhei fui mlk :(' });
-    }
-  }
   return (
     <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">
       {[...posts].map((post) => (
@@ -84,7 +72,11 @@ function PostsComponent() {
               <DropdownMenuLabel>Postagem</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem onClick={() => copyPostRoute(post.id)}>Compartilhar</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => CopyToClipboardRoute(`${import.meta.env.VITE_BASE_URL}/posts/${post.id}`)}
+                >
+                  Compartilhar
+                </DropdownMenuItem>
                 {auth.isAuthenticated ? (
                   <>
                     <Link to="/posts/$postId/edit" params={{ postId: post.id }}>

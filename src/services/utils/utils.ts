@@ -1,3 +1,6 @@
+import { copyToClipboard } from "@components/CodeCopyButton";
+import { toast } from "sonner";
+
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -19,4 +22,13 @@ export function getRandomNumberWithDecimals(min = 0, max = 20000): number {
 
   // Add the minimum value to get the final random number within range
   return withDecimals + min;
+}
+
+export function CopyToClipboardRoute(url: string) {
+  try {
+    copyToClipboard(url);
+    toast.success('Link salvo no ctrl+v patrão', { description: `Pediu tá feito, ${url} tá na mão` });
+  } catch (error) {
+    toast.error('Não foi possível copiar o link', { description: 'Sinto mt falhei fui mlk :(' });
+  }
 }

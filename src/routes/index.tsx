@@ -1,21 +1,37 @@
 import { MY_PHOTO } from '@components/NavigationMenu';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
+import { PendingComponent } from '@components/PendingComponent';
+import { Badge } from '@components/ui/badge';
+import { Button } from '@components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
-import { Link, createFileRoute } from '@tanstack/react-router';
+import { ScrollArea, ScrollBar } from '@components/ui/scroll-area';
+import { ReloadIcon } from '@radix-ui/react-icons';
+import { postsQueryOptions, projectsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
-import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import React from 'react';
-const gif = new URL('/public/assets/Animation - 1707702469299.gif', import.meta.url).href;
+// const gif = new URL('/public/assets/Animation - 1707702469299.gif', import.meta.url).href;
 
 export const Route = createFileRoute('/')({
+  loader: ({ context: { queryClient } }) => {
+    queryClient.ensureQueryData(postsQueryOptions), queryClient.ensureQueryData(projectsQueryOptions);
+  },
+  pendingComponent: PendingComponent,
   component: Index,
 });
 
 function Index() {
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+  const postsQuery = useSuspenseQuery(postsQueryOptions);
+  const posts = postsQuery.data;
+
+  const projectsQuery = useSuspenseQuery(projectsQueryOptions);
+  const projects = projectsQuery.data;
 
   return (
-    <div className="grid h-screen max-w-full grid-cols-12 gap-4 px-16 mb-24">
+    <div className="mb-[160px] grid h-screen max-w-full grid-cols-12 gap-4 px-16">
       <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
@@ -128,27 +144,119 @@ function Index() {
           </p>
         </CardContent>
       </Card>
-      <div className=" col-span-12 row-span-3 row-start-7 mt-3 h-fit">
-        <Carousel
-          opts={{ loop: true }}
-          plugins={[plugin.current]}
-          onMouseEnter={plugin.current.stop}
-          onMouseLeave={plugin.current.reset}
-        >
-          <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index} className="basis-1/3">
-                <Card>
-                  <CardContent className="flex h-96 items-center justify-center p-6">
-                    <span className="text-4xl font-semibold">{index + 1}</span>
-                  </CardContent>
-                </Card>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+      <div className=" col-span-12 row-start-7 mt-3 grid grid-cols-2 gap-4">
+        <div className="col-span-1 mx-12 flex max-h-full flex-col gap-3 text-center">
+          <CardTitle className="text-lg">Posts</CardTitle>
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[plugin.current]}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
+            <CarouselContent>
+              {posts.map((post, index) => (
+                // {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={post.id} className="h-[425px] basis-1/3">
+                  <Card key={post.id} className="col-span-2 row-span-1 h-full p-2 text-center">
+                    <Link
+                      className="flex h-full flex-col"
+                      to="/posts/$postId"
+                      params={{ postId: post.id }}
+                      // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
+                    >
+                      <img className="aspect-video w-full rounded-md" src={post.thumbnail} />
+                      <div className="h-1/2">
+                        <CardHeader className="flex flex-1">{post.title}</CardHeader>
+                      </div>
+                      <ScrollArea className="h-28 w-full rounded-md">
+                        <div className="grid grid-cols-4 gap-2 px-4">
+                          <>
+                            {post.tags
+                              ? post.tags.map((tag) => (
+                                  <Badge key={tag.value} className="col-span-1 justify-center">
+                                    {tag.value}
+                                  </Badge>
+                                ))
+                              : null}
+                          </>
+                        </div>
+                      </ScrollArea>
+                      <div className="mt-4 flex h-full w-full flex-col justify-between">
+                        <CardDescription className="flex items-center justify-center">
+                          <ScrollArea className="h-14 w-full rounded-md">{post.description}</ScrollArea>
+                        </CardDescription>
+                        <CardFooter className="mt-4 flex w-full">
+                          <p className="w-full justify-center">{post.date.toLocaleDateString()}</p>
+                        </CardFooter>
+                      </div>
+                    </Link>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+          <Button asChild>
+            <Link to="/posts/">Ver todos os Posts</Link>
+          </Button>
+        </div>
+        <div className="col-span-1 mx-12 flex flex-col gap-3 text-center">
+          <CardTitle className="text-lg">Projetos</CardTitle>
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[plugin.current]}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
+            <CarouselContent>
+              {projects.map((project, index) => (
+                // {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={index} className="h-[425px] basis-1/3">
+                  <Card key={project.id} className="col-span-2 row-span-1 h-full  p-2 text-center">
+                    <Link
+                      className="flex h-full flex-col"
+                      to="/projects/$projectId"
+                      params={{ projectId: project.id }}
+                      // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
+                    >
+                      <img className="aspect-video w-full rounded-md" src={project.thumbnail} />
+                      <div className="h-1/2">
+                        <CardHeader className="flex flex-1">{project.title}</CardHeader>
+                      </div>
+                      <ScrollArea className="h-28 w-full rounded-md">
+                        <div className="grid grid-cols-4 gap-2 px-4">
+                          <>
+                            {project.tags
+                              ? project.tags.map((tag) => (
+                                  <Badge key={tag.value} className="col-span-1 justify-center">
+                                    {tag.value}
+                                  </Badge>
+                                ))
+                              : null}
+                          </>
+                        </div>
+                      </ScrollArea>
+                      <div className="mt-4 flex h-full w-full flex-col justify-between">
+                        <CardDescription>
+                          <ScrollArea className="h-14 w-full rounded-md">{project.description}</ScrollArea>
+                        </CardDescription>
+                        <CardFooter className="mt-4 flex w-full">
+                          <p className="w-full justify-center">{project.date.toLocaleDateString()}</p>
+                        </CardFooter>
+                      </div>
+                    </Link>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+          <Button asChild>
+            <Link to="/projects/">Ver todos os Projetos</Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

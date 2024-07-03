@@ -22,7 +22,7 @@ function ProjectsComponent() {
             params={{ projectId: project.id }}
             mask={{ to: '/projects/$projectId', params: { projectId: project.id } }}
           >
-            <img className="aspect-video w-full rounded-md" src={project.image} />
+            <img className="aspect-video w-full rounded-md" src={project.thumbnail} />
             <div className="h-full">
               <CardHeader className="flex flex-1">{project.title}</CardHeader>
             </div>

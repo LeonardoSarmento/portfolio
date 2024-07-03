@@ -27,7 +27,7 @@ export const Route = createFileRoute('/_auth/posts/$postId/edit')({
 function EditPostsComponent() {
   const { data: TAGS } = useQueryTags();
   const post = Route.useLoaderData();
-  const navigate = useRouter();
+  const router = useRouter();
 
   const auth = useAuth();
   const form = useForm<CreatePostType>({
@@ -244,7 +244,7 @@ function EditPostsComponent() {
 
               <div className="flex flex-1 justify-center gap-3">
                 <Button type="submit">Salvar</Button>
-                <Button type="button" onClick={() => navigate.history.back()}>
+                <Button type="button" onClick={() => router.history.back()}>
                   Voltar
                 </Button>
                 <Button
