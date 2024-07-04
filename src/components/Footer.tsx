@@ -1,58 +1,45 @@
 import { Link } from '@tanstack/react-router';
-import { Card, CardDescription, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 export const THUMBSUP = new URL('/public/assets/thumbs-up.svg', import.meta.url).href;
 
 export function Footer() {
   return (
     <div className="relative m-16 mb-0 flex w-[95%] flex-col">
-      <Card className="mb-4 flex w-full justify-between">
-        <Link
-          to="https://linkedin.com/in/leonardo-araujo-sarmento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-3"
-        >
-          <CardHeader className="items-center">
+      <Card className="mb-4 flex w-full items-center justify-between">
+        <Link to="https://linkedin.com/in/leonardo-araujo-sarmento" target="_blank" rel="noopener noreferrer">
+          <CardContent className="col-span-3 items-center p-6 flex flex-col gap-1">
             <Linkedin />
-            <CardDescription>
-              <CardDescription>LinkedIn</CardDescription>
-            </CardDescription>
-          </CardHeader>
+            <CardDescription>LinkedIn</CardDescription>
+          </CardContent>
         </Link>
-        <Link
-          to="https://instagram.com/leonardo.a.sarmento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-3"
-        >
-          <CardHeader className="items-center">
+        <Link to="https://instagram.com/leonardo.a.sarmento" target="_blank" rel="noopener noreferrer">
+          <CardContent className="col-span-3 items-center p-6 flex flex-col gap-1">
             <Instagram />
             <CardDescription>Instagram</CardDescription>
-          </CardHeader>
+          </CardContent>
         </Link>
         <Link
           to="mailto: leonardo.a.sarmento@gmail.com?subject=ThisIsMyFeedback&body=Hello!"
           target="_blank"
           rel="noopener noreferrer"
-          className="col-span-3"
         >
-          <CardHeader className="items-center">
+          <CardContent className="col-span-3 items-center p-6 flex flex-col gap-1">
             <Mail />
             <CardDescription>Email</CardDescription>
-          </CardHeader>
+          </CardContent>
         </Link>
-        <Link to="https://github.com/LeonardoSarmento" target="_blank" rel="noopener noreferrer" className="col-span-3">
-          <CardHeader className="items-center">
+        <Link to="https://github.com/LeonardoSarmento" target="_blank" rel="noopener noreferrer">
+          <CardContent className="col-span-3 items-center p-6 flex flex-col gap-1">
             <Github />
             <CardDescription>Github</CardDescription>
-          </CardHeader>
+          </CardContent>
         </Link>
       </Card>
-      <CardTitle className="my-2 flex w-full justify-center items-center gap-3">
-        <span>Feito por Leonardo Araujo Sarmento</span>
+      <div className="my-2 flex w-full items-center justify-center gap-3">
+        <CardTitle>Feito por Leonardo Araujo Sarmento</CardTitle>
         <img src={THUMBSUP} />
-      </CardTitle>
+      </div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import BlogPost from '@assets/data/markdown.md';
 import gfmFlavorMarkdown from '@assets/data//gfmFlavorMarkdown.md';
 import { TagType } from '@services/types/User';
-import { TAGS } from './posts';
+import { TAGS_OPTIONS } from './posts';
 
 export type ProjectMenuNavigation = {
   id: string;
@@ -22,7 +22,7 @@ export const projects: ProjectMenuNavigation[] = [
     title: 'Big project forty two trust it.',
     description: 'Description as response.',
     body: gfmFlavorMarkdown,
-    tags: [TAGS[0], TAGS[3], TAGS[6], TAGS[0], TAGS[3], TAGS[6]],
+    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[5], TAGS_OPTIONS[1], TAGS_OPTIONS[4], TAGS_OPTIONS[6]],
   },
   {
     id: 'project-based-tanstack-router',
@@ -39,6 +39,6 @@ export const projects: ProjectMenuNavigation[] = [
   //   title: 'Two SSH github account configuration.',
   //   description: 'A modal dialog that interrupts the user with important content and expects a response.',
   //   body: BlogPost,
-  //   tags: [TAGS[0], TAGS[3], TAGS[6]],
+  //   tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
   // },
 ];

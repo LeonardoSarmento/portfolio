@@ -23,7 +23,8 @@ export const UserSchema = z.object({
 
 export type UserType = z.infer<typeof UserSchema>;
 
-const tagSchema = z.object({
+export const tagSchema = z.object({
+  id: z.string(),
   label: z.string(),
   value: z.string(),
   disable: z.boolean().optional(),

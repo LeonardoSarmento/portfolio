@@ -1,5 +1,6 @@
 import { posts as AllPosts } from '@assets/data/posts';
-import { TAGS } from '@assets/data/posts';
+import { TAGS_OPTIONS } from '@assets/data/posts';
+import { FilterType } from '@src/routes/posts.index';
 
 // export type PostType = {
 //   id: string;
@@ -25,7 +26,21 @@ export const fetchPosts = async () => {
   console.log('Fetching posts...');
   await new Promise((r) => setTimeout(r, 500));
   const posts = AllPosts;
+
   return posts;
+};
+
+export const fetchPostsWithFilter = async ({ tags }: FilterType) => {
+  console.log('Fetching posts with filters...');
+  await new Promise((r) => setTimeout(r, 500));
+  console.log('tags: ', tags);
+  if (!tags || tags.length === 0) {
+    return AllPosts;
+  }
+  const posts = AllPosts;
+  const postsWithFilter = posts.filter((post) => post.tags?.some((tag) => tags.includes(tag.id)));
+  console.log('postsWithFilter: ', postsWithFilter);
+  return postsWithFilter;
 };
 
 export const fetchPostsUrl = async () => {
@@ -38,6 +53,6 @@ export const fetchPostsUrl = async () => {
 export const fetchTags = async () => {
   console.log('Fetching tags...');
   await new Promise((r) => setTimeout(r, 500));
-  const tags = TAGS;
+  const tags = TAGS_OPTIONS;
   return tags;
 };

@@ -31,7 +31,7 @@ function Index() {
   const projects = projectsQuery.data;
 
   return (
-    <div className="mb-[160px] grid h-screen max-w-full grid-cols-12 gap-4 px-16">
+    <div className="grid h-screen max-h-fit max-w-full grid-cols-12 gap-4 px-16">
       <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
@@ -98,11 +98,9 @@ function Index() {
       <Card className="col-span-3 col-start-10 row-span-6 px-4">
         <CardHeader>
           <CardTitle>Virtual Systems Fellow</CardTitle>
-          <CardDescription>
-            <p>Sistema Findes · Full-time</p>
-            <p>Feb 2023 - Present · 1 yr 2 mos</p>
-            <p>Vitória, Espírito Santo, Brazil · On-site</p>
-          </CardDescription>
+          <CardDescription>Sistema Findes · Full-time</CardDescription>
+          <CardDescription>Feb 2023 - Present · 1 yr 2 mos</CardDescription>
+          <CardDescription>Vitória, Espírito Santo, Brazil · On-site</CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-xs leading-tight text-muted-foreground">
@@ -144,7 +142,7 @@ function Index() {
           </p>
         </CardContent>
       </Card>
-      <div className=" col-span-12 row-start-7 mt-3 grid grid-cols-2 gap-4">
+      <div className="col-span-12 row-start-7 mb-[160px] mt-3 grid grid-cols-2 gap-4">
         <div className="col-span-1 mx-12 flex max-h-full flex-col gap-3 text-center">
           <CardTitle className="text-lg">Posts</CardTitle>
           <Carousel
@@ -156,7 +154,7 @@ function Index() {
             <CarouselContent>
               {posts.map((post, index) => (
                 // {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={post.id} className="h-[425px] basis-1/3">
+                <CarouselItem key={`${post.id}-${index}`} className="h-[425px] basis-1/3">
                   <Card key={post.id} className="col-span-2 row-span-1 h-full p-2 text-center">
                     <Link
                       className="flex h-full flex-col"
@@ -173,7 +171,7 @@ function Index() {
                           <>
                             {post.tags
                               ? post.tags.map((tag) => (
-                                  <Badge key={tag.value} className="col-span-1 justify-center">
+                                  <Badge key={`${post.id}-${index}-${tag.value}`} className="col-span-1 justify-center">
                                     {tag.value}
                                   </Badge>
                                 ))
@@ -212,7 +210,7 @@ function Index() {
             <CarouselContent>
               {projects.map((project, index) => (
                 // {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={index} className="h-[425px] basis-1/3">
+                <CarouselItem key={`${project.id}-${index}`} className="h-[425px] basis-1/3">
                   <Card key={project.id} className="col-span-2 row-span-1 h-full  p-2 text-center">
                     <Link
                       className="flex h-full flex-col"
@@ -229,7 +227,10 @@ function Index() {
                           <>
                             {project.tags
                               ? project.tags.map((tag) => (
-                                  <Badge key={tag.value} className="col-span-1 justify-center">
+                                  <Badge
+                                    key={`${project.id}-${index}-${tag.value}`}
+                                    className="col-span-1 justify-center"
+                                  >
                                     {tag.value}
                                   </Badge>
                                 ))
