@@ -6,38 +6,37 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreatePostSchema, CreatePostType } from '@services/types/User';
-import { createFileRoute, useLoaderData, useRouter } from '@tanstack/react-router';
+import { CreatePostSchema, CreatePostType, CreateProjectSchema, CreateProjectType } from '@services/types/User';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { Angry, FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { AutosizeTextarea } from '@components/ui/autosize-textarea';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
 import MultipleSelector from '@components/ui/multiple-selector';
-import { tagsQueryOptions } from '@services/hooks/postsQueryOptions';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryTags } from '@services/hooks/postsQueryOptions';
+import { postQueryOptions, projectQueryOptions } from '@services/hooks/postQueryOptions';
 
-export const Route = createFileRoute('/_auth/posts/create')({
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
-  component: CreatePostsComponent,
+export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
+  loader: ({ context: { queryClient }, params: { projectId } }) =>
+    queryClient.ensureQueryData(projectQueryOptions(projectId)),
+  // pendingComponent: () => <div>Loading...</div>,
+  component: EditPostsComponent,
 });
 
-function CreatePostsComponent() {
-  // const tagsQuery = useSuspenseQuery(tagsQueryOptions);
-  // const TAGS = tagsQuery.data;
-  const TAGS = Route.useLoaderData();
-  const auth = useAuth();
+function EditPostsComponent() {
+  const { data: TAGS } = useQueryTags();
+  const project = Route.useLoaderData();
   const router = useRouter();
-  const form = useForm<CreatePostType>({
-    resolver: zodResolver(CreatePostSchema.omit({ thumbnail: true, date: true })),
+
+  const auth = useAuth();
+  const form = useForm<CreateProjectType>({
+    resolver: zodResolver(CreateProjectSchema.omit({ date: true })),
     mode: 'onChange',
-    defaultValues: {
-      file: null,
-    },
+    defaultValues: project,
   });
 
   const onSubmit = form.handleSubmit((values) => {
-    console.log('values:', values);
     if (!auth.isAuthenticated) {
       toast.error('Você não está autenticado cara :(', {
         description: 'Você não deveria ter acesso aqui... tô de olho em você ein',
@@ -100,58 +99,91 @@ function CreatePostsComponent() {
     }
   }
 
+  // useEffect(() => {
+  //   if (post) {
+  //     form.setValue('title', post.title);
+  //     form.setValue('description', post.description);
+  //     form.setValue('body', post.body);
+  //     form.setValue('thumbnail', post.thumbnail);
+  //     form.setValue('tags', post.tags);
+  //     form.setValue('date', post.date);
+  //   }
+  // }, [post]);
+
   return (
     <Form {...form}>
       <form onSubmit={onSubmit}>
         <div className="flex flex-col gap-4">
           <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4 text-center">
             <CardTitle className="col-span-12 py-6 text-3xl">
-              {form.getValues('title') ? form.watch('title') : 'Criar novo post'}
+              {form.getValues('title') ? form.watch('title') : 'Criar novo projeto'}
             </CardTitle>
-            <CardHeader className="col-span-4 gap-3">
-              <FormField
-                control={form.control}
-                name="file"
-                render={({ field }) => (
-                  <>
-                    <CardTitle>Thumbnail</CardTitle>
-                    {form.watch('file') && field.value ? (
+            <CardHeader className="col-span-6 gap-3">
+              {form.getValues('thumbnail') ? (
+                <FormField
+                  control={form.control}
+                  name="thumbnail"
+                  render={({ field }) => (
+                    <>
+                      <CardTitle>Thumbnail</CardTitle>
                       <div className="relative flex flex-col items-center justify-center gap-3">
-                        <>
-                          {field.value.type === 'application/json' ? (
-                            <MarkdownRenderer markdown={field.value.name} />
-                          ) : (
-                            <img className="aspect-video w-full rounded-md" src={URL.createObjectURL(field.value)} />
-                          )}
-                        </>
-                        <div className="relative flex items-center justify-center gap-3">
-                          <FileCheck2Icon className="h-4 w-4" />
-                          <p className="text-sm font-medium">{form.watch('file')?.name}</p>
-                          <Button variant="ghost" onClick={() => form.resetField('file')}>
+                        <img className="aspect-video w-1/2 rounded-md" src={form.watch('thumbnail')} />
+                        <div className="relative flex items-center justify-center">
+                          <FileCheck2Icon className="w-20" />
+                          <p className="text-sm font-medium">{form.watch('thumbnail')}</p>
+                          <Button variant="ghost" onClick={() => form.resetField('thumbnail', { defaultValue: '' })}>
                             <X className="text-destructive" />
                           </Button>
                         </div>
                       </div>
-                    ) : (
-                      <FormItem className="w-full">
-                        <FormControl>
-                          <Dropzone
-                            {...field}
-                            dropMessage="Solte seu arquivo ou clique aqui"
-                            accept={getAllowedMimeTypes(allowedTypes)}
-                            handleOnDrop={handleOnDrop}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  </>
-                )}
-              />
+                    </>
+                  )}
+                />
+              ) : (
+                <FormField
+                  control={form.control}
+                  name="file"
+                  render={({ field }) => (
+                    <>
+                      <CardTitle>Thumbnail</CardTitle>
+                      {field.value ? (
+                        <div className="relative flex flex-col items-center justify-center gap-3">
+                          <>
+                            {field.value.type === 'application/json' ? (
+                              <MarkdownRenderer markdown={field.value.name} />
+                            ) : (
+                              <img className="aspect-video w-full rounded-md" src={URL.createObjectURL(field.value)} />
+                            )}
+                          </>
+                          <div className="relative flex items-center justify-center gap-3">
+                            <FileCheck2Icon className="w-20" />
+                            <p className="text-sm font-medium">{form.watch('file')?.name}</p>
+                            <Button variant="ghost" onClick={() => form.resetField('file')}>
+                              <X className="text-destructive" />
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        <FormItem className="w-full">
+                          <FormControl>
+                            <Dropzone
+                              {...field}
+                              dropMessage="Solte seu arquivo ou clique aqui"
+                              accept={getAllowedMimeTypes(allowedTypes)}
+                              handleOnDrop={handleOnDrop}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    </>
+                  )}
+                />
+              )}
               {/* <Input type="file" /> */}
             </CardHeader>
-            <CardContent className="col-span-8 flex flex-col justify-between gap-6 py-0">
-              <div className="col-span-8 flex h-full flex-col justify-center">
+            <CardContent className="col-span-6 flex flex-col justify-between gap-6 py-0">
+              <div className="col-span-6 flex h-full flex-col justify-center">
                 <FormField
                   control={form.control}
                   name="title"
@@ -191,7 +223,7 @@ function CreatePostsComponent() {
                           <MultipleSelector
                             {...field}
                             defaultOptions={TAGS}
-                            creatable
+                            // creatable
                             placeholder="Selecione alguma tag..."
                             emptyIndicator={
                               <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
@@ -207,18 +239,25 @@ function CreatePostsComponent() {
                 />
               </div>
               <div className="flex justify-center gap-3">
-                <Button type="submit">Criar</Button>
+                <Button type="submit">Salvar</Button>
                 <Button type="button" onClick={() => router.history.back()}>
                   Voltar
                 </Button>
                 <Button
                   type="button"
                   onClick={() =>
-                    form.reset({ body: '', title: '', tags: [], description: '', file: null, thumbnail: '' })
+                    toast.error('Sem deletar post por aqui malandro', {
+                      icon: <Angry />,
+                      description: 'Deixa isso pra uma outra hora',
+                      classNames: {
+                        title: 'ml-2',
+                        description: 'ml-2',
+                      },
+                    })
                   }
                   variant="destructive"
                 >
-                  Apagar tudo
+                  Deletar
                 </Button>
               </div>
             </CardContent>
@@ -244,7 +283,7 @@ function CreatePostsComponent() {
                     )}
                   />
                   <Button className="w-full" type="submit">
-                    Criar
+                    Salvar
                   </Button>
                 </CardContent>
               </ResizablePanel>

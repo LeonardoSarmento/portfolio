@@ -28,6 +28,7 @@ import { Route as ProjectsProjectIdModalImport } from './routes/projects_.$proje
 import { Route as PostsPostIdModalImport } from './routes/posts_.$postId.modal'
 import { Route as AuthProjectsCreateImport } from './routes/_auth.projects.create'
 import { Route as AuthPostsCreateImport } from './routes/_auth.posts.create'
+import { Route as AuthProjectsProjectIdEditImport } from './routes/_auth.projects.$projectId.edit'
 import { Route as AuthPostsPostIdEditImport } from './routes/_auth.posts.$postId.edit'
 
 // Create/Update Routes
@@ -117,6 +118,11 @@ const AuthPostsCreateRoute = AuthPostsCreateImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const AuthProjectsProjectIdEditRoute = AuthProjectsProjectIdEditImport.update({
+  path: '/projects/$projectId/edit',
+  getParentRoute: () => AuthRoute,
+} as any)
+
 const AuthPostsPostIdEditRoute = AuthPostsPostIdEditImport.update({
   path: '/posts/$postId/edit',
   getParentRoute: () => AuthRoute,
@@ -198,6 +204,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthPostsPostIdEditImport
       parentRoute: typeof AuthImport
     }
+    '/_auth/projects/$projectId/edit': {
+      preLoaderRoute: typeof AuthProjectsProjectIdEditImport
+      parentRoute: typeof AuthImport
+    }
   }
 }
 
@@ -209,6 +219,7 @@ export const routeTree = rootRoute.addChildren([
     AuthPostsCreateRoute,
     AuthProjectsCreateRoute,
     AuthPostsPostIdEditRoute,
+    AuthProjectsProjectIdEditRoute,
   ]),
   AboutRoute,
   ContactRoute,

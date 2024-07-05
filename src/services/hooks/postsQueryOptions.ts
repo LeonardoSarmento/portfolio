@@ -1,6 +1,6 @@
 import { fetchPosts, fetchPostsUrl, fetchPostsWithFilter, fetchTags } from './posts';
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import { fetchProjects, fetchProjectsUrl } from './projects';
+import { fetchProjects, fetchProjectsUrl, fetchProjectsWithFilter } from './projects';
 import { FilterType } from '@src/routes/posts.index';
 
 export const postsQueryOptions = queryOptions({
@@ -8,11 +8,25 @@ export const postsQueryOptions = queryOptions({
   queryFn: () => fetchPosts(),
 });
 
-export const postsQueryOptionsWithFilter = ({ tags }: FilterType) => {
-  const filter = tags?.length === 0 && !tags ? 'No-filter' : tags;
+export const postsQueryOptionsWithFilter = ({ tags, title, count, views }: FilterType) => {
+  const tagF = tags?.length === 0 && !tags ? 'No-tags' : tags;
+  const tiltleF = !title ? 'No-title' : title;
+  const countF = !count ? 'No-count' : count;
+  const viewsF = !views ? 'No-views' : views;
   return queryOptions({
-    queryKey: ['posts', { filter }],
-    queryFn: () => fetchPostsWithFilter({ tags }),
+    queryKey: ['posts', { tagF, tiltleF, countF, viewsF }],
+    queryFn: () => fetchPostsWithFilter({ tags, title, count, views }),
+  });
+};
+
+export const projectsQueryOptionsWithFilter = ({ tags, title, count, views }: FilterType) => {
+  const tagF = tags?.length === 0 && !tags ? 'No-tags' : tags;
+  const tiltleF = !title ? 'No-title' : title;
+  const countF = !count ? 'No-count' : count;
+  const viewsF = !views ? 'No-views' : views;
+  return queryOptions({
+    queryKey: ['projects', { tagF, tiltleF, countF, viewsF }],
+    queryFn: () => fetchProjectsWithFilter({ tags, title, count, views }),
   });
 };
 

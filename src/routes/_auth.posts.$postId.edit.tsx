@@ -7,7 +7,7 @@ import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
 import { CreatePostSchema, CreatePostType } from '@services/types/User';
-import { createFileRoute, useNavigate, useRouter } from '@tanstack/react-router';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { Angry, FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -16,7 +16,6 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@component
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
-import { useEffect } from 'react';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
@@ -31,12 +30,9 @@ function EditPostsComponent() {
 
   const auth = useAuth();
   const form = useForm<CreatePostType>({
-    resolver: zodResolver(CreatePostSchema),
+    resolver: zodResolver(CreatePostSchema.omit({ date: true,  })),
     mode: 'onChange',
-    defaultValues: {
-      file: null,
-      thumbnail: '',
-    },
+    defaultValues: post,
   });
 
   const onSubmit = form.handleSubmit((values) => {
@@ -102,16 +98,16 @@ function EditPostsComponent() {
     }
   }
 
-  useEffect(() => {
-    if (post) {
-      form.setValue('title', post.title);
-      form.setValue('description', post.description);
-      form.setValue('body', post.body);
-      form.setValue('thumbnail', post.thumbnail);
-      form.setValue('tags', post.tags);
-      form.setValue('date', post.date);
-    }
-  }, [post]);
+  // useEffect(() => {
+  //   if (post) {
+  //     form.setValue('title', post.title);
+  //     form.setValue('description', post.description);
+  //     form.setValue('body', post.body);
+  //     form.setValue('thumbnail', post.thumbnail);
+  //     form.setValue('tags', post.tags);
+  //     form.setValue('date', post.date);
+  //   }
+  // }, [post]);
 
   return (
     <Form {...form}>
@@ -121,7 +117,7 @@ function EditPostsComponent() {
             <CardTitle className="col-span-12 py-6 text-3xl">
               {form.getValues('title') ? form.watch('title') : 'Criar novo post'}
             </CardTitle>
-            <CardHeader className="col-span-4 gap-3">
+            <CardHeader className="col-span-6 gap-3">
               {form.getValues('thumbnail') ? (
                 <FormField
                   control={form.control}
@@ -130,9 +126,9 @@ function EditPostsComponent() {
                     <>
                       <CardTitle>Thumbnail</CardTitle>
                       <div className="relative flex flex-col items-center justify-center gap-3">
-                        <img className="aspect-video w-full rounded-md" src={form.watch('thumbnail')} />
-                        <div className="relative flex items-center justify-center gap-3">
-                          <FileCheck2Icon className="h-4 w-4" />
+                        <img className="aspect-video w-1/2 rounded-md" src={form.watch('thumbnail')} />
+                        <div className="relative flex items-center justify-center">
+                          <FileCheck2Icon className="w-20" />
                           <p className="text-sm font-medium">{form.watch('thumbnail')}</p>
                           <Button variant="ghost" onClick={() => form.resetField('thumbnail', { defaultValue: '' })}>
                             <X className="text-destructive" />
@@ -155,11 +151,11 @@ function EditPostsComponent() {
                             {field.value.type === 'application/json' ? (
                               <MarkdownRenderer markdown={field.value.name} />
                             ) : (
-                              <img className="aspect-video w-full rounded-md" src={URL.createObjectURL(field.value)} />
+                              <img className="aspect-video w-1/2 rounded-md" src={URL.createObjectURL(field.value)} />
                             )}
                           </>
                           <div className="relative flex items-center justify-center gap-3">
-                            <FileCheck2Icon className="h-4 w-4" />
+                            <FileCheck2Icon className="w-w-20" />
                             <p className="text-sm font-medium">{form.watch('file')?.name}</p>
                             <Button variant="ghost" onClick={() => form.resetField('file')}>
                               <X className="text-destructive" />
@@ -185,8 +181,8 @@ function EditPostsComponent() {
               )}
               {/* <Input type="file" /> */}
             </CardHeader>
-            <CardContent className="col-span-8 flex h-full flex-col justify-center">
-              <div className="col-span-8 flex h-full flex-col justify-center">
+            <CardContent className="col-span-6 flex flex-col justify-between gap-6 py-0">
+              <div className="col-span-6 flex h-full flex-col justify-center">
                 <FormField
                   control={form.control}
                   name="title"
@@ -226,11 +222,11 @@ function EditPostsComponent() {
                           <MultipleSelector
                             {...field}
                             defaultOptions={TAGS}
-                            creatable
+                            // creatable
                             placeholder="Selecione alguma tag..."
                             emptyIndicator={
                               <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
-                                no results found.
+                                Não foi encontrado esse tema.
                               </p>
                             }
                           />
@@ -241,8 +237,7 @@ function EditPostsComponent() {
                   )}
                 />
               </div>
-
-              <div className="flex flex-1 justify-center gap-3">
+              <div className="flex justify-center gap-3">
                 <Button type="submit">Salvar</Button>
                 <Button type="button" onClick={() => router.history.back()}>
                   Voltar

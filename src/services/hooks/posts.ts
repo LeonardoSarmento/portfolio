@@ -30,17 +30,39 @@ export const fetchPosts = async () => {
   return posts;
 };
 
-export const fetchPostsWithFilter = async ({ tags }: FilterType) => {
+export const fetchPostsWithFilter = async ({ tags, count, title, views }: FilterType) => {
   console.log('Fetching posts with filters...');
   await new Promise((r) => setTimeout(r, 500));
-  console.log('tags: ', tags);
-  if (!tags || tags.length === 0) {
+  console.log('tags: ', { tags, count, title, views });
+
+  if (!tags && (!count || count === 'All')) {
     return AllPosts;
   }
+
   const posts = AllPosts;
-  const postsWithFilter = posts.filter((post) => post.tags?.some((tag) => tags.includes(tag.id)));
-  console.log('postsWithFilter: ', postsWithFilter);
-  return postsWithFilter;
+  if (tags && tags.length >= 0 && (!count || count === 'All')) {
+    // console.log('filtrando', posts);
+    const filtered = posts.filter((post) => post.tags?.some((tag) => tags.includes(tag.id)));
+    return filtered;
+  }
+  if (tags && tags.length >= 0 && count) {
+    // console.log('filtrando', posts);
+    const filtered = posts
+      .filter((post) => post.tags?.some((tag) => tags.includes(tag.id)))
+      .filter((_, index) => index + 1 <= +count);
+    return filtered;
+  }
+  if (tags && tags.length === 0 && count) {
+    const postsFilteredWithCount = posts.filter((_, index) => index + 1 <= +count);
+    // console.log('postsWithFilter: ', posts);
+    return postsFilteredWithCount;
+  }
+  if (!tags && count) {
+    const postsFilteredWithCount = posts.filter((_, index) => index + 1 <= +count);
+    // console.log('postsWithFilter: ', posts);
+    return postsFilteredWithCount;
+  }
+  return posts;
 };
 
 export const fetchPostsUrl = async () => {

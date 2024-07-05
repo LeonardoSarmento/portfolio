@@ -1,6 +1,6 @@
 import BlogPost from '@assets/data/markdown.md';
 import gfmFlavorMarkdown from '@assets/data//gfmFlavorMarkdown.md';
-import { TagType } from '@services/types/User';
+import { ProjectType, TagType } from '@services/types/User';
 import { TAGS_OPTIONS } from './posts';
 
 export type ProjectMenuNavigation = {
@@ -13,7 +13,7 @@ export type ProjectMenuNavigation = {
   tags?: TagType[];
 };
 
-export const projects: ProjectMenuNavigation[] = [
+export const projects: ProjectType[] = [
   {
     id: 'project-number-42',
     thumbnail:
@@ -23,6 +23,7 @@ export const projects: ProjectMenuNavigation[] = [
     description: 'Description as response.',
     body: gfmFlavorMarkdown,
     tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[5], TAGS_OPTIONS[1], TAGS_OPTIONS[4], TAGS_OPTIONS[6]],
+    file: null,
   },
   {
     id: 'project-based-tanstack-router',
@@ -31,6 +32,8 @@ export const projects: ProjectMenuNavigation[] = [
     title: 'Tanstack Router based project',
     description: 'Got no ideia.',
     body: BlogPost,
+    tags: [TAGS_OPTIONS[0]],
+    file: null,
   },
   // {
   //   id: 'two-ssh-github-account-configuration',

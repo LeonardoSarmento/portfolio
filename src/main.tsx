@@ -9,17 +9,19 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import './index.css';
 import './App.css';
 import './github-markdown.css';
-import './githubFlavor.css'
+import './githubFlavor.css';
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
 import { ThemeProvider } from '@components/Theme-provider';
 import { AuthProvider, useAuth } from '@services/hooks/auth';
+import { Link } from '@tanstack/react-router';
 
 const queryClient = new QueryClient();
 
 // Create a new router instance
 const router = createRouter({
+  
   routeTree,
   context: {
     queryClient,

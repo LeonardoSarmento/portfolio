@@ -1,11 +1,20 @@
 import Container from '@components/Container';
 import { Footer } from '@components/Footer';
-import { NavigationMenuGroup } from '@components/NavigationMenu';
+import { MY_PHOTO, NavigationMenuGroup } from '@components/NavigationMenu';
+import { Button } from '@components/ui/button';
+import { CardContent, CardTitle } from '@components/ui/card';
 import { Toaster } from '@components/ui/sonner';
 // import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
 import { type AuthContext } from '@services/hooks/auth';
 import { QueryClient } from '@tanstack/react-query';
-import { Outlet, ScrollRestoration, createRootRouteWithContext } from '@tanstack/react-router';
+import {
+  Link,
+  Outlet,
+  ScrollRestoration,
+  createRootRouteWithContext,
+  useNavigate,
+  useRouter,
+} from '@tanstack/react-router';
 import React, { Suspense } from 'react';
 
 const TanStackRouterDevtools =
@@ -27,7 +36,82 @@ interface MyRouterContext {
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: RootComponent,
+  notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
 });
+
+function NotFoundComponent() {
+  const router = useRouter();
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <CardContent className="flex flex-col items-center justify-center">
+          <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
+          <p className="mt-6 text-xs leading-tight text-muted-foreground">
+            Front End Engineer | React | React Native | TypeScript | Agile
+          </p>
+          {/* <div className="mb-2 mt-4 text-lg font-medium">Leonardo</div> */}
+          <CardTitle className="mb-2 mt-4">Leonardo</CardTitle>
+        </CardContent>
+        <CardTitle className="mt-2">Não encontrei essa página...</CardTitle>
+        <div className="flex gap-3">
+          <Button
+            onClick={(e) => {
+              e.preventDefault(), router.navigate({ to: '/' });
+            }}
+            type="button"
+          >
+            Inicio
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault(), router.history.back();
+            }}
+            type="button"
+          >
+            Voltar
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
+function ErrorComponent() {
+  const router = useRouter();
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
+        <CardContent className="flex flex-col items-center justify-center">
+          <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
+          <p className="mt-6 text-xs leading-tight text-muted-foreground">
+            Front End Engineer | React | React Native | TypeScript | Agile
+          </p>
+          {/* <div className="mb-2 mt-4 text-lg font-medium">Leonardo</div> */}
+          <CardTitle className="mb-2 mt-4">Leonardo</CardTitle>
+        </CardContent>
+        <CardTitle className="mt-2">Não encontrei essa página...</CardTitle>
+        <div className="flex gap-3">
+          <Button
+            onClick={(e) => {
+              e.preventDefault(), router.navigate({ to: '/' });
+            }}
+            type="button"
+          >
+            Inicio
+          </Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault(), router.history.back();
+            }}
+            type="button"
+          >
+            Voltar
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function RootComponent() {
   return (
