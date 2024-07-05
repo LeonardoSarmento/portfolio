@@ -55,15 +55,17 @@ export function NavigationMenuGroup() {
             <NavigationMenuTrigger className="px-4 sm:px-8">Posts</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                {posts.map((component) => (
-                  <ListItem
-                    key={component.id}
-                    title={component.title}
-                    to="/posts/$postId"
-                    params={{ postId: component.id }}
-                    children={component.description}
-                  />
-                ))}
+                {posts
+                  .filter((_, index) => index <= 5)
+                  .map((component) => (
+                    <ListItem
+                      key={component.id}
+                      title={component.title}
+                      to="/posts/$postId"
+                      params={{ postId: component.id }}
+                      children={component.description}
+                    />
+                  ))}
                 <ListItem
                   key={'AllPosts'}
                   title="All Posts"
@@ -74,7 +76,7 @@ export function NavigationMenuGroup() {
                 <ListItem
                   key={'CreatePost'}
                   title="New Post"
-                  to='/posts/create'
+                  to="/posts/create"
                   params={false}
                   children={'Create a new post here'}
                 />

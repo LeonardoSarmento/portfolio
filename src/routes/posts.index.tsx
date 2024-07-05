@@ -210,7 +210,7 @@ function PostsComponent() {
                 <CardContent className="flex items-center justify-center rounded-xl border p-6">
                   <blockquote className="space-y-2 pr-6">
                     <p className="text-lg">
-                      &ldquo;Não encntrei nenhuma postagem com esse tema. falhei, fui mlk :(&rdquo;
+                      &ldquo;Não encontrei nenhuma postagem com esse tema. falhei, fui mlk blz? :(&rdquo;
                     </p>
                     <footer className="text-sm">Leonardo Sarmento</footer>
                   </blockquote>

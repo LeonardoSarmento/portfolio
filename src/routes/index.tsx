@@ -31,7 +31,7 @@ function Index() {
   const projects = projectsQuery.data;
 
   return (
-    <div className="grid h-screen max-h-fit max-w-full grid-cols-12 gap-4 px-16">
+    <div className="mb-[160px] grid h-screen max-h-fit max-w-full grid-cols-12 gap-4 px-16">
       <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
@@ -152,45 +152,50 @@ function Index() {
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
-              {posts.map((post, index) => (
-                // {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={`${post.id}-${index}`} className="h-[425px] basis-1/3">
-                  <Card key={post.id} className="col-span-2 row-span-1 h-full p-2 text-center">
-                    <Link
-                      className="flex h-full flex-col"
-                      to="/posts/$postId"
-                      params={{ postId: post.id }}
-                      // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
-                    >
-                      <img className="aspect-video w-full rounded-md" src={post.thumbnail} />
-                      <div className="h-1/2">
-                        <CardHeader className="flex flex-1">{post.title}</CardHeader>
-                      </div>
-                      <ScrollArea className="h-28 w-full rounded-md">
-                        <div className="grid grid-cols-4 gap-2 px-4">
-                          <>
-                            {post.tags
-                              ? post.tags.map((tag) => (
-                                  <Badge key={`${post.id}-${index}-${tag.value}`} className="col-span-1 justify-center">
-                                    {tag.value}
-                                  </Badge>
-                                ))
-                              : null}
-                          </>
+              {posts
+                .filter((_, index) => index <= 10)
+                .map((post, index) => (
+                  // {Array.from({ length: 5 }).map((_, index) => (
+                  <CarouselItem key={`${post.id}-${index}`} className="h-[425px] basis-1/3">
+                    <Card key={post.id} className="col-span-2 row-span-1 h-full p-2 text-center">
+                      <Link
+                        className="flex h-full flex-col"
+                        to="/posts/$postId"
+                        params={{ postId: post.id }}
+                        // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
+                      >
+                        <img className="aspect-video w-full rounded-md" src={post.thumbnail} />
+                        <div className="h-1/2">
+                          <CardHeader className="flex flex-1">{post.title}</CardHeader>
                         </div>
-                      </ScrollArea>
-                      <div className="mt-4 flex h-full w-full flex-col justify-between">
-                        <CardDescription className="flex items-center justify-center">
-                          <ScrollArea className="h-14 w-full rounded-md">{post.description}</ScrollArea>
-                        </CardDescription>
-                        <CardFooter className="mt-4 flex w-full">
-                          <p className="w-full justify-center">{post.date.toLocaleDateString()}</p>
-                        </CardFooter>
-                      </div>
-                    </Link>
-                  </Card>
-                </CarouselItem>
-              ))}
+                        <ScrollArea className="h-28 w-full rounded-md">
+                          <div className="grid grid-cols-4 gap-2 px-4">
+                            <>
+                              {post.tags
+                                ? post.tags.map((tag) => (
+                                    <Badge
+                                      key={`${post.id}-${index}-${tag.value}`}
+                                      className="col-span-1 justify-center"
+                                    >
+                                      {tag.value}
+                                    </Badge>
+                                  ))
+                                : null}
+                            </>
+                          </div>
+                        </ScrollArea>
+                        <div className="mt-4 flex h-full w-full flex-col justify-between">
+                          <CardDescription className="flex items-center justify-center">
+                            <ScrollArea className="h-14 w-full rounded-md">{post.description}</ScrollArea>
+                          </CardDescription>
+                          <CardFooter className="mt-4 flex w-full">
+                            <p className="w-full justify-center">{post.date.toLocaleDateString()}</p>
+                          </CardFooter>
+                        </div>
+                      </Link>
+                    </Card>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
@@ -208,48 +213,50 @@ function Index() {
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
-              {projects.map((project, index) => (
-                // {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem key={`${project.id}-${index}`} className="h-[425px] basis-1/3">
-                  <Card key={project.id} className="col-span-2 row-span-1 h-full  p-2 text-center">
-                    <Link
-                      className="flex h-full flex-col"
-                      to="/projects/$projectId"
-                      params={{ projectId: project.id }}
-                      // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
-                    >
-                      <img className="aspect-video w-full rounded-md" src={project.thumbnail} />
-                      <div className="h-1/2">
-                        <CardHeader className="flex flex-1">{project.title}</CardHeader>
-                      </div>
-                      <ScrollArea className="h-28 w-full rounded-md">
-                        <div className="grid grid-cols-4 gap-2 px-4">
-                          <>
-                            {project.tags
-                              ? project.tags.map((tag) => (
-                                  <Badge
-                                    key={`${project.id}-${index}-${tag.value}`}
-                                    className="col-span-1 justify-center"
-                                  >
-                                    {tag.value}
-                                  </Badge>
-                                ))
-                              : null}
-                          </>
+              {projects
+                .filter((_, index) => index <= 10)
+                .map((project, index) => (
+                  // {Array.from({ length: 5 }).map((_, index) => (
+                  <CarouselItem key={`${project.id}-${index}`} className="h-[425px] basis-1/3">
+                    <Card key={project.id} className="col-span-2 row-span-1 h-full  p-2 text-center">
+                      <Link
+                        className="flex h-full flex-col"
+                        to="/projects/$projectId"
+                        params={{ projectId: project.id }}
+                        // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
+                      >
+                        <img className="aspect-video w-full rounded-md" src={project.thumbnail} />
+                        <div className="h-1/2">
+                          <CardHeader className="flex flex-1">{project.title}</CardHeader>
                         </div>
-                      </ScrollArea>
-                      <div className="mt-4 flex h-full w-full flex-col justify-between">
-                        <CardDescription>
-                          <ScrollArea className="h-14 w-full rounded-md">{project.description}</ScrollArea>
-                        </CardDescription>
-                        <CardFooter className="mt-4 flex w-full">
-                          <p className="w-full justify-center">{project.date.toLocaleDateString()}</p>
-                        </CardFooter>
-                      </div>
-                    </Link>
-                  </Card>
-                </CarouselItem>
-              ))}
+                        <ScrollArea className="h-28 w-full rounded-md">
+                          <div className="grid grid-cols-4 gap-2 px-4">
+                            <>
+                              {project.tags
+                                ? project.tags.map((tag) => (
+                                    <Badge
+                                      key={`${project.id}-${index}-${tag.value}`}
+                                      className="col-span-1 justify-center"
+                                    >
+                                      {tag.value}
+                                    </Badge>
+                                  ))
+                                : null}
+                            </>
+                          </div>
+                        </ScrollArea>
+                        <div className="mt-4 flex h-full w-full flex-col justify-between">
+                          <CardDescription>
+                            <ScrollArea className="h-14 w-full rounded-md">{project.description}</ScrollArea>
+                          </CardDescription>
+                          <CardFooter className="mt-4 flex w-full">
+                            <p className="w-full justify-center">{project.date.toLocaleDateString()}</p>
+                          </CardFooter>
+                        </div>
+                      </Link>
+                    </Card>
+                  </CarouselItem>
+                ))}
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
