@@ -6,7 +6,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreatePostSchema, CreatePostType, CreateProjectSchema, CreateProjectType } from '@services/types/User';
+import { CreateProjectSchema, CreateProjectType } from '@services/types/User';
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { Angry, FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -15,12 +15,11 @@ import { AutosizeTextarea } from '@components/ui/autosize-textarea';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
-import { postQueryOptions, projectQueryOptions } from '@services/hooks/postQueryOptions';
+import { projectQueryOptions } from '@services/hooks/postQueryOptions';
 
 export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
   loader: ({ context: { queryClient }, params: { projectId } }) =>
     queryClient.ensureQueryData(projectQueryOptions(projectId)),
-  // pendingComponent: () => <div>Loading...</div>,
   component: EditPostsComponent,
 });
 
@@ -36,7 +35,7 @@ function EditPostsComponent() {
     defaultValues: project,
   });
 
-  const onSubmit = form.handleSubmit((values) => {
+  const onSubmit = form.handleSubmit(() => {
     if (!auth.isAuthenticated) {
       toast.error('Você não está autenticado cara :(', {
         description: 'Você não deveria ter acesso aqui... tô de olho em você ein',
@@ -66,10 +65,8 @@ function EditPostsComponent() {
   ];
 
   function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
-    // Combine all MIME types from each allowed type into a single array
     const allMimeTypes = allowedTypes.flatMap((type) => type.types);
 
-    // Join the MIME types into a comma-separated string
     return allMimeTypes.join(', ');
   }
 
@@ -99,17 +96,6 @@ function EditPostsComponent() {
     }
   }
 
-  // useEffect(() => {
-  //   if (post) {
-  //     form.setValue('title', post.title);
-  //     form.setValue('description', post.description);
-  //     form.setValue('body', post.body);
-  //     form.setValue('thumbnail', post.thumbnail);
-  //     form.setValue('tags', post.tags);
-  //     form.setValue('date', post.date);
-  //   }
-  // }, [post]);
-
   return (
     <Form {...form}>
       <form onSubmit={onSubmit}>
@@ -123,15 +109,19 @@ function EditPostsComponent() {
                 <FormField
                   control={form.control}
                   name="thumbnail"
-                  render={({ field }) => (
+                  render={() => (
                     <>
                       <CardTitle>Thumbnail</CardTitle>
                       <div className="relative flex flex-col items-center justify-center gap-3">
                         <img className="aspect-video w-1/2 rounded-md" src={form.watch('thumbnail')} />
-                        <div className="relative flex items-center justify-center">
-                          <FileCheck2Icon className="w-20" />
-                          <p className="text-sm font-medium">{form.watch('thumbnail')}</p>
-                          <Button variant="ghost" onClick={() => form.resetField('thumbnail', { defaultValue: '' })}>
+                        <div className="relative my-3 grid grid-cols-12 items-center gap-3">
+                          <FileCheck2Icon className="col-span-1 mx-3 w-4" />
+                          <p className="col-span-10 text-sm font-medium">{form.watch('thumbnail')}</p>
+                          <Button
+                            variant="ghost"
+                            className="col-span-1"
+                            onClick={() => form.resetField('thumbnail', { defaultValue: '' })}
+                          >
                             <X className="text-destructive" />
                           </Button>
                         </div>
@@ -155,10 +145,10 @@ function EditPostsComponent() {
                               <img className="aspect-video w-full rounded-md" src={URL.createObjectURL(field.value)} />
                             )}
                           </>
-                          <div className="relative flex items-center justify-center gap-3">
-                            <FileCheck2Icon className="w-20" />
-                            <p className="text-sm font-medium">{form.watch('file')?.name}</p>
-                            <Button variant="ghost" onClick={() => form.resetField('file')}>
+                          <div className="relative my-3 grid grid-cols-12 items-center gap-3">
+                            <FileCheck2Icon className="col-span-1 mx-3 w-4" />
+                            <p className="col-span-10 text-sm font-medium">{form.watch('file')?.name}</p>
+                            <Button variant="ghost" className="col-span-1" onClick={() => form.resetField('file')}>
                               <X className="text-destructive" />
                             </Button>
                           </div>

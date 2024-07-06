@@ -16,6 +16,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@component
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
+import { ScrollArea } from '@components/ui/scroll-area';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
@@ -30,7 +31,7 @@ function EditPostsComponent() {
 
   const auth = useAuth();
   const form = useForm<CreatePostType>({
-    resolver: zodResolver(CreatePostSchema.omit({ date: true,  })),
+    resolver: zodResolver(CreatePostSchema.omit({ date: true })),
     mode: 'onChange',
     defaultValues: post,
   });
@@ -127,10 +128,14 @@ function EditPostsComponent() {
                       <CardTitle>Thumbnail</CardTitle>
                       <div className="relative flex flex-col items-center justify-center gap-3">
                         <img className="aspect-video w-1/2 rounded-md" src={form.watch('thumbnail')} />
-                        <div className="relative flex items-center justify-center">
-                          <FileCheck2Icon className="w-20" />
-                          <p className="text-sm font-medium">{form.watch('thumbnail')}</p>
-                          <Button variant="ghost" onClick={() => form.resetField('thumbnail', { defaultValue: '' })}>
+                        <div className="relative my-3 grid grid-cols-12 items-center gap-3">
+                          <FileCheck2Icon className="col-span-1 mx-3 w-4" />
+                          <p className="col-span-10 text-sm font-medium">{form.watch('thumbnail')}</p>
+                          <Button
+                            variant="ghost"
+                            className="col-span-1"
+                            onClick={() => form.resetField('thumbnail', { defaultValue: '' })}
+                          >
                             <X className="text-destructive" />
                           </Button>
                         </div>
@@ -154,10 +159,10 @@ function EditPostsComponent() {
                               <img className="aspect-video w-1/2 rounded-md" src={URL.createObjectURL(field.value)} />
                             )}
                           </>
-                          <div className="relative flex items-center justify-center gap-3">
-                            <FileCheck2Icon className="w-w-20" />
-                            <p className="text-sm font-medium">{form.watch('file')?.name}</p>
-                            <Button variant="ghost" onClick={() => form.resetField('file')}>
+                          <div className="relative my-3 grid grid-cols-12 items-center gap-3">
+                            <FileCheck2Icon className="col-span-1 mx-3 w-4" />
+                            <p className="col-span-10 text-sm font-medium">{form.watch('file')?.name}</p>
+                            <Button variant="ghost" className="col-span-1" onClick={() => form.resetField('file')}>
                               <X className="text-destructive" />
                             </Button>
                           </div>

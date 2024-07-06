@@ -65,11 +65,15 @@ function ProjectsComponent() {
       to: '/projects/',
       search: {
         tags: data.tags?.length === 0 ? undefined : data.tags,
-        title: data.title,
+        title: data.title === '' ? undefined : data.title,
         count: data.count,
         views: data.views,
       },
     });
+  }
+
+  function ResetFilters() {
+    form.setValue('tags', []), form.setValue('count', 'All'), form.setValue('title', ''), navigate({ to: '/posts/' });
   }
 
   return (
@@ -82,77 +86,78 @@ function ProjectsComponent() {
                 <CardTitle className="text-center">Filtros</CardTitle>
               </CardHeader>
               <Separator />
-              <CardContent>
-                <CardContent className="mt-3 flex flex-col space-y-5 p-0">
-                  <FormField
-                    control={form.control}
-                    name="tags"
-                    render={() => (
-                      <FormItem>
-                        <div className="mb-4">
-                          <FormLabel className="my-4 flex justify-center">Temas</FormLabel>
-                          <FormDescription>Selecione quais temas você quer ler sobre.</FormDescription>
-                        </div>
-                        {TAGS &&
-                          TAGS.map((tag) => (
-                            <FormField
-                              key={tag.id}
-                              control={form.control}
-                              name="tags"
-                              render={({ field }) => {
-                                return (
-                                  <FormItem key={tag.id} className="flex flex-row items-start space-x-3 space-y-0">
-                                    <FormControl>
-                                      <Checkbox
-                                        checked={field.value?.includes(tag.id)}
-                                        onCheckedChange={(checked) => {
-                                          return checked
-                                            ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
-                                            : field.onChange(field.value?.filter((value) => value !== tag.id));
-                                        }}
-                                        onClick={() => console.log(field.value)}
-                                      />
-                                    </FormControl>
-                                    <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
-                                  </FormItem>
-                                );
-                              }}
-                            />
-                          ))}
-                        <FormMessage />
+              <CardContent className="mt-3 flex flex-col space-y-5">
+                <FormField
+                  control={form.control}
+                  name="tags"
+                  render={() => (
+                    <FormItem>
+                      <div className="mb-4">
+                        <FormLabel className="my-4 flex justify-center">Temas</FormLabel>
+                        <FormDescription>Selecione quais temas você quer ler sobre.</FormDescription>
+                      </div>
+                      {TAGS &&
+                        TAGS.map((tag) => (
+                          <FormField
+                            key={tag.id}
+                            control={form.control}
+                            name="tags"
+                            render={({ field }) => {
+                              return (
+                                <FormItem key={tag.id} className="flex flex-row items-start space-x-3 space-y-0">
+                                  <FormControl>
+                                    <Checkbox
+                                      checked={field.value?.includes(tag.id)}
+                                      onCheckedChange={(checked) => {
+                                        return checked
+                                          ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
+                                          : field.onChange(field.value?.filter((value) => value !== tag.id));
+                                      }}
+                                      onClick={() => console.log(field.value)}
+                                    />
+                                  </FormControl>
+                                  <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
+                                </FormItem>
+                              );
+                            }}
+                          />
+                        ))}
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Separator />
+                <FormField
+                  control={form.control}
+                  name="count"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormItem className="flex flex-col items-start space-y-3">
+                        <FormLabel className="text-sm font-normal">Quantidade</FormLabel>
+                        <FormDescription>Selecione a quantidade de você deseja visualizar.</FormDescription>
+                        <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue className="w-fit" placeholder="Qntd" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value={'All'}>Todos</SelectItem>
+                            <SelectItem value={'5'}>5</SelectItem>
+                            <SelectItem value={'25'}>25</SelectItem>
+                            <SelectItem value={'50'}>50</SelectItem>
+                            <SelectItem value={'100'}>100</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </FormItem>
-                    )}
-                  />
-                  <Separator />
-                  <FormField
-                    control={form.control}
-                    name="count"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormItem className="flex flex-col items-start space-y-3">
-                          <FormLabel className="text-sm font-normal">Quantidade</FormLabel>
-                          <FormDescription>Selecione a quantidade de você deseja visualizar.</FormDescription>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger>
-                                <SelectValue className="w-fit" placeholder="Qntd" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value={'All'}>Todos</SelectItem>
-                              <SelectItem value={'5'}>5</SelectItem>
-                              <SelectItem value={'25'}>25</SelectItem>
-                              <SelectItem value={'50'}>50</SelectItem>
-                              <SelectItem value={'100'}>100</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </FormItem>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit">Filtrar</Button>
-                </CardContent>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Filtrar</Button>
+                <Button type="button" onClick={ResetFilters} variant='destructive'>
+                  Limpar
+                </Button>
               </CardContent>
             </Card>
           </div>
@@ -274,13 +279,7 @@ function ProjectsComponent() {
                 </CardContent>
                 <div className="flex gap-4">
                   <CardTitle className="mt-2">Retire os filtros e tente novamente: </CardTitle>
-                  <Button
-                    type="submit"
-                    onClick={() => {
-                      form.setValue('tags', []);
-                      navigate({ to: '/projects/' });
-                    }}
-                  >
+                  <Button type="submit" onClick={ResetFilters}>
                     Tentar novamente
                   </Button>
                 </div>

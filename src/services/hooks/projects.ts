@@ -26,34 +26,25 @@ export const fetchProjectsWithFilter = async ({ tags, count, title, views }: Fil
   await new Promise((r) => setTimeout(r, 500));
   console.log('tags: ', { tags, count, title, views });
 
-  if (!tags && (!count || count === 'All')) {
-    return AllProjects;
+  const projects = AllProjects;
+
+  let filteredProjects = projects;
+
+  if (title) {
+    const queryTitle = title.toLowerCase();
+    filteredProjects = filteredProjects.filter((project) => project.title.toLowerCase().includes(queryTitle));
   }
 
-  const projects = AllProjects;
-  if (tags && tags.length >= 0 && (!count || count === 'All')) {
-    // console.log('filtrando', projects);
-    const filtered = projects.filter((project) => project.tags?.some((tag) => tags.includes(tag.id)));
-    return filtered;
+  if (tags && tags.length > 0) {
+    filteredProjects = filteredProjects.filter((project) => project.tags?.some((tag) => tags.includes(tag.id)));
   }
-  if (tags && tags.length >= 0 && count) {
-    // console.log('filtrando', projects);
-    const filtered = projects
-      .filter((project) => project.tags?.some((tag) => tags.includes(tag.id)))
-      .filter((_, index) => index + 1 <= +count);
-    return filtered;
+
+  if (count && count !== 'All') {
+    const maxCount = +count;
+    filteredProjects = filteredProjects.slice(0, maxCount);
   }
-  if (tags && tags.length === 0 && count) {
-    const projectsFilteredWithCount = projects.filter((_, index) => index + 1 <= +count);
-    // console.log('projectsWithFilter: ', projects);
-    return projectsFilteredWithCount;
-  }
-  if (!tags && count) {
-    const projectsFilteredWithCount = projects.filter((_, index) => index + 1 <= +count);
-    // console.log('projectsWithFilter: ', projects);
-    return projectsFilteredWithCount;
-  }
-  return projects;
+
+  return filteredProjects;
 };
 
 export const fetchProjects = async () => {
