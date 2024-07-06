@@ -1,7 +1,8 @@
 import BlogPost from '@assets/data/markdown.md';
 import MultipleSSHPost from '@assets/data/multipleSSH.md';
 import ReadMe from '../../../README.md';
-import { PostType, TagType } from '@services/types/User';
+import { TagType } from '@services/types/Tag';
+import { PostType } from '@services/types/Post';
 
 export type PostMenuNavigation = {
   id: string;
@@ -34,7 +35,7 @@ export const posts: PostType[] = [
     date: new Date(),
     title: 'Two SSH github account configuration.',
     description:
-      'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
+      'A modal dialog that interrupts the user with important content and expects a response.',
     body: BlogPost,
     tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
     file: null,

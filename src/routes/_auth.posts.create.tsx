@@ -6,16 +6,17 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreatePostSchema, CreatePostType } from '@services/types/User';
-import { createFileRoute, useLoaderData, useRouter } from '@tanstack/react-router';
-import { Angry, FileCheck2Icon, X } from 'lucide-react';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
+import { FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { AutosizeTextarea } from '@components/ui/autosize-textarea';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
 import MultipleSelector from '@components/ui/multiple-selector';
 import { tagsQueryOptions } from '@services/hooks/postsQueryOptions';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { CreatePostSchema, CreatePostType } from '@services/types/Post';
+import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
+import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
 
 export const Route = createFileRoute('/_auth/posts/create')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
@@ -23,13 +24,11 @@ export const Route = createFileRoute('/_auth/posts/create')({
 });
 
 function CreatePostsComponent() {
-  // const tagsQuery = useSuspenseQuery(tagsQueryOptions);
-  // const TAGS = tagsQuery.data;
   const TAGS = Route.useLoaderData();
   const auth = useAuth();
   const router = useRouter();
   const form = useForm<CreatePostType>({
-    resolver: zodResolver(CreatePostSchema.omit({ thumbnail: true, date: true })),
+    resolver: zodResolver(CreatePostSchema),
     mode: 'onChange',
     defaultValues: {
       file: null,
@@ -48,57 +47,6 @@ function CreatePostsComponent() {
       description: `Não tem como criar um post ainda mas quem sabe um dia...`,
     });
   });
-
-  type AllowedTypes = {
-    name: string;
-    types: string[];
-  };
-
-  const allowedTypes: AllowedTypes[] = [
-    // { name: 'csv', types: ['text/csv'] },
-    // {
-    //   name: 'excel',
-    //   types: ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
-    // },
-    { name: 'image/png', types: ['image/png'] },
-    // { name: 'pdf', types: ['application/pdf'] },
-    // { name: 'md', types: ['text/markdown'] },
-    // { name: 'json', types: ['application/json'] },
-  ];
-
-  function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
-    // Combine all MIME types from each allowed type into a single array
-    const allMimeTypes = allowedTypes.flatMap((type) => type.types);
-
-    // Join the MIME types into a comma-separated string
-    return allMimeTypes.join(', ');
-  }
-
-  function handleOnDrop(acceptedFiles: FileList | null) {
-    console.log('acceptedFiles: ', acceptedFiles);
-    if (acceptedFiles && acceptedFiles.length > 0) {
-      const fileType = allowedTypes.find((allowedType) =>
-        allowedType.types.find((type) => type === acceptedFiles[0].type),
-      );
-      console.log('fileType', fileType);
-      if (!fileType) {
-        form.setValue('file', null);
-        form.setError('file', {
-          message: 'File type is not valid',
-          type: 'typeError',
-        });
-      } else {
-        form.setValue('file', acceptedFiles[0]);
-        form.clearErrors('file');
-      }
-    } else {
-      form.setValue('file', null);
-      form.setError('file', {
-        message: 'File is required',
-        type: 'typeError',
-      });
-    }
-  }
 
   return (
     <Form {...form}>
@@ -138,8 +86,8 @@ function CreatePostsComponent() {
                           <Dropzone
                             {...field}
                             dropMessage="Solte seu arquivo ou clique aqui"
-                            accept={getAllowedMimeTypes(allowedTypes)}
-                            handleOnDrop={handleOnDrop}
+                            accept={getAllowedMimeTypes(ALLOWED_TYPES)}
+                            handleOnDrop={(acceptedFiles) => handleOnDrop(acceptedFiles, form)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -214,7 +162,7 @@ function CreatePostsComponent() {
                 <Button
                   type="button"
                   onClick={() =>
-                    form.reset({ body: '', title: '', tags: [], description: '', file: null, thumbnail: '' })
+                    form.reset({ body: '', title: '', tags: [], description: '', file: null })
                   }
                   variant="destructive"
                 >

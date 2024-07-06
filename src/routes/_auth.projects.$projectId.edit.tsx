@@ -6,7 +6,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreateProjectSchema, CreateProjectType } from '@services/types/User';
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { Angry, FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -16,6 +15,9 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@component
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { projectQueryOptions } from '@services/hooks/postQueryOptions';
+import { EditProjectSchema, EditProjectType } from '@services/types/Project';
+import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
+import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
 
 export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
   loader: ({ context: { queryClient }, params: { projectId } }) =>
@@ -29,8 +31,8 @@ function EditPostsComponent() {
   const router = useRouter();
 
   const auth = useAuth();
-  const form = useForm<CreateProjectType>({
-    resolver: zodResolver(CreateProjectSchema.omit({ date: true })),
+  const form = useForm<EditProjectType>({
+    resolver: zodResolver(EditProjectSchema),
     mode: 'onChange',
     defaultValues: project,
   });
@@ -46,55 +48,6 @@ function EditPostsComponent() {
       description: `Não tem como criar um post ainda mas quem sabe um dia...`,
     });
   });
-
-  type AllowedTypes = {
-    name: string;
-    types: string[];
-  };
-
-  const allowedTypes: AllowedTypes[] = [
-    // { name: 'csv', types: ['text/csv'] },
-    // {
-    //   name: 'excel',
-    //   types: ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
-    // },
-    { name: 'image/png', types: ['image/png'] },
-    // { name: 'pdf', types: ['application/pdf'] },
-    // { name: 'md', types: ['text/markdown'] },
-    // { name: 'json', types: ['application/json'] },
-  ];
-
-  function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
-    const allMimeTypes = allowedTypes.flatMap((type) => type.types);
-
-    return allMimeTypes.join(', ');
-  }
-
-  function handleOnDrop(acceptedFiles: FileList | null) {
-    console.log('acceptedFiles: ', acceptedFiles);
-    if (acceptedFiles && acceptedFiles.length > 0) {
-      const fileType = allowedTypes.find((allowedType) =>
-        allowedType.types.find((type) => type === acceptedFiles[0].type),
-      );
-      console.log('fileType', fileType);
-      if (!fileType) {
-        form.setValue('file', null);
-        form.setError('file', {
-          message: 'File type is not valid',
-          type: 'typeError',
-        });
-      } else {
-        form.setValue('file', acceptedFiles[0]);
-        form.clearErrors('file');
-      }
-    } else {
-      form.setValue('file', null);
-      form.setError('file', {
-        message: 'File is required',
-        type: 'typeError',
-      });
-    }
-  }
 
   return (
     <Form {...form}>
@@ -159,8 +112,8 @@ function EditPostsComponent() {
                             <Dropzone
                               {...field}
                               dropMessage="Solte seu arquivo ou clique aqui"
-                              accept={getAllowedMimeTypes(allowedTypes)}
-                              handleOnDrop={handleOnDrop}
+                              accept={getAllowedMimeTypes(ALLOWED_TYPES)}
+                              handleOnDrop={(acceptedFiles) => handleOnDrop(acceptedFiles, form)}
                             />
                           </FormControl>
                           <FormMessage />

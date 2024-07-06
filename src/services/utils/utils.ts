@@ -1,5 +1,8 @@
-import { copyToClipboard } from "@components/CodeCopyButton";
-import { toast } from "sonner";
+import { copyToClipboard } from '@components/CodeCopyButton';
+import { ALLOWED_TYPES, AllowedTypes } from '@services/types/AllowedFiles';
+import { CreatePostType, EditPostType } from '@services/types/Post';
+import { FieldValues, UseFormReturn, useFormContext } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -30,5 +33,39 @@ export function CopyToClipboardRoute(url: string) {
     toast.success('Link salvo no ctrl+v patrão', { description: `Pediu tá feito, ${url} tá na mão` });
   } catch (error) {
     toast.error('Não foi possível copiar o link', { description: 'Sinto mt falhei fui mlk :(' });
+  }
+}
+
+export function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
+  // Combine all MIME types from each allowed type into a single array
+  const allMimeTypes = allowedTypes.flatMap((type) => type.types);
+
+  // Join the MIME types into a comma-separated string
+  return allMimeTypes.join(', ');
+}
+
+export function handleOnDrop(acceptedFiles: FileList | null, form: UseFormReturn<EditPostType>) {
+  console.log('acceptedFiles: ', acceptedFiles);
+  if (acceptedFiles && acceptedFiles.length > 0) {
+    const fileType = ALLOWED_TYPES.find((allowedType) =>
+      allowedType.types.find((type) => type === acceptedFiles[0].type),
+    );
+    console.log('fileType', fileType);
+    if (!fileType) {
+      form.setValue('file', null);
+      form.setError('file', {
+        message: 'File type is not valid',
+        type: 'typeError',
+      });
+    } else {
+      form.setValue('file', acceptedFiles[0]);
+      form.clearErrors('file');
+    }
+  } else {
+    form.setValue('file', null);
+    form.setError('file', {
+      message: 'File is required',
+      type: 'typeError',
+    });
   }
 }

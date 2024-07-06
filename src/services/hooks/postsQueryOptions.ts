@@ -1,7 +1,7 @@
 import { fetchPosts, fetchPostsUrl, fetchPostsWithFilter, fetchTags } from './posts';
 import { queryOptions, useQuery } from '@tanstack/react-query';
 import { fetchProjects, fetchProjectsUrl, fetchProjectsWithFilter } from './projects';
-import { FilterType } from '@src/routes/posts.index';
+import { FilterType } from '@services/types/Filters';
 
 export const postsQueryOptions = queryOptions({
   queryKey: ['posts'],

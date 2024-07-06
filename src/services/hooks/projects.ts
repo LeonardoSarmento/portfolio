@@ -1,11 +1,5 @@
 import { projects as AllProjects } from '@assets/data/projects';
-import { FilterType } from '@src/routes/posts.index';
-
-// export type ProjecType = {
-//   id: string;
-//   title: string;
-//   description: string;
-// };
+import { FilterType } from '@services/types/Filters';
 
 export class ProjectNotFoundError extends Error {}
 

@@ -6,7 +6,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from '@components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@services/hooks/auth';
-import { CreatePostSchema, CreatePostType } from '@services/types/User';
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import { Angry, FileCheck2Icon, X } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -16,11 +15,12 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@component
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
-import { ScrollArea } from '@components/ui/scroll-area';
+import { EditPostSchema, EditPostType } from '@services/types/Post';
+import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
+import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
-  // pendingComponent: () => <div>Loading...</div>,
   component: EditPostsComponent,
 });
 
@@ -30,8 +30,8 @@ function EditPostsComponent() {
   const router = useRouter();
 
   const auth = useAuth();
-  const form = useForm<CreatePostType>({
-    resolver: zodResolver(CreatePostSchema.omit({ date: true })),
+  const form = useForm<EditPostType>({
+    resolver: zodResolver(EditPostSchema),
     mode: 'onChange',
     defaultValues: post,
   });
@@ -47,68 +47,6 @@ function EditPostsComponent() {
       description: `Não tem como criar um post ainda mas quem sabe um dia...`,
     });
   });
-
-  type AllowedTypes = {
-    name: string;
-    types: string[];
-  };
-
-  const allowedTypes: AllowedTypes[] = [
-    // { name: 'csv', types: ['text/csv'] },
-    // {
-    //   name: 'excel',
-    //   types: ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
-    // },
-    { name: 'image/png', types: ['image/png'] },
-    // { name: 'pdf', types: ['application/pdf'] },
-    // { name: 'md', types: ['text/markdown'] },
-    // { name: 'json', types: ['application/json'] },
-  ];
-
-  function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
-    // Combine all MIME types from each allowed type into a single array
-    const allMimeTypes = allowedTypes.flatMap((type) => type.types);
-
-    // Join the MIME types into a comma-separated string
-    return allMimeTypes.join(', ');
-  }
-
-  function handleOnDrop(acceptedFiles: FileList | null) {
-    console.log('acceptedFiles: ', acceptedFiles);
-    if (acceptedFiles && acceptedFiles.length > 0) {
-      const fileType = allowedTypes.find((allowedType) =>
-        allowedType.types.find((type) => type === acceptedFiles[0].type),
-      );
-      console.log('fileType', fileType);
-      if (!fileType) {
-        form.setValue('file', null);
-        form.setError('file', {
-          message: 'File type is not valid',
-          type: 'typeError',
-        });
-      } else {
-        form.setValue('file', acceptedFiles[0]);
-        form.clearErrors('file');
-      }
-    } else {
-      form.setValue('file', null);
-      form.setError('file', {
-        message: 'File is required',
-        type: 'typeError',
-      });
-    }
-  }
-
-  // useEffect(() => {
-  //   if (post) {
-  //     form.setValue('title', post.title);
-  //     form.setValue('description', post.description);
-  //     form.setValue('body', post.body);
-  //     form.setValue('thumbnail', post.thumbnail);
-  //     form.setValue('tags', post.tags);
-  //     form.setValue('date', post.date);
-  //   }
-  // }, [post]);
 
   return (
     <Form {...form}>
@@ -173,8 +111,8 @@ function EditPostsComponent() {
                             <Dropzone
                               {...field}
                               dropMessage="Solte seu arquivo ou clique aqui"
-                              accept={getAllowedMimeTypes(allowedTypes)}
-                              handleOnDrop={handleOnDrop}
+                              accept={getAllowedMimeTypes(ALLOWED_TYPES)}
+                              handleOnDrop={(acceptedFiles) => handleOnDrop(acceptedFiles, form)}
                             />
                           </FormControl>
                           <FormMessage />

@@ -1,6 +1,6 @@
 import { posts as AllPosts } from '@assets/data/posts';
 import { TAGS_OPTIONS } from '@assets/data/posts';
-import { FilterType } from '@src/routes/posts.index';
+import { FilterType } from '@services/types/Filters';
 
 // export type PostType = {
 //   id: string;
