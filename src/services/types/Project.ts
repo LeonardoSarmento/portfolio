@@ -19,6 +19,7 @@ export const ProjectSchema = z.object({
     .refine((file) => (file ? file : null), 'File is required.')
     .nullable(),
   thumbnail: z.string().optional(),
+  editable: z.boolean().optional(),
 });
 
 export type ProjectType = z.infer<typeof ProjectSchema>;

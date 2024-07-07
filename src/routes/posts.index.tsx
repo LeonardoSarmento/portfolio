@@ -17,7 +17,7 @@ import { ScrollArea } from '@components/ui/scroll-area';
 import { Separator } from '@components/ui/separator';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { useAuth } from '@services/hooks/auth';
-import { postsQueryOptionsWithFilter, useQueryTags } from '@services/hooks/postsQueryOptions';
+import { postsQueryOptionsWithFilter } from '@services/hooks/postsQueryOptions';
 import { useFormFilters } from '@services/hooks/useFormFilters';
 import { FilterSchema, FilterType } from '@services/types/Filters';
 import { CopyToClipboardRoute } from '@services/utils/utils';

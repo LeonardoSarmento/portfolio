@@ -13,13 +13,13 @@ export function FilterMenuComponent({ path }: { path: NavigateOptions }) {
   const form = useFormContext<FilterType>();
   const navigate = useNavigate();
   const { data: TAGS } = useQueryTags();
-  
+
   function ResetFilters() {
     form.setValue('tags', []), form.setValue('count', 'All'), form.setValue('title', ''), navigate(path);
   }
 
   return (
-    <div className="col-span-1 row-span-full  flex w-full">
+    <div className="col-span-1 row-span-full flex w-full">
       <Card className="h-fit">
         <CardHeader>
           <CardTitle className="text-center">Filtros</CardTitle>

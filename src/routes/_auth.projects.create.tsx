@@ -107,7 +107,7 @@ function CreateProjectComponent() {
                     <FormItem className="grid grid-cols-12 items-center">
                       <FormLabel className="col-span-1">Título</FormLabel>
                       <FormControl className="col-span-11">
-                        <Input placeholder="O nome do seu post" {...field} />
+                        <Input placeholder="O nome do seu projeto" {...field} />
                       </FormControl>
                       <FormMessage className="col-span-12" />
                     </FormItem>
@@ -120,7 +120,7 @@ function CreateProjectComponent() {
                     <FormItem className="grid grid-cols-12 items-center">
                       <FormLabel className="col-span-1">Descrição</FormLabel>
                       <FormControl className="col-span-11">
-                        <Input placeholder="Faça uma descrição da sua postagem" {...field} />
+                        <Input placeholder="Faça uma descrição do seu projeto" {...field} />
                       </FormControl>
                       <FormMessage className="col-span-12" />
                     </FormItem>

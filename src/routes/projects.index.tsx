@@ -146,12 +146,14 @@ function ProjectsComponent() {
                                   </DropdownMenuItem>
                                   {auth.isAuthenticated ? (
                                     <>
-                                      <Link to="/projects/$projectId/edit" params={{ projectId: project.id }}>
-                                        <DropdownMenuItem>
-                                          Editar
-                                          {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
-                                        </DropdownMenuItem>
-                                      </Link>
+                                      {project.editable === false ? null : (
+                                        <Link to="/projects/$projectId/edit" params={{ projectId: project.id }}>
+                                          <DropdownMenuItem>
+                                            Editar
+                                            {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+                                          </DropdownMenuItem>
+                                        </Link>
+                                      )}
                                       <DropdownMenuItem
                                         onClick={(e) => {
                                           e.stopPropagation(),

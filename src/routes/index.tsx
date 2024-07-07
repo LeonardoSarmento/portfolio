@@ -31,8 +31,8 @@ function Index() {
   const projects = projectsQuery.data;
 
   return (
-    <div className="mb-[160px] grid h-screen max-h-fit max-w-full grid-cols-12 gap-4 px-16">
-      <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8">
+    <div className="grid-rows-auto mt-3 grid grid-cols-12 gap-4 px-16">
+      <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8 items-center">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
           <p className="mt-6 text-xs leading-tight text-muted-foreground">
@@ -42,7 +42,7 @@ function Index() {
           <CardTitle className="mb-2 mt-4">Leonardo</CardTitle>
         </CardContent>
         <CardContent className="flex flex-col items-center justify-center">
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
+          <p className="text-xs leading-tight text-muted-foreground">
             As a dedicated Virtual Systems Fellow at the SENAI Institute of Technology — Operational Efficiency, I have
             been actively developing web applications for various clients.
           </p>
@@ -96,53 +96,55 @@ function Index() {
         </CardContent>
       </Card>
       <Card className="col-span-3 col-start-10 row-span-6 px-4">
-        <CardHeader>
-          <CardTitle>Virtual Systems Fellow</CardTitle>
-          <CardDescription>Sistema Findes · Full-time</CardDescription>
-          <CardDescription>Feb 2023 - Present · 1 yr 2 mos</CardDescription>
-          <CardDescription>Vitória, Espírito Santo, Brazil · On-site</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-xs leading-tight text-muted-foreground">
-            Working on software development projects, focusing on the frontend.
-          </p>
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
-            • Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple
-            software projects on time and within budget
-          </p>
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
-            • Participated in calls with 4 companies, helping the development of 4 innovative projects and securing
-            R$300K plus in funding.
-          </p>
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
-            • Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React -
-            hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies.
-          </p>
-        </CardContent>
-        <CardHeader>
-          <CardTitle>Laboratorist</CardTitle>
-          <CardDescription>
-            <p>LABMATERIAIS · Internship</p>
-            <p>Feb 2021 - Jun 2021 · 5 mos</p>
-            <p>Serra, Espírito Santo, Brazil · On-site</p>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-xs leading-tight text-muted-foreground">
-            Development of activities related to all the stages of the concrete compressive strength test. Therefore,
-            participation in the concreting of the client's site, carrying out the concrete slump test.
-          </p>
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
-            Demolding of specimens obtained during concreting at the client's site. Identification and storage of the
-            specimens in the wet chamber.
-          </p>
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
-            Maintenance of the molds used in concreting, concrete compressive strength test, disposal of broken
-            specimens and creation of the test certificate for each invoice.
-          </p>
-        </CardContent>
+        <ScrollArea className="h-[450px] my-3 w-full rounded-md">
+          <CardHeader>
+            <CardTitle>Virtual Systems Fellow</CardTitle>
+            <CardDescription>Sistema Findes · Full-time</CardDescription>
+            <CardDescription>Feb 2023 - Present · 1 yr 2 mos</CardDescription>
+            <CardDescription>Vitória, Espírito Santo, Brazil · On-site</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs leading-tight text-muted-foreground">
+              Working on software development projects, focusing on the frontend.
+            </p>
+            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+              • Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple
+              software projects on time and within budget
+            </p>
+            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+              • Participated in calls with 4 companies, helping the development of 4 innovative projects and securing
+              R$300K plus in funding.
+            </p>
+            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+              • Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React -
+              hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies.
+            </p>
+          </CardContent>
+          <CardHeader>
+            <CardTitle>Laboratorist</CardTitle>
+            <CardDescription>
+              <p>LABMATERIAIS · Internship</p>
+              <p>Feb 2021 - Jun 2021 · 5 mos</p>
+              <p>Serra, Espírito Santo, Brazil · On-site</p>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs leading-tight text-muted-foreground">
+              Development of activities related to all the stages of the concrete compressive strength test. Therefore,
+              participation in the concreting of the client's site, carrying out the concrete slump test.
+            </p>
+            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+              Demolding of specimens obtained during concreting at the client's site. Identification and storage of the
+              specimens in the wet chamber.
+            </p>
+            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+              Maintenance of the molds used in concreting, concrete compressive strength test, disposal of broken
+              specimens and creation of the test certificate for each invoice.
+            </p>
+          </CardContent>
+        </ScrollArea>
       </Card>
-      <div className="col-span-12 row-start-7 mb-[160px] mt-3 grid grid-cols-2 gap-4">
+      <div className="col-span-12 row-start-7 mt-3 grid grid-cols-2 gap-4">
         <div className="col-span-1 mx-12 flex max-h-full flex-col gap-3 text-center">
           <CardTitle className="text-lg">Posts</CardTitle>
           <Carousel

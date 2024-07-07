@@ -22,6 +22,7 @@ import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProjectsIndexImport } from './routes/projects.index'
 import { Route as PostsIndexImport } from './routes/posts.index'
+import { Route as ProjectsChartsImport } from './routes/projects.charts'
 import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as ProjectsProjectIdModalImport } from './routes/projects_.$projectId.modal'
@@ -86,6 +87,11 @@ const ProjectsIndexRoute = ProjectsIndexImport.update({
 const PostsIndexRoute = PostsIndexImport.update({
   path: '/',
   getParentRoute: () => PostsRoute,
+} as any)
+
+const ProjectsChartsRoute = ProjectsChartsImport.update({
+  path: '/charts',
+  getParentRoute: () => ProjectsRoute,
 } as any)
 
 const ProjectsProjectIdRoute = ProjectsProjectIdImport.update({
@@ -176,6 +182,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsProjectIdImport
       parentRoute: typeof ProjectsImport
     }
+    '/projects/charts': {
+      preLoaderRoute: typeof ProjectsChartsImport
+      parentRoute: typeof ProjectsImport
+    }
     '/posts/': {
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof PostsImport
@@ -227,7 +237,11 @@ export const routeTree = rootRoute.addChildren([
   IntroductionRoute,
   LoginRoute,
   PostsRoute.addChildren([PostsPostIdRoute, PostsIndexRoute]),
-  ProjectsRoute.addChildren([ProjectsProjectIdRoute, ProjectsIndexRoute]),
+  ProjectsRoute.addChildren([
+    ProjectsProjectIdRoute,
+    ProjectsChartsRoute,
+    ProjectsIndexRoute,
+  ]),
   PostsPostIdModalRoute,
   ProjectsProjectIdModalRoute,
 ])

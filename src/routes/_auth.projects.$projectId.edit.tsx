@@ -134,7 +134,7 @@ function EditPostsComponent() {
                     <FormItem className="grid grid-cols-12 items-center">
                       <FormLabel className="col-span-1">Título</FormLabel>
                       <FormControl className="col-span-11">
-                        <Input placeholder="O nome do seu post" {...field} />
+                        <Input placeholder="O nome do seu projeto" {...field} />
                       </FormControl>
                       {/* <FormDescription>Só pra testar um negócinho aqui rapidinho</FormDescription> */}
                       <FormMessage className="col-span-12" />
@@ -148,7 +148,7 @@ function EditPostsComponent() {
                     <FormItem className="grid grid-cols-12 items-center">
                       <FormLabel className="col-span-1">Descrição</FormLabel>
                       <FormControl className="col-span-11">
-                        <Input placeholder="Faça uma descrição da sua postagem" {...field} />
+                        <Input placeholder="Faça uma descrição do seu projeto" {...field} />
                       </FormControl>
                       {/* <FormDescription>Só pra testar um negócinho aqui rapidinho</FormDescription> */}
                       <FormMessage className="col-span-12" />
@@ -189,7 +189,7 @@ function EditPostsComponent() {
                 <Button
                   type="button"
                   onClick={() =>
-                    toast.error('Sem deletar post por aqui malandro', {
+                    toast.error('Sem deletar projeto por aqui malandro', {
                       icon: <Angry />,
                       description: 'Deixa isso pra uma outra hora',
                       classNames: {
