@@ -8,25 +8,27 @@ export const postsQueryOptions = queryOptions({
   queryFn: () => fetchPosts(),
 });
 
-export const postsQueryOptionsWithFilter = ({ tags, title, count, views }: FilterType) => {
+export const postsQueryOptionsWithFilter = ({ tags, title, pageSize, views, page }: FilterType) => {
   const tagF = tags?.length === 0 && !tags ? 'No-tags' : tags;
   const tiltleF = !title ? 'No-title' : title;
-  const countF = !count ? 'No-count' : count;
   const viewsF = !views ? 'No-views' : views;
+  const pageSizeF = !pageSize ? 'No-pageSize' : pageSize;
+  const pageF = !page ? '1' : page;
   return queryOptions({
-    queryKey: ['posts', { tagF, tiltleF, countF, viewsF }],
-    queryFn: () => fetchPostsWithFilter({ tags, title, count, views }),
+    queryKey: ['posts', { tagF, tiltleF, pageSizeF, viewsF, pageF }],
+    queryFn: () => fetchPostsWithFilter({ tags, title, pageSize, views, page }),
   });
 };
 
-export const projectsQueryOptionsWithFilter = ({ tags, title, count, views }: FilterType) => {
+export const projectsQueryOptionsWithFilter = ({ tags, title, pageSize, views, page }: FilterType) => {
   const tagF = tags?.length === 0 && !tags ? 'No-tags' : tags;
   const tiltleF = !title ? 'No-title' : title;
-  const countF = !count ? 'No-count' : count;
+  const pageSizeF = !pageSize ? 'No-pageSize' : pageSize;
   const viewsF = !views ? 'No-views' : views;
+  const pageF = !page ? '1' : page;
   return queryOptions({
-    queryKey: ['projects', { tagF, tiltleF, countF, viewsF }],
-    queryFn: () => fetchProjectsWithFilter({ tags, title, count, views }),
+    queryKey: ['projects', { tagF, tiltleF, pageSizeF, viewsF, pageF }],
+    queryFn: () => fetchProjectsWithFilter({ tags, title, pageSize, views, page }),
   });
 };
 

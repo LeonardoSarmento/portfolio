@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
-export const THUMBSUP = new URL('/public/assets/thumbs-up.svg', import.meta.url).href;
+import { THUMBSUP } from '@services/utils/Images';
 
 export function Footer() {
   return (

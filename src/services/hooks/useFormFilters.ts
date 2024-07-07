@@ -12,7 +12,19 @@ export function useFormFilters({ path }: { path: NavigateOptions }) {
   });
 
   function ResetFilters() {
-    form.setValue('tags', []), form.setValue('count', 'All'), form.setValue('title', ''), navigate(path);
+    form.setValue('tags', []),
+      //   form.setValue('pageSize', 'All'),
+      form.setValue('title', ''),
+      navigate({
+        to: path.to as string,
+        params: false,
+        search: {
+          tags: undefined,
+          title: undefined,
+          pageSize: form.watch('pageSize'),
+          page: form.watch('page'),
+        },
+      });
   }
 
   return {

@@ -1,6 +1,6 @@
 import { ReloadIcon } from '@radix-ui/react-icons';
-import { MY_PHOTO } from './NavigationMenu';
 import { CardContent, CardTitle } from './ui/card';
+import { MY_PHOTO } from '@services/utils/Images';
 
 export function PendingComponent() {
   return (

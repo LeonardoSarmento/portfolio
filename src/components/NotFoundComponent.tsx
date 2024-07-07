@@ -2,7 +2,7 @@ import { useRouter } from '@tanstack/react-router';
 import { CardContent, CardDescription, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Footer } from './Footer';
-export const NOT_FOUND_GIF = new URL('/public/assets/johnTLostMeme.gif', import.meta.url).href;
+import { NOT_FOUND_GIF } from '@services/utils/Images';
 
 export function NotFoundComponent() {
   const router = useRouter();

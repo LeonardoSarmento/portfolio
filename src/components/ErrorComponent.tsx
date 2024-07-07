@@ -2,7 +2,7 @@ import { useRouter } from '@tanstack/react-router';
 import { CardContent, CardDescription, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Footer } from './Footer';
-export const ERROR_GIF = new URL('/public/assets/rogerinhoDoInga_InfelizmenteEuVouTerQueFalarIssoAqui.gif', import.meta.url).href;
+import { ERROR_GIF } from '@services/utils/Images';
 
 export function ErrorComponent() {
   const router = useRouter();

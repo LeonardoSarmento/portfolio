@@ -30,10 +30,14 @@ export const fetchPosts = async () => {
   return posts;
 };
 
-export const fetchPostsWithFilter = async ({ tags, count, title, views }: FilterType) => {
+export const fetchPostsWithFilter = async ({ tags, pageSize = '100', title, views, page = '1' }: FilterType) => {
   console.log('Fetching posts with filters...');
   await new Promise((r) => setTimeout(r, 500));
-  console.log('tags: ', { tags, count, title, views });
+  console.log('tags: ', { tags, pageSize, title, views, page });
+
+  const offset = (+page - 1) * (pageSize ? +pageSize : AllPosts.length);
+
+  console.log(offset);
 
   const posts = AllPosts;
 
@@ -48,11 +52,13 @@ export const fetchPostsWithFilter = async ({ tags, count, title, views }: Filter
     filteredPosts = filteredPosts.filter((post) => post.tags?.some((tag) => tags.includes(tag.id)));
   }
 
-  if (count && count !== 'All') {
-    const maxCount = +count;
-    filteredPosts = filteredPosts.slice(0, maxCount);
+  if (pageSize && pageSize !== 'All') {
+    const maxPageSize = +pageSize;
+    filteredPosts = filteredPosts.slice(offset, offset + maxPageSize);
+  } else {
+    filteredPosts = filteredPosts.slice(offset);
   }
-
+  console.log(filteredPosts);
   return filteredPosts;
 };
 

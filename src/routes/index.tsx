@@ -1,18 +1,16 @@
-import { MY_PHOTO } from '@components/NavigationMenu';
 import { PendingComponent } from '@components/PendingComponent';
 import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
-import { ScrollArea, ScrollBar } from '@components/ui/scroll-area';
-import { ReloadIcon } from '@radix-ui/react-icons';
+import { ScrollArea } from '@components/ui/scroll-area';
 import { postsQueryOptions, projectsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { MY_PHOTO } from '@services/utils/Images';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
-// const gif = new URL('/public/assets/Animation - 1707702469299.gif', import.meta.url).href;
 
 export const Route = createFileRoute('/')({
   loader: ({ context: { queryClient } }) => {
@@ -32,7 +30,7 @@ function Index() {
 
   return (
     <div className="grid-rows-auto mt-3 grid grid-cols-12 gap-4 px-16">
-      <Card className="col-span-6 row-span-6 grid grid-cols-2 px-4 pt-8 items-center">
+      <Card className="col-span-6 row-span-6 grid grid-cols-2 items-center px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
           <p className="mt-6 text-xs leading-tight text-muted-foreground">
@@ -96,7 +94,7 @@ function Index() {
         </CardContent>
       </Card>
       <Card className="col-span-3 col-start-10 row-span-6 px-4">
-        <ScrollArea className="h-[450px] my-3 w-full rounded-md">
+        <ScrollArea className="my-3 h-[450px] w-full rounded-md">
           <CardHeader>
             <CardTitle>Virtual Systems Fellow</CardTitle>
             <CardDescription>Sistema Findes · Full-time</CardDescription>
@@ -203,7 +201,9 @@ function Index() {
             <CarouselNext />
           </Carousel>
           <Button asChild>
-            <Link to="/posts/">Ver todos os Posts</Link>
+            <Link to="/posts/" search={{ page: '1', pageSize: '100' }}>
+              Ver todos os Posts
+            </Link>
           </Button>
         </div>
         <div className="col-span-1 mx-12 flex flex-col gap-3 text-center">
@@ -264,7 +264,9 @@ function Index() {
             <CarouselNext />
           </Carousel>
           <Button asChild>
-            <Link to="/projects/">Ver todos os Projetos</Link>
+            <Link to="/projects/" search={{ page: '1', pageSize: '100' }}>
+              Ver todos os Projetos
+            </Link>
           </Button>
         </div>
       </div>
