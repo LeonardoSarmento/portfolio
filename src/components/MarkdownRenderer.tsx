@@ -21,7 +21,7 @@ type TMarkdownRenderer = {
 } & React.HTMLAttributes<HTMLDivElement>;
 export default function MarkdownRenderer({ markdown, ...props }: TMarkdownRenderer) {
   return (
-    <Card className="col-span-12 row-start-5 m-10 grid h-fit p-10" {...props}>
+    <Card className="col-span-12 row-start-5 m-10 mb-0 grid h-fit p-10" {...props}>
       <Markdown
         className="markdown-body rounded p-6"
         remarkPlugins={[remarkDirective, remarkGfm, remarkGemoji, remarkMath, remarkGithubAdmonitionsToDirectives]}

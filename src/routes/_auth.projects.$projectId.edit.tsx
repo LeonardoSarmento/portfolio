@@ -205,7 +205,7 @@ function EditPostsComponent() {
               </div>
             </CardContent>
           </Card>
-          <Card className="col-span-12 mx-10 mb-10 grid h-fit grid-cols-12 p-4">
+          <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4">
             <ResizablePanelGroup direction="horizontal" className="col-span-12">
               <ResizablePanel>
                 <CardContent className="col-span-4 space-y-3 text-center">

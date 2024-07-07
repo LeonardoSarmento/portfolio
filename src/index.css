@@ -34,6 +34,12 @@
 
     --radius: 0.5rem;
 
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
     --color-fg-default: #1f2328;
     --color-fg-muted: #656d76;
     --color-fg-subtle: #6e7781;
@@ -99,6 +105,12 @@
     --ring: 212.7 26.8% 83.9%;
 
     --radius: 0.5rem;
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
 
     --color-prettylights-syntax-comment: #8b949e;
     --color-prettylights-syntax-constant: #79c0ff;
@@ -166,7 +178,7 @@
     --hljs-link: underline;
   }
 
-  .markdown-body>* {
+  .markdown-body > * {
     all: revert;
   }
 
@@ -184,7 +196,7 @@
 
   /* Optional: show position indicator in red */
   ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+    background: #ff0000;
   }
 }
 
