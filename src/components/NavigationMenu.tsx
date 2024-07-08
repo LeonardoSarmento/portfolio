@@ -39,16 +39,28 @@ export function NavigationMenuGroup() {
                     </Link>
                   </NavigationMenuLink>
                 </li>
-                <ListItem to="/introduction" title="Introduction" params search icon={<Handshake size={16} />}>
+                <ListItem
+                  to="/introduction"
+                  title="Introduction"
+                  params={false}
+                  search={false}
+                  icon={<Handshake size={16} />}
+                >
                   How I got here? Who I am? Come with me and i'll explain.
                 </ListItem>
-                <ListItem to="/experience" title="Experience" params search icon={<GraduationCap size={16} />}>
+                <ListItem
+                  to="/experience"
+                  title="Experience"
+                  params={false}
+                  search={false}
+                  icon={<GraduationCap size={16} />}
+                >
                   The roadmap I followed to be here.
                 </ListItem>
                 <ListItem
                   to="/projects"
                   title="Projects"
-                  params
+                  params={false}
                   search={{ page: '1', pageSize: '100' }}
                   icon={<FolderGit2 size={16} />}
                 >
@@ -69,15 +81,15 @@ export function NavigationMenuGroup() {
                       title={component.title}
                       to="/posts/$postId"
                       params={{ postId: component.id }}
+                      search={false}
                       children={component.description}
-                      search
                     />
                   ))}
                 <ListItem
                   key={'AllPosts'}
                   title="All Posts"
                   to="/posts/"
-                  params
+                  params={false}
                   search={{ page: '1', pageSize: '100' }}
                   children={'See the list for all posts.'}
                 />
@@ -85,8 +97,8 @@ export function NavigationMenuGroup() {
                   key={'CreatePost'}
                   title="New Post"
                   to="/posts/create"
-                  params
-                  search
+                  params={false}
+                  search={false}
                   children={'Create a new post here'}
                 />
               </ul>
@@ -94,12 +106,12 @@ export function NavigationMenuGroup() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <ListItem
-              params
-              search
-              to="/contact"
               key={'contact'}
-              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 sm:px-8"
               title="Contact"
+              to="/contact"
+              params={false}
+              search={false}
+              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 sm:px-8"
               icon={<Contact size={16} />}
             />
           </NavigationMenuItem>

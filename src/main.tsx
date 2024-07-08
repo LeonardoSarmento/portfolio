@@ -15,7 +15,6 @@ import './githubFlavor.css';
 import { routeTree } from './routeTree.gen';
 import { ThemeProvider } from '@components/Theme-provider';
 import { AuthProvider, useAuth } from '@services/hooks/auth';
-import { Link } from '@tanstack/react-router';
 
 const queryClient = new QueryClient();
 
