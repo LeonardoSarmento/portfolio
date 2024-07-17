@@ -15,6 +15,25 @@ import { NOT_FOUND } from '@services/utils/Images';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from './ui/pagination';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 
+export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
+  {
+    value: '15',
+    text: '15',
+  },
+  {
+    value: '25',
+    text: '25',
+  },
+  {
+    value: '50',
+    text: '50',
+  },
+  {
+    value: '100',
+    text: '100',
+  },
+];
+
 export function FilterMenuComponent({
   path,
   createPath,
@@ -162,10 +181,11 @@ export function FilterMenuComponent({
                             </FormControl>
                             <SelectContent>
                               {/* <SelectItem value={'All'}>Todos</SelectItem> */}
-                              <SelectItem value={'15'}>15</SelectItem>
-                              <SelectItem value={'25'}>25</SelectItem>
-                              <SelectItem value={'50'}>50</SelectItem>
-                              <SelectItem value={'100'}>100</SelectItem>
+                              {PAGE_SIZE_OPTIONS.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  {option.text}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </FormItem>

@@ -33,63 +33,60 @@ function Index() {
       <Card className="col-span-6 row-span-6 grid grid-cols-2 items-center px-4 pt-8">
         <CardContent className="flex flex-col items-center justify-center">
           <img className="h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
-          <p className="mt-6 text-xs leading-tight text-muted-foreground">
+          <CardDescription className="mt-6 text-xs leading-tight text-muted-foreground">
             Front End Engineer | React | React Native | TypeScript | Agile
-          </p>
+          </CardDescription>
           {/* <div className="mb-2 mt-4 text-lg font-medium">Leonardo</div> */}
           <CardTitle className="mb-2 mt-4">Leonardo</CardTitle>
         </CardContent>
         <CardContent className="flex flex-col items-center justify-center">
-          <p className="text-xs leading-tight text-muted-foreground">
+          <CardDescription className="text-xs">
             As a dedicated Virtual Systems Fellow at the SENAI Institute of Technology — Operational Efficiency, I have
             been actively developing web applications for various clients.
-          </p>
-
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
+          </CardDescription>
+          <CardDescription className="text-xs">
             My expertise lies in using ReactJs, React Native, and TypeScript for frontend development and integrating
             REST APIs with Node.Js on the backend, always ensuring agility in my work. In my pursuit of specialization,
             I have embarked on postgraduate studies in Software Architecture and Solutions, with a keen focus on
             understanding the comprehensive Cloud environment.
-          </p>
-
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
+          </CardDescription>
+          <CardDescription className="text-xs">
             Currently, I am honing my skills in React Native through a project targeted at industry professionals in
             occupational health and safety. This project involves capturing data via Bluetooth connection with various
             sensors, storing it in the application with an offline-first approach, and displaying the data through
             real-time graphs. The technologies I’m using include Expo, React Native, TypeScript, React-native-ble-plx,
             Redux-toolkit, React Query with Axios, React-hook-form, and Zod.
-          </p>
-
-          <p className="mt-3 text-xs leading-tight text-muted-foreground">
+          </CardDescription>
+          <CardDescription className="text-xs">
             In addition, I have contributed to a health sector project, where we developed a management system for
             companies to analyze their employees’ mental health data. This involved creating a Progressive Web
             Application (PWA) for employees to manage their appointments, available clinics for consultations, and
             mental health forms. A separate website was also developed for the company and clinics to manage all their
             employees’ data, appointments, and forms.
-          </p>
+          </CardDescription>
         </CardContent>
       </Card>
       <Card className="col-span-3 row-span-6 flex flex-col items-center justify-center px-4">
         <CardContent>
           <CardHeader>
             <CardTitle>XP Educação</CardTitle>
-            <CardDescription>
-              <p>Postgraduate Degree, Software Architecture and Solutions</p>
-              <p>Nov 2023 - Aug 2024</p>
-            </CardDescription>
+            <CardContent className="p-0">
+              <CardDescription>Postgraduate Degree, Software Architecture and Solutions</CardDescription>
+              <CardDescription>Nov 2023 - Aug 2024</CardDescription>
+            </CardContent>
           </CardHeader>
           <CardContent>
-            <p className="text-xs leading-tight text-muted-foreground">
+            <CardDescription>
               Specialized in software project lifecycle, focusing on project requirements, structuring, and management.
               Gained expertise in Software Architecture and Cloud-based Solutions Architecture.
-            </p>
+            </CardDescription>
           </CardContent>
           <CardHeader>
             <CardTitle>Faculdade UCL</CardTitle>
-            <CardDescription>
-              <p>Bachelor of Engineering - BE, Engenharia Civil</p>
-              <p>2014 - 2021</p>
-            </CardDescription>
+            <CardContent className="p-0">
+              <CardDescription>Bachelor of Engineering - BE, Engenharia Civil</CardDescription>
+              <CardDescription>2014 - 2021</CardDescription>
+            </CardContent>
           </CardHeader>
         </CardContent>
       </Card>
@@ -97,48 +94,48 @@ function Index() {
         <ScrollArea className="my-3 h-[450px] w-full rounded-md">
           <CardHeader>
             <CardTitle>Virtual Systems Fellow</CardTitle>
-            <CardDescription>Sistema Findes · Full-time</CardDescription>
-            <CardDescription>Feb 2023 - Present · 1 yr 2 mos</CardDescription>
-            <CardDescription>Vitória, Espírito Santo, Brazil · On-site</CardDescription>
+            <CardContent className="p-0">
+              <CardDescription>Sistema Findes · Full-time</CardDescription>
+              <CardDescription>Feb 2023 - Present · 1 yr 2 mos</CardDescription>
+              <CardDescription>Vitória, Espírito Santo, Brazil · On-site</CardDescription>
+            </CardContent>
           </CardHeader>
           <CardContent>
-            <p className="text-xs leading-tight text-muted-foreground">
-              Working on software development projects, focusing on the frontend.
-            </p>
-            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+            <CardDescription>Working on software development projects, focusing on the frontend.</CardDescription>
+            <CardDescription>
               • Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple
               software projects on time and within budget
-            </p>
-            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+            </CardDescription>
+            <CardDescription>
               • Participated in calls with 4 companies, helping the development of 4 innovative projects and securing
               R$300K plus in funding.
-            </p>
-            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+            </CardDescription>
+            <CardDescription>
               • Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React -
               hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies.
-            </p>
+            </CardDescription>
           </CardContent>
           <CardHeader>
             <CardTitle>Laboratorist</CardTitle>
-            <CardDescription>
-              <p>LABMATERIAIS · Internship</p>
-              <p>Feb 2021 - Jun 2021 · 5 mos</p>
-              <p>Serra, Espírito Santo, Brazil · On-site</p>
-            </CardDescription>
+            <CardContent className="p-0">
+              <CardDescription>LABMATERIAIS · Internship</CardDescription>
+              <CardDescription>Feb 2021 - Jun 2021 · 5 mos</CardDescription>
+              <CardDescription>Serra, Espírito Santo, Brazil · On-site</CardDescription>
+            </CardContent>
           </CardHeader>
           <CardContent>
-            <p className="text-xs leading-tight text-muted-foreground">
+            <CardDescription>
               Development of activities related to all the stages of the concrete compressive strength test. Therefore,
               participation in the concreting of the client's site, carrying out the concrete slump test.
-            </p>
-            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+            </CardDescription>
+            <CardDescription>
               Demolding of specimens obtained during concreting at the client's site. Identification and storage of the
               specimens in the wet chamber.
-            </p>
-            <p className="mt-3 text-xs leading-tight text-muted-foreground">
+            </CardDescription>
+            <CardDescription>
               Maintenance of the molds used in concreting, concrete compressive strength test, disposal of broken
               specimens and creation of the test certificate for each invoice.
-            </p>
+            </CardDescription>
           </CardContent>
         </ScrollArea>
       </Card>
@@ -170,24 +167,19 @@ function Index() {
                         </div>
                         <ScrollArea className="h-28 w-full rounded-md">
                           <div className="grid grid-cols-4 gap-2 px-4">
-                            <>
-                              {post.tags
-                                ? post.tags.map((tag) => (
-                                    <Badge
-                                      key={`${post.id}-${index}-${tag.value}`}
-                                      className="col-span-1 justify-center"
-                                    >
-                                      {tag.value}
-                                    </Badge>
-                                  ))
-                                : null}
-                            </>
+                            {post.tags
+                              ? post.tags.map((tag) => (
+                                  <Badge key={`${post.id}-${index}-${tag.value}`} className="col-span-1 justify-center">
+                                    {tag.value}
+                                  </Badge>
+                                ))
+                              : null}
                           </div>
                         </ScrollArea>
                         <div className="mt-4 flex h-full w-full flex-col justify-between">
-                          <CardDescription className="flex items-center justify-center">
-                            <ScrollArea className="h-14 w-full rounded-md">{post.description}</ScrollArea>
-                          </CardDescription>
+                          <ScrollArea className="flex items-center justify-center">
+                            <CardDescription className="h-14 w-full rounded-md">{post.description}</CardDescription>
+                          </ScrollArea>
                           <CardFooter className="mt-4 flex w-full">
                             <p className="w-full justify-center">{post.date.toLocaleDateString()}</p>
                           </CardFooter>
@@ -233,24 +225,22 @@ function Index() {
                         </div>
                         <ScrollArea className="h-28 w-full rounded-md">
                           <div className="grid grid-cols-4 gap-2 px-4">
-                            <>
-                              {project.tags
-                                ? project.tags.map((tag) => (
-                                    <Badge
-                                      key={`${project.id}-${index}-${tag.value}`}
-                                      className="col-span-1 justify-center"
-                                    >
-                                      {tag.value}
-                                    </Badge>
-                                  ))
-                                : null}
-                            </>
+                            {project.tags
+                              ? project.tags.map((tag) => (
+                                  <Badge
+                                    key={`${project.id}-${index}-${tag.value}`}
+                                    className="col-span-1 justify-center"
+                                  >
+                                    {tag.value}
+                                  </Badge>
+                                ))
+                              : null}
                           </div>
                         </ScrollArea>
                         <div className="mt-4 flex h-full w-full flex-col justify-between">
-                          <CardDescription>
-                            <ScrollArea className="h-14 w-full rounded-md">{project.description}</ScrollArea>
-                          </CardDescription>
+                          <ScrollArea className="h-14 w-full rounded-md">
+                            <CardDescription>{project.description}</CardDescription>
+                          </ScrollArea>
                           <CardFooter className="mt-4 flex w-full">
                             <p className="w-full justify-center">{project.date.toLocaleDateString()}</p>
                           </CardFooter>

@@ -15,6 +15,7 @@ import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
 import { posts } from '@assets/data/posts';
 import { UserToggle } from './UserToggle';
 import { MY_PHOTO } from '@services/utils/Images';
+import { PAGE_SIZE_OPTIONS } from './FilterMenuComponent';
 
 export function NavigationMenuGroup() {
   return (
@@ -61,7 +62,7 @@ export function NavigationMenuGroup() {
                   to="/projects"
                   title="Projects"
                   params={false}
-                  search={{ page: '1', pageSize: '100' }}
+                  search={{ page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value }}
                   icon={<FolderGit2 size={16} />}
                 >
                   Some of the projects I did and what's to come.
@@ -90,7 +91,7 @@ export function NavigationMenuGroup() {
                   title="All Posts"
                   to="/posts/"
                   params={false}
-                  search={{ page: '1', pageSize: '100' }}
+                  search={{ page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value }}
                   children={'See the list for all posts.'}
                 />
                 <ListItem
