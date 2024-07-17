@@ -31,6 +31,10 @@ function PostModalComponent() {
         if (!open) {
           navigate({
             to: '/posts/',
+            search: {
+              page: '1',
+              pageSize: '15',
+            },
           });
         }
       }}
@@ -49,7 +53,13 @@ function PostModalComponent() {
         <Separator />
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
-            <Link to="/posts/">
+            <Link
+              to="/posts/"
+              search={{
+                page: '1',
+                pageSize: '15',
+              }}
+            >
               <Button type="button" variant="secondary">
                 Fechar
               </Button>

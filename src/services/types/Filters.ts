@@ -1,4 +1,3 @@
-import { PAGE_SIZE_OPTIONS } from '@components/FilterMenuComponent';
 import { z } from 'zod';
 
 export const FilterSchema = z.object({

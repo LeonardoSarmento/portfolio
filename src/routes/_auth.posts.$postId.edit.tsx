@@ -36,7 +36,7 @@ function EditPostsComponent() {
     defaultValues: post,
   });
 
-  const onSubmit = form.handleSubmit((values) => {
+  const onSubmit = form.handleSubmit(() => {
     if (!auth.isAuthenticated) {
       toast.error('Você não está autenticado cara :(', {
         description: 'Você não deveria ter acesso aqui... tô de olho em você ein',
@@ -61,7 +61,7 @@ function EditPostsComponent() {
                 <FormField
                   control={form.control}
                   name="thumbnail"
-                  render={({ field }) => (
+                  render={() => (
                     <>
                       <CardTitle>Thumbnail</CardTitle>
                       <div className="relative flex flex-col items-center justify-center gap-3">

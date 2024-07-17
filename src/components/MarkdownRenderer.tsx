@@ -13,7 +13,6 @@ import 'katex/dist/katex.min.css';
 import { Card } from './ui/card';
 import { CustomPre } from './CodeCopyButton';
 import remarkDirective from 'remark-directive';
-import remarkGithubBetaBlockquoteAdmonitions from 'remark-github-beta-blockquote-admonitions';
 import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-directives';
 
 type TMarkdownRenderer = {

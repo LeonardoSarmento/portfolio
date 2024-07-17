@@ -1,7 +1,7 @@
 import { copyToClipboard } from '@components/CodeCopyButton';
 import { ALLOWED_TYPES, AllowedTypes } from '@services/types/AllowedFiles';
-import { CreatePostType, EditPostType } from '@services/types/Post';
-import { FieldValues, UseFormReturn, useFormContext } from 'react-hook-form';
+import { EditPostType } from '@services/types/Post';
+import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export async function sleep(ms: number) {
