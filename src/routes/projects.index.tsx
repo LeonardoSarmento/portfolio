@@ -34,8 +34,8 @@ function ProjectsComponent() {
 
   return (
     <FilterMenuComponent
-      path={{ to: '/projects/', params: false, search: false }}
-      createPath={{ to: '/projects/create', params: false, search: false }}
+      path={{ to: '/projects' }}
+      createPath={{ to: '/projects/create' }}
       hasContent={projects.length > 0}
       contentSize={projects.length}
     >

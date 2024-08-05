@@ -34,8 +34,8 @@ function PostsComponent() {
 
   return (
     <FilterMenuComponent
-      path={{ to: '/posts/', params: false, search: false }}
-      createPath={{ to: '/posts/create', params: false, search: false }}
+      path={{ to: '/posts' }}
+      createPath={{ to: '/posts/create' }}
       hasContent={posts.length > 0}
       contentSize={posts.length}
     >

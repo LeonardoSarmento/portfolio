@@ -173,7 +173,7 @@ export function FilterMenuComponent({
                         <FormItem className="flex flex-col items-start space-y-3">
                           <FormLabel className="text-sm font-normal">Quantidade</FormLabel>
                           <FormDescription>Selecione a quantidade de você deseja visualizar.</FormDescription>
-                          <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value}>
+                          <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value} key={field.value}>
                             <FormControl>
                               <SelectTrigger>
                                 <SelectValue className="w-fit" placeholder="Qntd" />

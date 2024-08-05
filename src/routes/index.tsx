@@ -193,7 +193,7 @@ function Index() {
             <CarouselNext />
           </Carousel>
           <Button asChild>
-            <Link to="/posts/" search={{ page: '1', pageSize: '100' }}>
+            <Link to="/posts" search={{ page: '1', pageSize: '100' }}>
               Ver todos os Posts
             </Link>
           </Button>
@@ -254,7 +254,7 @@ function Index() {
             <CarouselNext />
           </Carousel>
           <Button asChild>
-            <Link to="/projects/" search={{ page: '1', pageSize: '100' }}>
+            <Link to="/projects" search={{ page: '1', pageSize: '100' }}>
               Ver todos os Projetos
             </Link>
           </Button>

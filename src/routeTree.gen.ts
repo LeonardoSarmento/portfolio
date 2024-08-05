@@ -139,82 +139,142 @@ const AuthPostsPostIdEditRoute = AuthPostsPostIdEditImport.update({
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
     '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: ''
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
     '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
       preLoaderRoute: typeof ContactImport
       parentRoute: typeof rootRoute
     }
     '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
       preLoaderRoute: typeof ExperienceImport
       parentRoute: typeof rootRoute
     }
     '/introduction': {
+      id: '/introduction'
+      path: '/introduction'
+      fullPath: '/introduction'
       preLoaderRoute: typeof IntroductionImport
       parentRoute: typeof rootRoute
     }
     '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/posts': {
+      id: '/posts'
+      path: '/posts'
+      fullPath: '/posts'
       preLoaderRoute: typeof PostsImport
       parentRoute: typeof rootRoute
     }
     '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
       preLoaderRoute: typeof ProjectsImport
       parentRoute: typeof rootRoute
     }
     '/posts/$postId': {
+      id: '/posts/$postId'
+      path: '/$postId'
+      fullPath: '/posts/$postId'
       preLoaderRoute: typeof PostsPostIdImport
       parentRoute: typeof PostsImport
     }
     '/projects/$projectId': {
+      id: '/projects/$projectId'
+      path: '/$projectId'
+      fullPath: '/projects/$projectId'
       preLoaderRoute: typeof ProjectsProjectIdImport
       parentRoute: typeof ProjectsImport
     }
     '/projects/charts': {
+      id: '/projects/charts'
+      path: '/charts'
+      fullPath: '/projects/charts'
       preLoaderRoute: typeof ProjectsChartsImport
       parentRoute: typeof ProjectsImport
     }
     '/posts/': {
+      id: '/posts/'
+      path: '/'
+      fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexImport
       parentRoute: typeof PostsImport
     }
     '/projects/': {
+      id: '/projects/'
+      path: '/'
+      fullPath: '/projects/'
       preLoaderRoute: typeof ProjectsIndexImport
       parentRoute: typeof ProjectsImport
     }
     '/_auth/posts/create': {
+      id: '/_auth/posts/create'
+      path: '/posts/create'
+      fullPath: '/posts/create'
       preLoaderRoute: typeof AuthPostsCreateImport
       parentRoute: typeof AuthImport
     }
     '/_auth/projects/create': {
+      id: '/_auth/projects/create'
+      path: '/projects/create'
+      fullPath: '/projects/create'
       preLoaderRoute: typeof AuthProjectsCreateImport
       parentRoute: typeof AuthImport
     }
     '/posts/$postId/modal': {
+      id: '/posts/$postId/modal'
+      path: '/posts/$postId/modal'
+      fullPath: '/posts/$postId/modal'
       preLoaderRoute: typeof PostsPostIdModalImport
       parentRoute: typeof rootRoute
     }
     '/projects/$projectId/modal': {
+      id: '/projects/$projectId/modal'
+      path: '/projects/$projectId/modal'
+      fullPath: '/projects/$projectId/modal'
       preLoaderRoute: typeof ProjectsProjectIdModalImport
       parentRoute: typeof rootRoute
     }
     '/_auth/posts/$postId/edit': {
+      id: '/_auth/posts/$postId/edit'
+      path: '/posts/$postId/edit'
+      fullPath: '/posts/$postId/edit'
       preLoaderRoute: typeof AuthPostsPostIdEditImport
       parentRoute: typeof AuthImport
     }
     '/_auth/projects/$projectId/edit': {
+      id: '/_auth/projects/$projectId/edit'
+      path: '/projects/$projectId/edit'
+      fullPath: '/projects/$projectId/edit'
       preLoaderRoute: typeof AuthProjectsProjectIdEditImport
       parentRoute: typeof AuthImport
     }
@@ -223,27 +283,134 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([
+export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AuthRoute.addChildren([
+  AuthRoute: AuthRoute.addChildren({
     AuthPostsCreateRoute,
     AuthProjectsCreateRoute,
     AuthPostsPostIdEditRoute,
     AuthProjectsProjectIdEditRoute,
-  ]),
+  }),
   AboutRoute,
   ContactRoute,
   ExperienceRoute,
   IntroductionRoute,
   LoginRoute,
-  PostsRoute.addChildren([PostsPostIdRoute, PostsIndexRoute]),
-  ProjectsRoute.addChildren([
+  PostsRoute: PostsRoute.addChildren({ PostsPostIdRoute, PostsIndexRoute }),
+  ProjectsRoute: ProjectsRoute.addChildren({
     ProjectsProjectIdRoute,
     ProjectsChartsRoute,
     ProjectsIndexRoute,
-  ]),
+  }),
   PostsPostIdModalRoute,
   ProjectsProjectIdModalRoute,
-])
+})
 
 /* prettier-ignore-end */
+
+/* ROUTE_MANIFEST_START
+{
+  "routes": {
+    "__root__": {
+      "filePath": "__root.tsx",
+      "children": [
+        "/",
+        "/_auth",
+        "/about",
+        "/contact",
+        "/experience",
+        "/introduction",
+        "/login",
+        "/posts",
+        "/projects",
+        "/posts/$postId/modal",
+        "/projects/$projectId/modal"
+      ]
+    },
+    "/": {
+      "filePath": "index.tsx"
+    },
+    "/_auth": {
+      "filePath": "_auth.tsx",
+      "children": [
+        "/_auth/posts/create",
+        "/_auth/projects/create",
+        "/_auth/posts/$postId/edit",
+        "/_auth/projects/$projectId/edit"
+      ]
+    },
+    "/about": {
+      "filePath": "about.tsx"
+    },
+    "/contact": {
+      "filePath": "contact.tsx"
+    },
+    "/experience": {
+      "filePath": "experience.tsx"
+    },
+    "/introduction": {
+      "filePath": "introduction.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
+    },
+    "/posts": {
+      "filePath": "posts.tsx",
+      "children": [
+        "/posts/$postId",
+        "/posts/"
+      ]
+    },
+    "/projects": {
+      "filePath": "projects.tsx",
+      "children": [
+        "/projects/$projectId",
+        "/projects/charts",
+        "/projects/"
+      ]
+    },
+    "/posts/$postId": {
+      "filePath": "posts.$postId.tsx",
+      "parent": "/posts"
+    },
+    "/projects/$projectId": {
+      "filePath": "projects.$projectId.tsx",
+      "parent": "/projects"
+    },
+    "/projects/charts": {
+      "filePath": "projects.charts.tsx",
+      "parent": "/projects"
+    },
+    "/posts/": {
+      "filePath": "posts.index.tsx",
+      "parent": "/posts"
+    },
+    "/projects/": {
+      "filePath": "projects.index.tsx",
+      "parent": "/projects"
+    },
+    "/_auth/posts/create": {
+      "filePath": "_auth.posts.create.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/projects/create": {
+      "filePath": "_auth.projects.create.tsx",
+      "parent": "/_auth"
+    },
+    "/posts/$postId/modal": {
+      "filePath": "posts_.$postId.modal.tsx"
+    },
+    "/projects/$projectId/modal": {
+      "filePath": "projects_.$projectId.modal.tsx"
+    },
+    "/_auth/posts/$postId/edit": {
+      "filePath": "_auth.posts.$postId.edit.tsx",
+      "parent": "/_auth"
+    },
+    "/_auth/projects/$projectId/edit": {
+      "filePath": "_auth.projects.$projectId.edit.tsx",
+      "parent": "/_auth"
+    }
+  }
+}
+ROUTE_MANIFEST_END */

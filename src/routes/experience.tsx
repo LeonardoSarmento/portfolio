@@ -44,7 +44,7 @@ type TIconTecBtn = {
 function IconTecButton({ children, path, className }: TIconTecBtn) {
   return (
     <Button variant="ghost" className={cn('col-span-4 gap-2', className)} asChild>
-      <Link to={path} params={false} search={false} target="_blank" rel="noopener noreferrer">
+      <Link to={path} target="_blank" rel="noopener noreferrer">
         {children}
       </Link>
     </Button>

@@ -30,7 +30,7 @@ function PostModalComponent() {
       onOpenChange={(open) => {
         if (!open) {
           navigate({
-            to: '/posts/',
+            to: '/posts',
             search: {
               page: '1',
               pageSize: '15',
@@ -54,7 +54,7 @@ function PostModalComponent() {
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             <Link
-              to="/posts/"
+              to="/posts"
               search={{
                 page: '1',
                 pageSize: '15',

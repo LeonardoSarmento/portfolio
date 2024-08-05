@@ -2,16 +2,12 @@ import { ErrorComponent } from '@components/ErrorComponent';
 import { Footer } from '@components/Footer';
 import { NavigationMenuGroup } from '@components/NavigationMenu';
 import { NotFoundComponent } from '@components/NotFoundComponent';
-import { Toaster } from '@components/ui/sonner';
 // import { BackgroundGradientAnimation } from '@components/ui/background-gradient-animation';
 import { type AuthContext } from '@services/hooks/auth';
 import { QueryClient } from '@tanstack/react-query';
-import {
-  Outlet,
-  ScrollRestoration,
-  createRootRouteWithContext,
-} from '@tanstack/react-router';
+import { Outlet, ScrollRestoration, createRootRouteWithContext, useLocation } from '@tanstack/react-router';
 import React, { Suspense } from 'react';
+import { Toaster } from 'sonner';
 
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
@@ -37,15 +33,16 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 });
 
 function RootComponent() {
+  const path = useLocation();
   return (
     <>
       {/* <BackgroundGradientAnimation> */}
       <NavigationMenuGroup />
       {/* <Container> */}
       <ScrollRestoration getKey={(location) => location.pathname} />
-      <div className="flex h-screen flex-col justify-between">
+      <div className="flex max-h-screen h-[90%] flex-col justify-between">
         <Outlet />
-        <Footer />
+        {path.pathname !== '/contact' ? <Footer /> : null}
       </div>
       <Toaster richColors closeButton />
       {/* </Container> */}
