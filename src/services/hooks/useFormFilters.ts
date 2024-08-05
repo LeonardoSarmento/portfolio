@@ -17,7 +17,6 @@ export function useFormFilters({ path }: { path: NavigateOptions }) {
       form.setValue('title', ''),
       navigate({
         to: path.to as string,
-        params: false,
         search: {
           tags: undefined,
           title: undefined,

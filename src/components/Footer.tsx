@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router';
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
 import { THUMBSUP } from '@services/utils/Images';
