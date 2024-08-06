@@ -7,3 +7,4 @@ export const SocialMediaItems: TSocialMediaCard[] = [
   { name: 'Github', icon: Github, link: 'https://github.com/LeonardoSarmento' },
   { name: 'Gmail', icon: Mail, link: 'mailto: leonardo.a.sarmento@gmail.com?subject=ThisIsMyFeedback&body=Hello!' },
 ];
+

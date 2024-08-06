@@ -2,13 +2,29 @@ import { Boxes } from '@components/ui/background-boxes';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import HoverContainer from '@components/ui/hover-container';
 import { Separator } from '@components/ui/separator';
+import { TypewriterEffectSmooth } from '@components/ui/typewriter-effect';
 import { SocialMediaItems } from '@constants/index';
-import { MY_PHOTO, THUMBSUP } from '@services/utils/Images';
+import { LEO_DIA_D, THUMBSUP } from '@services/utils/Images';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
 });
+const words = [
+  {
+    text: 'Dúvida com',
+  },
+  {
+    text: 'o que gastar',
+  },
+  {
+    text: 'o seu dinheiro?',
+  },
+  {
+    text: 'Faz um pix pra mim :)',
+    className: 'text-green-500 dark:text-green-500',
+  },
+];
 
 function Contact() {
   return (
@@ -28,14 +44,24 @@ function Contact() {
             <HoverContainer items={SocialMediaItems} />
           </CardContent>
         </Card>
-        <div className="flex min-h-[300px] flex-col justify-center items-center space-y-4">
+        <div className="flex min-h-[300px] flex-col items-center justify-center space-y-4">
           <CardTitle>Feito com muito carinho por Leonardo Araujo Sarmento</CardTitle>
           <img className="h-6 rounded-md" src={THUMBSUP} />
         </div>
       </div>
       <div className="relative col-span-7 flex min-h-[750px] flex-col items-center justify-center overflow-hidden rounded-lg">
-        <Boxes />
-        <img className="z-[5] h-80 rounded-md" src={MY_PHOTO} alt="Leonardo's photo" />
+        <Boxes className="z" />
+        <img className="h-80 rounded-md z-[1]" src={LEO_DIA_D} alt="Leonardo's photo" />
+        <div className="flex items-center z-[1]">
+          <CardTitle className="bg-white text-4xl dark:bg-transparent ">"</CardTitle>
+          <TypewriterEffectSmooth
+            textClassName="xl:text-2xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
+            cursorClassName="xl:h-8"
+            words={words}
+          />
+          <CardTitle className="bg-white text-4xl dark:bg-transparent ">"</CardTitle>
+          <CardTitle className="relative bottom-1 bg-white pb-0.5 text-2xl ml-2 dark:bg-transparent"> - eu</CardTitle>
+        </div>
       </div>
     </div>
   );
