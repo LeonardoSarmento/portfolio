@@ -37,12 +37,12 @@ function RootComponent() {
   return (
     <>
       {/* <BackgroundGradientAnimation> */}
-      <NavigationMenuGroup />
-      {/* <Container> */}
-      <ScrollRestoration getKey={(location) => location.pathname} />
-      <div className="flex max-h-screen h-[90%] flex-col justify-between">
+      <div className="flex min-h-screen flex-col justify-between">
+        <NavigationMenuGroup />
+        {/* <Container> */}
+        <ScrollRestoration getKey={(location) => location.pathname} />
         <Outlet />
-        {path.pathname !== '/contact' ? <Footer /> : null}
+        {path.pathname !== '/contact' ? <Footer /> : <div className='h-[25px]' />}
       </div>
       <Toaster richColors closeButton />
       {/* </Container> */}

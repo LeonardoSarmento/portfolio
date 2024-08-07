@@ -51,7 +51,7 @@ function Contact() {
       </div>
       <div className="relative col-span-7 flex min-h-[750px] flex-col items-center justify-center overflow-hidden rounded-lg">
         <Boxes className="z" />
-        <img className="h-80 rounded-md z-[1]" src={LEO_DIA_D} alt="Leonardo's photo" />
+        <img className="h-80 rounded-md z-[1]" src={LEO_DIA_D} alt="Leonardo's photo at ISTEO 'D' day" />
         <div className="flex items-center z-[1]">
           <CardTitle className="bg-white text-4xl dark:bg-transparent ">"</CardTitle>
           <TypewriterEffectSmooth
