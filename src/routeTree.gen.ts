@@ -17,7 +17,6 @@ import { Route as LoginImport } from './routes/login'
 import { Route as IntroductionImport } from './routes/introduction'
 import { Route as ExperienceImport } from './routes/experience'
 import { Route as ContactImport } from './routes/contact'
-import { Route as AboutImport } from './routes/about'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProjectsIndexImport } from './routes/projects.index'
@@ -61,11 +60,6 @@ const ExperienceRoute = ExperienceImport.update({
 
 const ContactRoute = ContactImport.update({
   path: '/contact',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AboutRoute = AboutImport.update({
-  path: '/about',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -150,13 +144,6 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/contact': {
@@ -291,7 +278,6 @@ export const routeTree = rootRoute.addChildren({
     AuthPostsPostIdEditRoute,
     AuthProjectsProjectIdEditRoute,
   }),
-  AboutRoute,
   ContactRoute,
   ExperienceRoute,
   IntroductionRoute,
@@ -316,7 +302,6 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/_auth",
-        "/about",
         "/contact",
         "/experience",
         "/introduction",
@@ -338,9 +323,6 @@ export const routeTree = rootRoute.addChildren({
         "/_auth/posts/$postId/edit",
         "/_auth/projects/$projectId/edit"
       ]
-    },
-    "/about": {
-      "filePath": "about.tsx"
     },
     "/contact": {
       "filePath": "contact.tsx"

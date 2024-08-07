@@ -8,4 +8,5 @@ export const XP_LOGO = new URL('/public/assets/xp educação logo.png', import.m
 export const FAPES_LOGO = new URL('/public/assets/fapes logo.png', import.meta.url).href;
 export const IEL_LOGO = new URL('/public/assets/iel-blue.png', import.meta.url).href;
 export const LEO_DIA_D = new URL('/public/assets/leonardo-dia-d.jpg', import.meta.url).href;
+export const LEO_BARZINHO = new URL('/public/assets/leo-barzinho.jpg', import.meta.url).href;
 // const gif = new URL('/public/assets/Animation - 1707702469299.gif', import.meta.url).href;
