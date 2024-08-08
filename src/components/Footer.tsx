@@ -1,55 +1,31 @@
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
-import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import { THUMBSUP } from '@services/utils/Images';
+import { SocialMediaItems } from '@constants/index';
+
+function SocialButton({ Icon, link, name }: { link: string; name: string; Icon: LucideIcon }) {
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="rounded-lg transition-all duration-300 hover:scale-110 hover:bg-muted w-[250px]"
+    >
+      <CardContent className="flex flex-col items-center gap-1 p-0 py-2">
+        <Icon />
+        <CardDescription>{name}</CardDescription>
+      </CardContent>
+    </a>
+  );
+}
 
 export function Footer() {
   return (
-    <div className="relative m-10 mb-0 grid grid-cols-12 grid-rows-3 flex-col">
-      <Card className="col-span-12 row-span-2 mb-4 grid w-full grid-cols-7 items-center justify-between py-4">
-        <a
-          href="https://linkedin.com/in/leonardo-araujo-sarmento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-1"
-        >
-          <CardContent className="col-span-3 flex flex-col items-center gap-1 p-0">
-            <Linkedin />
-            <CardDescription>LinkedIn</CardDescription>
-          </CardContent>
-        </a>
-        <a
-          href="https://instagram.com/leonardo.a.sarmento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-1 col-start-3"
-        >
-          <CardContent className="col-span-3 flex flex-col items-center gap-1 p-0">
-            <Instagram />
-            <CardDescription>Instagram</CardDescription>
-          </CardContent>
-        </a>
-        <a
-          href="mailto: leonardo.a.sarmento@gmail.com?subject=ThisIsMyFeedback&body=Hello!"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-1 col-start-5"
-        >
-          <CardContent className="col-span-3 flex flex-col items-center gap-1 p-0">
-            <Mail />
-            <CardDescription>Email</CardDescription>
-          </CardContent>
-        </a>
-        <a
-          href="https://github.com/LeonardoSarmento"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="col-span-1 col-start-7"
-        >
-          <CardContent className="col-span-3 flex flex-col items-center gap-1 p-0">
-            <Github />
-            <CardDescription>Github</CardDescription>
-          </CardContent>
-        </a>
+    <div className="relative m-10 mb-0 grid grid-cols-12 grid-rows-3">
+      <Card className="flex col-span-12 justify-around row-span-2 items-center">
+        {SocialMediaItems.map((item) => (
+          <SocialButton key={item.name} name={item.name} link={item.link} Icon={item.icon} />
+        ))}
       </Card>
       <div className="col-span-12 row-span-1 my-2 flex w-full items-center justify-center gap-3">
         <CardTitle>Feito por Leonardo Araujo Sarmento</CardTitle>

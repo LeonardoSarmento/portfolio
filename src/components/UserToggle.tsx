@@ -64,7 +64,13 @@ export function UserToggle({ ...props }: UserToggleBtn) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <Toggle {...props} asChild aria-label="Toggle italic" pressed={pressed}>
-        <DialogTrigger>{auth.isAuthenticated ? <Skull size={20} /> : <ScanFace size={20} />}</DialogTrigger>
+        <DialogTrigger className="transition-all duration-300 hover:scale-125">
+          {auth.isAuthenticated ? (
+            <Skull size={20} />
+          ) : (
+            <ScanFace size={20} />
+          )}
+        </DialogTrigger>
       </Toggle>
       <DialogContent className="sm:max-w-md">
         {auth.isAuthenticated && auth.user ? (

@@ -1,13 +1,14 @@
 import SocialMediaCard from '@components/SocialMediaCard';
+import { cn } from '@lib/utils';
 import { TSocialMediaCard } from '@services/types/SocialMediaCard';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-export default function HoverContainer({ items }: { items: TSocialMediaCard[] }) {
+export default function HoverContainer({ items, className }: { items: TSocialMediaCard[]; className?: string }) {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="grid grid-cols-1 justify-center self-center md:grid-cols-2 lg:grid-cols-2">
+    <div className={cn('grid grid-cols-1 justify-center self-center md:grid-cols-2 lg:grid-cols-2', className)}>
       {items.map((item, index) => (
         <div
           key={item.name}
