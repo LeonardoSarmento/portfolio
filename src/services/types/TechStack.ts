@@ -1,10 +1,10 @@
 export type TechStackType = {
-  backend?: TechType[];
-  frontend?: TechType[];
-  mobile?: TechType[];
-  softskill?: TechType[];
-  education?: TechType[][];
-  profissional?: TechType[][];
+  backend: TechType[];
+  frontend: TechType[];
+  mobile: TechType[];
+  softskill: TechType[];
+  education: TechType[][];
+  profissional: TechType[][];
 };
 
 export type TechType = {

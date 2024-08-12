@@ -3,28 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@comp
 import HoverContainer from '@components/ui/hover-container';
 import { Separator } from '@components/ui/separator';
 import { TypewriterEffectSmooth } from '@components/ui/typewriter-effect';
-import { SocialMediaItems } from '@constants/index';
-import { LEO_DIA_D, THUMBSUP } from '@services/utils/Images';
+import { CONTACTCONTENT } from '@constants/contact-content';
 import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
 });
-const words = [
-  {
-    text: 'Dúvida com',
-  },
-  {
-    text: 'o que gastar',
-  },
-  {
-    text: 'o seu dinheiro?',
-  },
-  {
-    text: 'Faz um pix pra mim :)',
-    className: 'text-green-500 dark:text-green-500',
-  },
-];
 
 function Contact() {
   return (
@@ -32,35 +16,39 @@ function Contact() {
       <div className="col-span-5 space-y-4">
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Contato</CardTitle>
-            <CardDescription>Caso queira me dar dinheiro, entre em contato pelas minhas redes sociais</CardDescription>
+            <CardTitle className="text-2xl">{CONTACTCONTENT.title}</CardTitle>
+            <CardDescription>{CONTACTCONTENT.description[0]}</CardDescription>
             <Separator />
-            <CardDescription>Se vc for o agiota, tente no site da concorrência!</CardDescription>
+            <CardDescription>{CONTACTCONTENT.description[1]}</CardDescription>
           </CardHeader>
         </Card>
         <Card>
           <CardContent className="items-center space-y-3 p-3">
-            <CardTitle className="text-center">Mídias sociais</CardTitle>
-            <HoverContainer items={SocialMediaItems} />
+            <CardTitle className="text-center">{CONTACTCONTENT.socialMedia.title}</CardTitle>
+            <HoverContainer items={CONTACTCONTENT.socialMedia.content} />
           </CardContent>
         </Card>
         <div className="flex min-h-[300px] flex-col items-center justify-center space-y-4">
-          <CardTitle>Feito com muito carinho por Leonardo Araujo Sarmento</CardTitle>
-          <img className="h-6 rounded-md" src={THUMBSUP} />
+          <CardTitle>{CONTACTCONTENT.content.title}</CardTitle>
+          <img className="h-6 rounded-md" src={CONTACTCONTENT.content.src} alt={CONTACTCONTENT.content.alt} />
         </div>
       </div>
       <div className="relative col-span-7 flex min-h-[750px] flex-col items-center justify-center overflow-hidden rounded-lg">
-        <Boxes className="z" />
-        <img className="h-80 rounded-md z-[1]" src={LEO_DIA_D} alt="Leonardo's photo at ISTEO 'D' day" />
-        <div className="flex items-center z-[1]">
-          <CardTitle className="bg-white text-4xl dark:bg-transparent ">"</CardTitle>
+        <Boxes />
+        <img
+          className="z-[1] h-80 rounded-md"
+          src={CONTACTCONTENT.sideContent.src}
+          alt={CONTACTCONTENT.sideContent.alt}
+        />
+        <div className="z-[1] flex items-center">
           <TypewriterEffectSmooth
             textClassName="xl:text-2xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
             cursorClassName="xl:h-8"
-            words={words}
+            words={CONTACTCONTENT.sideContent.content.typewriter}
           />
-          <CardTitle className="bg-white text-4xl dark:bg-transparent ">"</CardTitle>
-          <CardTitle className="relative bottom-1 bg-white pb-0.5 text-2xl ml-2 dark:bg-transparent"> - eu</CardTitle>
+          <CardTitle className="relative bottom-1 ml-2 bg-white pb-0.5 text-2xl dark:bg-transparent">
+            {CONTACTCONTENT.sideContent.content.title}
+          </CardTitle>
         </div>
       </div>
     </div>

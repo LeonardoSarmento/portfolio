@@ -7,10 +7,10 @@ A portfolio for showing various tecnologies i've learned to apply through my wor
 - Language : `TypeScript` (^5.3.3)
 - Web Application framework : `Vite` (^5.0.8)
 - State management : `@reduxjs/toolkit` (^2.1.0)
-- State management : `@tanstack/react-query` (^5.18.1)
-- Router : `@tanstack/react-router` (^1.15.17)
+- State management : `@tanstack/react-query` (^5.20.1)
+- Router : `@tanstack/react-router` (^1.46.4)
 - HTTP Request : `axios` (^1.6.7)
-- Form : `react-hook-form` (^7.50.0)
+- Form : `react-hook-form` (^7.50.1)
 - Validation : `zod` (^3.22.4)
 - Styling : `tailwindcss` (^3.4.1)
 

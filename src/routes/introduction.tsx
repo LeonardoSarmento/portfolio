@@ -39,9 +39,9 @@ function Introduction() {
         </div>
         <div className="flex w-[700px] flex-col justify-center gap-2">
           <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Tudo começo no fatídico dia de 07 de fevereiro de 1996 uma quarta-feira, em Vitória - ES. <br /> Eu, um
-            bebê, estava fadado a pagar contas no futuro. Portanto agora que estou velho, apresento a vocês o meu
-            portifolio.
+            Tudo começou no fatídico dia 07 de fevereiro de 1996, uma quarta-feira, em Vitória - ES. <br /> Eu, um
+            bebê, estava fadado a pagar contas no futuro. Portanto, agora que estou velho, apresento a vocês o meu
+            portfólio.
           </h2>
           <code className="relative w-fit rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-3xl font-semibold">
             Sintam-se em casa.

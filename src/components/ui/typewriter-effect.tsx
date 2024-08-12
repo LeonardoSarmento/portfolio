@@ -7,10 +7,7 @@ export const TypewriterEffect = ({
   className,
   cursorClassName,
 }: {
-  words: {
-    text: string;
-    className?: string;
-  }[];
+  words: TTypewriterWords;
   className?: string;
   cursorClassName?: string;
 }) => {
@@ -85,16 +82,18 @@ export const TypewriterEffect = ({
   );
 };
 
+export type TTypewriterWords = {
+  text: string;
+  className?: string;
+}[];
+
 export const TypewriterEffectSmooth = ({
   words,
   className,
   cursorClassName,
   textClassName,
 }: {
-  words: {
-    text: string;
-    className?: string;
-  }[];
+  words: TTypewriterWords;
   className?: string;
   textClassName?: string;
   cursorClassName?: string;
