@@ -13,10 +13,9 @@ export function useFormFilters({ path }: { path: NavigateOptions }) {
 
   function ResetFilters() {
     form.setValue('tags', []),
-      //   form.setValue('pageSize', 'All'),
       form.setValue('title', ''),
       navigate({
-        to: path.to as string,
+        to: path.to,
         search: {
           tags: undefined,
           title: undefined,

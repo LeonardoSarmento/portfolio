@@ -1,6 +1,6 @@
 import { Avatar, AvatarImage } from '@components/ui/avatar';
 import { HeroHighlight, Highlight } from '@components/ui/hero-highlight';
-import { LEO_BARZINHO } from '@services/utils/Images';
+import { INTRODUCTIONCONTENT } from '@constants/introduction-content';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 
@@ -27,24 +27,22 @@ function Introduction() {
         }}
         className="mx-auto mt-5 max-w-4xl px-4 text-center text-2xl font-bold leading-relaxed text-neutral-700 dark:text-white md:text-4xl lg:text-5xl lg:leading-snug "
       >
-        Olá, bem vindo ao mundo de {''}
-        <Highlight className="px-4 text-black dark:text-white">Leonardo.</Highlight>
+        {INTRODUCTIONCONTENT.header.initial} {''}
+        <Highlight className="px-4 text-black dark:text-white">{INTRODUCTIONCONTENT.header.punchline}</Highlight>
       </motion.h1>
       <div className="flex w-screen justify-evenly gap-10 p-12">
         <div>
           {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
           <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)]">
-            <AvatarImage src={LEO_BARZINHO} />
+            <AvatarImage src={INTRODUCTIONCONTENT.image.src} alt={INTRODUCTIONCONTENT.image.alt} />
           </Avatar>
         </div>
         <div className="flex w-[700px] flex-col justify-center gap-2">
           <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            Tudo começou no fatídico dia 07 de fevereiro de 1996, uma quarta-feira, em Vitória - ES. <br /> Eu, um
-            bebê, estava fadado a pagar contas no futuro. Portanto, agora que estou velho, apresento a vocês o meu
-            portfólio.
+            {INTRODUCTIONCONTENT.introduction.h1}
           </h2>
           <code className="relative w-fit rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-3xl font-semibold">
-            Sintam-se em casa.
+            {INTRODUCTIONCONTENT.introduction.code}
           </code>
         </div>
       </div>

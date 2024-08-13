@@ -2,13 +2,31 @@ import { FAPES_LOGO, IEL_LOGO, UCL_LOGO } from '@services/utils/Images';
 import { TECH_STACK } from './tech-stack';
 import { TechType } from '@services/types/TechStack';
 
-export type TExperienceContent = {
+export type TExperienceStack = {
   title: string;
   description: string;
   stack: TechType[];
 };
 
-export const EXPERIENCECONTENT: TExperienceContent[] = [
+export type TExperienceContent = {
+  experience: {
+    title: string;
+    description: string[];
+    stack: TExperienceStack[];
+  };
+  education: {
+    title: string;
+    description: string[];
+    stack: TTabsContent[];
+  };
+  professional: {
+    title: string;
+    description: string[];
+    stack: TTabsContent[];
+  };
+};
+
+export const EXPERIENCESTACK: TExperienceStack[] = [
   {
     title: 'Frontend',
     description:
@@ -144,3 +162,25 @@ export const TABSPROFESSIONAL: TTabsContent[] = [
     tools: { title: 'Ferramentas', content: TECH_STACK.profissional[1] },
   },
 ];
+
+export const EXPERIENCECONTENT: TExperienceContent = {
+  experience: {
+    title: 'Experiências',
+    description: [
+      'Ao longo de minha jornada, passei por várias áreas de conhecimentos e acumulei algumas experiências profissionais que levo diariamente, no pessoal e profissional.',
+      'Atualmente trabalhando com desenvolvimento de software no ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional. Ativamente desenvolvendo aplicações web e mobile junto a clientes de divesas áreas e localidades.',
+      'Possuo experiências nas seguintes Stacks e suas tecnologias:',
+    ],
+    stack: EXPERIENCESTACK,
+  },
+  education: {
+    title: 'Educação',
+    description: ['Um breve resumo sobre minhas experiências no campo acadêmico e tecnologias utilizadas'],
+    stack: TABSEDUCATIONAL,
+  },
+  professional: {
+    title: 'Profissional',
+    description: ['As etapas profissionais e as experiências acumuladas em cada lugar'],
+    stack: TABSPROFESSIONAL,
+  },
+};

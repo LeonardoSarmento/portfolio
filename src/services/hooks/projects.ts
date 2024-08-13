@@ -15,10 +15,10 @@ export const fetchProject = async (projectId: string) => {
   }
 };
 
-export const fetchProjectsWithFilter = async ({ tags, pageSize, title, views, page = '1' }: FilterType) => {
-  console.log('Fetching posts with filters...');
+export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1' }: FilterType) => {
+  // console.log('Fetching posts with filters...');
   await new Promise((r) => setTimeout(r, 500));
-  console.log('tags: ', { tags, pageSize, title, views });
+  // console.log('tags: ', { tags, pageSize, title, views });
 
   const offset = (+page - 1) * (pageSize ? +pageSize : AllProjects.length);
 

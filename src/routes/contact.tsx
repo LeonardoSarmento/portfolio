@@ -30,7 +30,7 @@ function Contact() {
         </Card>
         <div className="flex min-h-[300px] flex-col items-center justify-center space-y-4">
           <CardTitle>{CONTACTCONTENT.content.title}</CardTitle>
-          <img className="h-6 rounded-md" src={CONTACTCONTENT.content.src} alt={CONTACTCONTENT.content.alt} />
+          <img className="h-6 rounded-lg transition-all duration-300 hover:scale-150" src={CONTACTCONTENT.content.src} alt={CONTACTCONTENT.content.alt} />
         </div>
       </div>
       <div className="relative col-span-7 flex min-h-[750px] flex-col items-center justify-center overflow-hidden rounded-lg">

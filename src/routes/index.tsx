@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
-import { ABOUTMECONTENT, TCardContent } from '@constants/index';
+import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS, TCardContent, TCarrouselComponent } from '@constants/index';
+import { cn } from '@lib/utils';
 import { postsQueryOptions, projectsQueryOptions } from '@services/hooks/postsQueryOptions';
 import { PostType } from '@services/types/Post';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -32,17 +33,11 @@ function Index() {
   const CARROUSELOPTIONS: TCarrouselComponent[] = useMemo(
     () => [
       {
-        buttonPath: { to: '/posts' },
-        buttonTitle: 'Ver todos Posts',
-        title: 'Posts',
-        path: { to: '/posts/$postId' },
+        ...CARROUSELPARTIALOPTIONS[0],
         publication: posts,
       },
       {
-        buttonPath: { to: '/projects' },
-        buttonTitle: 'Ver todos Projects',
-        title: 'Projects',
-        path: { to: '/projects/$projectId' },
+        ...CARROUSELPARTIALOPTIONS[1],
         publication: projects,
       },
     ],
@@ -65,13 +60,14 @@ function Index() {
         </ScrollArea>
       </Card>
       <div className="col-span-12 row-start-7 mt-3 grid grid-cols-2 gap-4">
-        {CARROUSELOPTIONS.map((options) => (
+        {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
-            publication={options.publication}
-            title={options.title}
-            path={options.path}
-            buttonPath={options.buttonPath}
-            buttonTitle={options.buttonTitle}
+            key={option.title}
+            publication={option.publication}
+            title={option.title}
+            path={option.path}
+            buttonPath={option.buttonPath}
+            buttonTitle={option.buttonTitle}
           />
         ))}
       </div>
@@ -79,17 +75,9 @@ function Index() {
   );
 }
 
-type TCarrouselComponent = {
-  title: string;
-  publication: PostType[];
-  path: LinkOptions;
-  buttonPath: LinkOptions;
-  buttonTitle: string;
-};
-
-function MapDescriptions({ descriptions }: { descriptions: string[] }) {
-  return descriptions.map((text) => (
-    <CardDescription key={text} className="my-1">
+export function MapDescriptions({ descriptions, className }: { descriptions: string[]; className?: string }) {
+  return descriptions.map((text, index) => (
+    <CardDescription key={`${text}-${index}`} className={cn('my-1', className)}>
       {text}
     </CardDescription>
   ));
@@ -122,7 +110,6 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
         <CardDescription className="mt-6 text-xs leading-tight text-muted-foreground">
           {contents.header.description}
         </CardDescription>
-        {/* <div className="mb-2 mt-4 text-lg font-medium">Leonardo</div> */}
         <CardTitle className="mb-2 mt-4">{contents.header.title}</CardTitle>
       </CardContent>
       <CardContent className="flex flex-col items-center justify-center">
@@ -142,7 +129,7 @@ const CarrouselComponent = ({
   buttonTitle,
 }: {
   title: string;
-  publication: PostType[];
+  publication?: PostType[];
   path: LinkOptions;
   buttonPath: LinkOptions;
   buttonTitle: string;
@@ -159,52 +146,55 @@ const CarrouselComponent = ({
         onMouseLeave={plugin.current.reset}
       >
         <CarouselContent>
-          {publication
-            .filter((_, index) => index <= 10)
-            .map((publication, index) => (
-              <CarouselItem key={`${publication.id}-${index}`} className="h-[425px] basis-1/3">
-                <Card key={publication.id} className="col-span-2 row-span-1 h-full p-2 text-center">
-                  <Link
-                    className="flex h-full flex-col"
-                    to={path.to}
-                    params={{ postId: publication.id, projectId: publication.id }}
-                  >
-                    <img className="aspect-video w-full rounded-md" src={publication.thumbnail} />
-                    <div className="h-1/2">
-                      <CardHeader className="flex flex-1">{publication.title}</CardHeader>
-                    </div>
-                    <ScrollArea className="h-28 w-full rounded-md">
-                      <div className="grid grid-cols-4 gap-2 px-4">
-                        {publication.tags
-                          ? publication.tags.map((tag) => (
-                              <Badge
-                                key={`${publication.id}-${index}-${tag.value}`}
-                                className="col-span-1 justify-center"
-                              >
-                                {tag.value}
-                              </Badge>
-                            ))
-                          : null}
+          {publication &&
+            publication
+              .filter((_, index) => index <= 10)
+              .map((publication, index) => (
+                <CarouselItem key={`${publication.id}-${index}`} className="h-[425px] basis-1/3">
+                  <Card key={publication.id} className="col-span-2 row-span-1 h-full p-2 text-center">
+                    <Link
+                      className="flex h-full flex-col"
+                      to={path.to}
+                      params={{ postId: publication.id, projectId: publication.id }}
+                    >
+                      <img className="aspect-video w-full rounded-md" src={publication.thumbnail} />
+                      <div className="h-1/2">
+                        <CardHeader className="flex flex-1">{publication.title}</CardHeader>
                       </div>
-                    </ScrollArea>
-                    <div className="mt-4 flex h-full w-full flex-col justify-between">
-                      <ScrollArea className="flex items-center justify-center">
-                        <CardDescription className="h-14 w-full rounded-md">{publication.description}</CardDescription>
+                      <ScrollArea className="h-28 w-full rounded-md">
+                        <div className="grid grid-cols-4 gap-2 px-4">
+                          {publication.tags
+                            ? publication.tags.map((tag) => (
+                                <Badge
+                                  key={`${publication.id}-${index}-${tag.value}`}
+                                  className="col-span-1 justify-center"
+                                >
+                                  {tag.value}
+                                </Badge>
+                              ))
+                            : null}
+                        </div>
                       </ScrollArea>
-                      <CardFooter className="mt-4 flex w-full">
-                        <p className="w-full justify-center">{publication.date.toLocaleDateString()}</p>
-                      </CardFooter>
-                    </div>
-                  </Link>
-                </Card>
-              </CarouselItem>
-            ))}
+                      <div className="mt-4 flex h-full w-full flex-col justify-between">
+                        <ScrollArea className="flex items-center justify-center">
+                          <CardDescription className="h-14 w-full rounded-md">
+                            {publication.description}
+                          </CardDescription>
+                        </ScrollArea>
+                        <CardFooter className="mt-4 flex w-full">
+                          <p className="w-full justify-center">{publication.date.toLocaleDateString()}</p>
+                        </CardFooter>
+                      </div>
+                    </Link>
+                  </Card>
+                </CarouselItem>
+              ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
       <Button asChild>
-        <Link to={buttonPath.to} search={{ page: '1', pageSize: '100' }}>
+        <Link to={buttonPath.to} search={buttonPath.search}>
           {buttonTitle}
         </Link>
       </Button>

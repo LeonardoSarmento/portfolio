@@ -109,8 +109,8 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                         <ScrollArea className="h-96 rounded-md">
                           {options
                             .filter((_, index) => index <= 10)
-                            .map(({ to, title }) => (
-                              <BreadcrumbLink key={to} asChild onClick={(e) => e.stopPropagation()}>
+                            .map(({ to, title }, index) => (
+                              <BreadcrumbLink key={`desktop-breadcrumbs-${index}-${to}`} asChild onClick={(e) => e.stopPropagation()}>
                                 <Link to={routeId} params={{ postId: to, projectId: to }} >
                                   <DropdownMenuItem>{title}</DropdownMenuItem>
                                 </Link>
@@ -140,7 +140,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                             {options
                               .filter((_, index) => index <= 10)
                               .map(({ to, title }, index) => (
-                                <BreadcrumbLink key={index} asChild onClick={(e) => e.stopPropagation()}>
+                                <BreadcrumbLink key={`mobile-breadcrumbs-${index}-${to}`} asChild onClick={(e) => e.stopPropagation()}>
                                   <Link to={routeId} params={{ postId: to, projectId: to }} className="py-1 text-sm">
                                     {title}
                                   </Link>

@@ -8,7 +8,8 @@ import { Fragment, PropsWithChildren } from 'react';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Meteors } from '@components/ui/meteors';
-import { EXPERIENCECONTENT, TABSEDUCATIONAL, TABSPROFESSIONAL, TExperienceContent, TTabsContent } from '@constants/experience-content';
+import { EXPERIENCECONTENT, TExperienceStack, TTabsContent } from '@constants/experience-content';
+import { MapDescriptions } from '.';
 
 export const Route = createFileRoute('/experience')({
   component: Experience,
@@ -21,44 +22,33 @@ function Experience() {
       <div className="col-span-5">
         <Card>
           <CardHeader>
-            <CardTitle className="text-center">Experiências</CardTitle>
-            <CardDescription>
-              Ao longo de minha jornada, passei por várias áreas de conhecimentos e acumulei algumas experiências
-              profissionais que levo diariamente, no pessoal e profissional.
-            </CardDescription>
-            <CardDescription>
-              Atualmente trabalhando com desenvolvimento de software no{' '}
-              <strong>ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional</strong>. Ativamente desenvolvendo
-              aplicações web e mobile junto a clientes de divesas áreas e localidades.
-            </CardDescription>
-            <CardDescription>Possuo experiências nas seguintes Stacks e suas tecnologias:</CardDescription>
+            <CardTitle className="text-center">{EXPERIENCECONTENT.experience.title}</CardTitle>
+            <MapDescriptions descriptions={EXPERIENCECONTENT.experience.description} />
           </CardHeader>
           <Separator />
-          <ExperienceComponent contents={EXPERIENCECONTENT} />
+          <ExperienceComponent contents={EXPERIENCECONTENT.experience.stack} />
         </Card>
       </div>
       <div className="col-span-7 col-start-6 grid grid-cols-12 grid-rows-2 gap-2">
         <div className="col-span-12 row-span-1">
           <div className="flex h-full flex-col justify-center">
             <CardHeader className="text-center">
-              <CardTitle>Educação</CardTitle>
-              <CardDescription>
-                Um breve resumo sobre minhas experiências no campo acadêmico e tecnologias utilizadas
-              </CardDescription>
+              <CardTitle>{EXPERIENCECONTENT.education.title}</CardTitle>
+              <MapDescriptions descriptions={EXPERIENCECONTENT.education.description} />
             </CardHeader>
             <CardContent>
-              <TabsComponent contents={TABSEDUCATIONAL} />
+              <TabsComponent contents={EXPERIENCECONTENT.education.stack} />
             </CardContent>
           </div>
         </div>
         <div className="col-span-12 row-span-1 row-start-2">
           <div className="flex h-full flex-col justify-center">
             <CardHeader className="text-center">
-              <CardTitle>Profissional</CardTitle>
-              <CardDescription>As etapas profissionais e as experiências acumuladas em cada lugar</CardDescription>
+              <CardTitle>{EXPERIENCECONTENT.professional.title}</CardTitle>
+              <MapDescriptions descriptions={EXPERIENCECONTENT.professional.description} />
             </CardHeader>
             <CardContent>
-              <TabsComponent contents={TABSPROFESSIONAL} />
+              <TabsComponent contents={EXPERIENCECONTENT.professional.stack} />
             </CardContent>
           </div>
         </div>
@@ -67,7 +57,7 @@ function Experience() {
   );
 }
 
-const ExperienceComponent = ({ contents }: { contents: TExperienceContent[] }) => {
+const ExperienceComponent = ({ contents }: { contents: TExperienceStack[] }) => {
   return (
     <>
       {contents.map((content, index) => (
@@ -80,7 +70,7 @@ const ExperienceComponent = ({ contents }: { contents: TExperienceContent[] }) =
               </IconTecButton>
             ))}
           </ExperienceCardContent>
-          {contents.length >= index ? <Separator /> : null}
+          {contents.length !== index + 1 ? <Separator /> : null}
         </Fragment>
       ))}
     </>
@@ -111,9 +101,7 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
                 </div>
                 <CardDescription>{content.header.description}</CardDescription>
                 <CardContent className="p-0">
-                  {content.header.content.description.map((description) => (
-                    <CardDescription key={description}>{description}</CardDescription>
-                  ))}
+                  <MapDescriptions descriptions={content.header.content.description} />
                 </CardContent>
               </CardHeader>
             </div>
@@ -121,9 +109,7 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
               <CardHeader>
                 <CardTitle className="text-center">{content.learnings.title}</CardTitle>
                 <ScrollArea className="h-[150px] rounded-md">
-                  {content.learnings.content.description.map((description) => (
-                    <CardDescription key={description}>{description}</CardDescription>
-                  ))}
+                  <MapDescriptions descriptions={content.learnings.content.description} />
                 </ScrollArea>
               </CardHeader>
             </div>
