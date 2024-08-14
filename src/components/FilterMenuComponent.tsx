@@ -13,7 +13,13 @@ import { useAuth } from '@services/hooks/auth';
 import { useFormFilters } from '@services/hooks/useFormFilters';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from './ui/pagination';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import { ControllerRenderProps, useFormContext, UseFormReturn } from 'react-hook-form';
+import {
+  FieldValues,
+  Path,
+  UseControllerReturn,
+  useFormContext,
+  UseFormReturn,
+} from 'react-hook-form';
 import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
 
@@ -272,8 +278,8 @@ function PaginationComponent({
   return (
     <Pagination className="col-span-12 mt-4">
       <PaginationContent>
-        <PaginationButton>
-          {(field) => (
+        <PaginationButton<FilterType> path="page">
+          {({ field }) => (
             <Button
               type="button"
               disabled={DisablePreviousPageBtn(form.watch('page'))}
@@ -283,11 +289,11 @@ function PaginationComponent({
               }}
             >
               <ChevronLeftIcon className="h-4 w-4" />
-              <span>{FILTERMENUCONTENT.pagination.back}</span>
+              <p className="text-sm">{FILTERMENUCONTENT.pagination.back}</p>
             </Button>
           )}
         </PaginationButton>
-        <PaginationButton>
+        <PaginationButton<FilterType> path="page">
           {() => (
             <Button
               type="button"
@@ -303,19 +309,19 @@ function PaginationComponent({
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
-        <PaginationButton>
-          {(field) => (
+        <PaginationButton<FilterType> path="page">
+          {({ field }) => (
             <>
               {field.value === '1' ? null : (
                 <Button type="button">
-                  <span>{form.watch('page')}</span>
+                  <p>{form.watch('page')}</p>
                 </Button>
               )}
             </>
           )}
         </PaginationButton>
-        <PaginationButton>
-          {(field) => (
+        <PaginationButton<FilterType> path="page">
+          {({ field }) => (
             <Button
               type="button"
               disabled={DisableNextPageBtn(form.watch('pageSize'))}
@@ -324,7 +330,7 @@ function PaginationComponent({
                 navigatePagination({ page });
               }}
             >
-              <span>{FILTERMENUCONTENT.pagination.foward}</span>
+              <p className="text-sm">{FILTERMENUCONTENT.pagination.foward}</p>
               <ChevronRightIcon className="h-4 w-4" />
             </Button>
           )}
@@ -334,20 +340,22 @@ function PaginationComponent({
   );
 }
 
-function PaginationButton({
+function PaginationButton<TFieldValues extends FieldValues>({
   children,
+  path,
 }: {
-  children: (field: ControllerRenderProps<FilterType, 'page'>) => React.ReactNode;
+  children: (field: UseControllerReturn<TFieldValues>) => React.ReactNode;
+  path: Path<TFieldValues>;
 }) {
-  const form = useFormContext<FilterType>();
+  const form = useFormContext<TFieldValues>();
   return (
     <PaginationItem>
       <FormField
         control={form.control}
-        name="page"
-        render={({ field }) => (
+        name={path}
+        render={(render) => (
           <FormItem className="col-span-6 col-start-6">
-            <FormControl>{children({ ...field })}</FormControl>
+            <FormControl>{children(render)}</FormControl>
             <FormMessage />
           </FormItem>
         )}

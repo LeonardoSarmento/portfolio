@@ -2,8 +2,7 @@ import { Card, CardDescription, CardFooter, CardHeader } from '@components/ui/ca
 import { Link, LinkOptions } from '@tanstack/react-router';
 import { useAuth } from '@services/hooks/auth';
 import { CopyToClipboardRoute } from '@services/utils/utils';
-import { Angry, Menu } from 'lucide-react';
-import { toast } from 'sonner';
+import { Menu } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +17,7 @@ import { ScrollArea } from '@components/ui/scroll-area';
 import { Badge } from '@components/ui/badge';
 import { PostType } from '@services/types/Post';
 import { DROPDOWNMENUCONTENT } from '@constants/dropdown-share';
+import { handleDeleteContent } from '@services/utils/toasts';
 
 export function RenderAllContents({
   contents,
@@ -119,14 +119,7 @@ function DropdownMenuComponent({
                 <DropdownMenuItem
                   onClick={(e) => {
                     e.stopPropagation(),
-                      toast.error(DROPDOWNMENUCONTENT.toast.error.title, {
-                        icon: <Angry />,
-                        description: DROPDOWNMENUCONTENT.toast.error.description,
-                        classNames: {
-                          title: 'ml-2',
-                          description: 'ml-2',
-                        },
-                      });
+                    handleDeleteContent()
                   }}
                 >
                   {DROPDOWNMENUCONTENT.delete}

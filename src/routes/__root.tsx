@@ -39,13 +39,11 @@ function RootComponent() {
       {/* <BackgroundGradientAnimation> */}
       <div className="flex min-h-screen flex-col justify-between">
         <NavigationMenuGroup />
-        {/* <Container> */}
         <ScrollRestoration getKey={(location) => location.pathname} />
         <Outlet />
         {path.pathname !== '/contact' ? <Footer /> : <div className='h-[25px]' />}
       </div>
       <Toaster richColors closeButton />
-      {/* </Container> */}
       <Suspense>
         <TanStackRouterDevtools position="bottom-right" />
       </Suspense>

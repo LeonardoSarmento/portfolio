@@ -1,5 +1,6 @@
-import { UserAuthForm } from '@components/UserAuthForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs';
+import { UserAuthForm } from '@components/UserAuthForm';
+import { TABSLOGINCONTENT, TERMSOFSERVICECONTENT, TLoginTabsContent } from '@constants/login-content';
 import { Link } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -8,60 +9,59 @@ export const Route = createFileRoute('/login')({
 });
 
 export function Login() {
+  return <TabsComponent contents={TABSLOGINCONTENT} />;
+}
+
+function TabsComponent({ contents }: { contents: TLoginTabsContent[] }) {
   return (
-    <div className="mt-40 flex justify-center">
-      <Tabs defaultValue="login" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="login">Entrar</TabsTrigger>
-          <TabsTrigger value="create-account">Criar</TabsTrigger>
+    <div className="mx-auto mt-40">
+      <Tabs defaultValue={contents[0].value} className="w-[400px]">
+        <TabsList className="grid grid-cols-2">
+          {contents.map((content) => (
+            <TabsTrigger key={content.value} value={content.value}>
+              {content.title}
+            </TabsTrigger>
+          ))}
         </TabsList>
-        <TabsContent value="login">
-          <div className="lg:p-8">
-            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-              <div className="flex flex-col space-y-2 text-center">
-                <h1 className="text-2xl font-semibold tracking-tight">Acesse sua conta</h1>
-                <p className="text-sm text-muted-foreground">Escreva seu nome e senha abaixo</p>
-              </div>
+        {contents.map((content) => (
+          <TabsContent value={content.value}>
+            <TabsLoginContent header={content.header}>
               <UserAuthForm />
-              <p className="px-8 text-center text-sm text-muted-foreground">
-                Clicando em acessar, você concorda com todos os{' '}
-                <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                  Termos de serviço
-                </Link>{' '}
-                e{' '}
-                <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                  Políticas de Compras e Privacidades
-                </Link>
-                .
-              </p>
-            </div>
-          </div>
-        </TabsContent>
-        <TabsContent value="create-account">
-          <div className="lg:p-8">
-            <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-              <div className="flex flex-col space-y-2 text-center">
-                <h1 className="text-2xl font-semibold tracking-tight">Crie sua conta</h1>
-                <p className="text-sm text-muted-foreground">
-                  Faça sua conta para poder utilizar todas funcionalidades incriveis desse site portfolio
-                </p>
-              </div>
-              <UserAuthForm />
-              <p className="px-8 text-center text-sm text-muted-foreground">
-                Clicando em acessar, você concorda com todos os{' '}
-                <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                  Termos de serviço
-                </Link>{' '}
-                e{' '}
-                <Link to="/" className="underline underline-offset-4 hover:text-primary">
-                  Políticas de Compras e Privacidades
-                </Link>
-                .
-              </p>
-            </div>
-          </div>
-        </TabsContent>
+            </TabsLoginContent>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
+  );
+}
+
+function TabsLoginContent({ children, header }: { children?: React.ReactNode; header: TLoginTabsContent['header'] }) {
+  return (
+    <div className="lg:p-8">
+      <div className="space-y-6 sm:w-[350px]">
+        <div className="flex flex-col space-y-2 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">{header.title}</h1>
+          <p className="text-sm text-muted-foreground">{header.description}</p>
+        </div>
+        {children}
+        <TermsOfServiceComponent />
+      </div>
+    </div>
+  );
+}
+
+function TermsOfServiceComponent() {
+  return (
+    <p className="px-8 text-center text-sm text-muted-foreground">
+      {TERMSOFSERVICECONTENT.start}{' '}
+      <Link to="/" className="underline underline-offset-4 hover:text-primary">
+      {TERMSOFSERVICECONTENT.terms}
+      </Link>{' '}
+      {TERMSOFSERVICECONTENT.middle}{' '}
+      <Link to="/" className="underline underline-offset-4 hover:text-primary">
+      {TERMSOFSERVICECONTENT.policy}
+      </Link>
+      {TERMSOFSERVICECONTENT.end}
+    </p>
   );
 }

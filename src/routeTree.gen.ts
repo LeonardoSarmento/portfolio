@@ -24,8 +24,6 @@ import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as ProjectsChartsImport } from './routes/projects.charts'
 import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
-import { Route as ProjectsProjectIdModalImport } from './routes/projects_.$projectId.modal'
-import { Route as PostsPostIdModalImport } from './routes/posts_.$postId.modal'
 import { Route as AuthProjectsCreateImport } from './routes/_auth.projects.create'
 import { Route as AuthPostsCreateImport } from './routes/_auth.posts.create'
 import { Route as AuthProjectsProjectIdEditImport } from './routes/_auth.projects.$projectId.edit'
@@ -96,16 +94,6 @@ const ProjectsProjectIdRoute = ProjectsProjectIdImport.update({
 const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRoute,
-} as any)
-
-const ProjectsProjectIdModalRoute = ProjectsProjectIdModalImport.update({
-  path: '/projects/$projectId/modal',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const PostsPostIdModalRoute = PostsPostIdModalImport.update({
-  path: '/posts/$postId/modal',
-  getParentRoute: () => rootRoute,
 } as any)
 
 const AuthProjectsCreateRoute = AuthProjectsCreateImport.update({
@@ -237,20 +225,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthProjectsCreateImport
       parentRoute: typeof AuthImport
     }
-    '/posts/$postId/modal': {
-      id: '/posts/$postId/modal'
-      path: '/posts/$postId/modal'
-      fullPath: '/posts/$postId/modal'
-      preLoaderRoute: typeof PostsPostIdModalImport
-      parentRoute: typeof rootRoute
-    }
-    '/projects/$projectId/modal': {
-      id: '/projects/$projectId/modal'
-      path: '/projects/$projectId/modal'
-      fullPath: '/projects/$projectId/modal'
-      preLoaderRoute: typeof ProjectsProjectIdModalImport
-      parentRoute: typeof rootRoute
-    }
     '/_auth/posts/$postId/edit': {
       id: '/_auth/posts/$postId/edit'
       path: '/posts/$postId/edit'
@@ -288,8 +262,6 @@ export const routeTree = rootRoute.addChildren({
     ProjectsChartsRoute,
     ProjectsIndexRoute,
   }),
-  PostsPostIdModalRoute,
-  ProjectsProjectIdModalRoute,
 })
 
 /* prettier-ignore-end */
@@ -307,9 +279,7 @@ export const routeTree = rootRoute.addChildren({
         "/introduction",
         "/login",
         "/posts",
-        "/projects",
-        "/posts/$postId/modal",
-        "/projects/$projectId/modal"
+        "/projects"
       ]
     },
     "/": {
@@ -378,12 +348,6 @@ export const routeTree = rootRoute.addChildren({
     "/_auth/projects/create": {
       "filePath": "_auth.projects.create.tsx",
       "parent": "/_auth"
-    },
-    "/posts/$postId/modal": {
-      "filePath": "posts_.$postId.modal.tsx"
-    },
-    "/projects/$projectId/modal": {
-      "filePath": "projects_.$projectId.modal.tsx"
     },
     "/_auth/posts/$postId/edit": {
       "filePath": "_auth.posts.$postId.edit.tsx",

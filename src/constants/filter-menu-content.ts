@@ -42,7 +42,7 @@ export const FILTERMENUCONTENT: TFilterMenuContent = {
     button: { description: 'Retire os filtros e tente novamente: ', title: 'Tentar novamente' },
   },
   pagination: {
-    back: 'string',
-    foward: 'string',
+    back: 'previous',
+    foward: 'next',
   },
 };
