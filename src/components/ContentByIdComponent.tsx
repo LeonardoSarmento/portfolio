@@ -29,45 +29,37 @@ export function HeaderContentComponent({
   const router = useRouter();
 
   return (
-    <Card className="col-span-12 mx-10 grid h-fit grid-cols-12 p-4 text-center">
-      <img src={content.thumbnail} className="col-span-12 mx-auto h-32 w-1/5 justify-center rounded" />
-      <CardHeader className="col-span-12 gap-3">
+    <Card className="mx-10 flex flex-col space-y-2 p-4  text-center">
+      <img src={content.thumbnail} className="mx-auto h-52 justify-center rounded" />
+      <CardHeader>
         <CardTitle>{content.title}</CardTitle>
-        <div className="col-span-12 flex w-full justify-center gap-2">
-          <>
-            {content.tags
-              ? content.tags.map((tag) => (
-                  <Badge key={tag.value} className="justify-center">
-                    {tag.value}
-                  </Badge>
-                ))
-              : null}
-          </>
+        <div className="mx-auto space-x-2">
+          {content.tags
+            ? content.tags.map((tag) => (
+                <Badge key={tag.value} className="w-fit">
+                  <p>{tag.value}</p>
+                </Badge>
+              ))
+            : null}
         </div>
       </CardHeader>
       <BreadcrumbResponsive
         currentFolder={{ title: shareComponent.breadcrumb.title }}
         options={optionsUrl}
-        className="col-span-12 flex justify-center"
+        className="mx-auto"
       />
-      <div className="col-span-12 grid grid-cols-12 gap-2">
-        <CardDescription className="col-span-12 pt-2">{normalizeDate(content.date)}</CardDescription>
-        <CardDescription className="col-span-4 col-start-5 flex items-center justify-center">
-          {content.description}
-        </CardDescription>
-        {auth.isAuthenticated ? (
-          <Button
-            type="button"
-            className="col-span-1 col-start-10"
-            onClick={() => router.navigate(path)}
-          >
-            {shareComponent.buttons.edit}
-          </Button>
-        ) : null}
-        <Button className="col-span-1 col-start-11" onClick={() => router.history.back()}>
-          {shareComponent.buttons.goBack}
-        </Button>
-        <PopoverShareComponent url={shareComponentURL} shareComponent={shareComponent.shareComponent} />
+      <CardDescription>{normalizeDate(content.date)}</CardDescription>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <CardDescription className="lg:col-start-2">{content.description}</CardDescription>
+        <div className="flex flex-wrap justify-center gap-2 lg:col-start-3 lg:justify-self-end">
+          {auth.isAuthenticated ? (
+            <Button type="button" onClick={() => router.navigate(path)}>
+              {shareComponent.buttons.edit}
+            </Button>
+          ) : null}
+          <Button onClick={() => router.history.back()}>{shareComponent.buttons.goBack}</Button>
+          <PopoverShareComponent url={shareComponentURL} shareComponent={shareComponent.shareComponent} />
+        </div>
       </div>
     </Card>
   );

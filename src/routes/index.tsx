@@ -1,7 +1,7 @@
+import { ContentCardComponent } from '@components/ContentCardComponent';
 import { PendingComponent } from '@components/PendingComponent';
-import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
@@ -45,21 +45,21 @@ function Index() {
   );
 
   return (
-    <div className="grid-rows-auto mt-3 grid grid-cols-12 gap-4 px-16">
-      <Card className="col-span-6 row-span-6 grid grid-cols-2 items-center px-4 pt-8">
+    <div className="mt-3 flex flex-col gap-4 px-16">
+      <div className="flex gap-4">
         <CardAboutMe contents={ABOUTMECONTENT} />
-      </Card>
-      <Card className="col-span-3 row-span-6 flex flex-col items-center justify-center px-4">
-        <ScrollArea className="my-3 h-[450px] w-full rounded-md">
-          <CardExperience contents={TABSEDUCATIONAL} />
-        </ScrollArea>
-      </Card>
-      <Card className="col-span-3 col-start-10 row-span-6 px-4">
-        <ScrollArea className="my-3 h-[450px] w-full rounded-md">
-          <CardExperience contents={TABSPROFESSIONAL} />
-        </ScrollArea>
-      </Card>
-      <div className="col-span-12 row-start-7 mt-3 grid grid-cols-2 gap-4">
+        <Card className="w-2/4">
+          <ScrollArea className="my-3 h-[450px] rounded-md">
+            <CardExperience contents={TABSEDUCATIONAL} />
+          </ScrollArea>
+        </Card>
+        <Card className="w-2/4">
+          <ScrollArea className="my-3 h-[450px] rounded-md">
+            <CardExperience contents={TABSPROFESSIONAL} />
+          </ScrollArea>
+        </Card>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
         {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
             key={option.title}
@@ -104,7 +104,7 @@ function CardExperience({ contents }: { contents: TCardContent['experience'] }) 
 }
 function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
   return (
-    <>
+    <Card className="flex w-full items-center justify-around">
       <CardContent className="flex flex-col items-center justify-center">
         <img className="h-80 rounded-md" src={contents.header.src} alt={contents.header.alt} />
         <CardDescription className="mt-6 text-xs leading-tight text-muted-foreground">
@@ -112,12 +112,12 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
         </CardDescription>
         <CardTitle className="mb-2 mt-4">{contents.header.title}</CardTitle>
       </CardContent>
-      <CardContent className="flex flex-col items-center justify-center">
-        <ScrollArea className="my-3 h-[450px] w-full rounded-md">
+      <CardContent className="flex w-1/2 items-center justify-center">
+        <ScrollArea className="my-3 h-[450px] rounded-md">
           <MapDescriptions descriptions={contents.content.description} />
         </ScrollArea>
       </CardContent>
-    </>
+    </Card>
   );
 }
 
@@ -150,43 +150,8 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="h-[425px] basis-1/3">
-                  <Card key={publication.id} className="col-span-2 row-span-1 h-full p-2 text-center">
-                    <Link
-                      className="flex h-full flex-col"
-                      to={path.to}
-                      params={{ postId: publication.id, projectId: publication.id }}
-                    >
-                      <img className="aspect-video w-full rounded-md" src={publication.thumbnail} />
-                      <div className="h-1/2">
-                        <CardHeader className="flex flex-1">{publication.title}</CardHeader>
-                      </div>
-                      <ScrollArea className="h-28 w-full rounded-md">
-                        <div className="grid grid-cols-4 gap-2 px-4">
-                          {publication.tags
-                            ? publication.tags.map((tag) => (
-                                <Badge
-                                  key={`${publication.id}-${index}-${tag.value}`}
-                                  className="col-span-1 justify-center"
-                                >
-                                  {tag.value}
-                                </Badge>
-                              ))
-                            : null}
-                        </div>
-                      </ScrollArea>
-                      <div className="mt-4 flex h-full w-full flex-col justify-between">
-                        <ScrollArea className="flex items-center justify-center">
-                          <CardDescription className="h-14 w-full rounded-md">
-                            {publication.description}
-                          </CardDescription>
-                        </ScrollArea>
-                        <CardFooter className="mt-4 flex w-full">
-                          <p className="w-full justify-center">{publication.date.toLocaleDateString()}</p>
-                        </CardFooter>
-                      </div>
-                    </Link>
-                  </Card>
+                <CarouselItem key={`${publication.id}-${index}`} className="basis-1/3">
+                  <ContentCardComponent content={publication} index={index} path={path} />
                 </CarouselItem>
               ))}
         </CarouselContent>

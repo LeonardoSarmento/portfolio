@@ -11,6 +11,7 @@ const SHARECOMPONENT: TShareComponent = {
     buttonAlt: 'Copiar',
   },
 };
+
 export type TByIdComponent = {
   shareComponent: TShareComponent;
   breadcrumb: { title: string };
@@ -28,6 +29,7 @@ export const POSTBYIDCONTENT: TByIdComponent = {
   buttons: { edit: 'Editar', goBack: 'Voltar' },
 };
 
+
 type TInputType = { label: string; placeholder: string };
 export type THeaderFormContent = {
   title: TInputType;
@@ -35,6 +37,7 @@ export type THeaderFormContent = {
   tags: TInputType & { notfound: string };
   buttons: { save: string; goBack: string; destructive: string };
 };
+
 type toastMessages = {
   error: toastMessageContent;
   sucess: toastMessageContent;
@@ -48,6 +51,7 @@ export type THeaderCardContent = {
   form: THeaderFormContent;
   toast: toastMessages;
 };
+
 export const TOASTMESSAGESCONTENT: toastMessages = {
   delete: { description: 'Deixa isso pra uma outra hora', title: 'Sem deletar coisa por aqui malandro' },
   sucess: {
@@ -60,6 +64,7 @@ export const TOASTMESSAGESCONTENT: toastMessages = {
     title: 'Você não está autenticado cara :(',
   },
 };
+
 export const HEADERCARDPOSTCONTENT: THeaderCardContent = {
   title: 'Criar novo post',
   thumbnail: { title: 'Thumbnail', dropMessage: 'Solte seu arquivo ou clique aqui' },

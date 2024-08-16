@@ -41,7 +41,7 @@ function RootComponent() {
         <NavigationMenuGroup />
         <ScrollRestoration getKey={(location) => location.pathname} />
         <Outlet />
-        {path.pathname !== '/contact' ? <Footer /> : <div className='h-[25px]' />}
+        {path.pathname !== '/contact' ? <Footer /> : <div className="h-[25px]" />}
       </div>
       <Toaster richColors closeButton />
       <Suspense>
