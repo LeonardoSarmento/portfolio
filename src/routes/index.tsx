@@ -1,8 +1,7 @@
 import { ContentCardComponent } from '@components/ContentCardComponent';
 import { PendingComponent } from '@components/PendingComponent';
-import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
