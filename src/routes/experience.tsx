@@ -17,40 +17,34 @@ export const Route = createFileRoute('/experience')({
 
 function Experience() {
   return (
-    <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">
+    <div className="flex gap-4 px-16">
       <Meteors number={100} />
-      <div className="col-span-5">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-center">{EXPERIENCECONTENT.experience.title}</CardTitle>
-            <MapDescriptions descriptions={EXPERIENCECONTENT.experience.description} />
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-center">{EXPERIENCECONTENT.experience.title}</CardTitle>
+          <MapDescriptions descriptions={EXPERIENCECONTENT.experience.description} />
+        </CardHeader>
+        <Separator />
+        <ExperienceComponent contents={EXPERIENCECONTENT.experience.stack} />
+      </Card>
+      <div>
+        <div>
+          <CardHeader className="text-center">
+            <CardTitle>{EXPERIENCECONTENT.education.title}</CardTitle>
+            <MapDescriptions descriptions={EXPERIENCECONTENT.education.description} />
           </CardHeader>
-          <Separator />
-          <ExperienceComponent contents={EXPERIENCECONTENT.experience.stack} />
-        </Card>
-      </div>
-      <div className="col-span-7 col-start-6 grid grid-cols-12 grid-rows-2 gap-2">
-        <div className="col-span-12 row-span-1">
-          <div className="flex h-full flex-col justify-center">
-            <CardHeader className="text-center">
-              <CardTitle>{EXPERIENCECONTENT.education.title}</CardTitle>
-              <MapDescriptions descriptions={EXPERIENCECONTENT.education.description} />
-            </CardHeader>
-            <CardContent>
-              <TabsComponent contents={EXPERIENCECONTENT.education.stack} />
-            </CardContent>
-          </div>
+          <CardContent>
+            <TabsComponent contents={EXPERIENCECONTENT.education.stack} />
+          </CardContent>
         </div>
-        <div className="col-span-12 row-span-1 row-start-2">
-          <div className="flex h-full flex-col justify-center">
-            <CardHeader className="text-center">
-              <CardTitle>{EXPERIENCECONTENT.professional.title}</CardTitle>
-              <MapDescriptions descriptions={EXPERIENCECONTENT.professional.description} />
-            </CardHeader>
-            <CardContent>
-              <TabsComponent contents={EXPERIENCECONTENT.professional.stack} />
-            </CardContent>
-          </div>
+        <div>
+          <CardHeader className="text-center">
+            <CardTitle>{EXPERIENCECONTENT.professional.title}</CardTitle>
+            <MapDescriptions descriptions={EXPERIENCECONTENT.professional.description} />
+          </CardHeader>
+          <CardContent>
+            <TabsComponent contents={EXPERIENCECONTENT.professional.stack} />
+          </CardContent>
         </div>
       </div>
     </div>
@@ -89,44 +83,38 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
       </TabsList>
       {contents.map((content) => (
         <TabsContent key={content.value} value={content.value}>
-          <CardContent className="grid grid-cols-4 items-center">
-            <div className="col-span-1">
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <Avatar key={content.value}>
-                    <AvatarImage src={content.header.avatar.src} />
-                    <AvatarFallback>{content.header.avatar.avatarFallback}</AvatarFallback>
-                  </Avatar>
-                  <CardTitle>{content.header.title}</CardTitle>
-                </div>
-                <CardDescription>{content.header.description}</CardDescription>
-                <CardContent className="p-0">
-                  <MapDescriptions descriptions={content.header.content.description} />
+          <CardContent className="flex py-4">
+            <div className='space-y-2 w-[400px]'>
+              <div className="flex items-center gap-2">
+                <Avatar key={content.value}>
+                  <AvatarImage src={content.header.avatar.src} />
+                  <AvatarFallback>{content.header.avatar.avatarFallback}</AvatarFallback>
+                </Avatar>
+                <CardTitle>{content.header.title}</CardTitle>
+              </div>
+              <CardDescription>{content.header.description}</CardDescription>
+              <CardContent className="p-0">
+                <MapDescriptions descriptions={content.header.content.description} />
+              </CardContent>
+            </div>
+            <div className='w-[400px] space-y-4'>
+              <CardTitle className="text-center">{content.learnings.title}</CardTitle>
+              <ScrollArea className="h-[150px] rounded-md">
+                <MapDescriptions descriptions={content.learnings.content.description} />
+              </ScrollArea>
+            </div>
+            <div className='space-y-4 w-full'>
+              <CardTitle className="text-center">{content.tools.title}</CardTitle>
+              <ScrollArea className="h-[150px] rounded-md">
+                <CardContent className="grid grid-cols-2 gap-x-3 p-0">
+                  {content.tools.content.map((tech) => (
+                    <IconTecButton key={tech.title} path={tech.url} className="col-span-1">
+                      {tech.icon}
+                      {tech.title}
+                    </IconTecButton>
+                  ))}
                 </CardContent>
-              </CardHeader>
-            </div>
-            <div className="col-span-1 col-start-2">
-              <CardHeader>
-                <CardTitle className="text-center">{content.learnings.title}</CardTitle>
-                <ScrollArea className="h-[150px] rounded-md">
-                  <MapDescriptions descriptions={content.learnings.content.description} />
-                </ScrollArea>
-              </CardHeader>
-            </div>
-            <div className="col-span-2 col-start-3">
-              <CardHeader>
-                <CardTitle className="text-center">{content.tools.title}</CardTitle>
-                <ScrollArea className="h-[150px] rounded-md">
-                  <CardContent className="grid grid-cols-2 gap-x-3 p-0">
-                    {content.tools.content.map((tech) => (
-                      <IconTecButton key={tech.title} path={tech.url} className="col-span-1">
-                        {tech.icon}
-                        {tech.title}
-                      </IconTecButton>
-                    ))}
-                  </CardContent>
-                </ScrollArea>
-              </CardHeader>
+              </ScrollArea>
             </div>
           </CardContent>
         </TabsContent>
@@ -157,10 +145,10 @@ type ExperienceCardContentType = {
 
 function ExperienceCardContent({ title, description, children }: ExperienceCardContentType) {
   return (
-    <CardContent className="mt-5 grid grid-cols-12 justify-items-center gap-2 py-0">
-      <CardTitle className="col-span-12">{title}</CardTitle>
-      <CardDescription className="col-span-12">{description}</CardDescription>
-      <CardContent className="col-span-12 grid grid-cols-12 gap-2">{children}</CardContent>
+    <CardContent className="mt-5 flex flex-col justify-items-center gap-2 py-0">
+      <CardTitle className="text-center">{title}</CardTitle>
+      <CardDescription className="text-center">{description}</CardDescription>
+      <CardContent className="grid grid-cols-12 gap-2">{children}</CardContent>
     </CardContent>
   );
 }

@@ -13,13 +13,7 @@ import { useAuth } from '@services/hooks/auth';
 import { useFormFilters } from '@services/hooks/useFormFilters';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from './ui/pagination';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import {
-  FieldValues,
-  Path,
-  UseControllerReturn,
-  useFormContext,
-  UseFormReturn,
-} from 'react-hook-form';
+import { FieldValues, Path, UseControllerReturn, useFormContext, UseFormReturn } from 'react-hook-form';
 import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
 
@@ -77,10 +71,10 @@ export function FilterMenuComponent({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">
-          <div className="col-span-12 grid grid-cols-12 items-center justify-end gap-2 space-x-2">
+        <div className="space-y-4 px-16">
+          <div className="col-span-12 grid grid-cols-12 items-center justify-end gap-4">
             {auth.isAuthenticated ? (
-              <Button className="m-2" onClick={() => navigate(createPath)} type="button">
+              <Button onClick={() => navigate(createPath)} type="button">
                 {FILTERMENUCONTENT.createButton.title}
               </Button>
             ) : null}
@@ -88,7 +82,7 @@ export function FilterMenuComponent({
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className="col-span-6 col-start-6 flex w-full">
+                <FormItem className="col-span-6 col-start-6">
                   <FormControl>
                     <Input placeholder={FILTERMENUCONTENT.search.placeholder} {...field} />
                   </FormControl>
@@ -97,13 +91,17 @@ export function FilterMenuComponent({
               )}
             />
             <Button type="submit">
-              <MagnifyingGlassIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+              <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
               {FILTERMENUCONTENT.search.buttonText}
             </Button>
           </div>
           <div className="col-span-12 grid grid-cols-12 gap-4">
             <SideMenuComponent ResetFilters={ResetFilters} form={form} Tags={TAGS} />
-            {hasContent ? children : <NoContentComponent ResetFilters={ResetFilters} />}
+            {hasContent ? (
+              <div className="col-span-11">{children}</div>
+            ) : (
+              <NoContentComponent ResetFilters={ResetFilters} />
+            )}
           </div>
           <PaginationComponent contentSize={contentSize} form={form} path={path} />
         </div>
@@ -122,93 +120,83 @@ function SideMenuComponent({
   ResetFilters: () => void;
 }) {
   return (
-    <div className="col-span-1 row-span-full flex w-full">
-      <Card className="h-fit">
-        <CardHeader>
-          <CardTitle className="text-center">{FILTERMENUCONTENT.filter.title}</CardTitle>
-        </CardHeader>
+    <Card className="h-fit">
+      <CardHeader>
+        <CardTitle className="text-center">{FILTERMENUCONTENT.filter.title}</CardTitle>
+      </CardHeader>
+      <Separator />
+      <CardContent className="mt-3 flex flex-col space-y-5">
+        <FormField
+          control={form.control}
+          name="tags"
+          render={() => (
+            <FormItem>
+              <FormLabel>{FILTERMENUCONTENT.filter.theme.title}</FormLabel>
+              <FormDescription>{FILTERMENUCONTENT.filter.theme.description}</FormDescription>
+              {Tags &&
+                Tags.map((tag) => (
+                  <FormField
+                    key={tag.id}
+                    control={form.control}
+                    name="tags"
+                    render={({ field }) => {
+                      return (
+                        <FormItem key={tag.id} className="flex space-x-3 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(tag.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
+                                  : field.onChange(field.value?.filter((value) => value !== tag.id));
+                              }}
+                              onClick={() => console.log(field.value)}
+                            />
+                          </FormControl>
+                          <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
+                        </FormItem>
+                      );
+                    }}
+                  />
+                ))}
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Separator />
-        <CardContent className="mt-3 flex flex-col space-y-5">
-          <FormField
-            control={form.control}
-            name="tags"
-            render={() => (
+        <FormField
+          control={form.control}
+          name="pageSize"
+          render={({ field }) => (
+            <FormItem>
               <FormItem>
-                <div className="mb-4">
-                  <FormLabel className="my-4 flex justify-center">{FILTERMENUCONTENT.filter.theme.title}</FormLabel>
-                  <FormDescription>{FILTERMENUCONTENT.filter.theme.description}</FormDescription>
-                </div>
-                {Tags &&
-                  Tags.map((tag) => (
-                    <FormField
-                      key={tag.id}
-                      control={form.control}
-                      name="tags"
-                      render={({ field }) => {
-                        return (
-                          <FormItem key={tag.id} className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value?.includes(tag.id)}
-                                onCheckedChange={(checked) => {
-                                  return checked
-                                    ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
-                                    : field.onChange(field.value?.filter((value) => value !== tag.id));
-                                }}
-                                onClick={() => console.log(field.value)}
-                              />
-                            </FormControl>
-                            <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
-                          </FormItem>
-                        );
-                      }}
-                    />
-                  ))}
-                <FormMessage />
+                <FormLabel className="text-sm font-normal">{FILTERMENUCONTENT.filter.quantity.title}</FormLabel>
+                <FormDescription>{FILTERMENUCONTENT.filter.quantity.description}</FormDescription>
+                <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value} key={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder={FILTERMENUCONTENT.filter.quantity.placeholder} />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {PAGE_SIZE_OPTIONS.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.text}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </FormItem>
-            )}
-          />
-          <Separator />
-          <FormField
-            control={form.control}
-            name="pageSize"
-            render={({ field }) => (
-              <FormItem>
-                <FormItem className="flex flex-col items-start space-y-3">
-                  <FormLabel className="text-sm font-normal">{FILTERMENUCONTENT.filter.quantity.title}</FormLabel>
-                  <FormDescription>{FILTERMENUCONTENT.filter.quantity.title}</FormDescription>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    value={field.value}
-                    key={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue className="w-fit" placeholder={FILTERMENUCONTENT.filter.quantity.placeholder} />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {/* <SelectItem value={'All'}>Todos</SelectItem> */}
-                      {PAGE_SIZE_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
-                          {option.text}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormItem>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type="submit">{FILTERMENUCONTENT.filter.buttons.filterTitle}</Button>
-          <Button type="button" onClick={ResetFilters} variant="destructive">
-            {FILTERMENUCONTENT.filter.buttons.clearTitle}
-          </Button>
-        </CardContent>
-      </Card>
-    </div>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">{FILTERMENUCONTENT.filter.buttons.filterTitle}</Button>
+        <Button type="button" onClick={ResetFilters} variant="destructive">
+          {FILTERMENUCONTENT.filter.buttons.clearTitle}
+        </Button>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -222,7 +210,7 @@ function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
         </blockquote>
         <Separator orientation="vertical" className="mx-1" />
         <img
-          className="h-80 rounded-md"
+          className="h-[300px] rounded-md"
           src={FILTERMENUCONTENT.noContent.image.src}
           alt={FILTERMENUCONTENT.noContent.image.alt}
         />
@@ -276,7 +264,7 @@ function PaginationComponent({
     return false;
   }
   return (
-    <Pagination className="col-span-12 mt-4">
+    <Pagination>
       <PaginationContent>
         <PaginationButton<FilterType> path="page">
           {({ field }) => (
@@ -354,7 +342,7 @@ function PaginationButton<TFieldValues extends FieldValues>({
         control={form.control}
         name={path}
         render={(render) => (
-          <FormItem className="col-span-6 col-start-6">
+          <FormItem>
             <FormControl>{children(render)}</FormControl>
             <FormMessage />
           </FormItem>
