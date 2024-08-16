@@ -24,6 +24,7 @@ export function RenderAllContents({
               dropdownMenu
               URL={URL}
               editPath={editPath}
+              className="mx-2 mb-4 w-64"
             />
           ))
         : null}

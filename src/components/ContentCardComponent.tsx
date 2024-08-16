@@ -18,11 +18,13 @@ import {
 import { Button } from '@components/ui/button';
 import { DROPDOWNMENUCONTENT } from '@constants/dropdown-share';
 import { handleDeleteContent } from '@services/utils/toasts';
+import { cn } from '@lib/utils';
 
 type TBaseContentCard = {
   content: PostType;
   index: number;
   path: LinkOptions;
+  className?: string;
 };
 type TContentCard =
   | ({
@@ -35,7 +37,7 @@ type TContentCard =
     } & TBaseContentCard);
 export function ContentCardComponent(props: TContentCard) {
   return (
-    <Card key={`${props.content.id}-${props.index}`} className="w-64 p-2 mx-2 mb-4 text-center">
+    <Card key={`${props.content.id}-${props.index}`} className={cn('p-2 text-center', props.className)}>
       <Link
         className="flex flex-col"
         to={props.path.to}
@@ -55,7 +57,7 @@ export function ContentCardComponent(props: TContentCard) {
               : null}
           </div>
         </ScrollArea>
-        <ScrollArea className="h-28 m-2 rounded-md">
+        <ScrollArea className="m-2 h-28 rounded-md">
           <CardDescription>{props.content.description}</CardDescription>
         </ScrollArea>
         <CardFooter className={`flex ${!props.dropdownMenu ? 'justify-center' : 'justify-between'}`}>

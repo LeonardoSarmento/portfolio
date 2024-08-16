@@ -1,7 +1,8 @@
 import { ContentCardComponent } from '@components/ContentCardComponent';
 import { PendingComponent } from '@components/PendingComponent';
+import { Badge } from '@components/ui/badge';
 import { Button } from '@components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
@@ -151,7 +152,12 @@ const CarrouselComponent = ({
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
                 <CarouselItem key={`${publication.id}-${index}`} className="basis-1/3">
-                  <ContentCardComponent content={publication} index={index} path={path} />
+                  <ContentCardComponent
+                    content={publication}
+                    index={index}
+                    path={path}
+                    className="col-span-2 row-span-1"
+                  />
                 </CarouselItem>
               ))}
         </CarouselContent>
