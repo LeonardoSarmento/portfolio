@@ -4,7 +4,7 @@ import { Button } from '@components/ui/button';
 import { Card, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import { normalizeDate } from '@lib/utils';
 import { useAuth } from '@services/hooks/auth';
-import { NavigateOptions, useRouter } from '@tanstack/react-router';
+import { Link, NavigateOptions, useRouter } from '@tanstack/react-router';
 import { TByIdComponent } from '@constants/by-id-content';
 import { PostType } from '@services/types/Post';
 import { PopoverShareComponent } from './ShareComponent';
@@ -36,9 +36,15 @@ export function HeaderContentComponent({
         <div className="mx-auto space-x-2">
           {content.tags
             ? content.tags.map((tag) => (
-                <Badge key={tag.value} className="w-fit">
-                  <p>{tag.value}</p>
-                </Badge>
+                <Link
+                  key={tag.value}
+                  to={`/${shareComponent.breadcrumb.title}`}
+                  search={{ tags: [tag.value], page: '1', pageSize: '15' }}
+                >
+                  <Badge className="w-fit">
+                    <p>{tag.value}</p>
+                  </Badge>
+                </Link>
               ))
             : null}
         </div>
@@ -49,7 +55,7 @@ export function HeaderContentComponent({
         className="mx-auto"
       />
       <CardDescription>{normalizeDate(content.date)}</CardDescription>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <CardDescription className="lg:col-start-2">{content.description}</CardDescription>
         <div className="flex flex-wrap justify-center gap-2 lg:col-start-3 lg:justify-self-end">
           {auth.isAuthenticated ? (

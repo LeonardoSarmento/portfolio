@@ -24,12 +24,6 @@ import { Link, RouterState, useRouterState } from '@tanstack/react-router';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { ScrollArea } from './ui/scroll-area';
 
-// const items: { to: LinkOptions['to']; title: string }[] = [
-//   { to: '/', title: 'Home' },
-//   { to: '/posts/', title: 'Posts' },
-//   { to: '/contact', title: 'Building Your Application' },
-// ];
-
 type RouteT = { to: string; title: string };
 type currentFolderT = { title: string };
 

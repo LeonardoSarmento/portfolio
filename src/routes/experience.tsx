@@ -84,7 +84,7 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
       {contents.map((content) => (
         <TabsContent key={content.value} value={content.value}>
           <CardContent className="flex py-4">
-            <div className='space-y-2 w-[400px]'>
+            <div className="w-[400px] space-y-2">
               <div className="flex items-center gap-2">
                 <Avatar key={content.value}>
                   <AvatarImage src={content.header.avatar.src} />
@@ -97,13 +97,13 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
                 <MapDescriptions descriptions={content.header.content.description} />
               </CardContent>
             </div>
-            <div className='w-[400px] space-y-4'>
+            <div className="w-[400px] space-y-4">
               <CardTitle className="text-center">{content.learnings.title}</CardTitle>
               <ScrollArea className="h-[150px] rounded-md">
                 <MapDescriptions descriptions={content.learnings.content.description} />
               </ScrollArea>
             </div>
-            <div className='space-y-4 w-full'>
+            <div className="w-full space-y-4">
               <CardTitle className="text-center">{content.tools.title}</CardTitle>
               <ScrollArea className="h-[150px] rounded-md">
                 <CardContent className="grid grid-cols-2 gap-x-3 p-0">

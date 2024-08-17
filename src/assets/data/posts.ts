@@ -15,7 +15,7 @@ export type PostMenuNavigation = {
 };
 
 export const TAGS_OPTIONS: TagType[] = [
-  { id: 'nextjs', label: 'nextjs', value: 'Nextjs' },
+  { id: 'nextjs', label: 'Nextjs', value: 'nextjs' },
   { id: 'react', label: 'React', value: 'react' },
   { id: 'remix', label: 'Remix', value: 'remix' },
   { id: 'vite', label: 'Vite', value: 'vite' },

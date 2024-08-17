@@ -37,7 +37,7 @@ type TContentCard =
     } & TBaseContentCard);
 export function ContentCardComponent(props: TContentCard) {
   return (
-    <Card key={`${props.content.id}-${props.index}`} className={cn('p-2 text-center', props.className)}>
+    <Card className={cn('p-2 text-center', props.className)}>
       <Link
         className="flex flex-col"
         to={props.path.to}

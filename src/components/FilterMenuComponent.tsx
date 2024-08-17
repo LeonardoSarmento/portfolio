@@ -71,8 +71,8 @@ export function FilterMenuComponent({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-4 px-16">
-          <div className="flex gap-4">
+        <div className="flex flex-col space-y-4 mx-14">
+          <div className="flex gap-4 mr-14">
             {auth.isAuthenticated ? (
               <Button onClick={() => navigate(createPath)} type="button" className='flex-none w-32'>
                 {FILTERMENUCONTENT.createButton.title}
@@ -198,7 +198,7 @@ function SideMenuComponent({
 
 function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
   return (
-    <div className="col-span-11 flex flex-col items-center justify-center gap-4">
+    <div className="items-center flex flex-col gap-4 justify-center w-full">
       <CardContent className="flex items-center justify-center rounded-xl border p-6">
         <blockquote className="space-y-2 pr-6">
           <p className="text-lg">&ldquo;{FILTERMENUCONTENT.noContent.content.text}&rdquo;</p>
