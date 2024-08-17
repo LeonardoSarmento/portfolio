@@ -2,12 +2,6 @@ import { posts as AllPosts } from '@assets/data/posts';
 import { TAGS_OPTIONS } from '@assets/data/posts';
 import { FilterType } from '@services/types/Filters';
 
-// export type PostType = {
-//   id: string;
-//   title: string;
-//   description: string;
-// };
-
 export class PostNotFoundError extends Error {}
 
 export const fetchPost = async (postId: string) => {

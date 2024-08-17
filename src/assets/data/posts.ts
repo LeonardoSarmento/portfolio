@@ -2,7 +2,7 @@ import BlogPost from '@assets/data/markdown.md';
 import MultipleSSHPost from '@assets/data/multipleSSH.md';
 import ReadMe from '../../../README.md';
 import { TagType } from '@services/types/Tag';
-import { PostType } from '@services/types/Post';
+import { PublicationType } from '@services/types/Publication';
 
 export type PostMenuNavigation = {
   id: string;
@@ -28,7 +28,7 @@ export const TAGS_OPTIONS: TagType[] = [
   { id: 'astro', label: 'Astro', value: 'astro' },
 ];
 
-export const posts: PostType[] = [
+export const posts: PublicationType[] = [
   {
     id: 'two-ssh-github-account-configuration',
     thumbnail: 'https://devconnected.com/wp-content/uploads/2019/10/featured-12.png',

@@ -1,8 +1,4 @@
-export type TLoginTabsContent = {
-  title: string;
-  value: string;
-  header: TLoginTabContent;
-};
+import { TLoginTabsContent, TTermsofService } from "@services/types/constants/login";
 
 export const TABSLOGINCONTENT: TLoginTabsContent[] = [
   {
@@ -20,13 +16,7 @@ export const TABSLOGINCONTENT: TLoginTabsContent[] = [
   },
 ];
 
-type TTermsofService = {
-  start: string;
-  middle: string;
-  end: string;
-  terms: string;
-  policy: string;
-};
+
 
 export const TERMSOFSERVICECONTENT: TTermsofService = {
   start: 'Clicando em acessar, você concorda com todos os',
@@ -36,7 +26,4 @@ export const TERMSOFSERVICECONTENT: TTermsofService = {
   end: '.',
 };
 
-type TLoginTabContent = {
-  title: string;
-  description: string;
-};
+

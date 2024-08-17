@@ -1,8 +1,8 @@
 import BlogPost from '@assets/data/markdown.md';
 import gfmFlavorMarkdown from '@assets/data//gfmFlavorMarkdown.md';
 import { TAGS_OPTIONS } from './posts';
-import { ProjectType } from '@services/types/Project';
 import { TagType } from '@services/types/Tag';
+import { PublicationType } from '@services/types/Publication';
 
 export type ProjectMenuNavigation = {
   id: string;
@@ -14,7 +14,7 @@ export type ProjectMenuNavigation = {
   tags?: TagType[];
 };
 
-export const projects: ProjectType[] = [
+export const projects: PublicationType[] = [
   {
     id: 'project-number-42',
     thumbnail:

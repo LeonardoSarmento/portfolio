@@ -1,6 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@components/ui/tabs';
 import { UserAuthForm } from '@components/UserAuthForm';
-import { TABSLOGINCONTENT, TERMSOFSERVICECONTENT, TLoginTabsContent } from '@constants/login-content';
+import { TABSLOGINCONTENT, TERMSOFSERVICECONTENT } from '@constants/login-content';
+import { TLoginTabsContent } from '@services/types/constants/login';
 import { Link } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 

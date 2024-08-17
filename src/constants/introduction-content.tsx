@@ -1,10 +1,5 @@
+import { TIntroductionContent } from '@services/types/constants/introduction';
 import { LEO_BARZINHO } from '@services/utils/Images';
-
-type TIntroductionContent = {
-  header: { initial: string; punchline: string };
-  image: { src: string; alt: string };
-  introduction: { h1: React.ReactNode; code: string };
-};
 
 export const INTRODUCTIONCONTENT: TIntroductionContent = {
   header: { initial: 'Olá, bem vindo ao mundo de', punchline: 'Leonardo.' },

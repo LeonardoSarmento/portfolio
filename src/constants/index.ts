@@ -1,9 +1,7 @@
 import { TSocialMediaCard } from '@services/types/SocialMediaCard';
 import { MY_PHOTO } from '@services/utils/Images';
 import { Github, Instagram, Linkedin, Mail } from 'lucide-react';
-import { TTabsContent } from './experience-content';
-import { PostType } from '@services/types/Post';
-import { LinkOptions } from '@tanstack/react-router';
+import { TCardContent, TCarrouselComponent } from '@services/types/constants/index-content';
 
 export const SocialMediaItems: TSocialMediaCard[] = [
   { name: 'Instagram', icon: Instagram, link: 'https://instagram.com/leonardo.a.sarmento' },
@@ -28,24 +26,6 @@ export const ABOUTMECONTENT: TCardContent['about'] = {
     ],
   },
 };
-
-export type TCardContent = {
-  about: {
-    header: { src: string; alt: string; title: string; description: string };
-    content: { description: string[] };
-  };
-  education: TTabsContent[];
-  experience: TTabsContent[];
-};
-
-export type TCarrouselComponent = {
-  title: string;
-  publication?: PostType[];
-  path: LinkOptions;
-  buttonPath: LinkOptions;
-  buttonTitle: string;
-};
-
 export const CARROUSELPARTIALOPTIONS: TCarrouselComponent[] = [
   {
     buttonPath: { to: '/posts', search: { page: '1', pageSize: '100' } },

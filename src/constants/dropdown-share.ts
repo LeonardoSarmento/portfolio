@@ -1,10 +1,4 @@
-type DropdownMenuContent = {
-  title: string;
-  share: string;
-  edit: string;
-  delete: string;
-  
-};
+import { DropdownMenuContent } from "@services/types/constants/dropdown-share";
 
 export const DROPDOWNMENUCONTENT: DropdownMenuContent = {
   title: 'Postagem',

@@ -1,30 +1,7 @@
 import { FAPES_LOGO, IEL_LOGO, UCL_LOGO } from '@services/utils/Images';
 import { TECH_STACK } from './tech-stack';
-import { TechType } from '@services/types/TechStack';
+import { TExperienceContent, TExperienceStack, TTabsContent } from '@services/types/constants/experience';
 
-export type TExperienceStack = {
-  title: string;
-  description: string;
-  stack: TechType[];
-};
-
-export type TExperienceContent = {
-  experience: {
-    title: string;
-    description: string[];
-    stack: TExperienceStack[];
-  };
-  education: {
-    title: string;
-    description: string[];
-    stack: TTabsContent[];
-  };
-  professional: {
-    title: string;
-    description: string[];
-    stack: TTabsContent[];
-  };
-};
 
 export const EXPERIENCESTACK: TExperienceStack[] = [
   {
@@ -53,18 +30,6 @@ export const EXPERIENCESTACK: TExperienceStack[] = [
   },
 ];
 
-export type TTabsContent = {
-  value: string;
-  title: string;
-  header: {
-    avatar: { src: string; avatarFallback: string };
-    title: string;
-    description: string;
-    content: { description: string[] };
-  };
-  learnings: { title: string; content: { description: string[] } };
-  tools: { title: string; content: TechType[] };
-};
 
 export const TABSEDUCATIONAL: TTabsContent[] = [
   {

@@ -1,6 +1,6 @@
 import { LinkOptions } from '@tanstack/react-router';
-import { PostType } from '@services/types/Post';
 import { ContentCardComponent } from './ContentCardComponent';
+import { PublicationType } from '@services/types/Publication';
 
 export function RenderAllContents({
   contents,
@@ -8,7 +8,7 @@ export function RenderAllContents({
   editPath,
   URL,
 }: {
-  contents: PostType[];
+  contents: PublicationType[];
   path: LinkOptions;
   editPath: LinkOptions;
   URL: string;

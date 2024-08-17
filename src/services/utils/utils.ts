@@ -1,6 +1,6 @@
 import { copyToClipboard } from '@components/CodeCopyButton';
 import { ALLOWED_TYPES, AllowedTypes } from '@services/types/AllowedFiles';
-import { EditPostType } from '@services/types/Post';
+import { EditPublicationType } from '@services/types/Publication';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -44,7 +44,7 @@ export function getAllowedMimeTypes(allowedTypes: AllowedTypes[]): string {
   return allMimeTypes.join(', ');
 }
 
-export function handleOnDrop(acceptedFiles: FileList | null, form: UseFormReturn<EditPostType>) {
+export function handleOnDrop(acceptedFiles: FileList | null, form: UseFormReturn<EditPublicationType>) {
   console.log('acceptedFiles: ', acceptedFiles);
   if (acceptedFiles && acceptedFiles.length > 0) {
     const fileType = ALLOWED_TYPES.find((allowedType) =>

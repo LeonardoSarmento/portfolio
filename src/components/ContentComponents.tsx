@@ -11,17 +11,17 @@ import { AutosizeTextarea } from '@components/ui/autosize-textarea';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
 import MultipleSelector from '@components/ui/multiple-selector';
 import { useQueryTags } from '@services/hooks/postsQueryOptions';
-import { CreatePostType, EditPostType } from '@services/types/Post';
 import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
 import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
-import { THeaderCardContent, TManageMarkdownContent } from '@constants/by-id-content';
+import { CreatePublicationType, EditPublicationType } from '@services/types/Publication';
+import { THeaderCardContent, TManageMarkdownContent } from '@services/types/constants/by-id';
 
 export function HeaderFormComponent({
   form,
   onClick,
   textContent,
 }: {
-  form: UseFormReturn<EditPostType | CreatePostType>;
+  form: UseFormReturn<EditPublicationType | CreatePublicationType>;
   textContent: THeaderCardContent['form'];
   onClick: () => void;
 }) {
@@ -99,7 +99,7 @@ export function HeaderThumbnailComponent({
   form,
   textContent,
 }: {
-  form: UseFormReturn<EditPostType | CreatePostType>;
+  form: UseFormReturn<EditPublicationType | CreatePublicationType>;
   textContent: THeaderCardContent['thumbnail'];
 }) {
   const ThumbnailInfo = ({ fileName, onClick }: { fileName?: string; onClick: () => void }) => {

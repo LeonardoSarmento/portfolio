@@ -5,9 +5,9 @@ import { Card, CardDescription, CardHeader, CardTitle } from '@components/ui/car
 import { normalizeDate } from '@lib/utils';
 import { useAuth } from '@services/hooks/auth';
 import { Link, NavigateOptions, useRouter } from '@tanstack/react-router';
-import { TByIdComponent } from '@constants/by-id-content';
-import { PostType } from '@services/types/Post';
 import { PopoverShareComponent } from './ShareComponent';
+import { PublicationType } from '@services/types/Publication';
+import { TByIdComponent } from '@services/types/constants/by-id';
 
 export function HeaderContentComponent({
   content,
@@ -16,7 +16,7 @@ export function HeaderContentComponent({
   shareComponentURL,
   optionsUrl,
 }: {
-  content: PostType;
+  content: PublicationType;
   path: NavigateOptions;
   shareComponent: TByIdComponent;
   shareComponentURL: string;

@@ -2,7 +2,7 @@ import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { Label } from '@components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover';
-import { TByIdComponent } from '@constants/by-id-content';
+import { TByIdComponent } from '@services/types/constants/by-id';
 import { CopyToClipboardRoute } from '@services/utils/utils';
 import { CopyIcon, Share2 } from 'lucide-react';
 

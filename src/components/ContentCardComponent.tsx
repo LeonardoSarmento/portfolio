@@ -1,7 +1,6 @@
 import { Badge } from '@components/ui/badge';
 import { Card, CardDescription, CardFooter, CardHeader } from '@components/ui/card';
 import { ScrollArea } from '@components/ui/scroll-area';
-import { PostType } from '@services/types/Post';
 import { Link, LinkOptions } from '@tanstack/react-router';
 import { useAuth } from '@services/hooks/auth';
 import { CopyToClipboardRoute } from '@services/utils/utils';
@@ -19,9 +18,10 @@ import { Button } from '@components/ui/button';
 import { DROPDOWNMENUCONTENT } from '@constants/dropdown-share';
 import { handleDeleteContent } from '@services/utils/toasts';
 import { cn } from '@lib/utils';
+import { PublicationType } from '@services/types/Publication';
 
 type TBaseContentCard = {
-  content: PostType;
+  content: PublicationType;
   index: number;
   path: LinkOptions;
   className?: string;

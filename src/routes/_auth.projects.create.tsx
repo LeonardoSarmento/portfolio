@@ -4,11 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { tagsQueryOptions } from '@services/hooks/postsQueryOptions';
-import { CreateProjectSchema, CreateProjectType } from '@services/types/Project';
 import { HEADERCARDCREATEPROJECTCONTENT, MANAGEMARKDOWNCREATECONTENT } from '@constants/by-id-content';
 import { HeaderThumbnailComponent, HeaderFormComponent, ManageMarkdownComponent } from '@components/ContentComponents';
 import { SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
+import { CreatePublicationSchema, CreatePublicationType } from '@services/types/Publication';
 
 export const Route = createFileRoute('/_auth/projects/create')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
@@ -17,8 +17,8 @@ export const Route = createFileRoute('/_auth/projects/create')({
 
 function CreateProjectComponent() {
   const auth = useAuth();
-  const form = useForm<CreateProjectType>({
-    resolver: zodResolver(CreateProjectSchema),
+  const form = useForm<CreatePublicationType>({
+    resolver: zodResolver(CreatePublicationSchema),
     mode: 'onChange',
     defaultValues: {
       file: null,

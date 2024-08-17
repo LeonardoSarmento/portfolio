@@ -8,8 +8,9 @@ import { Fragment, PropsWithChildren } from 'react';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
 import { Meteors } from '@components/ui/meteors';
-import { EXPERIENCECONTENT, TExperienceStack, TTabsContent } from '@constants/experience-content';
+import { EXPERIENCECONTENT } from '@constants/experience-content';
 import { MapDescriptions } from '.';
+import { TExperienceStack, TTabsContent } from '@services/types/constants/experience';
 
 export const Route = createFileRoute('/experience')({
   component: Experience,

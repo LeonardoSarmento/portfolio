@@ -4,11 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
-import { EditPostSchema, EditPostType } from '@services/types/Post';
 import { HEADERCARDPOSTCONTENT, MANAGEMARKDOWNCONTENT } from '@constants/by-id-content';
 import { HeaderFormComponent, HeaderThumbnailComponent, ManageMarkdownComponent } from '@components/ContentComponents';
 import { handleDeleteContent, SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
+import { EditPublicationSchema, EditPublicationType } from '@services/types/Publication';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
@@ -19,8 +19,8 @@ function EditPostsComponent() {
   const auth = useAuth();
 
   const post = Route.useLoaderData();
-  const form = useForm<EditPostType>({
-    resolver: zodResolver(EditPostSchema),
+  const form = useForm<EditPublicationType>({
+    resolver: zodResolver(EditPublicationSchema),
     mode: 'onChange',
     defaultValues: post,
   });

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 import { LucideIcon } from 'lucide-react';
-import { SocialMediaItems } from '@constants/index';
 import { CONTACTCONTENT } from '@constants/contact-content';
+import { SocialMediaItems } from '@constants/index';
 
 function SocialButton({ Icon, link, name }: { link: string; name: string; Icon: LucideIcon }) {
   return (

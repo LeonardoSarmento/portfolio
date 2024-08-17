@@ -20,7 +20,7 @@ import {
   SiZod,
 } from 'react-icons/si';
 import { VscJson, VscProject } from 'react-icons/vsc';
-import { TechStackType } from '@services/types/TechStack';
+import { TechStackType } from '@services/types/constants/tech-stack';
 
 export const TECH_STACK: TechStackType = {
   frontend: [

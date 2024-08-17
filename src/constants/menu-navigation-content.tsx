@@ -1,27 +1,8 @@
 import { posts } from "@assets/data/posts";
 import { PAGE_SIZE_OPTIONS } from "@components/FilterMenuComponent";
-import { ListItemType } from "@components/NavigationMenu";
-import { PostType } from "@services/types/Post";
+import { TMenuContent } from "@services/types/constants/menu-navigation";
 import { MY_PHOTO } from "@services/utils/Images";
-import { LinkOptions } from "@tanstack/react-router";
 import { Contact, FolderGit2, GraduationCap, Handshake } from "lucide-react";
-
-type TMenuContent = {
-  about: {
-    title: string;
-    image: { src: string; alt: string };
-    subtitle: string;
-    description: string;
-    path: LinkOptions;
-  };
-  options: ListItemType[];
-  posts: {
-    title: string;
-    contents: PostType[];
-    path: LinkOptions;
-    items: ListItemType[];
-  };
-};
 
 export const MENUCONTENT: TMenuContent = {
   about: {

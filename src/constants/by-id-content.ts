@@ -1,7 +1,5 @@
-type TShareComponent = {
-  button: { title: string };
-  card: { title: string; description: string; label: string; buttonAlt: string };
-};
+import { TByIdComponent, THeaderCardContent, TManageMarkdownContent, toastMessages, TShareComponent } from "@services/types/constants/by-id";
+
 const SHARECOMPONENT: TShareComponent = {
   button: { title: 'Compartilhar' },
   card: {
@@ -11,47 +9,16 @@ const SHARECOMPONENT: TShareComponent = {
     buttonAlt: 'Copiar',
   },
 };
-
-export type TByIdComponent = {
-  shareComponent: TShareComponent;
-  breadcrumb: { title: string };
-  buttons: { edit: string; goBack: string };
-};
 export const PROJECTBYIDCONTENT: TByIdComponent = {
   shareComponent: SHARECOMPONENT,
   breadcrumb: { title: 'projects' },
   buttons: { edit: 'Editar', goBack: 'Voltar' },
 };
-
 export const POSTBYIDCONTENT: TByIdComponent = {
   shareComponent: SHARECOMPONENT,
   breadcrumb: { title: 'posts' },
   buttons: { edit: 'Editar', goBack: 'Voltar' },
 };
-
-
-type TInputType = { label: string; placeholder: string };
-export type THeaderFormContent = {
-  title: TInputType;
-  description: TInputType;
-  tags: TInputType & { notfound: string };
-  buttons: { save: string; goBack: string; destructive: string };
-};
-
-type toastMessages = {
-  error: toastMessageContent;
-  sucess: toastMessageContent;
-  delete: toastMessageContent;
-  noAuth: toastMessageContent;
-};
-type toastMessageContent = { title: string; description: string };
-export type THeaderCardContent = {
-  title: string;
-  thumbnail: { title: string; dropMessage: string };
-  form: THeaderFormContent;
-  toast: toastMessages;
-};
-
 export const TOASTMESSAGESCONTENT: toastMessages = {
   delete: { description: 'Deixa isso pra uma outra hora', title: 'Sem deletar coisa por aqui malandro' },
   sucess: {
@@ -64,7 +31,6 @@ export const TOASTMESSAGESCONTENT: toastMessages = {
     title: 'Você não está autenticado cara :(',
   },
 };
-
 export const HEADERCARDPOSTCONTENT: THeaderCardContent = {
   title: 'Criar novo post',
   thumbnail: { title: 'Thumbnail', dropMessage: 'Solte seu arquivo ou clique aqui' },
@@ -83,7 +49,6 @@ export const HEADERCARDCREATEPOSTCONTENT: THeaderCardContent = {
     buttons: { goBack: 'Voltar', destructive: 'Apagar tudo', save: 'Criar' },
   },
 };
-
 export const HEADERCARDPROJECTCONTENT: THeaderCardContent = {
   title: 'Criar novo projeto',
   thumbnail: { title: 'Thumbnail', dropMessage: 'Solte seu arquivo ou clique aqui' },
@@ -95,7 +60,6 @@ export const HEADERCARDPROJECTCONTENT: THeaderCardContent = {
   },
   toast: TOASTMESSAGESCONTENT,
 };
-
 export const HEADERCARDCREATEPROJECTCONTENT: THeaderCardContent = {
   ...HEADERCARDPROJECTCONTENT,
   form: {
@@ -103,13 +67,6 @@ export const HEADERCARDCREATEPROJECTCONTENT: THeaderCardContent = {
     buttons: { goBack: 'Voltar', destructive: 'Apagar tudo', save: 'Criar' },
   },
 };
-
-export type TManageMarkdownContent = {
-  content: { label: string; placeholder: string; description: string };
-  preview: { title: string };
-  button: { text: string };
-};
-
 export const MANAGEMARKDOWNCONTENT: TManageMarkdownContent = {
   content: {
     label: 'Conteúdo',
@@ -119,7 +76,6 @@ export const MANAGEMARKDOWNCONTENT: TManageMarkdownContent = {
   preview: { title: 'Preview' },
   button: { text: 'Salvar' },
 };
-
 export const MANAGEMARKDOWNCREATECONTENT: TManageMarkdownContent = {
   ...MANAGEMARKDOWNCONTENT,
   button: { text: 'Criar' },

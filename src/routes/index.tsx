@@ -5,30 +5,36 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
-import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS, TCardContent, TCarrouselComponent } from '@constants/index';
+import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS } from '@constants/index';
 import { cn } from '@lib/utils';
 import { postsQueryOptions, projectsQueryOptions } from '@services/hooks/postsQueryOptions';
-import { PostType } from '@services/types/Post';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { TCardContent, TCarrouselComponent } from '@services/types/constants/index-content';
+import { PublicationType } from '@services/types/Publication';
+// import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link, LinkOptions } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
 import React, { Fragment, useMemo } from 'react';
 
 export const Route = createFileRoute('/')({
-  loader: ({ context: { queryClient } }) => {
-    queryClient.ensureQueryData(postsQueryOptions), queryClient.ensureQueryData(projectsQueryOptions);
+  loader: async ({ context: { queryClient } }) => {
+    const ensurePosts = queryClient.ensureQueryData(postsQueryOptions);
+    const ensureProjects = queryClient.ensureQueryData(projectsQueryOptions);
+    const [posts, projects] = await Promise.all([ensurePosts, ensureProjects]);
+
+    return { posts, projects };
   },
   pendingComponent: PendingComponent,
   component: Index,
 });
 
 function Index() {
-  const postsQuery = useSuspenseQuery(postsQueryOptions);
-  const posts = postsQuery.data;
+  const { posts, projects } = Route.useLoaderData();
+  // const postsQuery = useSuspenseQuery(postsQueryOptions);
+  // const posts = postsQuery.data;
 
-  const projectsQuery = useSuspenseQuery(projectsQueryOptions);
-  const projects = projectsQuery.data;
+  // const projectsQuery = useSuspenseQuery(projectsQueryOptions);
+  // const projects = projectsQuery.data;
 
   const CARROUSELOPTIONS: TCarrouselComponent[] = useMemo(
     () => [
@@ -129,7 +135,7 @@ const CarrouselComponent = ({
   buttonTitle,
 }: {
   title: string;
-  publication?: PostType[];
+  publication?: PublicationType[];
   path: LinkOptions;
   buttonPath: LinkOptions;
   buttonTitle: string;
