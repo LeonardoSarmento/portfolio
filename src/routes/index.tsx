@@ -7,10 +7,10 @@ import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
 import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS } from '@constants/index';
 import { cn } from '@lib/utils';
-import { postsQueryOptions, projectsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { postsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { projectsQueryOptions } from '@services/hooks/projectsQueryOptions';
 import { TCardContent, TCarrouselComponent } from '@services/types/constants/index-content';
 import { PublicationType } from '@services/types/Publication';
-// import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link, LinkOptions } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
@@ -30,11 +30,6 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { posts, projects } = Route.useLoaderData();
-  // const postsQuery = useSuspenseQuery(postsQueryOptions);
-  // const posts = postsQuery.data;
-
-  // const projectsQuery = useSuspenseQuery(projectsQueryOptions);
-  // const projects = projectsQuery.data;
 
   const CARROUSELOPTIONS: TCarrouselComponent[] = useMemo(
     () => [

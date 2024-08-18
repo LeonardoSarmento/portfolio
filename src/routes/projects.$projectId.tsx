@@ -3,7 +3,7 @@ import MarkdownRenderer from '@components/MarkdownRenderer';
 import { PROJECTBYIDCONTENT } from '@constants/by-id-content';
 import { projectQueryOptions } from '@services/hooks/postQueryOptions';
 import { PostNotFoundError } from '@services/hooks/posts';
-import { useQueryProjectsUrl } from '@services/hooks/postsQueryOptions';
+import { useQueryProjectsUrl } from '@services/hooks/projectsQueryOptions';
 import { ErrorComponent, ErrorComponentProps, createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/projects/$projectId')({

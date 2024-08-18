@@ -5,7 +5,6 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Separator } from './ui/separator';
 import { FilterType } from '@services/types/Filters';
-import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { NavigateOptions, useNavigate } from '@tanstack/react-router';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Input } from './ui/input';
@@ -16,6 +15,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { FieldValues, Path, UseControllerReturn, useFormContext, UseFormReturn } from 'react-hook-form';
 import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
+import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 
 export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
   {
@@ -146,7 +146,6 @@ function SideMenuComponent({
                                   ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
                                   : field.onChange(field.value?.filter((value) => value !== tag.id));
                               }}
-                              onClick={() => console.log(field.value)}
                             />
                           </FormControl>
                           <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>

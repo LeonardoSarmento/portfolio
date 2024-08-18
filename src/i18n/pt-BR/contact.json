@@ -1,0 +1,41 @@
+{
+  "words-content": [
+    {
+      "text": "\""
+    },
+    {
+      "text": "Dúvida com"
+    },
+    {
+      "text": "o que gastar"
+    },
+    {
+      "text": "o seu dinheiro?"
+    },
+    {
+      "text": "Faz um pix pra mim :)",
+      "className": "text-green-500 dark:text-green-500"
+    },
+    {
+      "text": "\""
+    }
+  ],
+  "contact-content": {
+    "title": "Contato",
+    "description": [
+      "Caso queira me dar dinheiro, entre em contato pelas minhas redes sociais",
+      "Se vc for o agiota, tente no site da concorrência!"
+    ],
+    "socialMedia": { "title": "Mídias Sociais", "content": "" },
+    "content": {
+      "alt": "emoji de joiniha de cor verde",
+      "src": "",
+      "title": "Feito com muito carinho por Leonardo Araujo Sarmento"
+    },
+    "sideContent": {
+      "src": "",
+      "alt": "Leonardo apresentando workshop sobre frontend no IST",
+      "content": { "typewriter": "", "title": " - eu" }
+    }
+  }
+}

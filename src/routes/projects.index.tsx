@@ -1,8 +1,8 @@
-import { projectsQueryOptionsWithFilter } from '@services/hooks/postsQueryOptions';
 import { createFileRoute } from '@tanstack/react-router';
 import { FilterSchema } from '@services/types/Filters';
 import { FilterMenuComponent } from '@components/FilterMenuComponent';
 import { RenderAllContents } from '@components/RenderAllContents';
+import { projectsQueryOptionsWithFilter } from '@services/hooks/projectsQueryOptions';
 
 export const Route = createFileRoute('/projects/')({
   loaderDeps: ({ search: filters }) => filters,

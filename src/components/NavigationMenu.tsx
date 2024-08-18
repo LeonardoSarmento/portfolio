@@ -12,10 +12,11 @@ import { Link, LinkOptions } from '@tanstack/react-router';
 import { ModeToggle } from './Mode-toggle';
 import { UserToggle } from './UserToggle';
 import { MENUCONTENT } from '@constants/menu-navigation-content';
+import { SelectLanguage } from './SelectLanguage';
 
 export function NavigationMenuGroup() {
   return (
-    <div className="m-5 flex items-center justify-between sm:grid sm:grid-cols-12 sm:justify-end">
+    <div className="m-5 flex items-center justify-between sm:grid sm:grid-cols-12 sm:justify-end gap-4">
       <NavigationMenu className="col-span-10 justify-self-end text-center">
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -75,13 +76,21 @@ export function NavigationMenuGroup() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <UserToggle className="justify-self-end" />
-      <ModeToggle className="justify-self-end" />
+      <div className='flex justify-between col-span-2'>
+        <UserToggle />
+        <SelectLanguage />
+        <ModeToggle />
+      </div>
     </div>
   );
 }
 
-export type ListItemType = { className?: string; title: string; children?: React.ReactNode; icon?: JSX.Element } & LinkOptions;
+export type ListItemType = {
+  className?: string;
+  title: string;
+  children?: React.ReactNode;
+  icon?: JSX.Element;
+} & LinkOptions;
 const ListItem = ({ className, title, children, icon, ...props }: ListItemType) => {
   return (
     <NavigationMenuLink asChild>

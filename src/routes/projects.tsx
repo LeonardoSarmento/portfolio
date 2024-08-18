@@ -1,4 +1,4 @@
-import { projectsQueryOptions } from '@services/hooks/postsQueryOptions';
+import { projectsQueryOptions } from '@services/hooks/projectsQueryOptions';
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/projects')({

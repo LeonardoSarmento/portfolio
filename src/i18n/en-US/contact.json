@@ -1,0 +1,41 @@
+{
+  "words-content": [
+    {
+      "text": "\""
+    },
+    {
+      "text": "Doubt about"
+    },
+    {
+      "text": "what to spend"
+    },
+    {
+      "text": "your money?"
+    },
+    {
+      "text": "Do a pix to me :)",
+      "className": "text-green-500 dark:text-green-500"
+    },
+    {
+      "text": "\""
+    }
+  ],
+  "contact-content": {
+    "title": "Contact",
+    "description": [
+      "If you want to give me money, contact me via my social networks",
+      "If you're the loan shark, try the competition's website!"
+    ],
+    "socialMedia": { "title": "Social Media", "content": "" },
+    "content": {
+      "alt": "thumbs up green emoji",
+      "src": "",
+      "title": "Made with love by Leonardo Araujo Sarmento"
+    },
+    "sideContent": {
+      "src": "",
+      "alt": "Leonardo presenting frontend workshop at IST",
+      "content": { "typewriter": "", "title": " - me" }
+    }
+  }
+}

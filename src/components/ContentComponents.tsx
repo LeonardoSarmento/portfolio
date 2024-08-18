@@ -10,11 +10,11 @@ import { FieldValues, Path, UseFormReturn } from 'react-hook-form';
 import { AutosizeTextarea } from '@components/ui/autosize-textarea';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@components/ui/resizable';
 import MultipleSelector from '@components/ui/multiple-selector';
-import { useQueryTags } from '@services/hooks/postsQueryOptions';
 import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
 import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
 import { CreatePublicationType, EditPublicationType } from '@services/types/Publication';
 import { THeaderCardContent, TManageMarkdownContent } from '@services/types/constants/by-id';
+import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 
 export function HeaderFormComponent({
   form,

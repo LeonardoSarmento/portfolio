@@ -1,7 +1,6 @@
 import { Card, CardContent, CardDescription, CardTitle } from './ui/card';
 import { LucideIcon } from 'lucide-react';
 import { CONTACTCONTENT } from '@constants/contact-content';
-import { SocialMediaItems } from '@constants/index';
 
 function SocialButton({ Icon, link, name }: { link: string; name: string; Icon: LucideIcon }) {
   return (
@@ -20,19 +19,19 @@ function SocialButton({ Icon, link, name }: { link: string; name: string; Icon: 
 }
 
 export function Footer() {
+  const contactContent = CONTACTCONTENT();
   return (
     <div className="relative m-10 mb-0 grid grid-cols-12 grid-rows-3">
       <Card className="col-span-12 row-span-2 flex items-center justify-around">
-        {SocialMediaItems.map((item) => (
+        {contactContent.socialMedia.content.map((item) => (
           <SocialButton key={item.name} name={item.name} link={item.link} Icon={item.icon} />
         ))}
-        {/* <HoverContainer className='justify-around flex w-full' items={SocialMediaItems} /> */}
       </Card>
       <div className="col-span-12 row-span-1 my-2 flex w-full items-center justify-center gap-3">
-        <CardTitle>{CONTACTCONTENT.content.title}</CardTitle>
+        <CardTitle>{contactContent.content.title}</CardTitle>
         <img
-          src={CONTACTCONTENT.content.src}
-          alt={CONTACTCONTENT.content.alt}
+          src={contactContent.content.src}
+          alt={contactContent.content.alt}
           className="h-6 rounded-lg transition-all duration-300 hover:scale-150"
         />
       </div>

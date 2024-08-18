@@ -15,6 +15,7 @@ import './githubFlavor.css';
 import { routeTree } from './routeTree.gen';
 import { ThemeProvider } from '@components/Theme-provider';
 import { AuthProvider, useAuth } from '@services/hooks/auth';
+import './i18n/config'
 
 const queryClient = new QueryClient();
 
