@@ -103,3 +103,11 @@ Generate sha256 hash in terminal
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ```
+
+Update dependencies
+
+```bash
+
+npx npm-check-updates -u
+
+```

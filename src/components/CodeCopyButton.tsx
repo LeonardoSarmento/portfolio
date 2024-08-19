@@ -3,6 +3,7 @@
 
 import clsx from 'clsx';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type Props = React.ComponentPropsWithoutRef<'pre'>;
 
@@ -23,6 +24,7 @@ export function CustomPre({ children, className, ...props }: Props) {
       setCopied(true);
     }
   };
+  const { t } = useTranslation('dropdownShare');
 
   return (
     <div className="group relative">
@@ -33,7 +35,7 @@ export function CustomPre({ children, className, ...props }: Props) {
               'group-hover:flex': copied,
             })}
           >
-            Copied!
+            {t('copy')}
           </span>
 
           <button
@@ -123,4 +125,3 @@ export const removeDuplicateNewLine = (text: string): string => {
     .replace(/(\n\n)/gm, `\n`)
     .replace(/(\r\r)/gm, `\r`);
 };
-

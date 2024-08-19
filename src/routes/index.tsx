@@ -110,7 +110,7 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
     <Card className="flex w-full items-center justify-around">
       <CardContent className="flex flex-col items-center justify-center">
         <img className="h-80 rounded-md" src={contents.header.src} alt={contents.header.alt} />
-        <CardDescription className="mt-6 text-xs leading-tight text-muted-foreground">
+        <CardDescription className="mt-6 text-xs leading-tight text-center text-muted-foreground">
           {contents.header.description}
         </CardDescription>
         <CardTitle className="mb-2 mt-4">{contents.header.title}</CardTitle>

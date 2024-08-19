@@ -3,7 +3,8 @@
     "header": {
       "alt": "Leonardo's photo",
       "title": "Leonardo",
-      "description": "ASWE | Frontend Engineer | React | React Native | TypeScript | Agile"
+      "description": "ASWE | Frontend Engineer | React | React Native | TypeScript | Agile",
+      "loading": "Loading..."
     },
     "content": {
       "description": [

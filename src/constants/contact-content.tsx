@@ -7,37 +7,19 @@ type TWords = { text: string; className?: string };
 
 const words: () => TWords[] = () => {
   const { t } = useTranslation();
-  return [
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[0].text,
-    },
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[1].text,
-    },
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[2].text,
-    },
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[3].text,
-    },
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[4].text,
-      className: 'text-green-500 dark:text-green-500',
-    },
-    {
-      text: t('words-content', { ns: 'contact', returnObjects: true })[5].text,
-    },
-  ];
+  const words: TWords[] = [];
+  t('words-content', { ns: 'contact', returnObjects: true }).map((word) => words.push({ ...word }));
+  return words;
 };
 
 export const CONTACTCONTENT: () => TContactPage = () => {
   const { t } = useTranslation();
+  const descriptions: string[] = [];
+  t('contact-content.description', { ns: 'contact', returnObjects: true }).map((desc) => descriptions.push(desc));
+  
   return {
     title: t('contact-content.title', { ns: 'contact' }),
-    description: [
-      t('contact-content.description', { ns: 'contact', returnObjects: true })[0],
-      t('contact-content.description', { ns: 'contact', returnObjects: true })[1],
-    ],
+    description: descriptions,
     socialMedia: { title: t('contact-content.socialMedia.title', { ns: 'contact' }), content: SocialMediaItems },
     content: {
       alt: t('contact-content.content.alt', { ns: 'contact' }),

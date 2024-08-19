@@ -19,7 +19,6 @@ export function SelectLanguage({ ...props }: SelectLanguageBtn) {
       <DropdownMenuTrigger asChild>
         <Button {...props} variant="outline" size="icon">
           <Flag countryCode={getCountrCode(i18n.language)} className="w-6 rounded-sm" />
-          {/* {i18n.language} */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="relative left-2 w-6 min-w-[3rem]">
