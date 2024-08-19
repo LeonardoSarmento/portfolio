@@ -49,20 +49,16 @@ function Index() {
 
   return (
     <div className="mt-3 flex flex-col gap-4 px-16">
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4 lg:flex-nowrap">
         <CardAboutMe contents={aboutMeContent} />
-        <Card className="w-2/4">
-          <ScrollArea className="my-3 h-[450px] rounded-md">
-            <CardExperience contents={TABSEDUCATIONAL()} />
-          </ScrollArea>
-        </Card>
-        <Card className="w-2/4">
-          <ScrollArea className="my-3 h-[450px] rounded-md">
-            <CardExperience contents={TABSPROFESSIONAL()} />
-          </ScrollArea>
-        </Card>
+        <CardWithScroll>
+          <CardExperience contents={TABSEDUCATIONAL()} />
+        </CardWithScroll>
+        <CardWithScroll>
+          <CardExperience contents={TABSPROFESSIONAL()} />
+        </CardWithScroll>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="flex flex-wrap justify-center xl:grid xl:grid-cols-2 gap-8 xl:gap-x-32 xl:flex-nowrap">
         {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
             key={option.title}
@@ -107,16 +103,16 @@ function CardExperience({ contents }: { contents: TCardContent['experience'] }) 
 }
 function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
   return (
-    <Card className="flex w-full items-center justify-around">
-      <CardContent className="flex flex-col items-center justify-center">
+    <Card className="flex w-full flex-wrap items-center justify-around pt-5 xl:flex-nowrap xl:pt-0">
+      <CardContent className="flex flex-col items-center justify-center py-0 xl:p-6">
         <img className="h-80 rounded-md" src={contents.header.src} alt={contents.header.alt} />
-        <CardDescription className="mt-6 text-xs leading-tight text-center text-muted-foreground">
+        <CardDescription className="mt-6 text-center text-xs leading-tight text-muted-foreground">
           {contents.header.description}
         </CardDescription>
         <CardTitle className="mb-2 mt-4">{contents.header.title}</CardTitle>
       </CardContent>
-      <CardContent className="flex w-1/2 items-center justify-center">
-        <ScrollArea className="my-3 h-[450px] rounded-md">
+      <CardContent className="flex items-center justify-center xl:w-1/2">
+        <ScrollArea className="my-3 h-[250px] rounded-md xl:h-[450px]">
           <MapDescriptions descriptions={contents.content.description} />
         </ScrollArea>
       </CardContent>
@@ -140,7 +136,7 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="col-span-1 mx-12 flex flex-col gap-3 text-center">
+    <div className="xl:col-span-1 my-3 flex flex-col gap-4 text-center w-full md:my-0">
       <CardTitle className="text-lg">{title}</CardTitle>
       <Carousel
         opts={{ loop: true }}
@@ -153,7 +149,7 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="basis-1/3">
+                <CarouselItem key={`${publication.id}-${index}`} className="basis-5/6 md:basis-1/3">
                   <ContentCardComponent
                     content={publication}
                     index={index}
@@ -174,3 +170,19 @@ const CarrouselComponent = ({
     </div>
   );
 };
+
+function CardWithScroll({
+  children,
+  clasName,
+  clasNameScroll,
+}: {
+  clasName?: string;
+  clasNameScroll?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Card className={cn('py-3 lg:w-2/4', clasName)}>
+      <ScrollArea className={cn('h-[350px] rounded-md md:h-[680px] xl:h-[450px]', clasNameScroll)}>{children}</ScrollArea>
+    </Card>
+  );
+}

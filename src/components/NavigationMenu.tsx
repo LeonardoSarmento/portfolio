@@ -17,8 +17,8 @@ import { SelectLanguage } from './SelectLanguage';
 export function NavigationMenuGroup() {
   const menuContent = MENUCONTENT();
   return (
-    <div className="m-5 flex items-center justify-between gap-4 sm:grid sm:grid-cols-12 sm:justify-end">
-      <NavigationMenu className="col-span-10 justify-self-end text-center">
+    <div className="m-5 flex flex-col-reverse items-center justify-center gap-4 md:flex-row md:justify-end">
+      <NavigationMenu className="flex justify-self-end text-center">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2 sm:px-8">{menuContent.about.title}</NavigationMenuTrigger>
@@ -77,7 +77,7 @@ export function NavigationMenuGroup() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="col-span-2 flex justify-between">
+      <div className="flex min-w-full justify-evenly md:justify-between md:min-w-fit md:w-[220px]">
         <UserToggle />
         <SelectLanguage />
         <ModeToggle />
