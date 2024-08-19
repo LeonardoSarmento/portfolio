@@ -2,9 +2,11 @@ import { Button } from '@components/ui/button';
 import { Input } from '@components/ui/input';
 import { Label } from '@components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@components/ui/popover';
+import { TOASTMESSAGESCONTENT } from '@constants/by-id-content';
 import { TByIdComponent } from '@services/types/constants/by-id';
 import { CopyToClipboardRoute } from '@services/utils/utils';
 import { CopyIcon, Share2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function PopoverShareComponent({
   url,
@@ -13,6 +15,12 @@ export function PopoverShareComponent({
   url: string;
   shareComponent: TByIdComponent['shareComponent'];
 }) {
+  const toastMessages = TOASTMESSAGESCONTENT();
+  const { t } = useTranslation('byIdContent');
+  toastMessages.share.success.description = t('toastMessage.share.success.description', {
+    url: url,
+    interpolation: { escapeValue: false },
+  });
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -33,7 +41,12 @@ export function PopoverShareComponent({
             </Label>
             <Input id="link" defaultValue={url} readOnly className="h-9" />
           </div>
-          <Button type="button" size="sm" className="px-3" onClick={() => CopyToClipboardRoute(url)}>
+          <Button
+            type="button"
+            size="sm"
+            className="px-3"
+            onClick={() => CopyToClipboardRoute({ url, messages: toastMessages.share })}
+          >
             <span className="sr-only">{shareComponent.card.buttonAlt}</span>
             <CopyIcon className="h-4 w-4" />
           </Button>

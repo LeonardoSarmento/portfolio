@@ -23,6 +23,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Link, RouterState, useRouterState } from '@tanstack/react-router';
 import { ChevronDownIcon } from '@radix-ui/react-icons';
 import { ScrollArea } from './ui/scroll-area';
+import { useTranslation } from 'react-i18next';
+import breadcrumbContent from '../i18n/pt-BR/breadcrumbs.json';
 
 type RouteT = { to: string; title: string };
 type currentFolderT = { title: string };
@@ -58,23 +60,20 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
     );
     // console.log(id);
     // console.log(filtredOption);
+    const { t } = useTranslation('breadcrumbs');
 
     return (
       <Breadcrumb ref={ref} className={className} {...props}>
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link to={initial ? initial.to : '/'} >
-                {initial ? initial.title : 'Home'}
-              </Link>
+              <Link to={initial ? initial.to : '/'}>{initial ? initial.title : t('home')}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
-              <Link to={FolderId} >
-                {currentFolder.title}
-              </Link>
+              <Link to={FolderId}>{t(currentFolder.title as keyof typeof breadcrumbContent)}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           {options ? (
@@ -83,8 +82,8 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
-                    <Link to={routeId} params={{ postId: options[0].to }} >
-                      {options[0].title}
+                    <Link to={routeId} params={{ postId: options[0].to }}>
+                      {options[0].to}
                     </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
@@ -96,7 +95,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                   {isDesktop ? (
                     <DropdownMenu open={open} onOpenChange={setOpen}>
                       <DropdownMenuTrigger className="flex items-center gap-1">
-                        {filtredOption ? filtredOption.title : 'Wrong URL'}
+                        {filtredOption ? filtredOption.title : t('wrongUrl')}
                         <ChevronDownIcon />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start">
@@ -104,15 +103,19 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                           {options
                             .filter((_, index) => index <= 10)
                             .map(({ to, title }, index) => (
-                              <BreadcrumbLink key={`desktop-breadcrumbs-${index}-${to}`} asChild onClick={(e) => e.stopPropagation()}>
-                                <Link to={routeId} params={{ postId: to, projectId: to }} >
+                              <BreadcrumbLink
+                                key={`desktop-breadcrumbs-${index}-${to}`}
+                                asChild
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Link to={routeId} params={{ postId: to, projectId: to }}>
                                   <DropdownMenuItem>{title}</DropdownMenuItem>
                                 </Link>
                               </BreadcrumbLink>
                             ))}
                           <BreadcrumbLink key={routeId} asChild onClick={(e) => e.stopPropagation()}>
-                            <Link to={FolderId} >
-                              <DropdownMenuItem>Ver Todos</DropdownMenuItem>
+                            <Link to={FolderId}>
+                              <DropdownMenuItem>{t('seeAll')}</DropdownMenuItem>
                             </Link>
                           </BreadcrumbLink>
                         </ScrollArea>
@@ -121,20 +124,24 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                   ) : (
                     <Drawer open={open} onOpenChange={setOpen}>
                       <DrawerTrigger aria-label="Toggle Menu">
-                        {filtredOption ? filtredOption.title : 'Wrong URL'}
+                        {filtredOption ? filtredOption.title : t('wrongUrl')}
                         <ChevronDownIcon />
                       </DrawerTrigger>
                       <DrawerContent>
                         <DrawerHeader className="text-left">
-                          <DrawerTitle>Navigate to</DrawerTitle>
-                          <DrawerDescription>Select a page to navigate to.</DrawerDescription>
+                          <DrawerTitle>{t('title')}</DrawerTitle>
+                          <DrawerDescription>{t('description')}</DrawerDescription>
                         </DrawerHeader>
                         <div className="grid gap-1 px-4">
                           <ScrollArea className="h-96 rounded-md">
                             {options
                               .filter((_, index) => index <= 10)
                               .map(({ to, title }, index) => (
-                                <BreadcrumbLink key={`mobile-breadcrumbs-${index}-${to}`} asChild onClick={(e) => e.stopPropagation()}>
+                                <BreadcrumbLink
+                                  key={`mobile-breadcrumbs-${index}-${to}`}
+                                  asChild
+                                  onClick={(e) => e.stopPropagation()}
+                                >
                                   <Link to={routeId} params={{ postId: to, projectId: to }} className="py-1 text-sm">
                                     {title}
                                   </Link>
@@ -142,14 +149,14 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                               ))}
                             <BreadcrumbLink key={routeId} asChild onClick={(e) => e.stopPropagation()}>
                               <Link to={FolderId}>
-                                <DropdownMenuItem>Ver Todos</DropdownMenuItem>
+                                <DropdownMenuItem>{t('seeAll')}</DropdownMenuItem>
                               </Link>
                             </BreadcrumbLink>
                           </ScrollArea>
                         </div>
                         <DrawerFooter className="pt-4">
                           <DrawerClose asChild>
-                            <Button variant="outline">Close</Button>
+                            <Button variant="outline">{t('button')}</Button>
                           </DrawerClose>
                         </DrawerFooter>
                       </DrawerContent>

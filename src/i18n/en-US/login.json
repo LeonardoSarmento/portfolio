@@ -37,7 +37,7 @@
     "button": "Save changes"
   },
   "toastMessage": {
-    "sucess": {
+    "success": {
       "description": "Please {{username}}, don't check with your bank :)",
       "title": "Purchase of {{val, currency(USD)}} successfully approved!"
     },

@@ -18,7 +18,7 @@ export function RenderAllContents({
       {contents.length > 0
         ? contents.map((content, index) => (
             <ContentCardComponent
-              key={content.id}
+              key={`${content.id}-${index}`}
               content={content}
               index={index}
               path={path}

@@ -8,8 +8,9 @@ import { HeaderContentComponent } from '@components/ContentByIdComponent';
 
 export const Route = createFileRoute('/posts/$postId')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
-  errorComponent: PostErrorComponent as any,
+  // errorComponent: PostErrorComponent as any,
   component: PostComponent,
+  
 });
 
 export function PostErrorComponent({ error }: ErrorComponentProps) {

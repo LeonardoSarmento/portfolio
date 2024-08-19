@@ -3,7 +3,7 @@ import { Form } from '@components/ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
-import { HEADERCARDCREATEPROJECTCONTENT, MANAGEMARKDOWNCREATECONTENT } from '@constants/by-id-content';
+import { HEADERCARDCREATEPROJECTCONTENT, MANAGEMARKDOWNCREATECONTENT, TOASTMESSAGESCONTENT } from '@constants/by-id-content';
 import { HeaderThumbnailComponent, HeaderFormComponent, ManageMarkdownComponent } from '@components/ContentComponents';
 import { SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
@@ -18,6 +18,8 @@ export const Route = createFileRoute('/_auth/projects/create')({
 function CreateProjectComponent() {
   const headerCardCreateProjectContent = HEADERCARDCREATEPROJECTCONTENT();
   const menageMarkdownCreateContent = MANAGEMARKDOWNCREATECONTENT();
+  const toastMessages = TOASTMESSAGESCONTENT();
+
   const auth = useAuth();
   const form = useForm<CreatePublicationType>({
     resolver: zodResolver(CreatePublicationSchema),
@@ -28,7 +30,7 @@ function CreateProjectComponent() {
   });
 
   const onSubmit = form.handleSubmit(() => {
-    SubmitContent({ isAuthenticated: auth.isAuthenticated });
+    SubmitContent({ isAuthenticated: auth.isAuthenticated, messages: toastMessages });
   });
 
   function handleReset() {

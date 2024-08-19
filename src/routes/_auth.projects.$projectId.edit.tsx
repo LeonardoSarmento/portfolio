@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { projectQueryOptions } from '@services/hooks/postQueryOptions';
-import { HEADERCARDPROJECTCONTENT, MANAGEMARKDOWNCONTENT } from '@constants/by-id-content';
+import { HEADERCARDPROJECTCONTENT, MANAGEMARKDOWNCONTENT, TOASTMESSAGESCONTENT } from '@constants/by-id-content';
 import { HeaderThumbnailComponent, HeaderFormComponent, ManageMarkdownComponent } from '@components/ContentComponents';
 import { handleDeleteContent, SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
@@ -19,6 +19,7 @@ export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
 function EditPostsComponent() {
   const headerCardProjectContent = HEADERCARDPROJECTCONTENT();
   const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
+  const toastMessages = TOASTMESSAGESCONTENT();
 
   const auth = useAuth();
   const project = Route.useLoaderData();
@@ -29,7 +30,7 @@ function EditPostsComponent() {
   });
 
   const onSubmit = form.handleSubmit(() => {
-    SubmitContent({ isAuthenticated: auth.isAuthenticated });
+    SubmitContent({ isAuthenticated: auth.isAuthenticated, messages: toastMessages });
   });
 
   return (
@@ -43,7 +44,7 @@ function EditPostsComponent() {
             <HeaderThumbnailComponent form={form} textContent={headerCardProjectContent.thumbnail} />
             <HeaderFormComponent
               form={form}
-              onClick={handleDeleteContent}
+              onClick={() => handleDeleteContent({ messages: toastMessages })}
               textContent={headerCardProjectContent.form}
             />
           </Card>

@@ -48,9 +48,9 @@ export const TOASTMESSAGESCONTENT: () => toastMessages = () => {
       description: t('toastMessage.delete.description', { ns: 'byIdContent', returnObjects: true }),
       title: t('toastMessage.delete.title', { ns: 'byIdContent', returnObjects: true }),
     },
-    sucess: {
-      description: t('toastMessage.sucess.description', { ns: 'byIdContent', returnObjects: true }),
-      title: t('toastMessage.sucess.title', { ns: 'byIdContent', returnObjects: true }),
+    success: {
+      description: t('toastMessage.success.description', { ns: 'byIdContent', returnObjects: true }),
+      title: t('toastMessage.success.title', { ns: 'byIdContent', returnObjects: true }),
     },
     error: {
       description: t('toastMessage.error.description', { ns: 'byIdContent', returnObjects: true }),
@@ -59,6 +59,16 @@ export const TOASTMESSAGESCONTENT: () => toastMessages = () => {
     noAuth: {
       description: t('toastMessage.noAuth.description', { ns: 'byIdContent', returnObjects: true }),
       title: t('toastMessage.noAuth.title', { ns: 'byIdContent', returnObjects: true }),
+    },
+    share: {
+      success: {
+        description: t('toastMessage.share.success.description', { ns: 'byIdContent', returnObjects: true }),
+        title: t('toastMessage.share.success.title', { ns: 'byIdContent', returnObjects: true }),
+      },
+      error: {
+        description: t('toastMessage.share.error.description', { ns: 'byIdContent', returnObjects: true }),
+        title: t('toastMessage.share.error.title', { ns: 'byIdContent', returnObjects: true }),
+      },
     },
   };
 };

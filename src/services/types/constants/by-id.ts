@@ -16,9 +16,10 @@ export type THeaderFormContent = {
 };
 export type toastMessages = {
   error: toastMessageContent;
-  sucess: toastMessageContent;
+  success: toastMessageContent;
   delete: toastMessageContent;
   noAuth: toastMessageContent;
+  share: { success: toastMessageContent; error: toastMessageContent };
 };
 export type toastMessageContent = { title: string; description: string };
 export type THeaderCardContent = {

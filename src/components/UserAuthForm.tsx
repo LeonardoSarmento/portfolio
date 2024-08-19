@@ -34,8 +34,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
     auth.login(values).then(() => router.invalidate());
     dispatch(setLoggedInPressed(true));
-    toast.success(t('toastMessage.sucess.title', { val: getRandomNumberWithDecimals() }), {
-      description: t('toastMessage.sucess.description', { username: values.username }),
+    toast.success(t('toastMessage.success.title', { val: getRandomNumberWithDecimals() }), {
+      description: t('toastMessage.success.description', { username: values.username }),
     });
   });
 

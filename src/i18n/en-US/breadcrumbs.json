@@ -1,0 +1,10 @@
+{
+  "home": "Home",
+  "posts": "Posts",
+  "projects": "Projects",
+  "seeAll": "See All",
+  "wrongUrl": "invalid URL",
+  "title": "Navigate to",
+  "description": "Select a page to navigate to.",
+  "button": "Close"
+}

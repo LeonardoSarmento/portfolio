@@ -8,6 +8,9 @@ import introduction from './introduction.json';
 import login from './login.json';
 import menuNavigation from './menu-navigation.json';
 import errorsMessageSchema from './errorsMessageSchema.json';
+import breadcrumbs from './breadcrumbs.json';
+import errorComponent from './errorComponent.json';
+import notFoundComponent from './notFoundComponent.json';
 
 const resources_en_US = {
   byIdContent,
@@ -19,7 +22,10 @@ const resources_en_US = {
   introduction,
   login,
   menuNavigation,
-  errorsMessageSchema
+  errorsMessageSchema,
+  breadcrumbs,
+  errorComponent,
+  notFoundComponent
 };
 
 export default resources_en_US;

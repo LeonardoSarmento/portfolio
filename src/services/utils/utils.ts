@@ -1,5 +1,6 @@
 import { copyToClipboard } from '@components/CodeCopyButton';
 import { ALLOWED_TYPES, AllowedTypes } from '@services/types/AllowedFiles';
+import { toastMessages } from '@services/types/constants/by-id';
 import { EditPublicationType } from '@services/types/Publication';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -27,10 +28,10 @@ export function getRandomNumberWithDecimals(min = 0, max = 20000): number {
   return withDecimals + min;
 }
 
-export function CopyToClipboardRoute(url: string) {
+export function CopyToClipboardRoute({ url, messages }: { url: string; messages: toastMessages['share'] }) {
   try {
     copyToClipboard(url);
-    toast.success('Link salvo no ctrl+v patrão', { description: `Pediu tá feito, ${url} tá na mão` });
+    toast.success(messages.success.title, { description: messages.success.description });
   } catch (error) {
     toast.error('Não foi possível copiar o link', { description: 'Sinto mt falhei fui mlk :(' });
   }

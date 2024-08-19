@@ -18,7 +18,7 @@
   },
   "toastMessage": {
     "delete": { "description": "Deixa isso pra uma outra hora", "title": "Sem deletar coisa por aqui malandro" },
-    "sucess": {
+    "success": {
       "description": "Não tem como criar um post ainda mas quem sabe um dia...",
       "title": "Ehh mentira!! Te enganei kkkk"
     },
@@ -26,6 +26,16 @@
     "noAuth": {
       "description": "Você não deveria ter acesso aqui... tô de olho em você ein",
       "title": "Você não está autenticado cara :("
+    },
+    "share": {
+      "success": {
+        "description": "Pediu tá feito, {{url}} tá na mão",
+        "title": "Link salvo no ctrl+v patrão"
+      },
+      "error": {
+        "description": "Sinto mt falhei fui mlk :(",
+        "title": "Não foi possível copiar o link"
+      }
     }
   },
   "headerCardPost": {

@@ -29,6 +29,16 @@
     "noAuth": {
       "description": "You shouldn't have access here... I'm watching you",
       "title": "You are not authenticated dude :("
+    },
+    "share": {
+      "success": {
+        "description": "Requested, it's done, {{url}} is ready",
+        "title": "Link saved to clipboard, boss"
+      },
+      "error": {
+        "description": "Sorry, I failed, I messed up :(",
+        "title": "Couldn't copy the link"
+      }
     }
   },
   "headerCardPost": {
@@ -47,7 +57,7 @@
   },
   "headerCardCreate": {
     "form": {
-      "buttons": { "goBack": "Go Back", "destructive": "Delete All", "save": "Create" }
+      "buttons": { "goBack": "Go Back", "destructive": "Reset All", "save": "Create" }
     }
   },
   "headerCardProject": {

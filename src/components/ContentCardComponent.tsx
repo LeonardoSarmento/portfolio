@@ -19,6 +19,8 @@ import { DROPDOWNMENUCONTENT } from '@constants/dropdown-share';
 import { handleDeleteContent } from '@services/utils/toasts';
 import { cn } from '@lib/utils';
 import { PublicationType } from '@services/types/Publication';
+import { TOASTMESSAGESCONTENT } from '@constants/by-id-content';
+import { useTranslation } from 'react-i18next';
 
 type TBaseContentCard = {
   content: PublicationType;
@@ -89,6 +91,12 @@ function DropdownMenuComponent({
 }) {
   const auth = useAuth();
   const dropdownMenuContent = DROPDOWNMENUCONTENT();
+  const toastMessages = TOASTMESSAGESCONTENT();
+  const { t } = useTranslation('byIdContent');
+  toastMessages.share.success.description = t('toastMessage.share.success.description', {
+    url: URL + id,
+    interpolation: { escapeValue: false },
+  });
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -102,7 +110,7 @@ function DropdownMenuComponent({
         <DropdownMenuGroup>
           <DropdownMenuItem
             onClick={(e) => {
-              e.stopPropagation(), CopyToClipboardRoute(`${URL}/${id}`);
+              e.stopPropagation(), CopyToClipboardRoute({ url: URL + id, messages: toastMessages.share });
             }}
           >
             {dropdownMenuContent.share}
@@ -119,7 +127,7 @@ function DropdownMenuComponent({
               )}
               <DropdownMenuItem
                 onClick={(e) => {
-                  e.stopPropagation(), handleDeleteContent();
+                  e.stopPropagation(), handleDeleteContent({ messages: toastMessages });
                 }}
               >
                 {dropdownMenuContent.delete}

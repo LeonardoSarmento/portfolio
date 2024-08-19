@@ -1,23 +1,23 @@
-import { TOASTMESSAGESCONTENT } from '@constants/by-id-content';
+import { toastMessages } from '@services/types/constants/by-id';
 import { Angry } from 'lucide-react';
 import { toast } from 'sonner';
 
-export function SubmitContent({ isAuthenticated }: { isAuthenticated: boolean }) {
+export function SubmitContent({ isAuthenticated, messages }: { isAuthenticated: boolean; messages: toastMessages }) {
   if (!isAuthenticated) {
-    toast.error(TOASTMESSAGESCONTENT().noAuth.title, {
-      description: TOASTMESSAGESCONTENT().noAuth.description,
+    toast.error(messages.noAuth.title, {
+      description: messages.noAuth.description,
     });
     return;
   }
-  toast.success(TOASTMESSAGESCONTENT().sucess.title, {
-    description: TOASTMESSAGESCONTENT().sucess.description,
+  toast.success(messages.success.title, {
+    description: messages.success.description,
   });
 }
 
-export function handleDeleteContent() {
-  toast.error(TOASTMESSAGESCONTENT().delete.title, {
+export function handleDeleteContent({ messages }: { messages: toastMessages }) {
+  toast.error(messages.delete.title, {
     icon: <Angry />,
-    description: TOASTMESSAGESCONTENT().delete.description,
+    description: messages.delete.description,
     classNames: {
       title: 'ml-2',
       description: 'ml-2',

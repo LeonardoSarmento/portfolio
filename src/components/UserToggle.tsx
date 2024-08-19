@@ -49,8 +49,8 @@ export function UserToggle({ ...props }: UserToggleBtn) {
       return;
     }
     auth.login(values);
-    toast.success(t('toastMessage.sucess.title', { val: getRandomNumberWithDecimals() }), {
-      description: t('toastMessage.sucess.description', { username: values.username }),
+    toast.success(t('toastMessage.success.title', { val: getRandomNumberWithDecimals() }), {
+      description: t('toastMessage.success.description', { username: values.username }),
     });
     dispatch(setLoggedInPressed(true));
     setOpen(false);

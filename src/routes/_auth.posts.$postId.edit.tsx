@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createFileRoute } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { postQueryOptions } from '@services/hooks/postQueryOptions';
-import { HEADERCARDPOSTCONTENT, MANAGEMARKDOWNCONTENT } from '@constants/by-id-content';
+import { HEADERCARDPOSTCONTENT, MANAGEMARKDOWNCONTENT, TOASTMESSAGESCONTENT } from '@constants/by-id-content';
 import { HeaderFormComponent, HeaderThumbnailComponent, ManageMarkdownComponent } from '@components/ContentComponents';
 import { handleDeleteContent, SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
@@ -18,6 +18,7 @@ export const Route = createFileRoute('/_auth/posts/$postId/edit')({
 function EditPostsComponent() {
   const headerCardPostContent = HEADERCARDPOSTCONTENT();
   const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
+  const toastMessages = TOASTMESSAGESCONTENT();
   const auth = useAuth();
 
   const post = Route.useLoaderData();
@@ -28,7 +29,7 @@ function EditPostsComponent() {
   });
 
   const onSubmit = form.handleSubmit(() => {
-    SubmitContent({ isAuthenticated: auth.isAuthenticated });
+    SubmitContent({ isAuthenticated: auth.isAuthenticated, messages: toastMessages });
   });
 
   return (
@@ -40,7 +41,11 @@ function EditPostsComponent() {
               {form.getValues('title') ? form.watch('title') : headerCardPostContent.title}
             </CardTitle>
             <HeaderThumbnailComponent form={form} textContent={headerCardPostContent.thumbnail} />
-            <HeaderFormComponent form={form} onClick={handleDeleteContent} textContent={headerCardPostContent.form} />
+            <HeaderFormComponent
+              form={form}
+              onClick={() => handleDeleteContent({ messages: toastMessages })}
+              textContent={headerCardPostContent.form}
+            />
           </Card>
           <ManageMarkdownComponent form={form} path="body" contentText={menageMarkdownContent} />
         </div>

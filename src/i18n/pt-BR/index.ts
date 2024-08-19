@@ -8,6 +8,9 @@ import introduction from './introduction.json';
 import login from './login.json';
 import menuNavigation from './menu-navigation.json';
 import errorsMessageSchema from './errorsMessageSchema.json';
+import breadcrumbs from './breadcrumbs.json';
+import errorComponent from './errorComponent.json';
+import notFoundComponent from './notFoundComponent.json';
 
 const resources_pt_BR = {
   byIdContent,
@@ -20,6 +23,9 @@ const resources_pt_BR = {
   login,
   menuNavigation,
   errorsMessageSchema,
+  breadcrumbs,
+  errorComponent,
+  notFoundComponent
 };
 
 export default resources_pt_BR;
