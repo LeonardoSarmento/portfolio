@@ -17,34 +17,35 @@ export const Route = createFileRoute('/experience')({
 });
 
 function Experience() {
+  const experienceContent = EXPERIENCECONTENT();
   return (
     <div className="flex gap-4 px-16">
       <Meteors number={100} />
       <Card>
         <CardHeader>
-          <CardTitle className="text-center">{EXPERIENCECONTENT.experience.title}</CardTitle>
-          <MapDescriptions descriptions={EXPERIENCECONTENT.experience.description} />
+          <CardTitle className="text-center">{experienceContent.experience.title}</CardTitle>
+          <MapDescriptions descriptions={experienceContent.experience.description} />
         </CardHeader>
         <Separator />
-        <ExperienceComponent contents={EXPERIENCECONTENT.experience.stack} />
+        <ExperienceComponent contents={experienceContent.experience.stack} />
       </Card>
       <div>
         <div>
           <CardHeader className="text-center">
-            <CardTitle>{EXPERIENCECONTENT.education.title}</CardTitle>
-            <MapDescriptions descriptions={EXPERIENCECONTENT.education.description} />
+            <CardTitle>{experienceContent.education.title}</CardTitle>
+            <MapDescriptions descriptions={experienceContent.education.description} />
           </CardHeader>
           <CardContent>
-            <TabsComponent contents={EXPERIENCECONTENT.education.stack} />
+            <TabsComponent contents={experienceContent.education.stack} />
           </CardContent>
         </div>
         <div>
           <CardHeader className="text-center">
-            <CardTitle>{EXPERIENCECONTENT.professional.title}</CardTitle>
-            <MapDescriptions descriptions={EXPERIENCECONTENT.professional.description} />
+            <CardTitle>{experienceContent.professional.title}</CardTitle>
+            <MapDescriptions descriptions={experienceContent.professional.description} />
           </CardHeader>
           <CardContent>
-            <TabsComponent contents={EXPERIENCECONTENT.professional.stack} />
+            <TabsComponent contents={experienceContent.professional.stack} />
           </CardContent>
         </div>
       </div>

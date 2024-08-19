@@ -1,0 +1,98 @@
+{
+  "tabsLogin": [
+    {
+      "title": "Login",
+      "header": { "description": "Enter your name and password below", "title": "Access your account" }
+    },
+    {
+      "title": "Create",
+      "header": {
+        "description": "Create your account to use all the amazing features of this portfolio site",
+        "title": "Create your account"
+      }
+    }
+  ],
+  "termsOfService": {
+    "start": "By clicking access, you agree to all the",
+    "terms": "Terms of Service",
+    "middle": "and",
+    "policy": "Purchase and Privacy Policies",
+    "end": "."
+  },
+  "dialog": {
+    "triggerButton": "Edit Profile",
+    "title": "Edit Profile",
+    "description": "Make changes to your profile here. Click save when you're done.",
+    "drawerClose": "Cancel"
+  },
+  "profileForm": {
+    "email": {
+      "label": "Email",
+      "id": "email"
+    },
+    "username": {
+      "label": "username",
+      "id": "username"
+    },
+    "button": "Save changes"
+  },
+  "toastMessage": {
+    "sucess": {
+      "description": "Please {{username}}, don't check with your bank :)",
+      "title": "Purchase of {{val, currency(USD)}} successfully approved!"
+    },
+    "error": {
+      "description": "Increase your credit card limit just to be sure",
+      "title": "You lied to me, man :("
+    }
+  },
+  "userAuthForm": {
+    "username": {
+      "label": "Tell me your name, buddy",
+      "placeholder": "Put it here",
+      "description": "Just to test something quickly"
+    },
+    "password": {
+      "label": "Secret code",
+      "placeholder": "CVV",
+      "description": "#TrustTheProcess"
+    },
+    "button": {
+      "label": "Access"
+    }
+  },
+  "loggedIn": {
+    "header": {
+      "title": "Name on the back of the card",
+      "description": "Your account is in the name of:"
+    },
+    "username": {
+      "label": "username",
+      "id": "username"
+    },
+    "buttons": {
+      "logout": "Log out",
+      "hide": "Hide"
+    }
+  },
+  "loginForm": {
+    "header": {
+      "title": "Welcome, my name is Severino",
+      "description": "Face badge face badge face badge"
+    },
+    "username": {
+      "label": "Tell me your name, buddy",
+      "placeholder": "Put it here",
+      "description": "Just to test something quickly"
+    },
+    "password": {
+      "label": "Secret code",
+      "placeholder": "CVV",
+      "description": "#TrustMe"
+    },
+    "button": {
+      "submit": "Confirm",
+      "giveUp": "I give up"
+    }
+  }
+}

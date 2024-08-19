@@ -1,0 +1,13 @@
+{
+  "publication_title_required_error": "How do you expect people to read if you don't even put a title??",
+  "publication_title_min": "Empty title doesn't count, buddy",
+  "publication_description_required_error": "Without a description, it's hard for others to understand you",
+  "publication_description_min": "Make an effort to write a little description, please help us out",
+  "publication_body_required_error": "What?? I thought you were here to share all your knowledge, write something",
+  "publication_body_min": "You need to write more than that, stop being lazy...",
+  "publication_file_required_error": "File is mandatory, my friend.",
+  "login_username_required_error": "This field is required, buddy",
+  "login_password_required_error": "I need it to test here on the machine",
+  "login_password_min": "It's missing some numbers, friend",
+  "login_password_max": "Whoa buddy, this isn't German, why so many letters"
+}

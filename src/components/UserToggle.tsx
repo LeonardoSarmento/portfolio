@@ -25,12 +25,14 @@ import { ToggleProps } from '@radix-ui/react-toggle';
 import { useRouter } from '@tanstack/react-router';
 import { useAppDispatch, useAppSelector } from '@services/state/store';
 import { setLoggedInPressed } from '@services/state/slice';
+import { useTranslation } from 'react-i18next';
 
 type UserToggleBtn = ToggleProps & React.RefAttributes<HTMLButtonElement>;
 
 export function UserToggle({ ...props }: UserToggleBtn) {
   const auth = useAuth();
   const router = useRouter();
+  const { t } = useTranslation('login');
   const dispatch = useAppDispatch();
   const pressed = useAppSelector((select) => select.user.loggedInPressed);
   const [open, setOpen] = useState<boolean>(false);
@@ -41,14 +43,14 @@ export function UserToggle({ ...props }: UserToggleBtn) {
 
   const onSubmit = form.handleSubmit((values) => {
     if (values.username !== import.meta.env.VITE_USER_USERNAME && values.password !== import.meta.env.VITE_USER_CODE) {
-      toast.error('Você mentiu pra mim cara :(', {
-        description: 'Aumenta o limite do seu cartão de crédito ai só pra garantir',
+      toast.error(t('toastMessage.error.title'), {
+        description: t('toastMessage.error.description'),
       });
       return;
     }
     auth.login(values);
-    toast.success(`Compra de R$ ${getRandomNumberWithDecimals()} aprovada com sucesso!`, {
-      description: `Por favor ${values.username}, não verifique com seu banco :)`,
+    toast.success(t('toastMessage.sucess.title', { val: getRandomNumberWithDecimals() }), {
+      description: t('toastMessage.sucess.description', { username: values.username }),
     });
     dispatch(setLoggedInPressed(true));
     setOpen(false);
@@ -65,11 +67,7 @@ export function UserToggle({ ...props }: UserToggleBtn) {
     <Dialog open={open} onOpenChange={setOpen}>
       <Toggle {...props} asChild aria-label="Toggle italic" pressed={pressed}>
         <DialogTrigger className="transition-all duration-300 hover:scale-125">
-          {auth.isAuthenticated ? (
-            <Skull size={20} />
-          ) : (
-            <ScanFace size={20} />
-          )}
+          {auth.isAuthenticated ? <Skull size={20} /> : <ScanFace size={20} />}
         </DialogTrigger>
       </Toggle>
       <DialogContent className="sm:max-w-md">
@@ -84,29 +82,30 @@ export function UserToggle({ ...props }: UserToggleBtn) {
 }
 
 function LoggedIn({ user, OnClick }: { user: string; OnClick(): void }) {
+  const { t } = useTranslation('login');
   return (
     <>
       <DialogHeader>
-        <DialogTitle>Nome no verso do cartão</DialogTitle>
-        <DialogDescription>Sua conta está no nome de:</DialogDescription>
+        <DialogTitle>{t('loggedIn.header.title')}</DialogTitle>
+        <DialogDescription>{t('loggedIn.header.description')}</DialogDescription>
       </DialogHeader>
       <div className="flex items-center space-x-2">
         <div className="grid flex-1 gap-2">
-          <Label htmlFor="username" className="sr-only">
-            username
+          <Label htmlFor={t('loggedIn.username.id')} className="sr-only">
+            {t('loggedIn.username.label')}
           </Label>
-          <Input id="username" placeholder={user} readOnly />
+          <Input id={t('loggedIn.username.id')} placeholder={user} readOnly />
         </div>
       </div>
       <DialogFooter className="sm:justify-start">
         <DialogClose asChild>
           <Button type="button" onClick={OnClick}>
-            Sair da conta
+            {t('loggedIn.buttons.logout')}
           </Button>
         </DialogClose>
         <DialogClose asChild>
           <Button type="button" variant="secondary">
-            Esconder
+            {t('loggedIn.buttons.hide')}
           </Button>
         </DialogClose>
       </DialogFooter>
@@ -121,11 +120,12 @@ function LoginForm({
   form: UseFormReturn<LoginType>;
   onSubmit: (e?: React.BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>;
 }) {
+  const { t } = useTranslation('login');
   return (
     <Form {...form}>
       <DialogHeader>
-        <DialogTitle>Seja bem vindo, meu nome é Severino</DialogTitle>
-        <DialogDescription>Cara cracha cara cracha cara cracha</DialogDescription>
+        <DialogTitle>{t('loginForm.header.title')}</DialogTitle>
+        <DialogDescription>{t('loginForm.header.description')}</DialogDescription>
       </DialogHeader>
       <form onSubmit={onSubmit} className="space-y-8">
         <FormField
@@ -133,11 +133,11 @@ function LoginForm({
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Diz seu nome ai amigo</FormLabel>
+              <FormLabel>{t('loginForm.username.label')}</FormLabel>
               <FormControl>
-                <Input placeholder="Põe ele aqui" {...field} />
+                <Input placeholder={t('loginForm.username.placeholder')} {...field} />
               </FormControl>
-              <FormDescription>Só pra testar um negócinho aqui rapidinho</FormDescription>
+              <FormDescription>{t('loginForm.username.description')}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -147,20 +147,20 @@ function LoginForm({
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Código secreto</FormLabel>
+              <FormLabel>{t('loginForm.password.label')}</FormLabel>
               <FormControl>
-                <Input placeholder="CVV" type="password" {...field} />
+                <Input placeholder={t('loginForm.password.placeholder')} type="password" {...field} />
               </FormControl>
-              <FormDescription>#Confia</FormDescription>
+              <FormDescription>{t('loginForm.password.description')}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
         <DialogFooter className="sm:justify-start">
-          <Button type="submit">Confirmar</Button>
+          <Button type="submit">{t('loginForm.button.submit')}</Button>
           <DialogClose asChild onClick={() => form.reset()}>
             <Button type="button" variant="secondary">
-              Desisti
+              {t('loginForm.button.giveUp')}
             </Button>
           </DialogClose>
         </DialogFooter>

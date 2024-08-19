@@ -1,16 +1,18 @@
 import { TIntroductionContent } from '@services/types/constants/introduction';
 import { LEO_BARZINHO } from '@services/utils/Images';
+import { useTranslation } from 'react-i18next';
 
-export const INTRODUCTIONCONTENT: TIntroductionContent = {
-  header: { initial: 'Olá, bem vindo ao mundo de', punchline: 'Leonardo.' },
-  image: { src: LEO_BARZINHO, alt: 'Leonardo tomando cerveja e fazendo brinde' },
-  introduction: {
-    h1: (
-      <>
-        Tudo começou no fatídico dia 07 de fevereiro de 1996, uma quarta-feira, em Vitória - ES. <br /> Eu, um bebê,
-        estava fadado a pagar contas no futuro. Portanto, agora que estou velho, apresento a vocês o meu portfólio.
-      </>
-    ),
-    code: 'Sintam-se em casa.',
-  },
+export const INTRODUCTIONCONTENT: () => TIntroductionContent = () => {
+  const { t } = useTranslation();
+  return {
+    header: {
+      initial: t('header.initial', { ns: 'introduction', returnObjects: true }),
+      punchline: t('header.punchline', { ns: 'introduction', returnObjects: true }),
+    },
+    image: { src: LEO_BARZINHO, alt: t('image.alt', { ns: 'introduction', returnObjects: true }) },
+    introduction: {
+      h1: t('introduction.h1', { ns: 'introduction', returnObjects: true }),
+      code: t('introduction.code', { ns: 'introduction', returnObjects: true }),
+    },
+  };
 };

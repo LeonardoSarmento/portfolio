@@ -1,0 +1,79 @@
+{
+  "shareContent": {
+    "button": { "title": "Share" },
+    "card": {
+      "title": "Share with your enemies :)",
+      "description": "Anyone with this link in ctrl+c ctrl+v will become stronger than ever.",
+      "label": "Link",
+      "buttonAlt": "Copy"
+    }
+  },
+  "projectById": {
+    "breadcrumb": { "title": "projects" },
+    "buttons": { "edit": "Edit", "goBack": "Go Back" }
+  },
+  "postById": {
+    "breadcrumb": { "title": "posts" },
+    "buttons": { "edit": "Edit", "goBack": "Go Back" }
+  },
+  "toastMessage": {
+    "delete": { "description": "Leave this for another time", "title": "No deleting stuff here buddy" },
+    "success": {
+      "description": "You can't create a post yet but maybe someday...",
+      "title": "Just kidding!! Fooled you lol"
+    },
+    "error": {
+      "description": "I'll pass it to the intern to fix...",
+      "title": "Oops!! looks like something went wrong"
+    },
+    "noAuth": {
+      "description": "You shouldn't have access here... I'm watching you",
+      "title": "You are not authenticated dude :("
+    }
+  },
+  "headerCardPost": {
+    "title": "Create new post",
+    "thumbnail": { "title": "Thumbnail", "dropMessage": "Drop your file or click here" },
+    "form": {
+      "title": { "label": "Title", "placeholder": "The name of your post" },
+      "description": { "label": "Description", "placeholder": "Describe your post" },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "Select a tag...",
+        "notfound": "This topic was not found."
+      },
+      "buttons": { "goBack": "Go Back", "destructive": "Delete", "save": "Save" }
+    }
+  },
+  "headerCardCreate": {
+    "form": {
+      "buttons": { "goBack": "Go Back", "destructive": "Delete All", "save": "Create" }
+    }
+  },
+  "headerCardProject": {
+    "title": "Create new project",
+    "thumbnail": { "title": "Thumbnail", "dropMessage": "Drop your file or click here" },
+    "form": {
+      "title": { "label": "Title", "placeholder": "The name of your project" },
+      "description": { "label": "Description", "placeholder": "Describe your project" },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "Select a tag...",
+        "notfound": "This topic was not found."
+      },
+      "buttons": { "goBack": "Go Back", "destructive": "Delete", "save": "Save" }
+    }
+  },
+  "manageMarkdown": {
+    "content": {
+      "label": "Content",
+      "placeholder": "Say what's in your heart.",
+      "description": "If you didn't lie here then let's post it"
+    },
+    "preview": { "title": "Preview" },
+    "button": { "text": "Save" }
+  },
+  "menageMarkdownCreate": {
+    "button": { "text": "Create" }
+  }
+}

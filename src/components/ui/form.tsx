@@ -5,6 +5,9 @@ import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useF
 
 import { cn } from '@lib/utils';
 import { Label } from './label';
+import { useTranslation } from 'react-i18next';
+import errorMessages from '../../i18n/pt-BR/errorsMessageSchema.json';
+// import i18n from '../../i18n/config'
 
 const Form = FormProvider;
 
@@ -112,21 +115,22 @@ FormDescription.displayName = 'FormDescription';
 
 const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
   ({ className, children, ...props }, ref) => {
+    const { t } = useTranslation('errorsMessageSchema');
     const { error, formMessageId } = useFormField();
     const body = error ? String(error?.message) : children;
 
     if (!body) {
       return null;
     }
-
     return (
       <p
+        key={String(error?.message)}
         ref={ref}
         id={formMessageId}
         className={cn('text-[0.8rem] font-medium text-destructive', className)}
         {...props}
       >
-        {body}
+        {t(body as keyof typeof errorMessages)}
       </p>
     );
   },

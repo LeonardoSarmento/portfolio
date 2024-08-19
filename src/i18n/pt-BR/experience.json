@@ -1,0 +1,130 @@
+{
+  "experienceStack": [
+    {
+      "title": "Frontend",
+      "description": "Aplicações web feitas com gerenciamento de estados globais, formulários com validação e integração com REST APIs."
+    },
+    {
+      "title": "Mobile",
+      "description": "Aplicações mobile que utilizam a conectividade Bluetooth para coleta de dados. Sempre com mentalidade Offline-first para garantir a persistência de dados."
+    },
+    {
+      "title": "Backend",
+      "description": "Banco de dados e ORM utilizados para persistência de dados da aplicação mobile no celular do usuário."
+    },
+    {
+      "title": "Softskills",
+      "description": "Ao longo dos projetos, tive a oportunidade de desenvolver minha comunicação, empatia, liderança e trabalho em equipe."
+    }
+  ],
+  "tabsEducational": [
+    {
+      "value": "postgraduate",
+      "title": "Pós-graduação",
+      "header": {
+        "avatar": { "avatarFallback": "XP Educação logo" },
+        "title": "XP Educação",
+        "description": "",
+        "content": {
+          "description": ["Pós-graduação, Arquitetura e Soluções de Software", "Nov 2023 - Set 2024"]
+        }
+      },
+      "learnings": {
+        "title": "Aprendizados",
+        "content": {
+          "description": [
+            "Especialização no ciclo de vida de projetos de software, com foco em requisitos, estruturação e gestão de projetos. Ganho de expertise em Arquitetura de Software e Arquitetura de Soluções Baseadas em Nuvem."
+          ]
+        }
+      },
+      "tools": { "title": "Ferramentas" }
+    },
+    {
+      "value": "graduate",
+      "title": "Graduação",
+      "header": {
+        "avatar": { "avatarFallback": "Faculdade UCL logo" },
+        "title": "Faculdade UCL",
+        "description": "Faculdade do Centro Leste",
+        "content": {
+          "description": ["Bacharelado em Engenharia Civil", "Fev 2014 - Ago 2021", "Serra, Espírito Santo, Brasil"]
+        }
+      },
+      "learnings": {
+        "title": "Aprendizados",
+        "content": {
+          "description": [
+            "Desenvolvimento de atividades relacionadas a todas as etapas do teste de resistência à compressão do concreto. Participação na concretagem do local do cliente, realizando o teste de abatimento do concreto.",
+            "Desmoldagem de corpos de prova obtidos durante a concretagem no local do cliente. Identificação e armazenamento dos corpos de prova na câmara úmida.",
+            "Manutenção dos moldes utilizados na concretagem, teste de resistência à compressão do concreto, descarte de corpos de prova quebrados e criação do certificado de teste para cada fatura."
+          ]
+        }
+      },
+      "tools": { "title": "Ferramentas" }
+    }
+  ],
+  "tabsProfessional": [
+    {
+      "value": "IEL",
+      "title": "IEL",
+      "header": {
+        "avatar": { "avatarFallback": "IEL - Bolsista" },
+        "title": "IEL - Bolsista em Desenvolvimento de Software",
+        "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
+        "content": { "description": ["Fev 2024 - Presente", "Vitória, Espírito Santo, Brasil · Híbrido"] }
+      },
+      "learnings": {
+        "title": "Aprendizados",
+        "content": {
+          "description": [
+            "Trabalhando em projetos de desenvolvimento de software, com foco no frontend.",
+            "• Colaborou com uma equipe multifuncional em um ambiente Ágil para entregar com sucesso vários projetos de software no prazo e dentro do orçamento.",
+            "• Participou de chamadas com 4 empresas, ajudando no desenvolvimento de 4 projetos inovadores e garantindo mais de R$300K em financiamento.",
+            "• Desenvolvendo projetos usando React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN e Metodologias Ágeis."
+          ]
+        }
+      },
+      "tools": { "title": "Ferramentas" }
+    },
+    {
+      "value": "FAPES",
+      "title": "FAPES",
+      "header": {
+        "avatar": { "avatarFallback": "FAPES - Bolsista" },
+        "title": "FAPES - Bolsista em Desenvolvimento de Software",
+        "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
+        "content": { "description": ["Fev 2023 - Fev 2024 · 1 ano", "Vitória, Espírito Santo, Brasil · Híbrido"] }
+      },
+      "learnings": {
+        "title": "Aprendizados",
+        "content": {
+          "description": [
+            "Trabalhando em projetos de desenvolvimento de software, com foco no frontend.",
+            "• Colaborou com uma equipe multifuncional em um ambiente Ágil para entregar com sucesso vários projetos de software no prazo e dentro do orçamento.",
+            "• Participou de chamadas com 4 empresas, ajudando no desenvolvimento de 4 projetos inovadores e garantindo mais de R$300K em financiamento.",
+            "• Desenvolvendo projetos usando React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN e Metodologias Ágeis."
+          ]
+        }
+      },
+      "tools": { "title": "Ferramentas" }
+    }
+  ],
+  "experienceContent": {
+    "experience": {
+      "title": "Experiências",
+      "description": [
+        "Ao longo da minha jornada, passei por várias áreas de conhecimento e acumulei algumas experiências profissionais que levo diariamente, tanto no pessoal quanto no profissional.",
+        "Atualmente trabalhando com desenvolvimento de software no ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional. Desenvolvendo ativamente aplicações web e mobile junto a clientes de diversas áreas e localidades.",
+        "Tenho experiência nas seguintes stacks e suas tecnologias:"
+      ]
+    },
+    "education": {
+      "title": "Educação",
+      "description": ["Um breve resumo sobre minhas experiências no campo acadêmico e as tecnologias utilizadas"]
+    },
+    "professional": {
+      "title": "Profissional",
+      "description": ["As etapas profissionais e as experiências acumuladas em cada lugar"]
+    }
+  }
+}

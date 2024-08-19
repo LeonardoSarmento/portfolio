@@ -4,19 +4,15 @@ import { TagSchema } from './Tag';
 export const PublicationSchema = z.object({
   id: z.string(),
   date: z.date(),
-  title: z
-    .string({ required_error: 'Como vc quer que o pessoal leia se nem titulo tu ta colocando??' })
-    .min(1, { message: 'Título vazio não vale amigão' }),
+  title: z.string({ required_error: 'publication_title_required_error' }).min(1, { message: 'publication_title_min' }),
   description: z
-    .string({ required_error: 'Sem descrição fica dificil dos outros te entenderam' })
-    .min(1, { message: 'Faz um esforço de uma descriçãozinha pfv ajuda ai' }),
+    .string({ required_error: 'publication_description_required_error' })
+    .min(1, { message: 'publication_description_min' }),
   tags: z.array(TagSchema).optional(),
-  body: z
-    .string({ required_error: 'Ué?? achei que vc tava aqui pra compartilhar td seu conhecimento, escreve algo ai' })
-    .min(1, { message: 'Vc tem que escrever mais que isso cara, para de preguiça...' }),
+  body: z.string({ required_error: 'publication_body_required_error' }).min(1, { message: 'publication_body_min' }),
   file: z
     .instanceof(File)
-    .refine((file) => (file ? file : null), 'Arquivo é obrigatório meu chapa.')
+    .refine((file) => (file ? file : null), 'publication_file_required_error')
     .nullable(),
   thumbnail: z.string().optional(),
   editable: z.boolean().optional(),

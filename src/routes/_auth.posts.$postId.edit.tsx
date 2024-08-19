@@ -16,6 +16,8 @@ export const Route = createFileRoute('/_auth/posts/$postId/edit')({
 });
 
 function EditPostsComponent() {
+  const headerCardPostContent = HEADERCARDPOSTCONTENT();
+  const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
   const auth = useAuth();
 
   const post = Route.useLoaderData();
@@ -35,12 +37,12 @@ function EditPostsComponent() {
         <div className="mx-10 flex flex-col gap-4">
           <Card className="grid grid-cols-12 p-4 text-center">
             <CardTitle className="col-span-12 py-6 text-3xl">
-              {form.getValues('title') ? form.watch('title') : HEADERCARDPOSTCONTENT.title}
+              {form.getValues('title') ? form.watch('title') : headerCardPostContent.title}
             </CardTitle>
-            <HeaderThumbnailComponent form={form} textContent={HEADERCARDPOSTCONTENT.thumbnail} />
-            <HeaderFormComponent form={form} onClick={handleDeleteContent} textContent={HEADERCARDPOSTCONTENT.form} />
+            <HeaderThumbnailComponent form={form} textContent={headerCardPostContent.thumbnail} />
+            <HeaderFormComponent form={form} onClick={handleDeleteContent} textContent={headerCardPostContent.form} />
           </Card>
-          <ManageMarkdownComponent form={form} path="body" contentText={MANAGEMARKDOWNCONTENT} />
+          <ManageMarkdownComponent form={form} path="body" contentText={menageMarkdownContent} />
         </div>
       </form>
     </Form>

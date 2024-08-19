@@ -1,0 +1,76 @@
+{
+  "shareContent": {
+    "button": { "title": "Compartilhar" },
+    "card": {
+      "title": "Compartilhe com seus inimigos :)",
+      "description": "Qualquer um com esse link em ctrl+c ctrl+v ficará mais forte que nunca.",
+      "label": "Link",
+      "buttonAlt": "Copiar"
+    }
+  },
+  "projectById": {
+    "breadcrumb": { "title": "projects" },
+    "buttons": { "edit": "Editar", "goBack": "Voltar" }
+  },
+  "postById": {
+    "breadcrumb": { "title": "posts" },
+    "buttons": { "edit": "Editar", "goBack": "Voltar" }
+  },
+  "toastMessage": {
+    "delete": { "description": "Deixa isso pra uma outra hora", "title": "Sem deletar coisa por aqui malandro" },
+    "sucess": {
+      "description": "Não tem como criar um post ainda mas quem sabe um dia...",
+      "title": "Ehh mentira!! Te enganei kkkk"
+    },
+    "error": { "description": "Vou passar pro estágiario consertar...", "title": "Vish!! parece que deu ruim" },
+    "noAuth": {
+      "description": "Você não deveria ter acesso aqui... tô de olho em você ein",
+      "title": "Você não está autenticado cara :("
+    }
+  },
+  "headerCardPost": {
+    "title": "Criar novo post",
+    "thumbnail": { "title": "Thumbnail", "dropMessage": "Solte seu arquivo ou clique aqui" },
+    "form": {
+      "title": { "label": "Título", "placeholder": "O nome do seu post" },
+      "description": { "label": "Descrição", "placeholder": "Faça uma descrição da sua postagem" },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "Selecione alguma tag...",
+        "notfound": "Não foi encontrado esse tema."
+      },
+      "buttons": { "goBack": "Voltar", "destructive": "Deletar", "save": "Salvar" }
+    }
+  },
+  "headerCardCreate": {
+    "form": {
+      "buttons": { "goBack": "Voltar", "destructive": "Apagar tudo", "save": "Criar" }
+    }
+  },
+  "headerCardProject": {
+    "title": "Criar novo projeto",
+    "thumbnail": { "title": "Thumbnail", "dropMessage": "Solte seu arquivo ou clique aqui" },
+    "form": {
+      "title": { "label": "Título", "placeholder": "O nome do seu projeto" },
+      "description": { "label": "Descrição", "placeholder": "Faça uma descrição do seu projeto" },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "Selecione alguma tag...",
+        "notfound": "Não foi encontrado esse tema."
+      },
+      "buttons": { "goBack": "Voltar", "destructive": "Deletar", "save": "Salvar" }
+    }
+  },
+  "manageMarkdown": {
+    "content": {
+      "label": "Conteúdo",
+      "placeholder": "Diga oq vc tem guardado no coração.",
+      "description": "Se você não mentiu aqui então bora postar mlk"
+    },
+    "preview": { "title": "Preview" },
+    "button": { "text": "Salvar" }
+  },
+  "menageMarkdownCreate": {
+    "button": { "text": "Criar" }
+  }
+}

@@ -32,7 +32,7 @@ function ProjectComponent() {
         content={project}
         optionsUrl={optionsUrl}
         path={{ to: '/projects/$projectId/edit', params: { projectId: project.id } }}
-        shareComponent={PROJECTBYIDCONTENT}
+        shareComponent={PROJECTBYIDCONTENT()}
         shareComponentURL={URL}
       />
       <MarkdownRenderer markdown={project.body} />

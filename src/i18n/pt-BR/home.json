@@ -1,0 +1,27 @@
+{
+  "aboutMe": {
+    "header": {
+      "alt": "Foto de Leonardo",
+      "title": "Leonardo",
+      "description": "ASWE | Frontend Engineer | React | React Native | TypeScript | Ágil"
+    },
+    "content": {
+      "description": [
+        "Como bolsista de Desenvolvimento de Software dedicado no Instituto SENAI de Tecnologia — Eficiência Operacional, tenho desenvolvido ativamente aplicações web e mobile para diversos clientes.",
+        "Minha expertise está em usar ReactJs, React Native e TypeScript para desenvolvimento frontend e integrar APIs REST com Node.Js no backend, sempre garantindo agilidade no meu trabalho. Em busca de especialização, iniciei estudos de pós-graduação em Arquitetura e Soluções de Software, com foco em entender o ambiente abrangente da Nuvem.",
+        "Atualmente, estou aprimorando minhas habilidades em React Native através de um projeto voltado para profissionais da indústria de saúde e segurança ocupacional. Este projeto envolve a captura de dados via conexão Bluetooth com vários sensores, armazenando-os no aplicativo com uma abordagem offline-first e exibindo os dados através de gráficos em tempo real. As tecnologias que estou usando incluem Expo, React Native, TypeScript, React-native-ble-plx, Redux-toolkit, React Query com Axios, React-hook-form e Zod.",
+        "Além disso, contribuí para um projeto no setor de saúde, onde desenvolvemos um sistema de gestão para empresas analisarem os dados de saúde mental de seus funcionários. Isso envolveu a criação de uma Aplicação Web Progressiva (PWA) para os funcionários gerenciarem seus compromissos, clínicas disponíveis para consultas e formulários de saúde mental. Um site separado também foi desenvolvido para a empresa e clínicas gerenciarem todos os dados, compromissos e formulários de seus funcionários."
+      ]
+    }
+  },
+  "carrouselOptions": [
+    {
+      "buttonTitle": "Ver todas as Postagens",
+      "title": "Postagens"
+    },
+    {
+      "buttonTitle": "Ver todos os Projetos",
+      "title": "Projetos"
+    }
+  ]
+}

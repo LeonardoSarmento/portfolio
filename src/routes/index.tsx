@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { ScrollArea } from '@components/ui/scroll-area';
 import { TABSEDUCATIONAL, TABSPROFESSIONAL } from '@constants/experience-content';
-import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS } from '@constants/index';
+import { ABOUTMECONTENT, CARROUSELPARTIALOPTIONS } from '@constants/home';
 import { cn } from '@lib/utils';
 import { postsQueryOptions } from '@services/hooks/postsQueryOptions';
 import { projectsQueryOptions } from '@services/hooks/projectsQueryOptions';
@@ -30,33 +30,35 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   const { posts, projects } = Route.useLoaderData();
+  const carrouselOptionsContent = CARROUSELPARTIALOPTIONS();
+  const aboutMeContent = ABOUTMECONTENT();
 
   const CARROUSELOPTIONS: TCarrouselComponent[] = useMemo(
     () => [
       {
-        ...CARROUSELPARTIALOPTIONS[0],
+        ...carrouselOptionsContent[0],
         publication: posts,
       },
       {
-        ...CARROUSELPARTIALOPTIONS[1],
+        ...carrouselOptionsContent[1],
         publication: projects,
       },
     ],
-    [posts, projects],
+    [posts, projects, carrouselOptionsContent],
   );
 
   return (
     <div className="mt-3 flex flex-col gap-4 px-16">
       <div className="flex gap-4">
-        <CardAboutMe contents={ABOUTMECONTENT} />
+        <CardAboutMe contents={aboutMeContent} />
         <Card className="w-2/4">
           <ScrollArea className="my-3 h-[450px] rounded-md">
-            <CardExperience contents={TABSEDUCATIONAL} />
+            <CardExperience contents={TABSEDUCATIONAL()} />
           </ScrollArea>
         </Card>
         <Card className="w-2/4">
           <ScrollArea className="my-3 h-[450px] rounded-md">
-            <CardExperience contents={TABSPROFESSIONAL} />
+            <CardExperience contents={TABSPROFESSIONAL()} />
           </ScrollArea>
         </Card>
       </div>

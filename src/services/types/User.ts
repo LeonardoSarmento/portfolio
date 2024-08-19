@@ -2,13 +2,13 @@ import { z } from 'zod';
 
 export const LoginSchema = z.object({
   username: z
-    .string({ required_error: 'O campo é obrigatório amigão' })
+    .string({ required_error: 'login_username_required_error' })
     // .email({ message: 'Verifica ai que tem coisa estranha nesse email ai tá' })
     .trim(),
   password: z
-    .string({ required_error: 'Preciso dele pra testar aqui na maquininha' })
-    .min(3, { message: 'Tá faltando número nisso ai amigo' })
-    .max(14, { message: 'Oloko amigo isso não é alemão não pra que tanta letra' })
+    .string({ required_error: 'login_password_required_error' })
+    .min(3, { message: 'login_password_min' })
+    .max(14, { message: 'login_password_max' })
     .trim(),
 });
 
@@ -22,4 +22,3 @@ export const UserSchema = z.object({
 });
 
 export type UserType = z.infer<typeof UserSchema>;
-

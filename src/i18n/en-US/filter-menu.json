@@ -1,0 +1,27 @@
+{
+    "createButton": { "title": "Create" },
+    "search": { "placeholder": "Search for a title", "buttonText": "Search" },
+    "filter": {
+      "title": "Filters",
+      "theme": { "title": "Themes", "description": "Select which themes you want to read about." },
+      "quantity": {
+        "title": "Quantity",
+        "description": "Select the quantity you want to view.",
+        "placeholder": "Qty"
+      },
+      "buttons": { "filterTitle": "Filter", "clearTitle": "Clear" }
+    },
+    "noContent": {
+      "image": { "alt": "Thumb Up Sad Cat" },
+      "content": {
+        "text": "I couldn't find any posts with this theme. I failed, my bad, okay? :(",
+        "author": "Leonardo Sarmento"
+      },
+      "button": { "description": "Remove the filters and try again: ", "title": "Try again" }
+    },
+    "pagination": {
+      "back": "previous",
+      "foward": "next"
+    }
+  }
+  

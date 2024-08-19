@@ -1,0 +1,26 @@
+{
+  "createButton": { "title": "Criar" },
+  "search": { "placeholder": "Procure por um título", "buttonText": "Procurar" },
+  "filter": {
+    "title": "Filtros",
+    "theme": { "title": "Temas", "description": "Selecione quais temas você quer ler sobre." },
+    "quantity": {
+      "title": "Quantidade",
+      "description": "Selecione a quantidade de você deseja visualizar.",
+      "placeholder": "Qntd"
+    },
+    "buttons": { "filterTitle": "Filtrar", "clearTitle": "Limpar" }
+  },
+  "noContent": {
+    "image": { "alt": "Gatinho triste fazendo joinha" },
+    "content": {
+      "text": "Não encontrei nenhuma postagem com esse tema. falhei, fui mlk blz? :(",
+      "author": "Leonardo Sarmento"
+    },
+    "button": { "description": "Retire os filtros e tente novamente: ", "title": "Tentar novamente" }
+  },
+  "pagination": {
+    "back": "voltar",
+    "foward": "avançar"
+  }
+}

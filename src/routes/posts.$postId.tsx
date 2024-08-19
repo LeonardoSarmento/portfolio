@@ -31,7 +31,7 @@ function PostComponent() {
         content={post}
         optionsUrl={optionsUrl}
         path={{ to: '/posts/$postId/edit', params: { postId: post.id } }}
-        shareComponent={POSTBYIDCONTENT}
+        shareComponent={POSTBYIDCONTENT()}
         shareComponentURL={URL}
       />
       <MarkdownRenderer markdown={post.body} />

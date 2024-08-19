@@ -54,7 +54,7 @@ export const TECH_STACK: TechStackType = {
       url: 'https://github.com/dotintent/react-native-ble-plx',
     },
   ],
-  softskill: [{ title: 'Metodologia Ágil', icon: <FolderClock size={20} />, url: 'https://agilemanifesto.org/' }],
+  softskill: [{ title: 'Agile', icon: <FolderClock size={20} />, url: 'https://agilemanifesto.org/' }],
   education: [
     [
       { title: 'Amazon EC2', icon: <SiAmazonec2 size={20} />, url: 'https://aws.amazon.com/pt/ec2/' },

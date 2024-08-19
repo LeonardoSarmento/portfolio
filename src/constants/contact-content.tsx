@@ -1,5 +1,5 @@
 import { LEO_DIA_D, THUMBSUP } from '@services/utils/Images';
-import { SocialMediaItems } from '.';
+import { SocialMediaItems } from './home';
 import { TContactPage } from '@services/types/constants/contact';
 import { useTranslation } from 'react-i18next';
 

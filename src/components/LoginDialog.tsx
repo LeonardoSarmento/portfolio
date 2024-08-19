@@ -23,21 +23,23 @@ import {
 } from '@components/ui/drawer';
 import { Input } from '@components/ui/input';
 import { Label } from '@components/ui/label';
+import { useTranslation } from 'react-i18next';
 
 export function DrawerDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const { t } = useTranslation('login');
 
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
+          <Button variant="outline">{t('dialog.triggerButton')}</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
+            <DialogTitle>{t('dialog.title')}</DialogTitle>
+            <DialogDescription>{t('dialog.description')}</DialogDescription>
           </DialogHeader>
           <ProfileForm />
         </DialogContent>
@@ -48,17 +50,17 @@ export function DrawerDialogDemo() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="outline">{t('dialog.triggerButton')}</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>Make changes to your profile here. Click save when you're done.</DrawerDescription>
+          <DrawerTitle>{t('dialog.title')}</DrawerTitle>
+          <DrawerDescription>{t('dialog.description')}</DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">{t('dialog.drawerClose')}</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -67,17 +69,22 @@ export function DrawerDialogDemo() {
 }
 
 function ProfileForm({ className }: React.ComponentProps<'form'>) {
+  const { t } = useTranslation('login');
   return (
     <form className={cn('grid items-start gap-4', className)}>
       <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="leonardo.a.sarmento@gmail.com" />
+        <Label htmlFor={t('profileForm.email.id')}>{t('profileForm.email.label')}</Label>
+        <Input
+          type={t('profileForm.email.id')}
+          id={t('profileForm.email.id')}
+          defaultValue="leonardo.a.sarmento@gmail.com"
+        />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@leo" />
+        <Label htmlFor={t('profileForm.username.id')}>{t('profileForm.username.label')}</Label>
+        <Input id={t('profileForm.username.id')} defaultValue="@leo" />
       </div>
-      <Button type="submit">Save changes</Button>
+      <Button type="submit">{t('profileForm.button')}</Button>
     </form>
   );
 }

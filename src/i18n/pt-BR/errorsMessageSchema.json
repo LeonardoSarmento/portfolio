@@ -1,0 +1,13 @@
+{
+  "publication_title_required_error": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_title_min": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_description_required_error": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_description_min": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_body_required_error": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_body_min": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "publication_file_required_error": "Como vc quer que o pessoal leia se nem titulo tu ta colocando??",
+  "login_username_required_error": "O campo é obrigatório amigão",
+  "login_password_required_error": "Preciso dele pra testar aqui na maquininha",
+  "login_password_min": "Tá faltando número nisso ai amigo",
+  "login_password_max": "Oloko amigo isso não é alemão não pra que tanta letra"
+}

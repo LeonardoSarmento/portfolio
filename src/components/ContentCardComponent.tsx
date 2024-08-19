@@ -88,6 +88,7 @@ function DropdownMenuComponent({
   URL: string;
 }) {
   const auth = useAuth();
+  const dropdownMenuContent = DROPDOWNMENUCONTENT();
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
@@ -96,7 +97,7 @@ function DropdownMenuComponent({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>{DROPDOWNMENUCONTENT.title}</DropdownMenuLabel>
+        <DropdownMenuLabel>{dropdownMenuContent.title}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem
@@ -104,14 +105,14 @@ function DropdownMenuComponent({
               e.stopPropagation(), CopyToClipboardRoute(`${URL}/${id}`);
             }}
           >
-            {DROPDOWNMENUCONTENT.share}
+            {dropdownMenuContent.share}
           </DropdownMenuItem>
           {auth.isAuthenticated ? (
             <>
               {editable === false ? null : (
                 <Link to={path} params={{ projectId: id, postId: id }}>
                   <DropdownMenuItem>
-                    {DROPDOWNMENUCONTENT.edit}
+                    {dropdownMenuContent.edit}
                     {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
                   </DropdownMenuItem>
                 </Link>
@@ -121,7 +122,7 @@ function DropdownMenuComponent({
                   e.stopPropagation(), handleDeleteContent();
                 }}
               >
-                {DROPDOWNMENUCONTENT.delete}
+                {dropdownMenuContent.delete}
               </DropdownMenuItem>
             </>
           ) : null}

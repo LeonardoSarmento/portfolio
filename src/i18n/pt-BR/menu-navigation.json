@@ -1,0 +1,38 @@
+{
+  "about": {
+    "title": "Sobre Mim!",
+    "image": { "alt": "Foto de Leonardo" },
+    "subtitle": "Leonardo",
+    "description": "Olá! Bem-vindo ao meu portfólio. Sinta-se à vontade para explorar meu site."
+  },
+  "options": [
+    {
+      "title": "Introdução",
+      "children": "Como cheguei aqui? Quem sou eu? Venha comigo e eu explicarei."
+    },
+    {
+      "title": "Experiência",
+      "children": "O caminho que segui para estar aqui."
+    },
+    {
+      "title": "Projetos",
+      "children": "Alguns dos projetos que fiz e o que está por vir."
+    },
+    {
+      "title": "Contato"
+    }
+  ],
+  "posts": {
+    "title": "Publicações",
+    "items": [
+      {
+        "title": "Todas as Publicações",
+        "children": "Veja a lista de todas as publicações."
+      },
+      {
+        "title": "Nova Publicação",
+        "children": "Crie uma nova publicação aqui"
+      }
+    ]
+  }
+}

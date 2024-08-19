@@ -67,7 +67,6 @@ export function FilterMenuComponent({
       },
     });
   }
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -75,7 +74,7 @@ export function FilterMenuComponent({
           <div className="flex gap-4 mr-14">
             {auth.isAuthenticated ? (
               <Button onClick={() => navigate(createPath)} type="button" className='flex-none w-32'>
-                {FILTERMENUCONTENT.createButton.title}
+                {FILTERMENUCONTENT().createButton.title}
               </Button>
             ) : null}
             <FormField
@@ -84,15 +83,15 @@ export function FilterMenuComponent({
               render={({ field }) => (
                 <FormItem className="flex-1 max-w-none">
                   <FormControl>
-                    <Input placeholder={FILTERMENUCONTENT.search.placeholder} {...field} />
+                    <Input placeholder={FILTERMENUCONTENT().search.placeholder} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className='flex-none'>
+            <Button type="submit" className='flex-none gap-2'>
               <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
-              {FILTERMENUCONTENT.search.buttonText}
+              {FILTERMENUCONTENT().search.buttonText}
             </Button>
           </div>
           <div className="flex">
@@ -118,7 +117,7 @@ function SideMenuComponent({
   return (
     <Card className="h-fit w-32 mr-4">
       <CardHeader>
-        <CardTitle className="text-center">{FILTERMENUCONTENT.filter.title}</CardTitle>
+        <CardTitle className="text-center">{FILTERMENUCONTENT().filter.title}</CardTitle>
       </CardHeader>
       <Separator />
       <CardContent className="mt-3 flex flex-col space-y-5">
@@ -127,8 +126,8 @@ function SideMenuComponent({
           name="tags"
           render={() => (
             <FormItem>
-              <FormLabel>{FILTERMENUCONTENT.filter.theme.title}</FormLabel>
-              <FormDescription>{FILTERMENUCONTENT.filter.theme.description}</FormDescription>
+              <FormLabel>{FILTERMENUCONTENT().filter.theme.title}</FormLabel>
+              <FormDescription>{FILTERMENUCONTENT().filter.theme.description}</FormDescription>
               {Tags &&
                 Tags.map((tag) => (
                   <FormField
@@ -165,12 +164,12 @@ function SideMenuComponent({
           render={({ field }) => (
             <FormItem>
               <FormItem>
-                <FormLabel className="text-sm font-normal">{FILTERMENUCONTENT.filter.quantity.title}</FormLabel>
-                <FormDescription>{FILTERMENUCONTENT.filter.quantity.description}</FormDescription>
+                <FormLabel className="text-sm font-normal">{FILTERMENUCONTENT().filter.quantity.title}</FormLabel>
+                <FormDescription>{FILTERMENUCONTENT().filter.quantity.description}</FormDescription>
                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value} key={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder={FILTERMENUCONTENT.filter.quantity.placeholder} />
+                      <SelectValue placeholder={FILTERMENUCONTENT().filter.quantity.placeholder} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -186,9 +185,9 @@ function SideMenuComponent({
             </FormItem>
           )}
         />
-        <Button type="submit">{FILTERMENUCONTENT.filter.buttons.filterTitle}</Button>
+        <Button type="submit">{FILTERMENUCONTENT().filter.buttons.filterTitle}</Button>
         <Button type="button" onClick={ResetFilters} variant="destructive">
-          {FILTERMENUCONTENT.filter.buttons.clearTitle}
+          {FILTERMENUCONTENT().filter.buttons.clearTitle}
         </Button>
       </CardContent>
     </Card>
@@ -200,20 +199,20 @@ function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
     <div className="items-center flex flex-col gap-4 justify-center w-full">
       <CardContent className="flex items-center justify-center rounded-xl border p-6">
         <blockquote className="space-y-2 pr-6">
-          <p className="text-lg">&ldquo;{FILTERMENUCONTENT.noContent.content.text}&rdquo;</p>
-          <footer className="text-sm">{FILTERMENUCONTENT.noContent.content.author}</footer>
+          <p className="text-lg">&ldquo;{FILTERMENUCONTENT().noContent.content.text}&rdquo;</p>
+          <footer className="text-sm">{FILTERMENUCONTENT().noContent.content.author}</footer>
         </blockquote>
         <Separator orientation="vertical" className="mx-1" />
         <img
           className="h-[300px] rounded-md"
-          src={FILTERMENUCONTENT.noContent.image.src}
-          alt={FILTERMENUCONTENT.noContent.image.alt}
+          src={FILTERMENUCONTENT().noContent.image.src}
+          alt={FILTERMENUCONTENT().noContent.image.alt}
         />
       </CardContent>
       <div className="flex gap-4">
-        <CardTitle className="mt-2">{FILTERMENUCONTENT.noContent.button.description}</CardTitle>
+        <CardTitle className="mt-2">{FILTERMENUCONTENT().noContent.button.description}</CardTitle>
         <Button type="submit" onClick={ResetFilters}>
-          {FILTERMENUCONTENT.noContent.button.title}
+          {FILTERMENUCONTENT().noContent.button.title}
         </Button>
       </div>
       {/* <ReloadIcon className="mr-2 h-10 w-6 animate-spin" /> */}
@@ -272,7 +271,7 @@ function PaginationComponent({
               }}
             >
               <ChevronLeftIcon className="h-4 w-4" />
-              <p className="text-sm">{FILTERMENUCONTENT.pagination.back}</p>
+              <p className="text-sm">{FILTERMENUCONTENT().pagination.back}</p>
             </Button>
           )}
         </PaginationButton>
@@ -313,7 +312,7 @@ function PaginationComponent({
                 navigatePagination({ page });
               }}
             >
-              <p className="text-sm">{FILTERMENUCONTENT.pagination.foward}</p>
+              <p className="text-sm">{FILTERMENUCONTENT().pagination.foward}</p>
               <ChevronRightIcon className="h-4 w-4" />
             </Button>
           )}

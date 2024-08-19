@@ -10,7 +10,8 @@ export const Route = createFileRoute('/login')({
 });
 
 export function Login() {
-  return <TabsComponent contents={TABSLOGINCONTENT} />;
+  const tabsLoginContent = TABSLOGINCONTENT();
+  return <TabsComponent contents={tabsLoginContent} />;
 }
 
 function TabsComponent({ contents }: { contents: TLoginTabsContent[] }) {
@@ -19,13 +20,13 @@ function TabsComponent({ contents }: { contents: TLoginTabsContent[] }) {
       <Tabs defaultValue={contents[0].value} className="w-[400px]">
         <TabsList className="grid grid-cols-2">
           {contents.map((content) => (
-            <TabsTrigger key={content.value} value={content.value}>
+            <TabsTrigger key={`tabstrigger-${content.value}`} value={content.value}>
               {content.title}
             </TabsTrigger>
           ))}
         </TabsList>
         {contents.map((content) => (
-          <TabsContent value={content.value}>
+          <TabsContent key={`tabscontent-${content.value}`} value={content.value}>
             <TabsLoginContent header={content.header}>
               <UserAuthForm />
             </TabsLoginContent>
@@ -52,17 +53,18 @@ function TabsLoginContent({ children, header }: { children?: React.ReactNode; he
 }
 
 function TermsOfServiceComponent() {
+  const termsOfServiceContent = TERMSOFSERVICECONTENT();
   return (
     <p className="px-8 text-center text-sm text-muted-foreground">
-      {TERMSOFSERVICECONTENT.start}{' '}
+      {termsOfServiceContent.start}{' '}
       <Link to="/" className="underline underline-offset-4 hover:text-primary">
-      {TERMSOFSERVICECONTENT.terms}
+        {termsOfServiceContent.terms}
       </Link>{' '}
-      {TERMSOFSERVICECONTENT.middle}{' '}
+      {termsOfServiceContent.middle}{' '}
       <Link to="/" className="underline underline-offset-4 hover:text-primary">
-      {TERMSOFSERVICECONTENT.policy}
+        {termsOfServiceContent.policy}
       </Link>
-      {TERMSOFSERVICECONTENT.end}
+      {termsOfServiceContent.end}
     </p>
   );
 }

@@ -11,12 +11,14 @@ import { useRouter } from '@tanstack/react-router';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { useAppDispatch } from '@services/state/store';
 import { setLoggedInPressed } from '@services/state/slice';
+import { useTranslation } from 'react-i18next';
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const auth = useAuth();
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('login');
 
   const form = useForm<LoginType>({
     resolver: zodResolver(LoginSchema),
@@ -25,15 +27,15 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   const onSubmit = form.handleSubmit((values) => {
     if (values.username !== import.meta.env.VITE_USER_USERNAME && values.password !== import.meta.env.VITE_USER_CODE) {
-      toast.error('Você mentiu pra mim cara :(', {
-        description: 'Aumenta o limite do seu cartão de crédito ai só pra garantir',
+      toast.error(t('toastMessage.error.title'), {
+        description: t('toastMessage.error.description'),
       });
       return;
     }
     auth.login(values).then(() => router.invalidate());
     dispatch(setLoggedInPressed(true));
-    toast.success(`Compra de R$ ${getRandomNumberWithDecimals()} aprovada com sucesso!`, {
-      description: `Por favor ${values.username}, não verifique com seu banco :)`,
+    toast.success(t('toastMessage.sucess.title', { val: getRandomNumberWithDecimals() }), {
+      description: t('toastMessage.sucess.description', { username: values.username }),
     });
   });
 
@@ -48,11 +50,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Diz seu nome ai amigo</FormLabel>
+                    <FormLabel>{t('userAuthForm.username.label')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Põe ele aqui" {...field} />
+                      <Input placeholder={t('userAuthForm.username.placeholder')} {...field} />
                     </FormControl>
-                    <FormDescription>Só pra testar um negócinho aqui rapidinho</FormDescription>
+                    <FormDescription>{t('userAuthForm.username.description')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -62,17 +64,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Código secreto</FormLabel>
+                    <FormLabel>{t('userAuthForm.password.label')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="CVV" type="password" {...field} />
+                      <Input placeholder={t('userAuthForm.password.placeholder')} type="password" {...field} />
                     </FormControl>
-                    <FormDescription>#Confia</FormDescription>
+                    <FormDescription>{t('userAuthForm.password.description')}</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <Button type="submit">Acessar</Button>
+            <Button type="submit">{t('userAuthForm.button.label')}</Button>
           </div>
         </form>
       </Form>

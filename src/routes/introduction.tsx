@@ -10,6 +10,7 @@ export const Route = createFileRoute('/introduction')({
 
 function Introduction() {
   // return <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">Hello from Introduction!</div>;
+  const introductionContent = INTRODUCTIONCONTENT();
   return (
     <HeroHighlight className="space-y-10">
       <motion.h1
@@ -27,22 +28,22 @@ function Introduction() {
         }}
         className="mx-auto mt-5 max-w-4xl px-4 text-center text-2xl font-bold leading-relaxed text-neutral-700 dark:text-white md:text-4xl lg:text-5xl lg:leading-snug "
       >
-        {INTRODUCTIONCONTENT.header.initial} {''}
-        <Highlight className="px-4 text-black dark:text-white">{INTRODUCTIONCONTENT.header.punchline}</Highlight>
+        {introductionContent.header.initial} {''}
+        <Highlight className="px-4 text-black dark:text-white">{introductionContent.header.punchline}</Highlight>
       </motion.h1>
       <div className="flex w-screen justify-evenly gap-10 p-12">
         <div>
           {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
           <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)]">
-            <AvatarImage src={INTRODUCTIONCONTENT.image.src} alt={INTRODUCTIONCONTENT.image.alt} />
+            <AvatarImage src={introductionContent.image.src} alt={introductionContent.image.alt} />
           </Avatar>
         </div>
         <div className="flex w-[700px] flex-col justify-center gap-2">
-          <h2 className=" scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-            {INTRODUCTIONCONTENT.introduction.h1}
+          <h2 className=" scroll-m-20 whitespace-break-spaces pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+            {introductionContent.introduction.h1}
           </h2>
           <code className="relative w-fit rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-3xl font-semibold">
-            {INTRODUCTIONCONTENT.introduction.code}
+            {introductionContent.introduction.code}
           </code>
         </div>
       </div>

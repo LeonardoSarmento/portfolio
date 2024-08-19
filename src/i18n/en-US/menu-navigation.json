@@ -1,0 +1,38 @@
+{
+  "about": {
+    "title": "About Me !",
+    "image": { "alt": "Leonardo's photo" },
+    "subtitle": "Leonardo",
+    "description": "Hi!, welcome to my portfolio. Be free to explore my site."
+  },
+  "options": [
+    {
+      "title": "Introduction",
+      "children": "How I got here? Who I am? Come with me and i'll explain."
+    },
+    {
+      "title": "Experience",
+      "children": "The roadmap I followed to be here."
+    },
+    {
+      "title": "Projects",
+      "children": "Some of the projects I did and what's to come."
+    },
+    {
+      "title": "Contact"
+    }
+  ],
+  "posts": {
+    "title": "Posts",
+    "items": [
+      {
+        "title": "All Posts",
+        "children": "See the list for all posts."
+      },
+      {
+        "title": "New Post",
+        "children": "Create a new post here"
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "experienceStack": [
+    {
+      "title": "Frontend",
+      "description": "Web applications made with global state management, forms with validation, and integration with REST APIs."
+    },
+    {
+      "title": "Mobile",
+      "description": "Mobile applications that use Bluetooth connectivity for data collection. Always with an Offline-first mindset to ensure data persistence."
+    },
+    {
+      "title": "Backend",
+      "description": "Database and ORM used for data persistence of the mobile application on the user's phone."
+    },
+    {
+      "title": "Softskills",
+      "description": "Throughout the projects, I had the opportunity to develop my communication, empathy, leadership, and teamwork skills."
+    }
+  ],
+  "tabsEducational": [
+    {
+      "value": "postgraduate",
+      "title": "Postgraduate",
+      "header": {
+        "avatar": { "avatarFallback": "XP Educação logo" },
+        "title": "XP Educação",
+        "description": "",
+        "content": {
+          "description": ["Postgraduate Degree, Software Architecture and Solutions", "Nov 2023 - Sep 2024"]
+        }
+      },
+      "learnings": {
+        "title": "Learnings",
+        "content": {
+          "description": [
+            "Specialized in software project lifecycle, focusing on project requirements, structuring, and management. Gained expertise in Software Architecture and Cloud-based Solutions Architecture."
+          ]
+        }
+      },
+      "tools": { "title": "Tools" }
+    },
+    {
+      "value": "graduate",
+      "title": "Graduate",
+      "header": {
+        "avatar": { "avatarFallback": "Faculdade UCL logo" },
+        "title": "Faculdade UCL",
+        "description": "Faculdade do Centro Leste",
+        "content": {
+          "description": [
+            "Bachelor of Engineering - BE, Civil Engineering",
+            "Feb 2014 - Aug 2021",
+            "Serra, Espírito Santo, Brazil"
+          ]
+        }
+      },
+      "learnings": {
+        "title": "Learnings",
+        "content": {
+          "description": [
+            "Development of activities related to all the stages of the concrete compressive strength test. Therefore, participation in the concreting of the client's site, carrying out the concrete slump test.",
+            "Demolding of specimens obtained during concreting at the client's site. Identification and storage of the specimens in the wet chamber.",
+            "Maintenance of the molds used in concreting, concrete compressive strength test, disposal of broken specimens and creation of the test certificate for each invoice."
+          ]
+        }
+      },
+      "tools": { "title": "Tools" }
+    }
+  ],
+  "tabsProfessional": [
+    {
+      "value": "IEL",
+      "title": "IEL",
+      "header": {
+        "avatar": { "avatarFallback": "IEL - Scholar" },
+        "title": "IEL - Scholar in Software Development",
+        "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
+        "content": { "description": ["Feb 2024 - Present", "Vitória, Espírito Santo, Brazil · Hybrid"] }
+      },
+      "learnings": {
+        "title": "Learnings",
+        "content": {
+          "description": [
+            "Working on software development projects, focusing on the frontend.",
+            "• Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple software projects on time and within budget",
+            "• Participated in calls with 4 companies, helping the development of 4 innovative projects and securing R$300K plus in funding.",
+            "• Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies."
+          ]
+        }
+      },
+      "tools": { "title": "Tools" }
+    },
+    {
+      "value": "FAPES",
+      "title": "FAPES",
+      "header": {
+        "avatar": { "avatarFallback": "FAPES - Scholar" },
+        "title": "FAPES - Scholar in Software Development",
+        "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
+        "content": { "description": ["Feb 2023 - Feb 2024 · 1 yr", "Vitória, Espírito Santo, Brazil · Hybrid"] }
+      },
+      "learnings": {
+        "title": "Learnings",
+        "content": {
+          "description": [
+            "Working on software development projects, focusing on the frontend.",
+            "• Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple software projects on time and within budget",
+            "• Participated in calls with 4 companies, helping the development of 4 innovative projects and securing R$300K plus in funding.",
+            "• Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies."
+          ]
+        }
+      },
+      "tools": { "title": "Tools" }
+    }
+  ],
+  "experienceContent": {
+    "experience": {
+      "title": "Experiences",
+      "description": [
+        "Throughout my journey, I have gone through various areas of knowledge and accumulated some professional experiences that I carry daily, both personally and professionally.",
+        "Currently working with software development at ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional. Actively developing web and mobile applications with clients from various areas and locations.",
+        "I have experience in the following stacks and their technologies:"
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "description": ["A brief summary of my experiences in the academic field and the technologies used"]
+    },
+    "professional": {
+      "title": "Professional",
+      "description": ["The professional stages and the experiences accumulated in each place"]
+    }
+  }
+}

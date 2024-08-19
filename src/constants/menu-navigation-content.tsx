@@ -1,59 +1,63 @@
-import { posts } from "@assets/data/posts";
-import { PAGE_SIZE_OPTIONS } from "@components/FilterMenuComponent";
-import { TMenuContent } from "@services/types/constants/menu-navigation";
-import { MY_PHOTO } from "@services/utils/Images";
-import { Contact, FolderGit2, GraduationCap, Handshake } from "lucide-react";
+import { posts } from '@assets/data/posts';
+import { PAGE_SIZE_OPTIONS } from '@components/FilterMenuComponent';
+import { TMenuContent } from '@services/types/constants/menu-navigation';
+import { MY_PHOTO } from '@services/utils/Images';
+import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-export const MENUCONTENT: TMenuContent = {
-  about: {
-    title: 'About Me !',
-    image: { src: MY_PHOTO, alt: `Leonardo's photo` },
-    subtitle: 'Leonardo',
-    description: 'Hi!, welcome to my portfolio. Be free to explore my site.',
-    path: { to: '/' },
-  },
-  options: [
-    {
-      title: 'Introduction',
-      to: '/introduction',
-      icon: <Handshake size={16} />,
-      children: `How I got here? Who I am? Come with me and i'll explain.`,
+export const MENUCONTENT: () => TMenuContent = () => {
+  const { t } = useTranslation();
+  return {
+    about: {
+      title: t('about.title', { ns: 'menuNavigation', returnObjects: true }),
+      image: { src: MY_PHOTO, alt: t('about.image.alt', { ns: 'menuNavigation', returnObjects: true }) },
+      subtitle: t('about.subtitle', { ns: 'menuNavigation', returnObjects: true }),
+      description: t('about.description', { ns: 'menuNavigation', returnObjects: true }),
+      path: { to: '/' },
     },
-    {
-      title: 'Experience',
-      to: '/experience',
-      icon: <GraduationCap size={16} />,
-      children: `The roadmap I followed to be here.`,
-    },
-    {
-      title: 'Projects',
-      to: '/projects',
-      search: { page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value },
-      icon: <FolderGit2 size={16} />,
-      children: `Some of the projects I did and what's to come.`,
-    },
-    {
-      title: 'Contact',
-      to: '/contact',
-      icon: <Contact size={16} />,
-    },
-  ],
-  posts: {
-    title: 'Posts',
-    contents: posts,
-    path: { to: '/posts/$postId' },
-    items: [
+    options: [
       {
-        title: 'All Posts',
-        to: '/posts',
-        search: { page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value },
-        children: 'See the list for all posts.',
+        title: t('options', { ns: 'menuNavigation', returnObjects: true })[0].title,
+        to: '/introduction',
+        icon: <Handshake size={16} />,
+        children: t('options', { ns: 'menuNavigation', returnObjects: true })[0].children,
       },
       {
-        title: 'New Post',
-        to: '/posts/create',
-        children: 'Create a new post here',
+        title: t('options', { ns: 'menuNavigation', returnObjects: true })[1].title,
+        to: '/experience',
+        icon: <GraduationCap size={16} />,
+        children: t('options', { ns: 'menuNavigation', returnObjects: true })[1].children,
+      },
+      {
+        title: t('options', { ns: 'menuNavigation', returnObjects: true })[2].title,
+        to: '/projects',
+        search: { page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value },
+        icon: <FolderGit2 size={16} />,
+        children: t('options', { ns: 'menuNavigation', returnObjects: true })[2].children,
+      },
+      {
+        title: t('options', { ns: 'menuNavigation', returnObjects: true })[3].title,
+        to: '/contact',
+        icon: <Contact size={16} />,
       },
     ],
-  },
+    posts: {
+      title: t('posts.title', { ns: 'menuNavigation', returnObjects: true }),
+      contents: posts,
+      path: { to: '/posts/$postId' },
+      items: [
+        {
+          title: t('posts.items', { ns: 'menuNavigation', returnObjects: true })[0].title,
+          to: '/posts',
+          search: { page: '1', pageSize: PAGE_SIZE_OPTIONS[0].value },
+          children: t('posts.items', { ns: 'menuNavigation', returnObjects: true })[0].children,
+        },
+        {
+          title: t('posts.items', { ns: 'menuNavigation', returnObjects: true })[1].title,
+          to: '/posts/create',
+          children: t('posts.items', { ns: 'menuNavigation', returnObjects: true })[1].children,
+        },
+      ],
+    },
+  };
 };

@@ -1,151 +1,199 @@
 import { FAPES_LOGO, IEL_LOGO, UCL_LOGO } from '@services/utils/Images';
 import { TECH_STACK } from './tech-stack';
 import { TExperienceContent, TExperienceStack, TTabsContent } from '@services/types/constants/experience';
+import { useTranslation } from 'react-i18next';
 
+export const EXPERIENCESTACK: () => TExperienceStack[] = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      title: t('experienceStack', { ns: 'experience', returnObjects: true })[0].title,
+      description: t('experienceStack', { ns: 'experience', returnObjects: true })[0].description,
+      stack: TECH_STACK.frontend,
+    },
+    {
+      title: t('experienceStack', { ns: 'experience', returnObjects: true })[1].title,
+      description: t('experienceStack', { ns: 'experience', returnObjects: true })[1].description,
+      stack: TECH_STACK.mobile,
+    },
+    {
+      title: t('experienceStack', { ns: 'experience', returnObjects: true })[2].title,
+      description: t('experienceStack', { ns: 'experience', returnObjects: true })[2].description,
+      stack: TECH_STACK.backend,
+    },
+    {
+      title: t('experienceStack', { ns: 'experience', returnObjects: true })[3].title,
+      description: t('experienceStack', { ns: 'experience', returnObjects: true })[3].description,
+      stack: TECH_STACK.softskill,
+    },
+  ];
+};
 
-export const EXPERIENCESTACK: TExperienceStack[] = [
-  {
-    title: 'Frontend',
-    description:
-      'Aplicações web feitas com gerenciamento de estados globais, formulários com validação e integração com REST APIs.',
-    stack: TECH_STACK.frontend,
-  },
-  {
-    title: 'Mobile',
-    description:
-      'Aplicações mobile que utilizam a conectividade bluetooth para coleta de dados. Sempre com mentalidade Offline-first para gerantia de persistência de dados.',
-    stack: TECH_STACK.mobile,
-  },
-  {
-    title: 'Backend',
-    description:
-      'Banco de dados e ORM utilizados para persistência de dados da aplicação mobile no celular do usuário.',
-    stack: TECH_STACK.backend,
-  },
-  {
-    title: 'Softskills',
-    description:
-      'Ao longo dos projetos tive a oportunidade desenvolver minha comunição, empatia, liderança, trabalho em equipe',
-    stack: TECH_STACK.softskill,
-  },
-];
+export const TABSEDUCATIONAL: () => TTabsContent[] = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      value: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].value,
+      title: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].title,
+      header: {
+        avatar: {
+          src: IEL_LOGO,
+          avatarFallback: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].header.avatar
+            .avatarFallback,
+        },
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].header.title,
+        description: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].header.description,
+        content: {
+          description: [
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[0].header.content.description[0],
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[0].header.content.description[1],
+          ],
+        },
+      },
+      learnings: {
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].learnings.title,
+        content: {
+          description: [
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[0].learnings.content.description[0],
+          ],
+        },
+      },
+      tools: {
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[0].tools.title,
+        content: TECH_STACK.education[0],
+      },
+    },
+    {
+      value: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].value,
+      title: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].title,
+      header: {
+        avatar: {
+          src: UCL_LOGO,
+          avatarFallback: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.avatar
+            .avatarFallback,
+        },
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.title,
+        description: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.description,
+        content: {
+          description: [
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.content.description[0],
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.content.description[1],
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].header.content.description[2],
+          ],
+        },
+      },
+      learnings: {
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].learnings.title,
+        content: {
+          description: [
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].learnings.content.description[0],
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].learnings.content.description[1],
+            t('tabsEducational', { ns: 'experience', returnObjects: true })[1].learnings.content.description[2],
+          ],
+        },
+      },
+      tools: {
+        title: t('tabsEducational', { ns: 'experience', returnObjects: true })[1].tools.title,
+        content: TECH_STACK.education[1],
+      },
+    },
+  ];
+};
 
+export const TABSPROFESSIONAL: () => TTabsContent[] = () => {
+  const { t } = useTranslation();
+  return [
+    {
+      value: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].value,
+      title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].title,
+      header: {
+        avatar: {
+          src: IEL_LOGO,
+          avatarFallback: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].header.avatar
+            .avatarFallback,
+        },
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].header.title,
+        description: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].header.description,
+        content: {
+          description: [
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].header.content.description[0],
+          ],
+        },
+      },
+      learnings: {
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].learnings.title,
+        content: {
+          description: [
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].learnings.content.description[0],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].learnings.content.description[1],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].learnings.content.description[2],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].learnings.content.description[3],
+          ],
+        },
+      },
+      tools: {
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[0].tools.title,
+        content: TECH_STACK.profissional[0],
+      },
+    },
+    {
+      value: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].value,
+      title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].title,
+      header: {
+        avatar: {
+          src: FAPES_LOGO,
+          avatarFallback: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].header.avatar
+            .avatarFallback,
+        },
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].header.title,
+        description: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].header.description,
+        content: {
+          description: [
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].header.content.description[0],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].header.content.description[1],
+          ],
+        },
+      },
+      learnings: {
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].learnings.title,
+        content: {
+          description: [
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].learnings.content.description[0],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].learnings.content.description[1],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].learnings.content.description[2],
+            t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].learnings.content.description[3],
+          ],
+        },
+      },
+      tools: {
+        title: t('tabsProfessional', { ns: 'experience', returnObjects: true })[1].tools.title,
+        content: TECH_STACK.profissional[1],
+      },
+    },
+  ];
+};
 
-export const TABSEDUCATIONAL: TTabsContent[] = [
-  {
-    value: 'postgraduate',
-    title: 'Pós graduação',
-    header: {
-      avatar: { src: IEL_LOGO, avatarFallback: 'XP Educação logo' },
-      title: 'XP Educação',
-      description: '',
-      content: {
-        description: ['Postgraduate Degree, Software Architecture and Solutions', 'Nov 2023 - Set 2024'],
-      },
+export const EXPERIENCECONTENT: () => TExperienceContent = () => {
+  const { t } = useTranslation();
+  return {
+    experience: {
+      title: t('experienceContent.experience.title', { ns: 'experience' }),
+      description: [
+        t('experienceContent.experience.description', { ns: 'experience', returnObjects: true })[0],
+        t('experienceContent.experience.description', { ns: 'experience', returnObjects: true })[1],
+        t('experienceContent.experience.description', { ns: 'experience', returnObjects: true })[2],
+      ],
+      stack: EXPERIENCESTACK(),
     },
-    learnings: {
-      title: 'Aprendizados',
-      content: {
-        description: [
-          `Specialized in software project lifecycle, focusing on project requirements, structuring, and management. Gained expertise in Software Architecture and Cloud-based Solutions Architecture.`,
-        ],
-      },
+    education: {
+      title: t('experienceContent.education.title', { ns: 'experience' }),
+      description: [t('experienceContent.education.description', { ns: 'experience', returnObjects: true })[0]],
+      stack: TABSEDUCATIONAL(),
     },
-    tools: { title: 'Ferramentas', content: TECH_STACK.education[0] },
-  },
-  {
-    value: 'graduate',
-    title: 'Graduação',
-    header: {
-      avatar: { src: UCL_LOGO, avatarFallback: 'Faculdade UCL logo' },
-      title: 'Faculdade UCL',
-      description: 'Faculdade do Centro Leste',
-      content: {
-        description: [
-          'Bachelor of Engineering - BE, Engenharia Civil',
-          'Feb 2014 - Aug 2021',
-          'Serra, Espírito Santo, Brazil',
-        ],
-      },
+    professional: {
+      title: t('experienceContent.professional.title', { ns: 'experience' }),
+      description: [t('experienceContent.professional.description', { ns: 'experience', returnObjects: true })[0],],
+      stack: TABSPROFESSIONAL(),
     },
-    learnings: {
-      title: 'Aprendizados',
-      content: {
-        description: [
-          `Development of activities related to all the stages of the concrete compressive strength test. Therefore, participation in the concreting of the client's site, carrying out the concrete slump test.`,
-          `Demolding of specimens obtained during concreting at the client's site. Identification and storage of the specimens in the wet chamber.`,
-          `Maintenance of the molds used in concreting, concrete compressive strength test, disposal of broken specimens and creation of the test certificate for each invoice.`,
-        ],
-      },
-    },
-    tools: { title: 'Ferramentas', content: TECH_STACK.education[1] },
-  },
-];
-export const TABSPROFESSIONAL: TTabsContent[] = [
-  {
-    value: 'IEL',
-    title: 'IEL',
-    header: {
-      avatar: { src: IEL_LOGO, avatarFallback: 'IEL - Bolsista' },
-      title: 'IEL - Bolsista em Desenvolvimento de Software',
-      description: 'ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional',
-      content: { description: ['Feb 2024 - Present', 'Vitória, Espírito Santo, Brazil · Hybrid'] },
-    },
-    learnings: {
-      title: 'Aprendizados',
-      content: {
-        description: [
-          'Working on software development projects, focusing on the frontend.',
-          '• Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple software projects on time and within budget',
-          '• Participated in calls with 4 companies, helping the development of 4 innovative projects and securing R$300K plus in funding.',
-          '• Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies.',
-        ],
-      },
-    },
-    tools: { title: 'Ferramentas', content: TECH_STACK.profissional[0] },
-  },
-  {
-    value: 'FAPES',
-    title: 'FAPES',
-    header: {
-      avatar: { src: FAPES_LOGO, avatarFallback: 'FAPES - Bolsista' },
-      title: 'FAPES - Bolsista em Desenvolvimento de Software',
-      description: 'ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional',
-      content: { description: ['Feb 2023 - Feb 2024 · 1 yr', 'Vitória, Espírito Santo, Brazil · Hybrid'] },
-    },
-    learnings: {
-      title: 'Aprendizados',
-      content: {
-        description: [
-          'Working on software development projects, focusing on the frontend.',
-          '• Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple software projects on time and within budget',
-          '• Participated in calls with 4 companies, helping the development of 4 innovative projects and securing R$300K plus in funding.',
-          '• Developing projects using React, React Native, TypeScript, Expo, React Query, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies.',
-        ],
-      },
-    },
-    tools: { title: 'Ferramentas', content: TECH_STACK.profissional[1] },
-  },
-];
-
-export const EXPERIENCECONTENT: TExperienceContent = {
-  experience: {
-    title: 'Experiências',
-    description: [
-      'Ao longo de minha jornada, passei por várias áreas de conhecimentos e acumulei algumas experiências profissionais que levo diariamente, no pessoal e profissional.',
-      'Atualmente trabalhando com desenvolvimento de software no ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional. Ativamente desenvolvendo aplicações web e mobile junto a clientes de divesas áreas e localidades.',
-      'Possuo experiências nas seguintes Stacks e suas tecnologias:',
-    ],
-    stack: EXPERIENCESTACK,
-  },
-  education: {
-    title: 'Educação',
-    description: ['Um breve resumo sobre minhas experiências no campo acadêmico e tecnologias utilizadas'],
-    stack: TABSEDUCATIONAL,
-  },
-  professional: {
-    title: 'Profissional',
-    description: ['As etapas profissionais e as experiências acumuladas em cada lugar'],
-    stack: TABSPROFESSIONAL,
-  },
+  };
 };

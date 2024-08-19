@@ -16,6 +16,8 @@ export const Route = createFileRoute('/_auth/projects/create')({
 });
 
 function CreateProjectComponent() {
+  const headerCardCreateProjectContent = HEADERCARDCREATEPROJECTCONTENT();
+  const menageMarkdownCreateContent = MANAGEMARKDOWNCREATECONTENT();
   const auth = useAuth();
   const form = useForm<CreatePublicationType>({
     resolver: zodResolver(CreatePublicationSchema),
@@ -39,12 +41,12 @@ function CreateProjectComponent() {
         <div className="mx-10 flex flex-col gap-4">
           <Card className="grid grid-cols-12 p-4 text-center">
             <CardTitle className="col-span-12 py-6 text-3xl">
-              {form.getValues('title') ? form.watch('title') : HEADERCARDCREATEPROJECTCONTENT.title}
+              {form.getValues('title') ? form.watch('title') : headerCardCreateProjectContent.title}
             </CardTitle>
-            <HeaderThumbnailComponent form={form} textContent={HEADERCARDCREATEPROJECTCONTENT.thumbnail} />
-            <HeaderFormComponent form={form} onClick={handleReset} textContent={HEADERCARDCREATEPROJECTCONTENT.form} />
+            <HeaderThumbnailComponent form={form} textContent={headerCardCreateProjectContent.thumbnail} />
+            <HeaderFormComponent form={form} onClick={handleReset} textContent={headerCardCreateProjectContent.form} />
           </Card>
-          <ManageMarkdownComponent form={form} path="body" contentText={MANAGEMARKDOWNCREATECONTENT} />
+          <ManageMarkdownComponent form={form} path="body" contentText={menageMarkdownCreateContent} />
         </div>
       </form>
     </Form>

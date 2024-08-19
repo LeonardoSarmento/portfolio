@@ -1,0 +1,95 @@
+{
+  "tabsLogin": [
+    {
+      "title": "Entrar",
+      "header": { "description": "Escreva seu nome e senha abaixo", "title": "Acesse sua conta" }
+    },
+    {
+      "title": "Criar",
+      "header": {
+        "description": "Faça sua conta para poder utilizar todas funcionalidades incriveis desse site portfolio",
+        "title": "Crie sua conta"
+      }
+    }
+  ],
+  "termsOfService": {
+    "start": "Clicando em acessar, você concorda com todos os",
+    "terms": "Termos de serviço",
+    "middle": "e",
+    "policy": "Políticas de Compras e Privacidades",
+    "end": "."
+  },
+  "dialog": {
+    "triggerButton": "Edit Profile",
+    "title": "Edit Profile",
+    "description": "Make changes to your profile here. Click save when you're done.",
+    "drawerClose": "Cancel"
+  },
+  "profileForm": {
+    "email": {
+      "label": "Email",
+      "id": "email"
+    },
+    "username": {
+      "label": "username",
+      "id": "username"
+    },
+    "button": "Save changes"
+  },
+  "toastMessage": {
+    "sucess": {
+      "description": "Por favor {{username}}, não verifique com seu banco :)",
+      "title": "Compra de {{val, currency(BRL)}} aprovada com sucesso!"
+    },
+    "error": {
+      "description": "Aumenta o limite do seu cartão de crédito ai só pra garantir",
+      "title": "Você mentiu pra mim cara :("
+    }
+  },
+  "userAuthForm": {
+    "username": {
+      "label": "Diz seu nome ai amigo",
+      "placeholder": "Põe ele aqui",
+      "description": "Só pra testar um negócinho aqui rapidinho"
+    },
+    "password": {
+      "label": "Código secreto",
+      "placeholder": "CVV",
+      "description": "#Confia"
+    },
+    "button": {
+      "label": "Acessar"
+    }
+  },
+  "loggedIn": {
+    "header": { "title": "Nome no verso do cartão", "description": "Sua conta está no nome de:" },
+    "username": {
+      "label": "username",
+      "id": "username"
+    },
+    "buttons": {
+      "logout": "Sair da conta",
+      "hide": "Esconder"
+    }
+  },
+  "loginForm": {
+    "header": {
+      "title": "Seja bem vindo, meu nome é Severino",
+      "description": "Cara cracha cara cracha cara cracha"
+    },
+    "username": {
+      "label": "Diz seu nome ai amigo",
+      "placeholder": "Põe ele aqui",
+      "description": "Só pra testar um negócinho aqui rapidinho"
+    },
+    "password": {
+      "label": "Código secreto",
+      "placeholder": "CVV",
+      "description": "#Confia"
+    },
+    "button": {
+      "submit": "Confirmar",
+      "giveUp": "Desisti"
+    }
+  }
+}

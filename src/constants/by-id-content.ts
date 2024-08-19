@@ -1,82 +1,173 @@
-import { TByIdComponent, THeaderCardContent, TManageMarkdownContent, toastMessages, TShareComponent } from "@services/types/constants/by-id";
+import {
+  TByIdComponent,
+  THeaderCardContent,
+  TManageMarkdownContent,
+  toastMessages,
+  TShareComponent,
+} from '@services/types/constants/by-id';
+import { useTranslation } from 'react-i18next';
 
-const SHARECOMPONENT: TShareComponent = {
-  button: { title: 'Compartilhar' },
-  card: {
-    title: 'Compartilhe com seus inimigos :)',
-    description: 'Qualquer um com esse link em ctrl+c ctrl+v ficará mais forte que nunca.',
-    label: 'Link',
-    buttonAlt: 'Copiar',
-  },
+const SHARECOMPONENT: () => TShareComponent = () => {
+  const { t } = useTranslation();
+  return {
+    button: { title: t('shareContent.button.title', { ns: 'byIdContent' }) },
+    card: {
+      title: t('shareContent.card.title', { ns: 'byIdContent' }),
+      description: t('shareContent.card.description', { ns: 'byIdContent' }),
+      label: t('shareContent.card.label', { ns: 'byIdContent' }),
+      buttonAlt: t('shareContent.card.buttonAlt', { ns: 'byIdContent' }),
+    },
+  };
 };
-export const PROJECTBYIDCONTENT: TByIdComponent = {
-  shareComponent: SHARECOMPONENT,
-  breadcrumb: { title: 'projects' },
-  buttons: { edit: 'Editar', goBack: 'Voltar' },
+export const PROJECTBYIDCONTENT: () => TByIdComponent = () => {
+  const { t } = useTranslation();
+  return {
+    shareComponent: SHARECOMPONENT(),
+    breadcrumb: { title: t('projectById.breadcrumb.title', { ns: 'byIdContent' }) },
+    buttons: {
+      edit: t('projectById.buttons.edit', { ns: 'byIdContent', returnObjects: true }),
+      goBack: t('projectById.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+    },
+  };
 };
-export const POSTBYIDCONTENT: TByIdComponent = {
-  shareComponent: SHARECOMPONENT,
-  breadcrumb: { title: 'posts' },
-  buttons: { edit: 'Editar', goBack: 'Voltar' },
+export const POSTBYIDCONTENT: () => TByIdComponent = () => {
+  const { t } = useTranslation();
+  return {
+    shareComponent: SHARECOMPONENT(),
+    breadcrumb: { title: t('postById.breadcrumb.title', { ns: 'byIdContent' }) },
+    buttons: {
+      edit: t('postById.buttons.edit', { ns: 'byIdContent', returnObjects: true }),
+      goBack: t('postById.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+    },
+  };
 };
-export const TOASTMESSAGESCONTENT: toastMessages = {
-  delete: { description: 'Deixa isso pra uma outra hora', title: 'Sem deletar coisa por aqui malandro' },
-  sucess: {
-    description: 'Não tem como criar um post ainda mas quem sabe um dia...',
-    title: 'Ehh mentira!! Te enganei kkkk',
-  },
-  error: { description: 'Vou passar pro estágiario consertar...', title: 'Vish!! parece que deu ruim' },
-  noAuth: {
-    description: 'Você não deveria ter acesso aqui... tô de olho em você ein',
-    title: 'Você não está autenticado cara :(',
-  },
+export const TOASTMESSAGESCONTENT: () => toastMessages = () => {
+  const { t } = useTranslation();
+  return {
+    delete: {
+      description: t('toastMessage.delete.description', { ns: 'byIdContent', returnObjects: true }),
+      title: t('toastMessage.delete.title', { ns: 'byIdContent', returnObjects: true }),
+    },
+    sucess: {
+      description: t('toastMessage.sucess.description', { ns: 'byIdContent', returnObjects: true }),
+      title: t('toastMessage.sucess.title', { ns: 'byIdContent', returnObjects: true }),
+    },
+    error: {
+      description: t('toastMessage.error.description', { ns: 'byIdContent', returnObjects: true }),
+      title: t('toastMessage.error.title', { ns: 'byIdContent', returnObjects: true }),
+    },
+    noAuth: {
+      description: t('toastMessage.noAuth.description', { ns: 'byIdContent', returnObjects: true }),
+      title: t('toastMessage.noAuth.title', { ns: 'byIdContent', returnObjects: true }),
+    },
+  };
 };
-export const HEADERCARDPOSTCONTENT: THeaderCardContent = {
-  title: 'Criar novo post',
-  thumbnail: { title: 'Thumbnail', dropMessage: 'Solte seu arquivo ou clique aqui' },
-  form: {
-    title: { label: 'Título', placeholder: 'O nome do seu post' },
-    description: { label: 'Descrição', placeholder: 'Faça uma descrição da sua postagem' },
-    tags: { label: 'Tags', placeholder: 'Selecione alguma tag...', notfound: 'Não foi encontrado esse tema.' },
-    buttons: { goBack: 'Voltar', destructive: 'Deletar', save: 'Salvar' },
-  },
-  toast: TOASTMESSAGESCONTENT,
+export const HEADERCARDPOSTCONTENT: () => THeaderCardContent = () => {
+  const { t } = useTranslation();
+  return {
+    title: t('headerCardPost.title', { ns: 'byIdContent' }),
+    thumbnail: {
+      title: t('headerCardPost.thumbnail.title', { ns: 'byIdContent', returnObjects: true }),
+      dropMessage: t('headerCardPost.thumbnail.dropMessage', { ns: 'byIdContent', returnObjects: true }),
+    },
+    form: {
+      title: {
+        label: t('headerCardPost.form.title.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardPost.form.title.placeholder', { ns: 'byIdContent', returnObjects: true }),
+      },
+      description: {
+        label: t('headerCardPost.form.description.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardPost.form.description.placeholder', { ns: 'byIdContent', returnObjects: true }),
+      },
+      tags: {
+        label: t('headerCardPost.form.tags.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardPost.form.tags.placeholder', { ns: 'byIdContent', returnObjects: true }),
+        notfound: t('headerCardPost.form.tags.notfound', { ns: 'byIdContent', returnObjects: true }),
+      },
+      buttons: {
+        goBack: t('headerCardPost.form.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+        destructive: t('headerCardPost.form.buttons.destructive', { ns: 'byIdContent', returnObjects: true }),
+        save: t('headerCardPost.form.buttons.save', { ns: 'byIdContent', returnObjects: true }),
+      },
+    },
+    toast: TOASTMESSAGESCONTENT(),
+  };
 };
-export const HEADERCARDCREATEPOSTCONTENT: THeaderCardContent = {
-  ...HEADERCARDPOSTCONTENT,
-  form: {
-    ...HEADERCARDPOSTCONTENT.form,
-    buttons: { goBack: 'Voltar', destructive: 'Apagar tudo', save: 'Criar' },
-  },
+export const HEADERCARDCREATEPOSTCONTENT: () => THeaderCardContent = () => {
+  const { t } = useTranslation();
+  return {
+    ...HEADERCARDPOSTCONTENT(),
+    form: {
+      ...HEADERCARDPOSTCONTENT().form,
+      buttons: {
+        goBack: t('headerCardCreate.form.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+        destructive: t('headerCardCreate.form.buttons.destructive', { ns: 'byIdContent', returnObjects: true }),
+        save: t('headerCardCreate.form.buttons.save', { ns: 'byIdContent', returnObjects: true }),
+      },
+    },
+  };
 };
-export const HEADERCARDPROJECTCONTENT: THeaderCardContent = {
-  title: 'Criar novo projeto',
-  thumbnail: { title: 'Thumbnail', dropMessage: 'Solte seu arquivo ou clique aqui' },
-  form: {
-    title: { label: 'Título', placeholder: 'O nome do seu projeto' },
-    description: { label: 'Descrição', placeholder: 'Faça uma descrição do seu projeto' },
-    tags: { label: 'Tags', placeholder: 'Selecione alguma tag...', notfound: 'Não foi encontrado esse tema.' },
-    buttons: { goBack: 'Voltar', destructive: 'Deletar', save: 'Salvar' },
-  },
-  toast: TOASTMESSAGESCONTENT,
+export const HEADERCARDPROJECTCONTENT: () => THeaderCardContent = () => {
+  const { t } = useTranslation();
+  return {
+    title: t('headerCardProject.title', { ns: 'byIdContent' }),
+    thumbnail: {
+      title: t('headerCardProject.thumbnail.title', { ns: 'byIdContent', returnObjects: true }),
+      dropMessage: t('headerCardProject.thumbnail.dropMessage', { ns: 'byIdContent', returnObjects: true }),
+    },
+    form: {
+      title: {
+        label: t('headerCardProject.form.title.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardProject.form.title.placeholder', { ns: 'byIdContent', returnObjects: true }),
+      },
+      description: {
+        label: t('headerCardProject.form.description.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardProject.form.description.placeholder', { ns: 'byIdContent', returnObjects: true }),
+      },
+      tags: {
+        label: t('headerCardProject.form.tags.label', { ns: 'byIdContent', returnObjects: true }),
+        placeholder: t('headerCardProject.form.tags.placeholder', { ns: 'byIdContent', returnObjects: true }),
+        notfound: t('headerCardProject.form.tags.notfound', { ns: 'byIdContent', returnObjects: true }),
+      },
+      buttons: {
+        goBack: t('headerCardProject.form.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+        destructive: t('headerCardProject.form.buttons.destructive', { ns: 'byIdContent', returnObjects: true }),
+        save: t('headerCardProject.form.buttons.save', { ns: 'byIdContent', returnObjects: true }),
+      },
+    },
+    toast: TOASTMESSAGESCONTENT(),
+  };
 };
-export const HEADERCARDCREATEPROJECTCONTENT: THeaderCardContent = {
-  ...HEADERCARDPROJECTCONTENT,
-  form: {
-    ...HEADERCARDPROJECTCONTENT.form,
-    buttons: { goBack: 'Voltar', destructive: 'Apagar tudo', save: 'Criar' },
-  },
+export const HEADERCARDCREATEPROJECTCONTENT: () => THeaderCardContent = () => {
+  const { t } = useTranslation();
+  return {
+    ...HEADERCARDPROJECTCONTENT(),
+    form: {
+      ...HEADERCARDPROJECTCONTENT().form,
+      buttons: {
+        goBack: t('headerCardCreate.form.buttons.goBack', { ns: 'byIdContent', returnObjects: true }),
+        destructive: t('headerCardCreate.form.buttons.destructive', { ns: 'byIdContent', returnObjects: true }),
+        save: t('headerCardCreate.form.buttons.save', { ns: 'byIdContent', returnObjects: true }),
+      },
+    },
+  };
 };
-export const MANAGEMARKDOWNCONTENT: TManageMarkdownContent = {
-  content: {
-    label: 'Conteúdo',
-    placeholder: 'Diga oq vc tem guardado no coração.',
-    description: 'Se você não mentiu aqui então bora postar mlk',
-  },
-  preview: { title: 'Preview' },
-  button: { text: 'Salvar' },
+export const MANAGEMARKDOWNCONTENT: () => TManageMarkdownContent = () => {
+  const { t } = useTranslation();
+  return {
+    content: {
+      label: t('manageMarkdown.content.label', { ns: 'byIdContent', returnObjects: true }),
+      placeholder: t('manageMarkdown.content.placeholder', { ns: 'byIdContent', returnObjects: true }),
+      description: t('manageMarkdown.content.description', { ns: 'byIdContent', returnObjects: true }),
+    },
+    preview: { title: t('manageMarkdown.preview.title', { ns: 'byIdContent', returnObjects: true }) },
+    button: { text: t('manageMarkdown.button.text', { ns: 'byIdContent', returnObjects: true }) },
+  };
 };
-export const MANAGEMARKDOWNCREATECONTENT: TManageMarkdownContent = {
-  ...MANAGEMARKDOWNCONTENT,
-  button: { text: 'Criar' },
+export const MANAGEMARKDOWNCREATECONTENT: () => TManageMarkdownContent = () => {
+  const { t } = useTranslation();
+  return {
+    ...MANAGEMARKDOWNCONTENT(),
+    button: { text: t('manageMarkdown.button.text', { ns: 'byIdContent', returnObjects: true }) },
+  };
 };

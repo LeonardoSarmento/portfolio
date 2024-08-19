@@ -17,6 +17,9 @@ export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
 });
 
 function EditPostsComponent() {
+  const headerCardProjectContent = HEADERCARDPROJECTCONTENT();
+  const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
+
   const auth = useAuth();
   const project = Route.useLoaderData();
   const form = useForm<EditPublicationType>({
@@ -35,16 +38,16 @@ function EditPostsComponent() {
         <div className="mx-10 flex flex-col gap-4">
           <Card className="grid grid-cols-12 p-4 text-center">
             <CardTitle className="col-span-12 py-6 text-3xl">
-              {form.getValues('title') ? form.watch('title') : HEADERCARDPROJECTCONTENT.title}
+              {form.getValues('title') ? form.watch('title') : headerCardProjectContent.title}
             </CardTitle>
-            <HeaderThumbnailComponent form={form} textContent={HEADERCARDPROJECTCONTENT.thumbnail} />
+            <HeaderThumbnailComponent form={form} textContent={headerCardProjectContent.thumbnail} />
             <HeaderFormComponent
               form={form}
               onClick={handleDeleteContent}
-              textContent={HEADERCARDPROJECTCONTENT.form}
+              textContent={headerCardProjectContent.form}
             />
           </Card>
-          <ManageMarkdownComponent form={form} path="body" contentText={MANAGEMARKDOWNCONTENT} />
+          <ManageMarkdownComponent form={form} path="body" contentText={menageMarkdownContent} />
         </div>
       </form>
     </Form>
