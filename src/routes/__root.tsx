@@ -47,7 +47,7 @@ function RootComponent() {
       </div>
       <Toaster richColors closeButton />
       <Suspense>
-        {/* <TanStackRouterDevtools position="bottom-right" /> */}
+        <TanStackRouterDevtools position="bottom-right" />
       </Suspense>
       {/* </BackgroundGradientAnimation> */}
     </>
