@@ -70,7 +70,7 @@ export function UserToggle({ ...props }: UserToggleBtn) {
           {auth.isAuthenticated ? <Skull size={20} /> : <ScanFace size={20} />}
         </DialogTrigger>
       </Toggle>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="w-80 rounded-md sm:max-w-md md:w-full">
         {auth.isAuthenticated && auth.user ? (
           <LoggedIn user={auth.user} OnClick={LogoutUser} />
         ) : (

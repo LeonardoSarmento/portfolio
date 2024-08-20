@@ -51,7 +51,7 @@ export function NavigationMenuGroup() {
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-4 sm:px-8">{menuContent.posts.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+              <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {menuContent.posts.contents
                   .filter((_, index) => index <= 5)
                   .map((component, index) => (

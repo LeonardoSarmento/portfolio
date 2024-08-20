@@ -14,8 +14,8 @@ export const Route = createFileRoute('/contact')({
 function Contact() {
   const contactContent = CONTACTCONTENT();
   return (
-    <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">
-      <div className="col-span-5 space-y-4">
+    <div className="flex flex-1 flex-wrap-reverse items-center justify-around gap-4 px-4 xl:px-16 xl:flex-nowrap">
+      <div className="mb-8 flex w-screen flex-col flex-wrap space-y-4 xl:mb-0 xl:w-1/3">
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{contactContent.title}</CardTitle>
@@ -33,8 +33,8 @@ function Contact() {
             <HoverContainer items={contactContent.socialMedia.content} />
           </CardContent>
         </Card>
-        <div className="flex min-h-[300px] flex-col items-center justify-center space-y-4">
-          <CardTitle>{contactContent.content.title}</CardTitle>
+        <div className="flex flex-col items-center justify-center space-y-4">
+          <CardTitle className="text-center">{contactContent.content.title}</CardTitle>
           <img
             className="h-6 rounded-lg transition-all duration-300 hover:scale-150"
             src={contactContent.content.src}
@@ -42,21 +42,27 @@ function Contact() {
           />
         </div>
       </div>
-      <div className="relative col-span-7 flex min-h-[750px] flex-col items-center justify-center overflow-hidden rounded-lg">
+      <div className="relative flex flex-1 flex-col gap-10 overflow-hidden rounded-lg py-12 xl:gap-0 xl:py-20">
         <Boxes />
-        <img
-          className="z-[1] h-80 rounded-md"
-          src={contactContent.sideContent.src}
-          alt={contactContent.sideContent.alt}
-        />
-        <div className="z-[1] flex items-center">
-          <TypewriterEffectSmooth
-            textClassName="xl:text-2xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
-            cursorClassName="xl:h-8"
-            words={contactContent.sideContent.content.typewriter}
+        <div className="z-[1] mx-auto h-64 overflow-hidden rounded-md">
+          <img
+            className="relative bottom-10 right-10 scale-150 md:bottom-0 md:right-0 h-64 mx-auto md:scale-100"
+            src={contactContent.sideContent.src}
+            alt={contactContent.sideContent.alt}
           />
-          <CardTitle className="relative bottom-1 ml-2 bg-white pb-0.5 text-2xl dark:bg-transparent">
-            {contactContent.sideContent.content.title}
+        </div>
+        <div className="z-[1] flex flex-wrap items-center justify-center gap-2 xl:px-0">
+          <div className="flex px-4 text-center xl:px-0">
+            <TypewriterEffectSmooth
+              textClassName="xl:text-xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
+              cursorClassName="xl:h-8"
+              words={contactContent.sideContent.content.typewriter}
+            />
+          </div>
+          <CardTitle className="relative bottom-1 bg-white pb-0.5 dark:bg-transparent xl:ml-2">
+            <span className='pb-0.5" bg-white dark:bg-transparent lg:text-2xl xl:text-2xl'>
+              {contactContent.sideContent.content.title}
+            </span>
           </CardTitle>
         </div>
       </div>

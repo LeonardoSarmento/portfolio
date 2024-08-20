@@ -18,7 +18,26 @@ export const CONTACTCONTENT: () => TContactPage = () => {
     },
     sideContent: {
       ...t('contact-content.sideContent', { ns: 'contact', returnObjects: true }),
+      content: {
+        ...t('contact-content.sideContent.content', { ns: 'contact', returnObjects: true }),
+        typewriter: words(),
+      },
       src: LEO_DIA_D,
     },
   };
+};
+
+type TWords = { text: string; className?: string };
+
+const words: () => TWords[] = () => {
+  const { t } = useTranslation();
+  const words: TWords[] = [];
+  const message = t('contact-content.sideContent.content.typewriter', { ns: 'contact', returnObjects: true });
+  message.map((word) =>
+    words.push({
+      text: word.text,
+      className: word.className === 'punchline' ? 'text-green-500 dark:text-green-500' : undefined,
+    }),
+  );
+  return words;
 };

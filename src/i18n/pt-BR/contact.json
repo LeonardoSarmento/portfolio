@@ -17,9 +17,6 @@
       "content": {
         "typewriter": [
           {
-            "text": "\""
-          },
-          {
             "text": "Dúvida com"
           },
           {
@@ -30,10 +27,7 @@
           },
           {
             "text": "Faz um pix pra mim :)",
-            "className": "text-green-500 dark:text-green-500"
-          },
-          {
-            "text": "\""
+            "className": "punchline"
           }
         ],
         "title": " - eu"

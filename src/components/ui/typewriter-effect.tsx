@@ -112,7 +112,7 @@ export const TypewriterEffectSmooth = ({
           return (
             <div key={`word-${idx}`} className="inline-block">
               {word.text.map((char, index) => (
-                <span key={`char-${index}`} className={cn(`text-black dark:text-white `, word.className)}>
+                <span key={`char-${index}`} className={cn(`text-black dark:text-white`, word.className)}>
                   {char}
                 </span>
               ))}
@@ -125,7 +125,7 @@ export const TypewriterEffectSmooth = ({
   };
 
   return (
-    <div className={cn('my-6 flex space-x-1', className)}>
+    <div className={cn('flex items-center space-x-1 xl:my-6', className)}>
       <motion.div
         className="overflow-hidden pb-2"
         initial={{
@@ -141,10 +141,13 @@ export const TypewriterEffectSmooth = ({
         }}
       >
         <div
-          className={cn('lg:text:3xl text-xs font-bold sm:text-base md:text-xl xl:text-5xl', textClassName)}
-          style={{
-            whiteSpace: 'nowrap',
-          }}
+          className={cn(
+            'lg:text:3xl lg:whitespace-nowrap whitespace-normal text-xs font-bold sm:text-base md:text-xl xl:flex-nowrap xl:text-5xl',
+            textClassName,
+          )}
+          // style={{
+          //   whiteSpace: 'wrap lg:nowrap',
+          // }}
         >
           {renderWords()}{' '}
         </div>{' '}
