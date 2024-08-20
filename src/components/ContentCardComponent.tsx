@@ -47,12 +47,12 @@ export function ContentCardComponent(props: TContentCard) {
         // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
       >
         <img className="aspect-video rounded-md" src={props.content.thumbnail} />
-        <CardHeader className="h-28">{props.content.title}</CardHeader>
-        <ScrollArea className="h-16 rounded-md">
-          <div className="flex flex-wrap gap-2 px-4">
+        <CardHeader className="lg:16 h-32">{props.content.title}</CardHeader>
+        <ScrollArea className="lg:h-24 h-16 rounded-md">
+          <div className="flex flex-wrap gap-2 px-0 justify-center">
             {props.content.tags
               ? props.content.tags.map((tag) => (
-                  <Badge key={tag.value} className="w-14 justify-center">
+                  <Badge key={tag.value} className="xl:w-20 lg:w-16 w-14 justify-center">
                     <p className="text-xs">{tag.value}</p>
                   </Badge>
                 ))

@@ -48,7 +48,7 @@ function Index() {
   );
 
   return (
-    <div className="mt-3 flex flex-col gap-4 px-16">
+    <div className="mt-3 flex flex-col gap-4 px-6 lg:px-14">
       <div className="flex flex-wrap gap-4 lg:flex-nowrap">
         <CardAboutMe contents={aboutMeContent} />
         <CardWithScroll>
@@ -58,7 +58,7 @@ function Index() {
           <CardExperience contents={TABSPROFESSIONAL()} />
         </CardWithScroll>
       </div>
-      <div className="flex flex-wrap justify-center xl:grid xl:grid-cols-2 gap-8 xl:gap-x-32 xl:flex-nowrap">
+      <div className="flex flex-wrap justify-center px-10 xl:px-10 xl:grid xl:grid-cols-2 gap-8 xl:gap-x-32 xl:flex-nowrap">
         {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
             key={option.title}

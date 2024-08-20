@@ -31,15 +31,13 @@ function Introduction() {
         {introductionContent.header.initial} {''}
         <Highlight className="px-4 text-black dark:text-white">{introductionContent.header.punchline}</Highlight>
       </motion.h1>
-      <div className="flex w-screen justify-evenly gap-10 p-12">
-        <div>
-          {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
-          <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)]">
-            <AvatarImage src={introductionContent.image.src} alt={introductionContent.image.alt} />
-          </Avatar>
-        </div>
-        <div className="flex w-[700px] flex-col justify-center gap-2">
-          <h2 className=" scroll-m-20 whitespace-break-spaces pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+      <div className="flex mx-auto flex-col justify-center gap-16 xl:space-x-20 p-12 xl:flex-row xl:justify-evenly xl:gap-10">
+        {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
+        <Avatar className="h-64 w-64 mx-auto shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)] md:h-72 md:w-72 xl:h-96 xl:w-96">
+          <AvatarImage src={introductionContent.image.src} alt={introductionContent.image.alt} />
+        </Avatar>
+        <div className="flex flex-col mx-auto justify-center gap-2 lg:w-[700px]">
+          <h2 className="scroll-m-20 whitespace-break-spaces pb-2 text-3xl font-semibold tracking-tight first:mt-0">
             {introductionContent.introduction.h1}
           </h2>
           <code className="relative w-fit rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-3xl font-semibold">
