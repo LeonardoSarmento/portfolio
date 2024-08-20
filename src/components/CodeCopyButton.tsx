@@ -35,7 +35,7 @@ export function CustomPre({ children, className, ...props }: Props) {
               'group-hover:flex': copied,
             })}
           >
-            {t('copy')}
+            {t('dropdown.copy')}
           </span>
 
           <button
