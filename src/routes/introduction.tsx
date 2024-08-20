@@ -9,7 +9,6 @@ export const Route = createFileRoute('/introduction')({
 });
 
 function Introduction() {
-  // return <div className="grid-rows-auto m-3 grid grid-cols-12 gap-4 px-16">Hello from Introduction!</div>;
   const introductionContent = INTRODUCTIONCONTENT();
   return (
     <HeroHighlight className="space-y-10">
@@ -26,17 +25,17 @@ function Introduction() {
           duration: 0.5,
           ease: [0.4, 0.0, 0.2, 1],
         }}
-        className="mx-auto mt-5 max-w-4xl px-4 text-center text-2xl font-bold leading-relaxed text-neutral-700 dark:text-white md:text-4xl lg:text-5xl lg:leading-snug "
+        className="mx-auto mt-5 max-w-4xl px-4 text-center text-2xl font-bold leading-relaxed text-neutral-700 dark:text-white md:text-4xl lg:text-5xl lg:leading-snug"
       >
         {introductionContent.header.initial} {''}
         <Highlight className="px-4 text-black dark:text-white">{introductionContent.header.punchline}</Highlight>
       </motion.h1>
-      <div className="flex mx-auto flex-col justify-center gap-16 xl:space-x-20 p-12 xl:flex-row xl:justify-evenly xl:gap-10">
+      <div className="mx-auto flex flex-col justify-center gap-16 p-12 xl:flex-row xl:justify-evenly xl:gap-10 xl:space-x-20">
         {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
-        <Avatar className="h-64 w-64 mx-auto shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)] md:h-72 md:w-72 xl:h-96 xl:w-96">
+        <Avatar className="mx-auto h-64 w-64 shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)] md:h-72 md:w-72 xl:h-96 xl:w-96">
           <AvatarImage src={introductionContent.image.src} alt={introductionContent.image.alt} />
         </Avatar>
-        <div className="flex flex-col mx-auto justify-center gap-2 lg:w-[700px]">
+        <div className="mx-auto flex flex-col justify-center gap-2 lg:w-[700px]">
           <h2 className="scroll-m-20 whitespace-break-spaces pb-2 text-3xl font-semibold tracking-tight first:mt-0">
             {introductionContent.introduction.h1}
           </h2>

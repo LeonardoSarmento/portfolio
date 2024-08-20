@@ -1,25 +1,4 @@
 {
-  "words-content": [
-    {
-      "text": "\""
-    },
-    {
-      "text": "Dúvida com"
-    },
-    {
-      "text": "o que gastar"
-    },
-    {
-      "text": "o seu dinheiro?"
-    },
-    {
-      "text": "Faz um pix pra mim :)",
-      "className": "text-green-500 dark:text-green-500"
-    },
-    {
-      "text": "\""
-    }
-  ],
   "contact-content": {
     "title": "Contato",
     "description": [
@@ -35,7 +14,30 @@
     "sideContent": {
       "src": "",
       "alt": "Leonardo apresentando workshop sobre frontend no IST",
-      "content": { "typewriter": "", "title": " - eu" }
+      "content": {
+        "typewriter": [
+          {
+            "text": "\""
+          },
+          {
+            "text": "Dúvida com"
+          },
+          {
+            "text": "o que gastar"
+          },
+          {
+            "text": "o seu dinheiro?"
+          },
+          {
+            "text": "Faz um pix pra mim :)",
+            "className": "text-green-500 dark:text-green-500"
+          },
+          {
+            "text": "\""
+          }
+        ],
+        "title": " - eu"
+      }
     }
   }
 }

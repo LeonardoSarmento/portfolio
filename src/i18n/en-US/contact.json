@@ -1,25 +1,4 @@
 {
-  "words-content": [
-    {
-      "text": "\""
-    },
-    {
-      "text": "Doubt about"
-    },
-    {
-      "text": "what to spend"
-    },
-    {
-      "text": "your money?"
-    },
-    {
-      "text": "Do a pix to me :)",
-      "className": "text-green-500 dark:text-green-500"
-    },
-    {
-      "text": "\""
-    }
-  ],
   "contact-content": {
     "title": "Contact",
     "description": [
@@ -35,7 +14,30 @@
     "sideContent": {
       "src": "",
       "alt": "Leonardo presenting frontend workshop at IST",
-      "content": { "typewriter": "", "title": " - me" }
+      "content": {
+        "typewriter": [
+          {
+            "text": "\""
+          },
+          {
+            "text": "Doubt about"
+          },
+          {
+            "text": "what to spend"
+          },
+          {
+            "text": "your money?"
+          },
+          {
+            "text": "Do a pix to me :)",
+            "className": "text-green-500 dark:text-green-500"
+          },
+          {
+            "text": "\""
+          }
+        ],
+        "title": " - me"
+      }
     }
   }
 }

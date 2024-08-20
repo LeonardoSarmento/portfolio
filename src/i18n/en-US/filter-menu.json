@@ -1,4 +1,5 @@
 {
+  "menu": {
     "createButton": { "title": "Create" },
     "search": { "placeholder": "Search for a title", "buttonText": "Search" },
     "filter": {
@@ -24,4 +25,4 @@
       "foward": "next"
     }
   }
-  
+}

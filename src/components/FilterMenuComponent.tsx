@@ -67,31 +67,32 @@ export function FilterMenuComponent({
       },
     });
   }
+  const filterMenuContent = FILTERMENUCONTENT();
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col space-y-4 mx-14">
-          <div className="flex gap-4 mr-14">
+        <div className="mx-14 flex flex-col space-y-4">
+          <div className="mr-14 flex gap-4">
             {auth.isAuthenticated ? (
-              <Button onClick={() => navigate(createPath)} type="button" className='flex-none w-32'>
-                {FILTERMENUCONTENT().createButton.title}
+              <Button onClick={() => navigate(createPath)} type="button" className="w-32 flex-none">
+                {filterMenuContent.createButton.title}
               </Button>
             ) : null}
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
-                <FormItem className="flex-1 max-w-none">
+                <FormItem className="max-w-none flex-1">
                   <FormControl>
-                    <Input placeholder={FILTERMENUCONTENT().search.placeholder} {...field} />
+                    <Input placeholder={filterMenuContent.search.placeholder} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" className='flex-none gap-2'>
+            <Button type="submit" className="flex-none gap-2">
               <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
-              {FILTERMENUCONTENT().search.buttonText}
+              {filterMenuContent.search.buttonText}
             </Button>
           </div>
           <div className="flex">
@@ -114,10 +115,11 @@ function SideMenuComponent({
   Tags?: TagType[];
   ResetFilters: () => void;
 }) {
+  const filterMenuContent = FILTERMENUCONTENT();
   return (
-    <Card className="h-fit w-32 mr-4">
+    <Card className="mr-4 h-fit w-32">
       <CardHeader>
-        <CardTitle className="text-center">{FILTERMENUCONTENT().filter.title}</CardTitle>
+        <CardTitle className="text-center">{filterMenuContent.filter.title}</CardTitle>
       </CardHeader>
       <Separator />
       <CardContent className="mt-3 flex flex-col space-y-5">
@@ -126,8 +128,8 @@ function SideMenuComponent({
           name="tags"
           render={() => (
             <FormItem>
-              <FormLabel>{FILTERMENUCONTENT().filter.theme.title}</FormLabel>
-              <FormDescription>{FILTERMENUCONTENT().filter.theme.description}</FormDescription>
+              <FormLabel>{filterMenuContent.filter.theme.title}</FormLabel>
+              <FormDescription>{filterMenuContent.filter.theme.description}</FormDescription>
               {Tags &&
                 Tags.map((tag) => (
                   <FormField
@@ -164,12 +166,12 @@ function SideMenuComponent({
           render={({ field }) => (
             <FormItem>
               <FormItem>
-                <FormLabel className="text-sm font-normal">{FILTERMENUCONTENT().filter.quantity.title}</FormLabel>
-                <FormDescription>{FILTERMENUCONTENT().filter.quantity.description}</FormDescription>
+                <FormLabel className="text-sm font-normal">{filterMenuContent.filter.quantity.title}</FormLabel>
+                <FormDescription>{filterMenuContent.filter.quantity.description}</FormDescription>
                 <Select onValueChange={field.onChange} defaultValue={field.value} value={field.value} key={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder={FILTERMENUCONTENT().filter.quantity.placeholder} />
+                      <SelectValue placeholder={filterMenuContent.filter.quantity.placeholder} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -185,9 +187,9 @@ function SideMenuComponent({
             </FormItem>
           )}
         />
-        <Button type="submit">{FILTERMENUCONTENT().filter.buttons.filterTitle}</Button>
+        <Button type="submit">{filterMenuContent.filter.buttons.filterTitle}</Button>
         <Button type="button" onClick={ResetFilters} variant="destructive">
-          {FILTERMENUCONTENT().filter.buttons.clearTitle}
+          {filterMenuContent.filter.buttons.clearTitle}
         </Button>
       </CardContent>
     </Card>
@@ -195,24 +197,25 @@ function SideMenuComponent({
 }
 
 function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
+  const filterMenuContent = FILTERMENUCONTENT();
   return (
-    <div className="items-center flex flex-col gap-4 justify-center w-full">
+    <div className="flex w-full flex-col items-center justify-center gap-4">
       <CardContent className="flex items-center justify-center rounded-xl border p-6">
         <blockquote className="space-y-2 pr-6">
-          <p className="text-lg">&ldquo;{FILTERMENUCONTENT().noContent.content.text}&rdquo;</p>
-          <footer className="text-sm">{FILTERMENUCONTENT().noContent.content.author}</footer>
+          <p className="text-lg">&ldquo;{filterMenuContent.noContent.content.text}&rdquo;</p>
+          <footer className="text-sm">{filterMenuContent.noContent.content.author}</footer>
         </blockquote>
         <Separator orientation="vertical" className="mx-1" />
         <img
           className="h-[300px] rounded-md"
-          src={FILTERMENUCONTENT().noContent.image.src}
-          alt={FILTERMENUCONTENT().noContent.image.alt}
+          src={filterMenuContent.noContent.image.src}
+          alt={filterMenuContent.noContent.image.alt}
         />
       </CardContent>
       <div className="flex gap-4">
-        <CardTitle className="mt-2">{FILTERMENUCONTENT().noContent.button.description}</CardTitle>
+        <CardTitle className="mt-2">{filterMenuContent.noContent.button.description}</CardTitle>
         <Button type="submit" onClick={ResetFilters}>
-          {FILTERMENUCONTENT().noContent.button.title}
+          {filterMenuContent.noContent.button.title}
         </Button>
       </div>
       {/* <ReloadIcon className="mr-2 h-10 w-6 animate-spin" /> */}
@@ -257,6 +260,7 @@ function PaginationComponent({
 
     return false;
   }
+  const filterMenuContent = FILTERMENUCONTENT();
   return (
     <Pagination>
       <PaginationContent>
@@ -271,7 +275,7 @@ function PaginationComponent({
               }}
             >
               <ChevronLeftIcon className="h-4 w-4" />
-              <p className="text-sm">{FILTERMENUCONTENT().pagination.back}</p>
+              <p className="text-sm">{filterMenuContent.pagination.back}</p>
             </Button>
           )}
         </PaginationButton>
@@ -312,7 +316,7 @@ function PaginationComponent({
                 navigatePagination({ page });
               }}
             >
-              <p className="text-sm">{FILTERMENUCONTENT().pagination.foward}</p>
+              <p className="text-sm">{filterMenuContent.pagination.foward}</p>
               <ChevronRightIcon className="h-4 w-4" />
             </Button>
           )}

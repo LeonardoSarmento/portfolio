@@ -1,7 +1,9 @@
 {
-  "title": "Postagem",
-  "share": "Compartilhar",
-  "edit": "Editar",
-  "delete": "Deletar",
-  "copy": "Copiado!"
+  "dropdown": {
+    "title": "Postagem",
+    "share": "Compartilhar",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "copy": "Copiado!"
+  }
 }

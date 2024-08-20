@@ -1,7 +1,9 @@
 {
-  "title": "Post",
-  "share": "Share",
-  "edit": "Edit",
-  "delete": "Delete",
-  "copy": "Copied!"
+  "dropdown": {
+    "title": "Post",
+    "share": "Share",
+    "edit": "Edit",
+    "delete": "Delete",
+    "copy": "Copied!"
+  }
 }

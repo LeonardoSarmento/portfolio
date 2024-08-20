@@ -5,6 +5,7 @@ import { Separator } from '@components/ui/separator';
 import { TypewriterEffectSmooth } from '@components/ui/typewriter-effect';
 import { CONTACTCONTENT } from '@constants/contact-content';
 import { createFileRoute } from '@tanstack/react-router';
+import { Fragment } from 'react/jsx-runtime';
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
@@ -18,9 +19,12 @@ function Contact() {
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{contactContent.title}</CardTitle>
-            <CardDescription>{contactContent.description[0]}</CardDescription>
-            <Separator />
-            <CardDescription>{contactContent.description[1]}</CardDescription>
+            {contactContent.description.map((cardDesc, index) => (
+              <Fragment key={cardDesc}>
+                <CardDescription>{cardDesc}</CardDescription>
+                {contactContent.description.length !== index + 1 ? <Separator /> : null}
+              </Fragment>
+            ))}
           </CardHeader>
         </Card>
         <Card>

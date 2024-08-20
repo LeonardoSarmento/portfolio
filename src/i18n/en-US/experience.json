@@ -72,8 +72,8 @@
       "value": "IEL",
       "title": "IEL",
       "header": {
-        "avatar": { "avatarFallback": "IEL - Scholar" },
-        "title": "IEL - Scholar in Software Development",
+        "avatar": { "avatarFallback": "IEL - Fellow" },
+        "title": "IEL - Software Engineer Fellow",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Feb 2024 - Present", "Vitória, Espírito Santo, Brazil · Hybrid"] }
       },
@@ -94,8 +94,8 @@
       "value": "FAPES",
       "title": "FAPES",
       "header": {
-        "avatar": { "avatarFallback": "FAPES - Scholar" },
-        "title": "FAPES - Scholar in Software Development",
+        "avatar": { "avatarFallback": "FAPES - Fellow" },
+        "title": "FAPES - Software Engineer Fellow",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Feb 2023 - Feb 2024 · 1 yr", "Vitória, Espírito Santo, Brazil · Hybrid"] }
       },

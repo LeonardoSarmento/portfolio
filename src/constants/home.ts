@@ -14,19 +14,10 @@ export const SocialMediaItems: TSocialMediaCard[] = [
 export const ABOUTMECONTENT: () => TCardContent['about'] = () => {
   const { t } = useTranslation();
   return {
+    ...t('aboutMe', { ns: 'home', returnObjects: true }),
     header: {
-      alt: t('aboutMe.header.alt', { ns: 'home', returnObjects: true }),
+      ...t('aboutMe.header', { ns: 'home', returnObjects: true }),
       src: MY_PHOTO,
-      title: t('aboutMe.header.title', { ns: 'home', returnObjects: true }),
-      description: t('aboutMe.header.description', { ns: 'home', returnObjects: true }),
-    },
-    content: {
-      description: [
-        t('aboutMe.content.description', { ns: 'home', returnObjects: true })[0],
-        t('aboutMe.content.description', { ns: 'home', returnObjects: true })[1],
-        t('aboutMe.content.description', { ns: 'home', returnObjects: true })[2],
-        t('aboutMe.content.description', { ns: 'home', returnObjects: true })[3],
-      ],
     },
   };
 };
@@ -34,15 +25,13 @@ export const CARROUSELPARTIALOPTIONS: () => TCarrouselComponent[] = () => {
   const { t } = useTranslation();
   return [
     {
+      ...t('carrouselOptions', { ns: 'home', returnObjects: true })[0],
       buttonPath: { to: '/posts', search: { page: '1', pageSize: '100' } },
-      buttonTitle: t('carrouselOptions', { ns: 'home', returnObjects: true })[0].buttonTitle,
-      title: t('carrouselOptions', { ns: 'home', returnObjects: true })[0].title,
       path: { to: '/posts/$postId' },
     },
     {
+      ...t('carrouselOptions', { ns: 'home', returnObjects: true })[1],
       buttonPath: { to: '/projects', search: { page: '1', pageSize: '100' } },
-      buttonTitle: t('carrouselOptions', { ns: 'home', returnObjects: true })[1].buttonTitle,
-      title: t('carrouselOptions', { ns: 'home', returnObjects: true })[1].title,
       path: { to: '/projects/$projectId' },
     },
   ];

@@ -2,10 +2,12 @@
   "tabsLogin": [
     {
       "title": "Login",
+      "value": "login",
       "header": { "description": "Enter your name and password below", "title": "Access your account" }
     },
     {
       "title": "Create",
+      "value": "create-account",
       "header": {
         "description": "Create your account to use all the amazing features of this portfolio site",
         "title": "Create your account"
