@@ -20,7 +20,9 @@ function Experience() {
   const experienceContent = EXPERIENCECONTENT();
   return (
     <div className="flex flex-col flex-wrap gap-4 px-4 lg:flex-row xl:flex-nowrap xl:px-16">
-      <Meteors number={100} className="hidden" />
+      <div className='xl:overflow-hidden absolute max-h-screen max-w-screen'>
+        <Meteors number={100} className="max-xl:hidden" />
+      </div>
       <Card>
         <CardHeader>
           <CardTitle className="text-center">{experienceContent.experience.title}</CardTitle>
@@ -87,9 +89,9 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
       {contents.map((content) => (
         <TabsContent key={content.value} value={content.value} className="rounded-lg border-2">
           <CardContent className="flex flex-wrap justify-center space-y-10 py-4 xl:flex-nowrap xl:space-y-0">
-            <div className="flex flex-col flex-wrap xl:flex-row xl:flex-nowrap text-center gap-10 justify-around xl:gap-4 w-2/3 xl:space-x-5 items-center xl:items-start">
+            <div className="flex w-2/3 flex-col flex-wrap items-center justify-around gap-10 text-center xl:flex-row xl:flex-nowrap xl:items-start xl:gap-4 xl:space-x-5">
               <div className="space-y-2 xl:w-2/3">
-                <div className="flex flex-col flex-wrap justify-center items-center gap-2 xl:flex-row">
+                <div className="flex flex-col flex-wrap items-center justify-center gap-2 xl:flex-row">
                   <Avatar key={content.value}>
                     <AvatarImage src={content.header.avatar.src} />
                     <AvatarFallback>{content.header.avatar.avatarFallback}</AvatarFallback>
@@ -110,8 +112,8 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
             </div>
             <div className="flex flex-col items-center space-y-4 xl:w-1/3">
               <CardTitle className="text-center">{content.tools.title}</CardTitle>
-              <ScrollArea className="h-60 rounded-md xl:h-56 mx-8">
-                <CardContent className="flex flex-wrap justify-around p-0 flex-col">
+              <ScrollArea className="mx-8 h-60 rounded-md xl:h-56">
+                <CardContent className="flex flex-col flex-wrap justify-around p-0">
                   {content.tools.content.map((tech) => (
                     <IconTecButton key={tech.title} path={tech.url} className="w-40">
                       {tech.icon}

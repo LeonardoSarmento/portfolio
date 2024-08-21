@@ -16,6 +16,9 @@ import { FieldValues, Path, UseControllerReturn, useFormContext, UseFormReturn }
 import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
 import { useQueryTags } from '@services/hooks/tagsQueryOptions';
+import { cn } from '@lib/utils';
+import { useState } from 'react';
+import { useOnOutsideClick } from '@services/hooks/useOutsideClick';
 
 export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
   {
@@ -53,6 +56,8 @@ export function FilterMenuComponent({
   const auth = useAuth();
   const { data: TAGS } = useQueryTags();
   const { form, ResetFilters } = useFormFilters({ path });
+  const [openFilter, setOpenFilter] = useState<boolean>(false);
+  const { innerBorderRef } = useOnOutsideClick(() => setOpenFilter(false));
 
   function onSubmit(data: FilterType) {
     form.setValue('page', '1');
@@ -66,13 +71,15 @@ export function FilterMenuComponent({
         views: data.views,
       },
     });
+    setOpenFilter(false);
   }
   const filterMenuContent = FILTERMENUCONTENT();
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="mx-14 flex flex-col space-y-4">
-          <div className="mr-14 flex gap-4">
+        <div className="flex flex-col justify-center space-y-4 xl:mx-14">
+          <div className="mx-7 flex gap-4 xl:mx-0 xl:mr-14">
             {auth.isAuthenticated ? (
               <Button onClick={() => navigate(createPath)} type="button" className="w-32 flex-none">
                 {filterMenuContent.createButton.title}
@@ -90,13 +97,25 @@ export function FilterMenuComponent({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="flex-none gap-2">
+            <Button type="button" className="flex-none gap-2">
               <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
               {filterMenuContent.search.buttonText}
             </Button>
           </div>
-          <div className="flex">
-            <SideMenuComponent ResetFilters={ResetFilters} form={form} Tags={TAGS} />
+          <div className="flex flex-wrap justify-center gap-4 xl:flex-nowrap">
+            <Button className="mx-7 w-full xl:hidden" onClick={() => setOpenFilter((prev) => !prev)} type="button">
+              Filtros
+            </Button>
+            <div ref={innerBorderRef} className='max-sm:w-full justify-center flex'>
+              <SideMenuComponent
+                ResetFilters={() => {
+                  ResetFilters(), setOpenFilter(false);
+                }}
+                form={form}
+                Tags={TAGS}
+                className={`${openFilter ? 'absolute flex flex-col xl:mt-0 xl:flex xl:flex-col' : 'hidden xl:flex xl:flex-col'}`}
+              />
+            </div>
             {hasContent ? <div>{children}</div> : <NoContentComponent ResetFilters={ResetFilters} />}
           </div>
           <PaginationComponent contentSize={contentSize} form={form} path={path} />
@@ -110,14 +129,16 @@ function SideMenuComponent({
   form,
   Tags,
   ResetFilters,
+  className,
 }: {
   form: UseFormReturn<FilterType>;
   Tags?: TagType[];
+  className?: string;
   ResetFilters: () => void;
 }) {
   const filterMenuContent = FILTERMENUCONTENT();
   return (
-    <Card className="mr-4 h-fit w-32">
+    <Card className={cn('z-[1] h-fit xl:relative xl:mx-0 xl:w-32', className)}>
       <CardHeader>
         <CardTitle className="text-center">{filterMenuContent.filter.title}</CardTitle>
       </CardHeader>

@@ -14,7 +14,7 @@ export function RenderAllContents({
   URL: string;
 }) {
   return (
-    <div className="flex flex-wrap gap-x-4">
+    <div id="render-all-publications-component" className="flex flex-wrap p-10 pt-0 gap-x-4">
       {contents.length > 0
         ? contents.map((content, index) => (
             <ContentCardComponent
@@ -25,7 +25,7 @@ export function RenderAllContents({
               dropdownMenu
               URL={URL}
               editPath={editPath}
-              className="mb-4 w-64"
+              className="mb-4 xl:w-64 md:w-56 w-full"
             />
           ))
         : null}
