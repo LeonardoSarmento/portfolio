@@ -97,7 +97,7 @@ function LoggedIn({ user, OnClick }: { user: string; OnClick(): void }) {
           <Input id={t('loggedIn.username.id')} placeholder={user} readOnly />
         </div>
       </div>
-      <DialogFooter className="sm:justify-start">
+      <DialogFooter className="sm:justify-start gap-3">
         <DialogClose asChild>
           <Button type="button" onClick={OnClick}>
             {t('loggedIn.buttons.logout')}
@@ -156,7 +156,7 @@ function LoginForm({
             </FormItem>
           )}
         />
-        <DialogFooter className="sm:justify-start">
+        <DialogFooter className="sm:justify-start gap-3">
           <Button type="submit">{t('loginForm.button.submit')}</Button>
           <DialogClose asChild onClick={() => form.reset()}>
             <Button type="button" variant="secondary">

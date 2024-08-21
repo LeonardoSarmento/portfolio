@@ -3,16 +3,61 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@comp
 import HoverContainer from '@components/ui/hover-container';
 import { Separator } from '@components/ui/separator';
 import { TypewriterEffectSmooth } from '@components/ui/typewriter-effect';
-import { CONTACTCONTENT } from '@constants/contact-content';
+import { SocialMediaItems } from '@constants/home';
+import { LEO_DIA_D, THUMBSUP } from '@services/utils/Images';
 import { createFileRoute } from '@tanstack/react-router';
+import { useTranslation } from 'react-i18next';
 import { Fragment } from 'react/jsx-runtime';
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
+  meta: ({}) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `Contact | Leonardo`,
+      content:
+        'Get in touch with me through my social media profiles on LinkedIn, GitHub, Instagram, or via email. Connect with me to discuss opportunities, collaborations, or just to say hello.',
+    },
+  ],
 });
+type TWords = { text: string; className?: string };
 
 function Contact() {
-  const contactContent = CONTACTCONTENT();
+  const { t } = useTranslation('contact');
+  const words: TWords[] = [];
+  const message = t('contact-content.sideContent.content.typewriter', { ns: 'contact', returnObjects: true });
+  message.map((word) =>
+    words.push({
+      text: word.text,
+      className: word.className === 'punchline' ? 'text-green-500 dark:text-green-500' : undefined,
+    }),
+  );
+  const contactContent = {
+    ...t('contact-content', { returnObjects: true }),
+    socialMedia: {
+      ...t('contact-content.socialMedia', { returnObjects: true }),
+      content: SocialMediaItems,
+    },
+    content: {
+      ...t('contact-content.content', { returnObjects: true }),
+      src: THUMBSUP,
+    },
+    sideContent: {
+      ...t('contact-content.sideContent', { returnObjects: true }),
+      content: {
+        ...t('contact-content.sideContent.content', { returnObjects: true }),
+        typewriter: words,
+      },
+      src: LEO_DIA_D,
+    },
+  };
+
   return (
     <div className="flex flex-1 flex-wrap-reverse items-center justify-around gap-4 px-4 xl:flex-nowrap xl:px-16">
       <div className="mb-8 flex w-screen flex-col flex-wrap space-y-4 xl:mb-0 xl:w-1/3">
@@ -36,7 +81,7 @@ function Contact() {
         <div className="flex flex-col items-center justify-center space-y-4">
           <CardTitle className="text-center">{contactContent.content.title}</CardTitle>
           <img
-            className="h-6 rounded-lg transition-all duration-300 hover:scale-150"
+            className="h-6 w-5 rounded-lg transition-all duration-300 hover:scale-150"
             src={contactContent.content.src}
             alt={contactContent.content.alt}
           />
@@ -44,12 +89,12 @@ function Contact() {
       </div>
       <div className="relative flex flex-1 flex-col gap-10 overflow-hidden rounded-lg py-6 xl:gap-0 xl:py-20">
         <Boxes className="invisible xl:visible" />
-        <div className="visible xl:invisible dark:bg-grid-white/[0.2] bg-grid-black/[0.2] absolute flex h-full  w-full flex-col items-center justify-center gap-10">
+        <div className="visible absolute flex h-full w-full flex-col items-center justify-center gap-10 bg-grid-black/[0.2] dark:bg-grid-white/[0.2] xl:invisible">
           {/* Radial gradient for the container to give a faded look */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
         </div>
 
-        <div className="z-[1] mx-auto h-64 overflow-hidden rounded-md mt-10">
+        <div className="z-[1] mx-auto mt-10 h-64 overflow-hidden rounded-md">
           <img
             className="relative bottom-10 right-10 mx-auto h-64 scale-150 md:bottom-0 md:right-0 md:scale-100"
             src={contactContent.sideContent.src}

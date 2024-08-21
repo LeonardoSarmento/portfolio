@@ -17,19 +17,17 @@ export function SelectLanguage({ ...props }: SelectLanguageBtn) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button {...props} variant="outline" size="icon">
+        <Button {...props} variant="outline" size="icon" id="select-language" aria-label="select-language">
           <Flag countryCode={getCountrCode(i18n.language)} className="w-6 rounded-sm" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="relative left-2 w-6 min-w-[3rem]">
-        {i18n.options.supportedLngs
-          ? i18n.options.supportedLngs
-              .filter((lgn) => lgn !== 'cimode')
-              .map((option) => (
-                <DropdownMenuItem key={option} onClick={() => changeLanguage(option)} className="gap-3">
-                  <Flag countryCode={getCountrCode(option)} className="w-8 rounded-sm" />
-                </DropdownMenuItem>
-              ))
+        {i18n.options.preload
+          ? i18n.options.preload.map((option) => (
+              <DropdownMenuItem key={option} onClick={() => changeLanguage(option)} className="gap-3">
+                <Flag countryCode={getCountrCode(option)} className="w-8 rounded-sm" />
+              </DropdownMenuItem>
+            ))
           : null}
       </DropdownMenuContent>
     </DropdownMenu>

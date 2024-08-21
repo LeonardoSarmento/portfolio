@@ -61,7 +61,9 @@ export function FilterMenuComponent({
 
   function onSubmit(data: FilterType) {
     form.setValue('page', '1');
+    window.scrollTo(0, 0);
     navigate({
+      resetScroll: false,
       to: path.to,
       search: {
         tags: data.tags?.length === 0 ? undefined : data.tags,
@@ -79,13 +81,13 @@ export function FilterMenuComponent({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <div className="flex flex-col justify-center space-y-4 xl:mx-14">
-          <div className="mx-7 flex max-sm:flex-wrap max-sm:flex-col gap-4 xl:mx-0 xl:mr-14">
+          <div className="mx-7 flex gap-4 max-sm:flex-col max-sm:flex-wrap xl:mx-0 xl:mr-14">
             {auth.isAuthenticated ? (
-              <Button onClick={() => navigate(createPath)} type="button" className="max-sm:w-full w-32 flex-none">
+              <Button onClick={() => navigate(createPath)} type="button" className="w-32 flex-none max-sm:w-full">
                 {filterMenuContent.createButton.title}
               </Button>
             ) : null}
-            <div className='flex gap-4 w-full'>
+            <div className="flex w-full gap-4">
               <FormField
                 control={form.control}
                 name="title"
@@ -104,7 +106,7 @@ export function FilterMenuComponent({
               </Button>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 xl:flex-nowrap">
+          <div className="flex flex-wrap gap-4 xl:flex-nowrap">
             <Button className="mx-7 w-full xl:hidden" onClick={() => setOpenFilter((prev) => !prev)} type="button">
               Filtros
             </Button>
@@ -118,7 +120,13 @@ export function FilterMenuComponent({
                 className={`${openFilter ? 'absolute flex flex-col xl:mt-0 xl:flex xl:flex-col' : 'hidden xl:flex xl:flex-col'}`}
               />
             </div>
-            {hasContent ? <div>{children}</div> : <NoContentComponent ResetFilters={ResetFilters} />}
+            {hasContent ? (
+              <div>{children}</div>
+            ) : (
+              <div className="flex justify-center max-sm:w-full">
+                <NoContentComponent ResetFilters={ResetFilters} />
+              </div>
+            )}
           </div>
           <PaginationComponent contentSize={contentSize} form={form} path={path} />
         </div>
@@ -223,20 +231,20 @@ function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
   const filterMenuContent = FILTERMENUCONTENT();
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4 max-lg:mx-6">
-      <CardContent className="flex items-center max-sm:flex-wrap-reverse justify-center rounded-xl border p-6">
-      {/* <CardContent className="flex items-center justify-center rounded-xl border p-6"> */}
+      <CardContent className="flex items-center justify-center rounded-xl border p-6 max-sm:flex-wrap-reverse">
+        {/* <CardContent className="flex items-center justify-center rounded-xl border p-6"> */}
         <blockquote className="space-y-2 pr-6 text-center">
           <p className="text-lg">&ldquo;{filterMenuContent.noContent.content.text}&rdquo;</p>
           <footer className="text-sm">{filterMenuContent.noContent.content.author}</footer>
         </blockquote>
         <Separator orientation="vertical" className="mx-1 max-sm:my-4 max-sm:h-[1px] max-sm:w-full" />
         <img
-          className="h-[300px] max-sm:w-32 max-sm:h-32 rounded-md"
+          className="h-[300px] rounded-md max-sm:h-32 max-sm:w-32"
           src={filterMenuContent.noContent.image.src}
           alt={filterMenuContent.noContent.image.alt}
         />
       </CardContent>
-      <div className="flex gap-4 max-sm:flex-col max-sm:mb-5">
+      <div className="flex gap-4 max-sm:mb-5 max-sm:flex-col">
         <CardTitle className="mt-2">{filterMenuContent.noContent.button.description}</CardTitle>
         <Button type="submit" onClick={ResetFilters}>
           {filterMenuContent.noContent.button.title}
@@ -260,7 +268,9 @@ function PaginationComponent({
 
   function navigatePagination({ page }: { page: string }) {
     form.setValue('page', page);
+    window.scrollTo(0, 0);
     navigate({
+      resetScroll: false,
       to: path.to,
       search: {
         page: page,

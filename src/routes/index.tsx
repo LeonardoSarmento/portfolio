@@ -26,6 +26,20 @@ export const Route = createFileRoute('/')({
   },
   pendingComponent: PendingComponent,
   component: Index,
+  meta: ({}) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `Leonardo's portfolio`,
+      content:
+        'Explore the portfolio of a skilled software engineer. Learn about me, view my resume, and browse through my blog posts and projects showcased in an interactive carousel.',
+    },
+  ],
 });
 
 function Index() {
@@ -58,7 +72,7 @@ function Index() {
           <CardExperience contents={TABSPROFESSIONAL()} />
         </CardWithScroll>
       </div>
-      <div className="flex flex-wrap justify-center px-10 xl:px-10 xl:grid xl:grid-cols-2 gap-8 xl:gap-x-32 xl:flex-nowrap">
+      <div className="flex flex-wrap justify-center gap-8 px-10 xl:grid xl:grid-cols-2 xl:flex-nowrap xl:gap-x-32 xl:px-10">
         {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
             key={option.title}
@@ -105,7 +119,7 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
   return (
     <Card className="flex w-full flex-wrap items-center justify-around pt-5 xl:flex-nowrap xl:pt-0">
       <CardContent className="flex flex-col items-center justify-center py-0 xl:p-6">
-        <img className="h-80 rounded-md" src={contents.header.src} alt={contents.header.alt} />
+        <img className="h-80 w-64 rounded-md" src={contents.header.src} alt={contents.header.alt} />
         <CardDescription className="mt-6 text-center text-xs leading-tight text-muted-foreground">
           {contents.header.description}
         </CardDescription>
@@ -136,7 +150,7 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="xl:col-span-1 my-3 flex flex-col gap-4 text-center w-full md:my-0">
+    <div className="my-3 flex w-full flex-col gap-4 text-center md:my-0 xl:col-span-1">
       <CardTitle className="text-lg">{title}</CardTitle>
       <Carousel
         opts={{ loop: true }}
@@ -182,7 +196,9 @@ function CardWithScroll({
 }) {
   return (
     <Card className={cn('py-3 lg:w-2/4', clasName)}>
-      <ScrollArea className={cn('h-[350px] rounded-md md:h-[680px] xl:h-[450px]', clasNameScroll)}>{children}</ScrollArea>
+      <ScrollArea className={cn('h-[350px] rounded-md md:h-[680px] xl:h-[450px]', clasNameScroll)}>
+        {children}
+      </ScrollArea>
     </Card>
   );
 }

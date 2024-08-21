@@ -14,13 +14,27 @@ import { TExperienceStack, TTabsContent } from '@services/types/constants/experi
 
 export const Route = createFileRoute('/experience')({
   component: Experience,
+  meta: ({}) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `Experiences | Leonardo`,
+      content:
+        'Discover my professional journey and academic background. Learn about where I worked and studied, the roles I held, and the technologies I mastered.',
+    },
+  ],
 });
 
 function Experience() {
   const experienceContent = EXPERIENCECONTENT();
   return (
     <div className="flex flex-col flex-wrap gap-4 px-4 lg:flex-row xl:flex-nowrap xl:px-16">
-      <div className='xl:overflow-hidden absolute max-h-screen max-w-screen'>
+      <div className="max-w-screen absolute max-h-screen xl:overflow-hidden">
         <Meteors number={100} className="max-xl:hidden" />
       </div>
       <Card>

@@ -10,6 +10,20 @@ export const Route = createFileRoute('/posts/')({
     queryClient.ensureQueryData(postsQueryOptionsWithFilter(filters)),
   validateSearch: FilterSchema,
   component: PostsComponent,
+  meta: ({}) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `Posts | Leonardo`,
+      content:
+        'Read my blog posts where I share insights and experiences related to work, life, and various other topics. Stay updated with my latest thoughts and stories.',
+    },
+  ],
 });
 
 function PostsComponent() {

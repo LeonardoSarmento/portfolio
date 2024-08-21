@@ -1,5 +1,6 @@
 import { HeaderContentComponent } from '@components/ContentByIdComponent';
 import MarkdownRenderer from '@components/MarkdownRenderer';
+import { MovetoTopButton } from '@components/MoveToTop';
 import { PROJECTBYIDCONTENT } from '@constants/by-id-content';
 import { projectQueryOptions } from '@services/hooks/postQueryOptions';
 import { PostNotFoundError } from '@services/hooks/posts';
@@ -11,6 +12,19 @@ export const Route = createFileRoute('/projects/$projectId')({
     queryClient.ensureQueryData(projectQueryOptions(projectId)),
   errorComponent: ProjectErrorComponent as any,
   component: ProjectComponent,
+  meta: ({ loaderData }) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `${loaderData.title} | Leonardo`,
+      content: loaderData.description,
+    },
+  ],
 });
 
 export function ProjectErrorComponent({ error }: ErrorComponentProps) {
@@ -35,7 +49,8 @@ function ProjectComponent() {
         shareComponent={PROJECTBYIDCONTENT()}
         shareComponentURL={URL}
       />
-      <MarkdownRenderer markdown={project.body} className='m-10' />
+      <MarkdownRenderer markdown={project.body} />
+      <MovetoTopButton />
     </>
   );
 }

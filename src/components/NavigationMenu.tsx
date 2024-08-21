@@ -21,7 +21,7 @@ export function NavigationMenuGroup() {
       <NavigationMenu className="flex justify-self-end text-center">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-2 sm:px-8">{menuContent.about.title}</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="px-2 xs:px-8">{menuContent.about.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
@@ -36,7 +36,7 @@ export function NavigationMenuGroup() {
                         alt={menuContent.about.image.alt}
                       />
                       <div className="mb-2 mt-4 text-lg font-medium">{menuContent.about.subtitle}</div>
-                      <p className="text-sm leading-tight text-muted-foreground">{menuContent.about.description}</p>
+                      <p className="text-xs leading-tight text-muted-foreground">{menuContent.about.description}</p>
                     </Link>
                   </NavigationMenuLink>
                 </li>
@@ -49,7 +49,7 @@ export function NavigationMenuGroup() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-4 sm:px-8">{menuContent.posts.title}</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="px-4 xs:px-8">{menuContent.posts.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {menuContent.posts.contents
@@ -72,7 +72,7 @@ export function NavigationMenuGroup() {
           <NavigationMenuItem>
             <ListItem
               {...menuContent.options.filter((opt) => opt.to === '/contact')[0]}
-              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 sm:px-8"
+              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 xs:px-8"
             />
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -103,10 +103,10 @@ const ListItem = ({ className, title, children, icon, ...props }: ListItemType) 
         {...props}
       >
         <div className="flex justify-center">
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-xs font-medium leading-none">{title}</div>
           <div className="ml-2">{icon}</div>
         </div>
-        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground ">{children}</p>
+        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground ">{children}</p>
       </Link>
     </NavigationMenuLink>
   );

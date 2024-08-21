@@ -30,7 +30,7 @@ export function HeaderContentComponent({
 
   return (
     <Card className="mx-3 xl:mx-10 flex flex-col space-y-2 p-2 text-center">
-      <img src={content.thumbnail} className="mx-auto h-52 justify-center rounded" />
+      <img src={content.thumbnail} className="mx-auto max-xl:h-52 max-lg:w-96 max-2xl:h-[200px] max-2xl:w-[400px] h-[250px] w-[450px]  justify-center rounded" />
       <CardHeader>
         <CardTitle>{content.title}</CardTitle>
         <div className="mx-auto space-x-2">

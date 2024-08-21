@@ -10,6 +10,20 @@ export const Route = createFileRoute('/projects/')({
     queryClient.ensureQueryData(projectsQueryOptionsWithFilter(filters)),
   validateSearch: FilterSchema,
   component: ProjectsComponent,
+  meta: ({}) => [
+    {
+      charSet: 'utf-8',
+    },
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1',
+    },
+    {
+      name: `Projects | Leonardo`,
+      content:
+        "Explore my software development projects. See the tools and technologies I use or have used in my work, and learn about the solutions I've built.",
+    },
+  ],
 });
 
 function ProjectsComponent() {

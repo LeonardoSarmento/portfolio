@@ -30,7 +30,7 @@ export function Footer() {
       <div className="flex flex-wrap items-center gap-4 justify-center">
         <CardTitle className="text-center">{contactContent.content.title}</CardTitle>
         <img
-          className="h-6 rounded-lg transition-all duration-300 hover:scale-150"
+          className="h-6 w-5 rounded-lg transition-all duration-300 hover:scale-150"
           src={contactContent.content.src}
           alt={contactContent.content.alt}
         />
