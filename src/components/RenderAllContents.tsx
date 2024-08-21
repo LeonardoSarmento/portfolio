@@ -14,7 +14,7 @@ export function RenderAllContents({
   URL: string;
 }) {
   return (
-    <div id="render-all-publications-component" className="flex flex-wrap p-10 pt-0 gap-x-4">
+    <div className="flex flex-wrap p-10 pt-0 gap-x-4">
       {contents.length > 0
         ? contents.map((content, index) => (
             <ContentCardComponent

@@ -29,7 +29,7 @@ export function HeaderContentComponent({
   const router = useRouter();
 
   return (
-    <Card className="mx-10 flex flex-col space-y-2 p-4  text-center">
+    <Card className="mx-6 xl:mx-10 flex flex-col space-y-2 p-4  text-center">
       <img src={content.thumbnail} className="mx-auto h-52 justify-center rounded" />
       <CardHeader>
         <CardTitle>{content.title}</CardTitle>

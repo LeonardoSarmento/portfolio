@@ -64,7 +64,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
 
     return (
       <Breadcrumb ref={ref} className={className} {...props}>
-        <BreadcrumbList>
+        <BreadcrumbList className='max-sm:justify-center mb-5'>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
               <Link to={initial ? initial.to : '/'}>{initial ? initial.title : t('home')}</Link>
@@ -123,7 +123,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                     </DropdownMenu>
                   ) : (
                     <Drawer open={open} onOpenChange={setOpen}>
-                      <DrawerTrigger aria-label="Toggle Menu">
+                      <DrawerTrigger aria-label="Toggle Menu" className='flex items-center gap-2'>
                         {filtredOption ? filtredOption.title : t('wrongUrl')}
                         <ChevronDownIcon />
                       </DrawerTrigger>
@@ -141,15 +141,21 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                                   key={`mobile-breadcrumbs-${index}-${to}`}
                                   asChild
                                   onClick={(e) => e.stopPropagation()}
+                                  className="flex flex-col"
                                 >
-                                  <Link to={routeId} params={{ postId: to, projectId: to }} className="py-1 text-sm">
+                                  <Link
+                                    to={routeId}
+                                    params={{ postId: to, projectId: to }}
+                                    onClick={() => setOpen(false)}
+                                    className="py-1 text-sm"
+                                  >
                                     {title}
                                   </Link>
                                 </BreadcrumbLink>
                               ))}
                             <BreadcrumbLink key={routeId} asChild onClick={(e) => e.stopPropagation()}>
-                              <Link to={FolderId}>
-                                <DropdownMenuItem>{t('seeAll')}</DropdownMenuItem>
+                              <Link to={FolderId} onClick={() => setOpen(false)}>
+                                <span>{t('seeAll')}</span>
                               </Link>
                             </BreadcrumbLink>
                           </ScrollArea>
