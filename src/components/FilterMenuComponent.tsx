@@ -236,7 +236,7 @@ function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
           alt={filterMenuContent.noContent.image.alt}
         />
       </CardContent>
-      <div className="flex gap-4">
+      <div className="flex gap-4 max-sm:flex-col max-sm:mb-5">
         <CardTitle className="mt-2">{filterMenuContent.noContent.button.description}</CardTitle>
         <Button type="submit" onClick={ResetFilters}>
           {filterMenuContent.noContent.button.title}

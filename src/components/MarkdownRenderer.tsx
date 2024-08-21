@@ -17,12 +17,13 @@ import remarkGithubAdmonitionsToDirectives from 'remark-github-admonitions-to-di
 
 type TMarkdownRenderer = {
   markdown: string;
+  clasName?: string;
 } & React.HTMLAttributes<HTMLDivElement>;
 export default function MarkdownRenderer({ markdown, ...props }: TMarkdownRenderer) {
   return (
-    <Card className="m-10 mb-0 p-10" {...props}>
+    <Card className="m-10 mb-0 p-10 max-sm:m-3 max-sm:p-3" {...props}>
       <Markdown
-        className="markdown-body rounded p-6"
+        className="markdown-body rounded p-6 max-sm:p-1"
         remarkPlugins={[remarkDirective, remarkGfm, remarkGemoji, remarkMath, remarkGithubAdmonitionsToDirectives]}
         rehypePlugins={[
           rehypeRaw,

@@ -35,7 +35,7 @@ function ProjectComponent() {
         shareComponent={PROJECTBYIDCONTENT()}
         shareComponentURL={URL}
       />
-      <MarkdownRenderer markdown={project.body} />
+      <MarkdownRenderer markdown={project.body} className='m-10' />
     </>
   );
 }
