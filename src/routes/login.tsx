@@ -16,8 +16,8 @@ export function Login() {
 
 function TabsComponent({ contents }: { contents: TLoginTabsContent[] }) {
   return (
-    <div className="mx-auto mt-40">
-      <Tabs defaultValue={contents[0].value} className="w-[400px]">
+    <div className="mx-auto">
+      <Tabs defaultValue={contents[0].value} className="w-[400px] px-8 xl:px-0">
         <TabsList className="grid grid-cols-2">
           {contents.map((content) => (
             <TabsTrigger key={`tabstrigger-${content.value}`} value={content.value}>

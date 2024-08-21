@@ -19,8 +19,8 @@ export const Route = createFileRoute('/experience')({
 function Experience() {
   const experienceContent = EXPERIENCECONTENT();
   return (
-    <div className="flex gap-4 px-16">
-      <Meteors number={100} />
+    <div className="flex flex-col flex-wrap gap-4 px-4 lg:flex-row xl:flex-nowrap xl:px-16">
+      <Meteors number={100} className="hidden" />
       <Card>
         <CardHeader>
           <CardTitle className="text-center">{experienceContent.experience.title}</CardTitle>
@@ -29,12 +29,13 @@ function Experience() {
         <Separator />
         <ExperienceComponent contents={experienceContent.experience.stack} />
       </Card>
-      <div>
+      <div className="flex flex-col flex-wrap xl:w-2/3">
         <div>
           <CardHeader className="text-center">
             <CardTitle>{experienceContent.education.title}</CardTitle>
             <MapDescriptions descriptions={experienceContent.education.description} />
           </CardHeader>
+
           <CardContent>
             <TabsComponent contents={experienceContent.education.stack} />
           </CardContent>
@@ -84,35 +85,37 @@ const TabsComponent = ({ contents }: { contents: TTabsContent[] }) => {
         ))}
       </TabsList>
       {contents.map((content) => (
-        <TabsContent key={content.value} value={content.value}>
-          <CardContent className="flex py-4">
-            <div className="w-[400px] space-y-2">
-              <div className="flex items-center gap-2">
-                <Avatar key={content.value}>
-                  <AvatarImage src={content.header.avatar.src} />
-                  <AvatarFallback>{content.header.avatar.avatarFallback}</AvatarFallback>
-                </Avatar>
-                <CardTitle>{content.header.title}</CardTitle>
+        <TabsContent key={content.value} value={content.value} className="rounded-lg border-2">
+          <CardContent className="flex flex-wrap justify-center space-y-10 py-4 xl:flex-nowrap xl:space-y-0">
+            <div className="flex flex-col flex-wrap xl:flex-row xl:flex-nowrap text-center gap-10 justify-around xl:gap-4 w-2/3 xl:space-x-5 items-center xl:items-start">
+              <div className="space-y-2 xl:w-2/3">
+                <div className="flex flex-col flex-wrap justify-center items-center gap-2 xl:flex-row">
+                  <Avatar key={content.value}>
+                    <AvatarImage src={content.header.avatar.src} />
+                    <AvatarFallback>{content.header.avatar.avatarFallback}</AvatarFallback>
+                  </Avatar>
+                  <CardTitle>{content.header.title}</CardTitle>
+                </div>
+                <CardDescription>{content.header.description}</CardDescription>
+                <CardContent className="p-0">
+                  <MapDescriptions descriptions={content.header.content.description} />
+                </CardContent>
               </div>
-              <CardDescription>{content.header.description}</CardDescription>
-              <CardContent className="p-0">
-                <MapDescriptions descriptions={content.header.content.description} />
-              </CardContent>
+              <div className="space-y-4 xl:w-2/3">
+                <CardTitle className="text-center">{content.learnings.title}</CardTitle>
+                <ScrollArea className="h-40 rounded-md xl:h-56">
+                  <MapDescriptions descriptions={content.learnings.content.description} />
+                </ScrollArea>
+              </div>
             </div>
-            <div className="w-[400px] space-y-4">
-              <CardTitle className="text-center">{content.learnings.title}</CardTitle>
-              <ScrollArea className="h-[150px] rounded-md">
-                <MapDescriptions descriptions={content.learnings.content.description} />
-              </ScrollArea>
-            </div>
-            <div className="w-full space-y-4">
+            <div className="flex flex-col items-center space-y-4 xl:w-1/3">
               <CardTitle className="text-center">{content.tools.title}</CardTitle>
-              <ScrollArea className="h-[150px] rounded-md">
-                <CardContent className="grid grid-cols-2 gap-x-3 p-0">
+              <ScrollArea className="h-60 rounded-md xl:h-56 mx-8">
+                <CardContent className="flex flex-wrap justify-around p-0 flex-col">
                   {content.tools.content.map((tech) => (
-                    <IconTecButton key={tech.title} path={tech.url} className="col-span-1">
+                    <IconTecButton key={tech.title} path={tech.url} className="w-40">
                       {tech.icon}
-                      {tech.title}
+                      <small className="text-wrap text-xs font-medium leading-none">{tech.title}</small>
                     </IconTecButton>
                   ))}
                 </CardContent>
@@ -147,10 +150,12 @@ type ExperienceCardContentType = {
 
 function ExperienceCardContent({ title, description, children }: ExperienceCardContentType) {
   return (
-    <CardContent className="mt-5 flex flex-col justify-items-center gap-2 py-0">
+    <CardContent className="mt-5 flex flex-col flex-wrap justify-items-center gap-2 py-0">
       <CardTitle className="text-center">{title}</CardTitle>
       <CardDescription className="text-center">{description}</CardDescription>
-      <CardContent className="grid grid-cols-12 gap-2">{children}</CardContent>
+      <CardContent className="flex flex-wrap justify-center gap-2 xl:grid xl:grid-cols-12 xl:flex-nowrap">
+        {children}
+      </CardContent>
     </CardContent>
   );
 }

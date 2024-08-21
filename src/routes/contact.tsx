@@ -14,7 +14,7 @@ export const Route = createFileRoute('/contact')({
 function Contact() {
   const contactContent = CONTACTCONTENT();
   return (
-    <div className="flex flex-1 flex-wrap-reverse items-center justify-around gap-4 px-4 xl:px-16 xl:flex-nowrap">
+    <div className="flex flex-1 flex-wrap-reverse items-center justify-around gap-4 px-4 xl:flex-nowrap xl:px-16">
       <div className="mb-8 flex w-screen flex-col flex-wrap space-y-4 xl:mb-0 xl:w-1/3">
         <Card>
           <CardHeader className="text-center">
@@ -42,11 +42,16 @@ function Contact() {
           />
         </div>
       </div>
-      <div className="relative flex flex-1 flex-col gap-10 overflow-hidden rounded-lg py-12 xl:gap-0 xl:py-20">
-        <Boxes />
-        <div className="z-[1] mx-auto h-64 overflow-hidden rounded-md">
+      <div className="relative flex flex-1 flex-col gap-10 overflow-hidden rounded-lg py-6 xl:gap-0 xl:py-20">
+        <Boxes className="invisible xl:visible" />
+        <div className="visible xl:invisible dark:bg-grid-white/[0.2] bg-grid-black/[0.2] absolute flex h-full  w-full flex-col items-center justify-center gap-10">
+          {/* Radial gradient for the container to give a faded look */}
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        </div>
+
+        <div className="z-[1] mx-auto h-64 overflow-hidden rounded-md mt-10">
           <img
-            className="relative bottom-10 right-10 scale-150 md:bottom-0 md:right-0 h-64 mx-auto md:scale-100"
+            className="relative bottom-10 right-10 mx-auto h-64 scale-150 md:bottom-0 md:right-0 md:scale-100"
             src={contactContent.sideContent.src}
             alt={contactContent.sideContent.alt}
           />
