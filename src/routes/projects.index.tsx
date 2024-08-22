@@ -1,8 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useSearch } from '@tanstack/react-router';
 import { FilterSchema } from '@services/types/Filters';
 import { FilterMenuComponent } from '@components/FilterMenuComponent';
 import { RenderAllContents } from '@components/RenderAllContents';
 import { projectsQueryOptionsWithFilter } from '@services/hooks/projectsQueryOptions';
+import { MovetoTopButton } from '@components/MoveToTop';
 
 export const Route = createFileRoute('/projects/')({
   loaderDeps: ({ search: filters }) => filters,
@@ -28,6 +29,7 @@ export const Route = createFileRoute('/projects/')({
 
 function ProjectsComponent() {
   const projects = Route.useLoaderData();
+  const { pageSize } = useSearch({ strict: false });
   const URL: string = `${import.meta.env.VITE_BASE_URL}/projects/`;
   return (
     <FilterMenuComponent
@@ -42,6 +44,7 @@ function ProjectsComponent() {
         path={{ to: '/projects/$projectId' }}
         editPath={{ to: '/projects/$projectId/edit' }}
       />
+      {pageSize && +pageSize > 15 ? <MovetoTopButton className="xl:hidden" /> : null}
     </FilterMenuComponent>
   );
 }
