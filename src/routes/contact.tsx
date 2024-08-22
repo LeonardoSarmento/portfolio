@@ -59,7 +59,7 @@ function Contact() {
   };
 
   return (
-    <div className="flex flex-1 flex-wrap-reverse items-center justify-around gap-4 px-4 xl:flex-nowrap xl:px-16">
+    <div className="flex flex-1 flex-wrap-reverse items-center justify-center xl:justify-around gap-4 px-4 xl:flex-nowrap xl:px-16">
       <div className="mb-8 flex w-screen flex-col flex-wrap space-y-4 xl:mb-0 xl:w-1/3">
         <Card>
           <CardHeader className="text-center">

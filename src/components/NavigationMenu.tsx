@@ -18,7 +18,7 @@ export function NavigationMenuGroup() {
   const menuContent = MENUCONTENT();
   return (
     <div className="m-5 flex flex-col-reverse items-center justify-center gap-4 md:flex-row md:justify-end">
-      <NavigationMenu className="flex justify-self-end text-center">
+      <NavigationMenu className="flex justify-self-end text-center md:mx-16">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2 xs:px-8">{menuContent.about.title}</NavigationMenuTrigger>

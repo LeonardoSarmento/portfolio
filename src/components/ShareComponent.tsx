@@ -29,7 +29,7 @@ export function PopoverShareComponent({
           <Share2 />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="end" className="z-5 md:w-[520px] sm:w-96 w-80 m-4 md:mx-60">
+      <PopoverContent align="end" className="z-5 md:w-[520px] sm:w-96 w-80 m-4 md:m-0 mx-auto md:mx-32 lg:mx-0">
         <div className="flex flex-col space-y-2 text-center sm:text-left">
           <h3 className="text-lg font-semibold">{shareComponent.card.title}</h3>
           <p className="text-sm text-muted-foreground">{shareComponent.card.description}</p>
