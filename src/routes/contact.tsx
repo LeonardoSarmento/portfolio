@@ -4,6 +4,8 @@ import HoverContainer from '@components/ui/hover-container';
 import { Separator } from '@components/ui/separator';
 import { TypewriterEffectSmooth } from '@components/ui/typewriter-effect';
 import { SocialMediaItems } from '@constants/home';
+import { cn } from '@lib/utils';
+import { useMediaQuery } from '@services/hooks/use-media-query';
 import { LEO_DIA_D, THUMBSUP } from '@services/utils/Images';
 import { createFileRoute } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
@@ -30,6 +32,7 @@ type TWords = { text: string; className?: string };
 
 function Contact() {
   const { t } = useTranslation('contact');
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const words: TWords[] = [];
   const message = t('contact-content.sideContent.content.typewriter', { ns: 'contact', returnObjects: true });
   message.map((word) =>
@@ -59,7 +62,7 @@ function Contact() {
   };
 
   return (
-    <div className="flex flex-1 flex-wrap-reverse items-center justify-center xl:justify-around gap-4 px-4 xl:flex-nowrap xl:px-16">
+    <div className="flex flex-1 flex-wrap-reverse items-center justify-center gap-4 px-4 xl:flex-nowrap xl:justify-around xl:px-16">
       <div className="mb-8 flex w-screen flex-col flex-wrap space-y-4 xl:mb-0 xl:w-1/3">
         <Card>
           <CardHeader className="text-center">
@@ -102,12 +105,27 @@ function Contact() {
           />
         </div>
         <div className="z-[1] flex flex-wrap items-center justify-center gap-2 xl:px-0">
-          <div className="flex px-4 text-center xl:px-0">
-            <TypewriterEffectSmooth
-              textClassName="xl:text-xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
-              cursorClassName="xl:h-8"
-              words={contactContent.sideContent.content.typewriter}
-            />
+          <div className="px-4 text-center flex flex-wrap justify-center w-full xl:px-0">
+            {isDesktop ? (
+              <TypewriterEffectSmooth
+                textClassName="xl:text-xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
+                cursorClassName="xl:h-8 max-sm:hidden"
+                words={contactContent.sideContent.content.typewriter}
+              />
+            ) : (
+              <CardDescription className="flex gap-1 justify-center flex-wrap text-black dark:text-white">
+                {words.flatMap((word) => (
+                  <p
+                    className={cn(
+                      'lg:text:3xl whitespace-nowrap text-xs font-bold sm:text-base md:text-xl xl:flex-nowrap xl:text-5xl',
+                      word.className,
+                    )}
+                  >
+                    {word.text}
+                  </p>
+                ))}
+              </CardDescription>
+            )}
           </div>
           <CardTitle className="relative bottom-1 bg-white pb-0.5 dark:bg-transparent xl:ml-2">
             <span className='pb-0.5" bg-white dark:bg-transparent lg:text-2xl xl:text-2xl'>
