@@ -113,9 +113,9 @@ export function HeaderThumbnailComponent({
 }) {
   const ThumbnailInfo = ({ fileName, onClick }: { fileName?: string; onClick: () => void }) => {
     return (
-      <div className="flex items-center justify-between max-sm:flex-wrap max-sm:flex-col gap-3">
+      <div className="flex items-center justify-between gap-3 max-sm:flex-col max-sm:flex-wrap">
         <FileCheck2Icon className="mx-3 w-4" />
-        <p className="text-sm font-medium max-sm:max-w-sm overflow-hidden w-full">{fileName}</p>
+        <p className="w-full overflow-hidden text-sm font-medium max-sm:max-w-80">{fileName}</p>
         <Button variant="ghost" className="w-fit" onClick={onClick}>
           <X className="text-destructive" />
         </Button>
@@ -193,38 +193,40 @@ export function ManageMarkdownComponent<TFieldValues extends FieldValues>({
   path: Path<TFieldValues>;
 }) {
   return (
-    <Card className="max-sm:py-4 xl:p-4">
-      <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel>
-          <CardContent className="space-y-3 text-center">
-            <FormField
-              control={form.control}
-              name={path}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{contentText.content.label}</FormLabel>
-                  <FormControl>
-                    <AutosizeTextarea placeholder={contentText.content.placeholder} {...field} />
-                  </FormControl>
-                  <FormDescription>{contentText.content.description}</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button className="w-full" type="submit">
-              {contentText.button.text}
-            </Button>
-          </CardContent>
-        </ResizablePanel>
-        <ResizableHandle withHandle className='max-sm:hidden' />
-        <ResizablePanel className='max-sm:hidden'>
-          <CardContent className="space-y-3">
-            <CardTitle className="text-center">{contentText.preview.title}</CardTitle>
-            <MarkdownRenderer className="p-5" markdown={form.watch(path)} />
-          </CardContent>
-        </ResizablePanel>
-      </ResizablePanelGroup>
-      <MarkdownRenderer className="p-5 md:hidden" markdown={form.watch(path)} />
-    </Card>
+    <>
+      <Card className="max-sm:py-4 xl:p-4">
+        <ResizablePanelGroup direction="horizontal">
+          <ResizablePanel>
+            <CardContent className="space-y-3 text-center">
+              <FormField
+                control={form.control}
+                name={path}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{contentText.content.label}</FormLabel>
+                    <FormControl>
+                      <AutosizeTextarea placeholder={contentText.content.placeholder} {...field} />
+                    </FormControl>
+                    <FormDescription>{contentText.content.description}</FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button className="w-full" type="submit">
+                {contentText.button.text}
+              </Button>
+            </CardContent>
+          </ResizablePanel>
+          <ResizableHandle withHandle className="max-sm:hidden" />
+          <ResizablePanel className="max-sm:hidden">
+            <CardContent className="space-y-3">
+              <CardTitle className="text-center">{contentText.preview.title}</CardTitle>
+              <MarkdownRenderer className="p-5" markdown={form.watch(path)} />
+            </CardContent>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      </Card>
+      <MarkdownRenderer className="md:hidden" markdown={form.watch(path)} />
+    </>
   );
 }

@@ -17,8 +17,15 @@ import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
 import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 import { cn } from '@lib/utils';
-import { useState } from 'react';
-import { useOnOutsideClick } from '@services/hooks/useOutsideClick';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from './ui/dropdown-menu';
+import { ScrollArea } from './ui/scroll-area';
 
 export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
   {
@@ -56,8 +63,22 @@ export function FilterMenuComponent({
   const auth = useAuth();
   const { data: TAGS } = useQueryTags();
   const { form, ResetFilters } = useFormFilters({ path });
-  const [openFilter, setOpenFilter] = useState<boolean>(false);
-  const { innerBorderRef } = useOnOutsideClick(() => setOpenFilter(false));
+
+  const onSubmitDropdownMenu = form.handleSubmit((data) => {
+    form.setValue('page', '1');
+    navigate({
+      resetScroll: false,
+      to: path.to,
+      search: {
+        tags: data.tags?.length === 0 ? undefined : data.tags,
+        title: data.title === '' ? undefined : data.title,
+        pageSize: data.pageSize,
+        page: '1',
+        views: data.views,
+      },
+    });
+    window.scrollTo(0, 0);
+  });
 
   function onSubmit(data: FilterType) {
     form.setValue('page', '1');
@@ -73,7 +94,6 @@ export function FilterMenuComponent({
         views: data.views,
       },
     });
-    setOpenFilter(false);
   }
   const filterMenuContent = FILTERMENUCONTENT();
 
@@ -107,23 +127,127 @@ export function FilterMenuComponent({
             </div>
           </div>
           <div className="flex flex-wrap gap-4 xl:flex-nowrap">
-            <Button className="mx-7 w-full xl:hidden" onClick={() => setOpenFilter((prev) => !prev)} type="button">
-              Filtros
-            </Button>
-            <div ref={innerBorderRef} className="flex justify-center max-sm:w-full">
-              <SideMenuComponent
-                ResetFilters={() => {
-                  ResetFilters(), setOpenFilter(false);
-                }}
-                form={form}
-                Tags={TAGS}
-                className={`${openFilter ? 'absolute flex flex-col xl:mt-0 xl:flex xl:flex-col' : 'hidden xl:flex xl:flex-col'}`}
-              />
-            </div>
+            <DropdownMenu modal={false}>
+              <DropdownMenuTrigger asChild>
+                <Button className="mx-7 w-full xl:hidden" onClick={(e) => e.stopPropagation()} type="button">
+                  Filtros
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="flex w-56 flex-col xl:hidden">
+                <DropdownMenuLabel>{filterMenuContent.filter.title}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation(), e.preventDefault();
+                  }}
+                >
+                  <FormField
+                    control={form.control}
+                    name="tags"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>{filterMenuContent.filter.theme.title}</FormLabel>
+                        <FormDescription>{filterMenuContent.filter.theme.description}</FormDescription>
+                        <ScrollArea className="m-2 h-48">
+                          {TAGS &&
+                            TAGS.map((tag) => (
+                              <FormField
+                                key={tag.id}
+                                control={form.control}
+                                name="tags"
+                                render={({ field }) => {
+                                  return (
+                                    <FormItem key={tag.id} className="flex space-x-3 space-y-0">
+                                      <FormControl>
+                                        <Checkbox
+                                          checked={field.value?.includes(tag.id)}
+                                          onCheckedChange={(checked) => {
+                                            return checked
+                                              ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
+                                              : field.onChange(field.value?.filter((value) => value !== tag.id));
+                                          }}
+                                        />
+                                      </FormControl>
+                                      <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
+                                    </FormItem>
+                                  );
+                                }}
+                              />
+                            ))}
+                          <FormMessage />
+                        </ScrollArea>
+                      </FormItem>
+                    )}
+                  />
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <FormField
+                    control={form.control}
+                    name="pageSize"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormItem>
+                          <FormLabel className="text-sm font-normal">
+                            {filterMenuContent.filter.quantity.title}
+                          </FormLabel>
+                          <FormDescription>{filterMenuContent.filter.quantity.description}</FormDescription>
+                          <Select
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            value={field.value}
+                            key={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger>
+                                <SelectValue placeholder={filterMenuContent.filter.quantity.placeholder} />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {PAGE_SIZE_OPTIONS.map((option) => (
+                                <SelectItem
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    e.preventDefault();
+                                  }}
+                                  key={option.value}
+                                  value={option.value}
+                                >
+                                  {option.text}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </FormItem>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Button type="button" onClick={onSubmitDropdownMenu} className="w-full">
+                    {filterMenuContent.filter.buttons.filterTitle}
+                  </Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Button type="button" onClick={ResetFilters} className="w-full" variant="destructive">
+                    {filterMenuContent.filter.buttons.clearTitle}
+                  </Button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <SideMenuComponent
+              ResetFilters={ResetFilters}
+              form={form}
+              Tags={TAGS}
+              className={`max-xl:hidden`}
+              // className={`${openFilter ? 'absolute flex flex-col xl:mt-0 xl:flex xl:flex-col' : 'hidden xl:flex xl:flex-col'}`}
+            />
             {hasContent ? (
               <div>{children}</div>
             ) : (
-              <div className="flex justify-center max-sm:w-full">
+              <div className="flex w-full justify-center">
                 <NoContentComponent ResetFilters={ResetFilters} />
               </div>
             )}
