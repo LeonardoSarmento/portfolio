@@ -4,6 +4,7 @@ import { toastMessages } from '@services/types/constants/by-id';
 import { EditPublicationType } from '@services/types/Publication';
 import { UseFormReturn } from 'react-hook-form';
 import { toast } from 'sonner';
+import { saveAs } from 'file-saver';
 
 export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -73,4 +74,10 @@ export function handleOnDrop(acceptedFiles: FileList | null, form: UseFormReturn
       type: 'typeError',
     });
   }
+}
+
+export function createMarkdownFile(filename: string, content: string): void {
+  const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    saveAs(blob, `${filename}.md`);
+    console.log(`File ${filename} has been created.`);
 }

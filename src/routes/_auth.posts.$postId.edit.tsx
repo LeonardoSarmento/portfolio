@@ -10,6 +10,7 @@ import { handleDeleteContent, SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
 import { EditPublicationSchema, EditPublicationType } from '@services/types/Publication';
 import { MovetoTopButton } from '@components/MoveToTop';
+import { createMarkdownFile } from '@services/utils/utils';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
@@ -42,8 +43,9 @@ function EditPostsComponent() {
     defaultValues: post,
   });
 
-  const onSubmit = form.handleSubmit(() => {
+  const onSubmit = form.handleSubmit((data) => {
     SubmitContent({ isAuthenticated: auth.isAuthenticated, messages: toastMessages });
+    createMarkdownFile(data.title, data.body);
   });
 
   return (

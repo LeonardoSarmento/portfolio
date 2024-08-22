@@ -42,12 +42,12 @@ export function UserToggle({ ...props }: UserToggleBtn) {
   });
 
   const onSubmit = form.handleSubmit((values) => {
-    if (values.username !== import.meta.env.VITE_USER_USERNAME && values.password !== import.meta.env.VITE_USER_CODE) {
-      toast.error(t('toastMessage.error.title'), {
-        description: t('toastMessage.error.description'),
-      });
-      return;
-    }
+    // if (values.username !== import.meta.env.VITE_USER_USERNAME && values.password !== import.meta.env.VITE_USER_CODE) {
+    //   toast.error(t('toastMessage.error.title'), {
+    //     description: t('toastMessage.error.description'),
+    //   });
+    //   return;
+    // }
     auth.login(values);
     toast.success(t('toastMessage.success.title', { val: getRandomNumberWithDecimals() }), {
       description: t('toastMessage.success.description', { username: values.username }),
