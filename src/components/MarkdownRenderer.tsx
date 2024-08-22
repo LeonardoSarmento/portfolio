@@ -23,7 +23,7 @@ export default function MarkdownRenderer({ markdown, ...props }: TMarkdownRender
   return (
     <Card className="m-10 mb-0 p-10 max-sm:m-3 max-sm:p-3" {...props}>
       <Markdown
-        className="markdown-body rounded p-6 max-sm:p-1"
+        className="markdown-body rounded p-6 max-sm:p-2"
         remarkPlugins={[remarkDirective, remarkGfm, remarkGemoji, remarkMath, remarkGithubAdmonitionsToDirectives]}
         rehypePlugins={[
           rehypeRaw,

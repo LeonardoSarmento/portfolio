@@ -30,7 +30,7 @@ export function HeaderFormComponent({
   const router = useRouter();
   return (
     <CardContent className="col-span-6 flex w-full flex-col justify-between gap-6 py-0">
-      <div className="my-auto flex flex-col justify-center max-sm:gap-3">
+      <div className="my-auto flex flex-col justify-center max-lg:gap-3">
         <FormField
           control={form.control}
           name="title"
@@ -98,7 +98,7 @@ export function HeaderFormComponent({
 
 function ResponsiveFormItem({ children }: PropsWithChildren) {
   return (
-    <FormItem className="flex flex-wrap items-center gap-0 space-x-4 max-sm:justify-center md:flex-nowrap xl:gap-4">
+    <FormItem className="flex flex-wrap items-center gap-0 space-x-4 max-lg:justify-center lg:flex-nowrap xl:gap-4">
       {children}
     </FormItem>
   );
@@ -115,7 +115,7 @@ export function HeaderThumbnailComponent({
     return (
       <div className="flex items-center justify-between gap-3 max-sm:flex-col max-sm:flex-wrap">
         <FileCheck2Icon className="mx-3 w-4" />
-        <p className="w-full overflow-hidden text-sm font-medium max-sm:max-w-80">{fileName}</p>
+        <p className="w-48 overflow-hidden text-sm font-medium md:w-80 xl:w-96">{fileName}</p>
         <Button variant="ghost" className="w-fit" onClick={onClick}>
           <X className="text-destructive" />
         </Button>
@@ -221,7 +221,7 @@ export function ManageMarkdownComponent<TFieldValues extends FieldValues>({
           <ResizablePanel className="max-sm:hidden">
             <CardContent className="space-y-3">
               <CardTitle className="text-center">{contentText.preview.title}</CardTitle>
-              <MarkdownRenderer className="p-5" markdown={form.watch(path)} />
+              <MarkdownRenderer className="rounded-md xl:p-5" markdown={form.watch(path)} />
             </CardContent>
           </ResizablePanel>
         </ResizablePanelGroup>
