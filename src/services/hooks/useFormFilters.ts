@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FilterSchema, FilterType } from '@services/types/Filters';
+import { ScrollToTopSmooth } from '@services/utils/utils';
 import { NavigateOptions, useNavigate, useSearch } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 
@@ -14,6 +15,7 @@ export function useFormFilters({ path }: { path: NavigateOptions }) {
   function ResetFilters() {
     form.setValue('tags', []);
     form.setValue('title', '');
+    ScrollToTopSmooth();
     navigate({
       resetScroll: false,
       to: path.to,

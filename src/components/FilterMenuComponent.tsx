@@ -26,6 +26,7 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { ScrollArea } from './ui/scroll-area';
+import { ScrollToTopSmooth } from '@services/utils/utils';
 
 export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
   {
@@ -77,12 +78,12 @@ export function FilterMenuComponent({
         views: data.views,
       },
     });
-    window.scrollTo(0, 0);
+    ScrollToTopSmooth();
   });
 
   function onSubmit(data: FilterType) {
     form.setValue('page', '1');
-    window.scrollTo(0, 0);
+    ScrollToTopSmooth();
     navigate({
       resetScroll: false,
       to: path.to,
@@ -392,7 +393,7 @@ function PaginationComponent({
 
   function navigatePagination({ page }: { page: string }) {
     form.setValue('page', page);
-    window.scrollTo(0, 0);
+    ScrollToTopSmooth();
     navigate({
       resetScroll: false,
       to: path.to,

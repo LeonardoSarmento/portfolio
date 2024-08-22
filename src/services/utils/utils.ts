@@ -9,6 +9,10 @@ export async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+export function ScrollToTopSmooth() {
+  return window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+}
+
 export function getRandomNumberWithDecimals(min = 0, max = 20000): number {
   // Ensure min is less than or equal to max
   if (min > max) {
