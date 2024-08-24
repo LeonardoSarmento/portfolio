@@ -34,5 +34,9 @@
         "children": "Crie uma nova publicação aqui"
       }
     ]
+  },
+  "resume": {
+    "title": "Currículo",
+    "description": "Escolha em qual linguagem você deseja ler:"
   }
 }

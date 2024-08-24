@@ -33,7 +33,7 @@ export function SelectLanguage({ ...props }: SelectLanguageBtn) {
     </DropdownMenu>
   );
 }
-function getCountrCode(countryName: string) {
+export function getCountrCode(countryName: string) {
   return countryName.slice(-2);
 }
 type FlagProps = {
@@ -41,7 +41,7 @@ type FlagProps = {
   className?: string;
 };
 
-const Flag = ({ countryCode, className }: FlagProps) => {
+export const Flag = ({ countryCode, className }: FlagProps) => {
   const FlagComponent = Flags[countryCode.toUpperCase() as keyof typeof Flags];
   return <FlagComponent key={countryCode} className={className} />;
 };

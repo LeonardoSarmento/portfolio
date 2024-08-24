@@ -34,5 +34,9 @@
         "children": "Create a new post here"
       }
     ]
+  },
+  "resume": {
+    "title": "Resume",
+    "description": "Choose in which language you wish to read it:"
   }
 }

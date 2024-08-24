@@ -13,12 +13,13 @@ import { ModeToggle } from './Mode-toggle';
 import { UserToggle } from './UserToggle';
 import { MENUCONTENT } from '@constants/menu-navigation-content';
 import { SelectLanguage } from './SelectLanguage';
+import { ResumeDialog } from './ResumeDialog';
 
 export function NavigationMenuGroup() {
   const menuContent = MENUCONTENT();
   return (
     <div className="m-5 flex flex-col-reverse items-center justify-center gap-4 md:flex-row md:justify-end">
-      <NavigationMenu className="flex justify-self-end text-center md:mx-16">
+      <NavigationMenu className="flex text-center md:mx-16">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="px-2 xs:px-8">{menuContent.about.title}</NavigationMenuTrigger>
@@ -78,6 +79,7 @@ export function NavigationMenuGroup() {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex min-w-full justify-evenly md:justify-between md:min-w-fit md:w-[220px]">
+        <ResumeDialog />
         <UserToggle />
         <SelectLanguage />
         <ModeToggle />

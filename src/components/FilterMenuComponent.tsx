@@ -17,16 +17,19 @@ import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
 import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 import { cn } from '@lib/utils';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu';
 import { ScrollArea } from './ui/scroll-area';
 import { ScrollToTopSmooth } from '@services/utils/utils';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from './ui/dialog';
+import { useState } from 'react';
+import { useMediaQuery } from '@services/hooks/use-media-query';
 
 export const PAGE_SIZE_OPTIONS: { value: string; text: string }[] = [
   {
@@ -64,8 +67,11 @@ export function FilterMenuComponent({
   const auth = useAuth();
   const { data: TAGS } = useQueryTags();
   const { form, ResetFilters } = useFormFilters({ path });
+  const smallHeight = window.innerHeight <= 590;
+  const isDesktop = useMediaQuery('(min-width: 1280px)');
 
   const onSubmitDropdownMenu = form.handleSubmit((data) => {
+    setOpen(false);
     form.setValue('page', '1');
     navigate({
       resetScroll: false,
@@ -84,6 +90,8 @@ export function FilterMenuComponent({
   function onSubmit(data: FilterType) {
     form.setValue('page', '1');
     ScrollToTopSmooth();
+    console.log('click nav');
+
     navigate({
       resetScroll: false,
       to: path.to,
@@ -97,7 +105,7 @@ export function FilterMenuComponent({
     });
   }
   const filterMenuContent = FILTERMENUCONTENT();
-
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -128,7 +136,131 @@ export function FilterMenuComponent({
             </div>
           </div>
           <div className="flex flex-wrap gap-4 xl:flex-nowrap">
-            <DropdownMenu modal={false}>
+            <Dialog open={open} onOpenChange={setOpen} modal={isDesktop ? false : true}>
+              <DialogTrigger asChild className="mx-7 w-full xl:hidden">
+                <Button type="button">Filtros</Button>
+              </DialogTrigger>
+              <DialogContent className="w-72 rounded-md sm:max-w-md md:w-full xl:hidden">
+                <ScrollArea className={`${smallHeight ? 'h-[500px]' : 'h-full'}`}>
+                  <div className="flex flex-col gap-3">
+                    <DialogHeader>
+                      <DialogTitle>{filterMenuContent.filter.title}</DialogTitle>
+                    </DialogHeader>
+                    <Separator />
+                    <FormField
+                      control={form.control}
+                      name="tags"
+                      render={() => (
+                        <FormItem>
+                          <FormLabel>{filterMenuContent.filter.theme.title}</FormLabel>
+                          <FormDescription>{filterMenuContent.filter.theme.description}</FormDescription>
+                          <ScrollArea className="m-2 h-48">
+                            {TAGS &&
+                              TAGS.map((tag) => (
+                                <FormField
+                                  key={tag.id}
+                                  control={form.control}
+                                  name="tags"
+                                  render={({ field }) => {
+                                    return (
+                                      <FormItem key={tag.id} className="flex space-x-3 space-y-0">
+                                        <FormControl>
+                                          <Checkbox
+                                            checked={field.value?.includes(tag.id)}
+                                            onCheckedChange={(checked) => {
+                                              return checked
+                                                ? field.onChange(field.value ? [...field.value, tag.id] : [tag.id])
+                                                : field.onChange(field.value?.filter((value) => value !== tag.id));
+                                            }}
+                                          />
+                                        </FormControl>
+                                        <FormLabel className="text-sm font-normal">{tag.label}</FormLabel>
+                                      </FormItem>
+                                    );
+                                  }}
+                                />
+                              ))}
+                            <FormMessage />
+                          </ScrollArea>
+                        </FormItem>
+                      )}
+                    />
+                    <Separator />
+                    <FormField
+                      control={form.control}
+                      name="pageSize"
+                      render={({ field }) => (
+                        <FormItem
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            console.log('click');
+                          }}
+                        >
+                          <FormItem>
+                            <FormLabel className="text-sm font-normal">
+                              {filterMenuContent.filter.quantity.title}
+                            </FormLabel>
+                            <FormDescription>{filterMenuContent.filter.quantity.description}</FormDescription>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              value={field.value}
+                              key={field.value}
+                            >
+                              <FormControl
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                }}
+                              >
+                                <SelectTrigger
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                  }}
+                                >
+                                  <SelectValue placeholder={filterMenuContent.filter.quantity.placeholder} />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {PAGE_SIZE_OPTIONS.map((option) => (
+                                  <SelectItem key={option.value} value={option.value}>
+                                    {option.text}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </FormItem>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Separator />
+                    <DialogFooter className="gap-3">
+                      <DialogClose asChild>
+                        <Button type="button" onClick={onSubmitDropdownMenu} className="w-full">
+                          {filterMenuContent.filter.buttons.filterTitle}
+                        </Button>
+                      </DialogClose>
+                      <DialogClose asChild>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setOpen(false);
+                            ResetFilters();
+                          }}
+                          className="w-full"
+                          variant="destructive"
+                        >
+                          {filterMenuContent.filter.buttons.clearTitle}
+                        </Button>
+                      </DialogClose>
+                    </DialogFooter>
+                  </div>
+                </ScrollArea>
+              </DialogContent>
+            </Dialog>
+            {/* <DropdownMenu modal={false}>
               <DropdownMenuTrigger asChild>
                 <Button className="mx-7 w-full xl:hidden" onClick={(e) => e.stopPropagation()} type="button">
                   Filtros
@@ -237,7 +369,7 @@ export function FilterMenuComponent({
                   </Button>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+            </DropdownMenu> */}
             <SideMenuComponent
               ResetFilters={ResetFilters}
               form={form}
