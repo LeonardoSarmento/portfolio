@@ -12,11 +12,11 @@ import { HeaderFormComponent, HeaderThumbnailComponent, ManageMarkdownComponent 
 import { SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
 import { CreatePublicationSchema, CreatePublicationType } from '@services/types/Publication';
-import { tagsQueryOptions } from '@services/hooks/tagsQueryOptions';
+import { useQueryPostsTags } from '@services/hooks/tagsQueryOptions';
 import { createMarkdownFile } from '@services/utils/utils';
 
 export const Route = createFileRoute('/_auth/posts/create')({
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
+  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(useQueryPostsTags),
   component: CreatePostsComponent,
   meta: ({}) => [
     {
@@ -37,7 +37,7 @@ function CreatePostsComponent() {
   const headerCardCreatePostContent = HEADERCARDCREATEPOSTCONTENT();
   const menageMarkdownCreateContent = MANAGEMARKDOWNCREATECONTENT();
   const toastMessages = TOASTMESSAGESCONTENT();
-
+  const TAGS = Route.useLoaderData();
   const auth = useAuth();
   const form = useForm<CreatePublicationType>({
     resolver: zodResolver(CreatePublicationSchema),
@@ -70,6 +70,7 @@ function CreatePostsComponent() {
                 form={form}
                 onClick={handleReset}
                 textContent={headerCardCreatePostContent.form}
+                TAGS={TAGS}
               />
             </div>
           </Card>

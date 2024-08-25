@@ -15,7 +15,6 @@ import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { FieldValues, Path, UseControllerReturn, useFormContext, UseFormReturn } from 'react-hook-form';
 import { TagType } from '@services/types/Tag';
 import { FILTERMENUCONTENT } from '@constants/filter-menu-content';
-import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 import { cn } from '@lib/utils';
 import { ScrollArea } from './ui/scroll-area';
 import { ScrollToTopSmooth } from '@services/utils/utils';
@@ -56,16 +55,17 @@ export function FilterMenuComponent({
   children,
   hasContent,
   contentSize,
+  TAGS,
 }: {
   path: NavigateOptions;
   createPath: NavigateOptions;
   children: React.ReactNode;
   hasContent: boolean;
   contentSize: number;
+  TAGS: TagType[];
 }) {
   const navigate = useNavigate();
   const auth = useAuth();
-  const { data: TAGS } = useQueryTags();
   const { form, ResetFilters } = useFormFilters({ path });
   const smallHeight = window.innerHeight <= 590;
   const isDesktop = useMediaQuery('(min-width: 1280px)');

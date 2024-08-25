@@ -6,9 +6,10 @@ import { ErrorComponent, ErrorComponentProps, createFileRoute } from '@tanstack/
 import { POSTBYIDCONTENT } from '@constants/by-id-content';
 import { HeaderContentComponent } from '@components/ContentByIdComponent';
 import { MovetoTopButton } from '@components/MoveToTop';
+import i18n from '../i18n/config';
 
 export const Route = createFileRoute('/posts/$postId')({
-  loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
+  loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId, i18n.language)),
   // errorComponent: PostErrorComponent as any,
   component: PostComponent,
   meta: ({ loaderData }) => [

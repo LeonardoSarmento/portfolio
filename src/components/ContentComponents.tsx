@@ -14,19 +14,20 @@ import { getAllowedMimeTypes, handleOnDrop } from '@services/utils/utils';
 import { ALLOWED_TYPES } from '@services/types/AllowedFiles';
 import { CreatePublicationType, EditPublicationType } from '@services/types/Publication';
 import { THeaderCardContent, TManageMarkdownContent } from '@services/types/constants/by-id';
-import { useQueryTags } from '@services/hooks/tagsQueryOptions';
 import { PropsWithChildren } from 'react';
+import { TagType } from '@services/types/Tag';
 
 export function HeaderFormComponent({
   form,
   onClick,
   textContent,
+  TAGS,
 }: {
   form: UseFormReturn<EditPublicationType | CreatePublicationType>;
   textContent: THeaderCardContent['form'];
   onClick: () => void;
+  TAGS: TagType[];
 }) {
-  const { data: TAGS } = useQueryTags();
   const router = useRouter();
   return (
     <CardContent className="col-span-6 flex w-full flex-col justify-between gap-6 py-0">

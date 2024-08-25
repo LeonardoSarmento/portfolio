@@ -12,11 +12,11 @@ import { HeaderThumbnailComponent, HeaderFormComponent, ManageMarkdownComponent 
 import { SubmitContent } from '@services/utils/toasts';
 import { useAuth } from '@services/hooks/auth';
 import { CreatePublicationSchema, CreatePublicationType } from '@services/types/Publication';
-import { tagsQueryOptions } from '@services/hooks/tagsQueryOptions';
+import { useQueryProjectsTags } from '@services/hooks/tagsQueryOptions';
 import { createMarkdownFile } from '@services/utils/utils';
 
 export const Route = createFileRoute('/_auth/projects/create')({
-  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(tagsQueryOptions),
+  loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(useQueryProjectsTags),
   component: CreateProjectComponent,
   meta: ({}) => [
     {
@@ -37,7 +37,7 @@ function CreateProjectComponent() {
   const headerCardCreateProjectContent = HEADERCARDCREATEPROJECTCONTENT();
   const menageMarkdownCreateContent = MANAGEMARKDOWNCREATECONTENT();
   const toastMessages = TOASTMESSAGESCONTENT();
-
+  const TAGS = Route.useLoaderData();
   const auth = useAuth();
   const form = useForm<CreatePublicationType>({
     resolver: zodResolver(CreatePublicationSchema),
@@ -59,17 +59,18 @@ function CreateProjectComponent() {
   return (
     <Form {...form}>
       <form onSubmit={onSubmit}>
-        <div className="mx-3 xl:mx-10 flex flex-col gap-4">
-          <Card className="flex flex-col flex-wrap xl:p-4 pb-4 text-center xl:flex-nowrap">
+        <div className="mx-3 flex flex-col gap-4 xl:mx-10">
+          <Card className="flex flex-col flex-wrap pb-4 text-center xl:flex-nowrap xl:p-4">
             <CardTitle className="py-6 text-3xl">
               {form.getValues('title') ? form.watch('title') : headerCardCreateProjectContent.title}
             </CardTitle>
-            <div className='flex flex-col flex-wrap xl:flex-nowrap xl:flex-row'>
+            <div className="flex flex-col flex-wrap xl:flex-row xl:flex-nowrap">
               <HeaderThumbnailComponent form={form} textContent={headerCardCreateProjectContent.thumbnail} />
               <HeaderFormComponent
                 form={form}
                 onClick={handleReset}
                 textContent={headerCardCreateProjectContent.form}
+                TAGS={TAGS}
               />
             </div>
           </Card>

@@ -4,11 +4,14 @@ import { FilterMenuComponent } from '@components/FilterMenuComponent';
 import { RenderAllContents } from '@components/RenderAllContents';
 import { projectsQueryOptionsWithFilter } from '@services/hooks/projectsQueryOptions';
 import { MovetoTopButton } from '@components/MoveToTop';
+import i18n from '../i18n/config';
+import { useQueryProjectsTags } from '@services/hooks/tagsQueryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const Route = createFileRoute('/projects/')({
   loaderDeps: ({ search: filters }) => filters,
   loader: ({ context: { queryClient }, deps: filters }) =>
-    queryClient.ensureQueryData(projectsQueryOptionsWithFilter(filters)),
+    queryClient.ensureQueryData(projectsQueryOptionsWithFilter(filters, i18n.language)),
   validateSearch: FilterSchema,
   component: ProjectsComponent,
   meta: ({}) => [
@@ -29,6 +32,7 @@ export const Route = createFileRoute('/projects/')({
 
 function ProjectsComponent() {
   const projects = Route.useLoaderData();
+  const TAGS = useSuspenseQuery(useQueryProjectsTags);
   const { pageSize } = useSearch({ strict: false });
   const URL: string = `${import.meta.env.VITE_BASE_URL}/projects/`;
   return (
@@ -37,6 +41,7 @@ function ProjectsComponent() {
       createPath={{ to: '/projects/create' }}
       hasContent={projects.length > 0}
       contentSize={projects.length}
+      TAGS={TAGS.data}
     >
       <RenderAllContents
         URL={URL}

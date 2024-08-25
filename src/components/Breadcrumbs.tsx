@@ -99,7 +99,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                         <ChevronDownIcon />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start">
-                        <ScrollArea className="h-96 rounded-md">
+                        <ScrollArea className="max-h-96 rounded-md">
                           {options
                             .filter((_, index) => index <= 10)
                             .map(({ to, title }, index) => (

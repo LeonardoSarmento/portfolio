@@ -1,12 +1,14 @@
-import { projects as AllProjects } from '@assets/data/projects';
+import { projects_pt_br } from '@assets/data/pt-BR/projects';
+import { projects_en_us } from '@assets/data/en-US/projects';
 import { FilterType } from '@services/types/Filters';
+import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
 
 export class ProjectNotFoundError extends Error {}
 
-export const fetchProject = async (projectId: string) => {
+export const fetchProject = async ({ projectId, language }: { projectId: string; language: string }) => {
   console.log(`Fetching post with id ${projectId}...`);
-  await new Promise((r) => setTimeout(r, 500));
-  const projects = AllProjects;
+  // await new Promise((r) => setTimeout(r, 500));
+  const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
   const project = projects.find((project) => project.id === projectId);
   if (!project) {
     throw new ProjectNotFoundError(`Post with id "${projectId}" not found!`);
@@ -15,14 +17,14 @@ export const fetchProject = async (projectId: string) => {
   }
 };
 
-export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1' }: FilterType) => {
+export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1' }: FilterType, language: string) => {
   // console.log('Fetching posts with filters...');
-  await new Promise((r) => setTimeout(r, 500));
+  // await new Promise((r) => setTimeout(r, 500));
   // console.log('tags: ', { tags, pageSize, title, views });
+  const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
 
-  const offset = (+page - 1) * (pageSize ? +pageSize : AllProjects.length);
+  const offset = (+page - 1) * (pageSize ? +pageSize : projects.length);
 
-  const projects = AllProjects;
 
   let filteredProjects = projects;
 
@@ -45,16 +47,24 @@ export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1
   return filteredProjects;
 };
 
-export const fetchProjects = async () => {
+export const fetchProjects = async (language: string) => {
   console.log('Fetching Project...');
-  await new Promise((r) => setTimeout(r, 500));
-  const project = AllProjects;
-  return project;
+  // await new Promise((r) => setTimeout(r, 500));
+  const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
+  return projects;
 };
 
-export const fetchProjectsUrl = async () => {
+export const fetchProjectsUrl = async (language: string) => {
   console.log('Fetching Project url...');
-  await new Promise((r) => setTimeout(r, 500));
-  const project = AllProjects.map((project) => ({ to: project.id, title: project.title }));
-  return project;
+  // await new Promise((r) => setTimeout(r, 500));
+  const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
+  const projectsUrl = projects.map((project) => ({ to: project.id, title: project.title }));
+  return projectsUrl;
+};
+
+export const fetchProjectsTags = async () => {
+  console.log('Fetching tags...');
+  // await new Promise((r) => setTimeout(r, 500));
+  const tags = TAGS_OPTIONS_PROJECTS;
+  return tags;
 };

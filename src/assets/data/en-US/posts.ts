@@ -1,8 +1,9 @@
-import BlogPost from '@assets/data/markdown.md';
-import MultipleSSHPost from '@assets/data/multipleSSH.md';
-import ReadMe from '../../../README.md';
+import BlogPost from '@assets/data/en-US/markdown.md';
+import MultipleSSHPost from '@assets/data/en-US/multipleSSH.md';
+import ReadMe from '../../../../README.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
+import { TAGS_OPTIONS_POSTS } from '@constants/tags';
 
 export type PostMenuNavigation = {
   id: string;
@@ -14,21 +15,7 @@ export type PostMenuNavigation = {
   tags?: TagType[];
 };
 
-export const TAGS_OPTIONS: TagType[] = [
-  { id: 'nextjs', label: 'Nextjs', value: 'nextjs' },
-  { id: 'react', label: 'React', value: 'react' },
-  { id: 'remix', label: 'Remix', value: 'remix' },
-  { id: 'vite', label: 'Vite', value: 'vite' },
-  { id: 'nuxt', label: 'Nuxt', value: 'nuxt' },
-  { id: 'vue', label: 'Vue', value: 'vue' },
-  { id: 'svelte', label: 'Svelte', value: 'svelte' },
-  { id: 'angular', label: 'Angular', value: 'angular' },
-  { id: 'ember', label: 'Ember', value: 'ember', disable: true },
-  { id: 'gatsby', label: 'Gatsby', value: 'gatsby', disable: true },
-  { id: 'astro', label: 'Astro', value: 'astro' },
-];
-
-export const posts: PublicationType[] = [
+export const posts_en_us: PublicationType[] = [
   {
     id: 'two-ssh-github-account-configuration',
     thumbnail: 'https://devconnected.com/wp-content/uploads/2019/10/featured-12.png',
@@ -37,7 +24,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response.',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -56,7 +43,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[2]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[2]],
     file: null,
   },
   {
@@ -66,7 +53,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys test',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[4], TAGS_OPTIONS[7]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[4], TAGS_OPTIONS_POSTS[7]],
     file: null,
   },
   {
@@ -76,7 +63,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -87,7 +74,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -106,7 +93,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -117,7 +104,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -136,7 +123,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -147,7 +134,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -166,7 +153,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -177,7 +164,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -196,7 +183,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -207,7 +194,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -226,7 +213,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -237,7 +224,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -256,7 +243,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -267,7 +254,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -286,7 +273,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -297,7 +284,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -316,7 +303,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -327,7 +314,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -346,7 +333,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -357,7 +344,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -376,7 +363,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -387,7 +374,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -406,7 +393,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -417,7 +404,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -436,7 +423,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -447,7 +434,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {
@@ -466,7 +453,7 @@ export const posts: PublicationType[] = [
     title: 'Using multiple ssh keys carrousel',
     description: 'For those that got 2 accounts in github.',
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -477,7 +464,7 @@ export const posts: PublicationType[] = [
     description:
       'A modal dialog that interrupts the user with important content and expects a response. A modal dialog that interrupts the user with important content and expects a response',
     body: BlogPost,
-    tags: [TAGS_OPTIONS[0], TAGS_OPTIONS[3], TAGS_OPTIONS[6]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3], TAGS_OPTIONS_POSTS[6]],
     file: null,
   },
   {

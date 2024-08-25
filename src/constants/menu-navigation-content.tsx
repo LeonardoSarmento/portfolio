@@ -1,4 +1,5 @@
-import { posts } from '@assets/data/posts';
+import { posts_en_us } from '@assets/data/en-US/posts';
+import { posts_pt_br } from '@assets/data/pt-BR/posts';
 import { PAGE_SIZE_OPTIONS } from '@components/FilterMenuComponent';
 import { TMenuContent } from '@services/types/constants/menu-navigation';
 import { MY_PHOTO } from '@services/utils/Images';
@@ -6,7 +7,8 @@ import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const MENUCONTENT: () => TMenuContent = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const posts = i18n.language === 'pt-BR' ? posts_pt_br : posts_en_us;
   return {
     about: {
       title: t('about.title', { ns: 'menuNavigation', returnObjects: true }),

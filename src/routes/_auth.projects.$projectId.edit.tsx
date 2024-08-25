@@ -11,10 +11,13 @@ import { useAuth } from '@services/hooks/auth';
 import { EditPublicationSchema, EditPublicationType } from '@services/types/Publication';
 import { MovetoTopButton } from '@components/MoveToTop';
 import { createMarkdownFile } from '@services/utils/utils';
+import i18n from '../i18n/config';
+import { useQueryProjectsTags } from '@services/hooks/tagsQueryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
   loader: ({ context: { queryClient }, params: { projectId } }) =>
-    queryClient.ensureQueryData(projectQueryOptions(projectId)),
+    queryClient.ensureQueryData(projectQueryOptions(projectId, i18n.language)),
   component: EditPostsComponent,
   meta: ({ loaderData }) => [
     {
@@ -35,7 +38,7 @@ function EditPostsComponent() {
   const headerCardProjectContent = HEADERCARDPROJECTCONTENT();
   const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
   const toastMessages = TOASTMESSAGESCONTENT();
-
+  const TAGS = useSuspenseQuery(useQueryProjectsTags);
   const auth = useAuth();
   const project = Route.useLoaderData();
   const form = useForm<EditPublicationType>({
@@ -63,6 +66,7 @@ function EditPostsComponent() {
                 form={form}
                 onClick={() => handleDeleteContent({ messages: toastMessages })}
                 textContent={headerCardProjectContent.form}
+                TAGS={TAGS.data ? TAGS.data : []}
               />
             </div>
           </Card>

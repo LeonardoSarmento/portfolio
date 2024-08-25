@@ -11,9 +11,13 @@ import { useAuth } from '@services/hooks/auth';
 import { EditPublicationSchema, EditPublicationType } from '@services/types/Publication';
 import { MovetoTopButton } from '@components/MoveToTop';
 import { createMarkdownFile } from '@services/utils/utils';
+import i18n from '../i18n/config';
+import { useQueryPostsTags } from '@services/hooks/tagsQueryOptions';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const Route = createFileRoute('/_auth/posts/$postId/edit')({
-  loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId)),
+  loader: ({ context: { queryClient }, params: { postId } }) =>
+    queryClient.ensureQueryData(postQueryOptions(postId, i18n.language)),
   component: EditPostsComponent,
   meta: ({ loaderData }) => [
     {
@@ -34,6 +38,7 @@ function EditPostsComponent() {
   const headerCardPostContent = HEADERCARDPOSTCONTENT();
   const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
   const toastMessages = TOASTMESSAGESCONTENT();
+  const TAGS = useSuspenseQuery(useQueryPostsTags)
   const auth = useAuth();
 
   const post = Route.useLoaderData();
@@ -62,6 +67,7 @@ function EditPostsComponent() {
                 form={form}
                 onClick={() => handleDeleteContent({ messages: toastMessages })}
                 textContent={headerCardPostContent.form}
+                TAGS={TAGS.data}
               />
             </div>
           </Card>

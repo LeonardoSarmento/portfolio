@@ -15,11 +15,12 @@ import { Link, LinkOptions } from '@tanstack/react-router';
 import { createFileRoute } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
 import React, { Fragment, useMemo } from 'react';
+import i18n from '../i18n/config';
 
 export const Route = createFileRoute('/')({
   loader: async ({ context: { queryClient } }) => {
-    const ensurePosts = queryClient.ensureQueryData(postsQueryOptions);
-    const ensureProjects = queryClient.ensureQueryData(projectsQueryOptions);
+    const ensurePosts = queryClient.ensureQueryData(postsQueryOptions(i18n.language));
+    const ensureProjects = queryClient.ensureQueryData(projectsQueryOptions(i18n.language));
     const [posts, projects] = await Promise.all([ensurePosts, ensureProjects]);
 
     return { posts, projects };

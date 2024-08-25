@@ -6,10 +6,11 @@ import { projectQueryOptions } from '@services/hooks/postQueryOptions';
 import { PostNotFoundError } from '@services/hooks/posts';
 import { useQueryProjectsUrl } from '@services/hooks/projectsQueryOptions';
 import { ErrorComponent, ErrorComponentProps, createFileRoute } from '@tanstack/react-router';
+import i18n from '../i18n/config';
 
 export const Route = createFileRoute('/projects/$projectId')({
   loader: ({ context: { queryClient }, params: { projectId } }) =>
-    queryClient.ensureQueryData(projectQueryOptions(projectId)),
+    queryClient.ensureQueryData(projectQueryOptions(projectId, i18n.language)),
   errorComponent: ProjectErrorComponent as any,
   component: ProjectComponent,
   meta: ({ loaderData }) => [
