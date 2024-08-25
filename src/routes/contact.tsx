@@ -99,7 +99,7 @@ function Contact() {
 
         <div className="z-[1] mx-auto mt-10 h-64 overflow-hidden rounded-md">
           <img
-            className="relative bottom-10 right-10 mx-auto h-64 scale-150 md:bottom-0 md:right-0 md:scale-100"
+            className="relative bottom-10 right-10 mx-auto h-64 scale-125 md:bottom-0 md:right-0 md:scale-100"
             src={contactContent.sideContent.src}
             alt={contactContent.sideContent.alt}
           />

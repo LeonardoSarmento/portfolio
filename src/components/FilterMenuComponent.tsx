@@ -380,7 +380,7 @@ function NoContentComponent({ ResetFilters }: { ResetFilters: () => void }) {
     <div className="flex w-full flex-col items-center justify-center gap-4 max-lg:mx-6">
       <CardContent className="flex items-center justify-center rounded-xl border p-6 max-sm:flex-wrap-reverse">
         {/* <CardContent className="flex items-center justify-center rounded-xl border p-6"> */}
-        <blockquote className="space-y-2 pr-6 text-center">
+        <blockquote className="space-y-2 xl:pr-6 w-full text-center">
           <p className="text-lg">&ldquo;{filterMenuContent.noContent.content.text}&rdquo;</p>
           <footer className="text-sm">{filterMenuContent.noContent.content.author}</footer>
         </blockquote>
