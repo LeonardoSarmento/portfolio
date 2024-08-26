@@ -15,32 +15,44 @@
     {
       "src": "screenshots/screenshot-home.png",
       "sizes": "399x888",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Explore the portfolio of a skilled software engineer. Learn about me, view my resume, and browse through my blog posts and projects showcased in an interactive carousel."
     },
     {
       "src": "screenshots/screenshot-intro.png",
       "sizes": "413x894",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Get to know me! Read a brief introduction about who I am, my passions, and what drives me as a software engineer."
     },
     {
       "src": "screenshots/screenshot-posts.png",
       "sizes": "413x894",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Read my blog posts where I share insights and experiences related to work, life, and various other topics. Stay updated with my latest thoughts and stories."
     },
     {
       "src": "screenshots/screenshot-contact.png",
       "sizes": "413x895",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Get in touch with me through my social media profiles on LinkedIn, GitHub, Instagram, or via email. Connect with me to discuss opportunities, collaborations, or just to say hello."
     },
     {
       "src": "screenshots/screenshot-home-wide.png",
       "sizes": "1920x992",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Explore the portfolio of a skilled software engineer. Learn about me, view my resume, and browse through my blog posts and projects showcased in an interactive carousel."
     },
     {
       "src": "screenshots/screenshot-posts-wide.png",
       "sizes": "1920x993",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Read my blog posts where I share insights and experiences related to work, life, and various other topics. Stay updated with my latest thoughts and stories."
     }
   ],
   "icons": [
