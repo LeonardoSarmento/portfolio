@@ -40,14 +40,12 @@
       "src": "screenshots/screenshot-home-wide.png",
       "sizes": "1920x992",
       "type": "image/png",
-      "form_factor": "wide",
       "label": "Explore the portfolio of a skilled software engineer. Learn about me, view my resume, and browse through my blog posts and projects showcased in an interactive carousel."
     },
     {
       "src": "screenshots/screenshot-posts-wide.png",
-      "sizes": "1920x992",
+      "sizes": "1920x993",
       "type": "image/png",
-      "form_factor": "wide",
       "label": "Read my blog posts where I share insights and experiences related to work, life, and various other topics. Stay updated with my latest thoughts and stories."
     }
   ],
