@@ -34,7 +34,7 @@ function ProjectsComponent() {
   const projects = Route.useLoaderData();
   const TAGS = useSuspenseQuery(useQueryProjectsTags);
   const { pageSize } = useSearch({ strict: false });
-  const URL: string = `${import.meta.env.VITE_BASE_URL}/projects/`;
+  const URL: string = `${location.origin}/projects/`;
   return (
     <FilterMenuComponent
       path={{ to: '/projects' }}

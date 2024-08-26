@@ -38,7 +38,7 @@ export function PostErrorComponent({ error }: ErrorComponentProps) {
 function PostComponent() {
   const post = Route.useLoaderData();
   const { data: optionsUrl } = useQueryPostsUrl();
-  const URL = `${import.meta.env.VITE_BASE_URL}/posts/${post.id}`;
+  const URL = `${location.origin}/posts/${post.id}`;
 
   return (
     <>

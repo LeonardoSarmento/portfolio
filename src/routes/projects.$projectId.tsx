@@ -39,7 +39,7 @@ export function ProjectErrorComponent({ error }: ErrorComponentProps) {
 function ProjectComponent() {
   const project = Route.useLoaderData();
   const { data: optionsUrl } = useQueryProjectsUrl();
-  const URL = `${import.meta.env.VITE_BASE_URL}/projects/${project.id}`;
+  const URL = `${location.origin}/projects/${project.id}`;
 
   return (
     <>

@@ -32,7 +32,7 @@ export const Route = createFileRoute('/posts/')({
 
 function PostsComponent() {
   const posts = Route.useLoaderData();
-  const URL: string = `${import.meta.env.VITE_BASE_URL}/posts/`;
+  const URL: string = `${location.origin}/posts/`;
   const { pageSize } = useSearch({ strict: false });
   const TAGS = useSuspenseQuery(useQueryPostsTags);
   return (
