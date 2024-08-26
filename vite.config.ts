@@ -50,26 +50,6 @@ export default defineConfig({
         start_url: '/',
         theme_color: '#f0f0f0',
         categories: ['portfolio', 'experiences', 'blog', 'software', 'development'],
-        // screenshots: [
-        //   {
-        //     src: 'screenshots/DocDoc-home.png',
-        //     sizes: '320x568',
-        //     type: 'image/png',
-        //   },
-        // ],
-        // icons: [
-        //   {
-        //     src: '/assets/icons/favicon.png',
-        //     type: 'image/png',
-        //     sizes: '1024x1024',
-        //   },
-        //   {
-        //     src: '/assets/icons/favicon.svg',
-        //     type: 'image/png',
-        //     sizes: '192x192',
-        //     purpose: 'maskable',
-        //   },
-        // ],
         shortcuts: [],
         lang: 'en',
       },
