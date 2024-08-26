@@ -6,6 +6,7 @@ import { Download } from 'lucide-react';
 import { ToggleProps } from '@radix-ui/react-toggle';
 import { useTranslation } from 'react-i18next';
 import { Flag, getCountrCode } from './SelectLanguage';
+
 export const RESUME_EN_US = new URL('/public/assets/Curriculo-Leonardo-Araujo-Sarmento-english.pdf', import.meta.url)
   .href;
 export const RESUME_PT_BR = new URL('/public/assets/Curriculo-Leonardo-Araujo-Sarmento.pdf', import.meta.url).href;
@@ -36,7 +37,14 @@ export function ResumeDialog({ ...props }: ResumeDialogBtn) {
         </DialogHeader>
         <div className="my-2 flex justify-around">
           {RESUME_OPTIONS.map((option) => (
-            <a key={option.code} aria-label={option.code} className="gap-3" href={option.link} target="_blank" rel="noopener noreferrer">
+            <a
+              key={option.code}
+              aria-label={option.code}
+              className="gap-3"
+              href={option.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button type="button">
                 <Flag countryCode={getCountrCode(option.code)} className="w-8 rounded-sm" />
               </Button>
