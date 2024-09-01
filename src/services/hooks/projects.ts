@@ -25,7 +25,6 @@ export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1
 
   const offset = (+page - 1) * (pageSize ? +pageSize : projects.length);
 
-
   let filteredProjects = projects;
 
   if (title) {
@@ -59,7 +58,7 @@ export const fetchProjectsUrl = async (language: string) => {
   // await new Promise((r) => setTimeout(r, 500));
   const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
   const projectsUrl = projects.map((project) => ({ to: project.id, title: project.title }));
-  return projectsUrl.reverse();
+  return projectsUrl;
 };
 
 export const fetchProjectsTags = async () => {

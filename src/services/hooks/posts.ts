@@ -64,7 +64,7 @@ export const fetchPostsUrl = async (language: string) => {
   // await new Promise((r) => setTimeout(r, 500));
   const posts = language === 'pt-BR' ? PostsPtBR : PostsEnUS;
   const postsUrl = posts.map((post) => ({ to: post.id, title: post.title }));
-  return postsUrl.reverse();
+  return postsUrl
 };
 
 export const fetchPostsTags = async () => {

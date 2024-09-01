@@ -1,8 +1,6 @@
 ## Múltiplas chaves SSH no PC
 
-Configurar duas chaves SSH separadas me levou muito tempo porque todas as informações que eu precisava estavam espalhadas por várias fontes. Vou consolidá-las aqui para que outros possam encontrar, e espero que isso economize seu tempo! Se você não sabe o que é uma chave SSH ou por que ela é usada, você pode conferir este artigo para aprender mais sobre elas.
-
-Minha empresa usa uma conta privada no Github, e para uso pessoal, eu tenho uma conta pública no Github. Vou viajar no próximo mês, então queria poder acessar meus repositórios pessoais no meu laptop de trabalho em vez de carregar ambos comigo. Aqui estão os passos que segui para configurá-lo.
+Configurar duas chaves SSH separadas era um desejo que eu tinha desde que comecei a trabalhar no ISTEO e precisei criar uma conta profissional no `GitHub`. Após procurar um pouco, mas nunca encontrar um tutorial completo e fácil de entender, e com uma pitada de procrastinação, finalmente resolvi aprender como fazer. Então, apresento a vocês a maneira como configuro minhas múltiplas chaves.
 
 Para fins deste artigo, pessoal = Github e trabalho = Github, mas obviamente faça o que você precisar.
 
@@ -38,19 +36,19 @@ Desta vez, quando ele solicitar um nome de arquivo, use `id_rsa_trabalho`
 Cada um desses comandos criará dois arquivos (então quatro no total), um com o nome que você inseriu e um segundo com .pub no final.
 
 # Passo 3: Crie um arquivo de configuração
-Ainda no mesmo terminal, tente usar ls para ver se existe um arquivo chamado config. Se existir, use `code config` para abri-lo no seu editor de código. Se não existir, você pode criá-lo usando `touch config`, depois abra-o com `code config`. Copie e cole o seguinte no seu config:
+Ainda no mesmo terminal, tente usar `ls` para ver se existe um arquivo chamado config. Se existir, use `code config` para abri-lo no seu editor de código. Se não existir, você pode criá-lo usando `touch config`, depois abra-o com `code config`. Copie e cole o seguinte no seu config:
 
  ``` bash
-# Conta Pessoal: (Seu-Nome-De-Conta-No-Github)
+# Conta Pessoal: (Nome-Da-Sua-Conta-No-Github)
 
-Host github.com-(Seu-Nome-De-Conta-No-Github)
+Host github.com-(Nome-Da-Sua-Conta-No-Github)
 HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_pessoal
 
-# Conta de Trabalho: (Seu-Nome-De-Conta-No-Github)
+# Conta de Trabalho: (Nome-Da-Sua-Conta-No-Github)
 
-Host github.com-(Seu-Nome-De-Conta-No-Github)
+Host github.com-(Nome-Da-Sua-Conta-No-Github)
 HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_trabalho
@@ -72,12 +70,12 @@ Se sua chave não estiver sendo monitorada, você precisa adicioná-la à lista.
 Em uma janela de terminal sem permissões elevadas, adicione sua chave privada SSH ao ssh-agent. Se você criou sua chave com um nome diferente, ou se está adicionando uma chave existente que tem um nome diferente, substitua id_rsa_pessoal no comando pelo nome do seu arquivo de chave privada.
 
 ```bash
-ssh-add c:/Users/VOCE/.ssh/id_rsa_pessoal
+ssh-add c:/Users/VOCÊ/.ssh/id_rsa_pessoal
 ```
 Depois faça o mesmo com a chave de trabalho
 
 ```bash
-ssh-add c:/Users/VOCE/.ssh/id_rsa_trabalho
+ssh-add c:/Users/VOCÊ/.ssh/id_rsa_trabalho
 ```
 
 # Passo 5: Adicione as chaves às suas contas
@@ -94,7 +92,7 @@ Tente puxar ou clonar um repositório de qualquer conta e veja se funciona. Voc�
 No passo 3, criamos um campo chamado Host para cada uma de nossas chaves SSH. No meu exemplo, eu os nomeei após o site usado para controle de versão. Se você decidiu nomear os seus de outra forma, certifique-se de referenciá-los ao clonar um novo repositório. No meu caso, posso clonar o repositório com o seguinte comando:
 
 ``` bash
-git clone git@github.com-(Seu-Nome-De-Conta-No-Github):(Seu-Nome-De-Conta-No-Github)/nome-do-repo.git
+git clone git@github.com-(Nome-Da-Sua-Conta-No-Github):(Nome-Da-Sua-Conta-No-Github)/nome-do-repo.git
 ```
 
 Espero que isso ajude!

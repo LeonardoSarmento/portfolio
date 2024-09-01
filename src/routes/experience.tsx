@@ -33,7 +33,7 @@ export const Route = createFileRoute('/experience')({
 function Experience() {
   const experienceContent = EXPERIENCECONTENT();
   return (
-    <div className="flex flex-col flex-wrap gap-4 px-4 lg:flex-row xl:flex-nowrap xl:px-16">
+    <div className="flex flex-col flex-wrap gap-5 px-4 lg:flex-row xl:flex-nowrap xl:px-16">
       <div className="max-w-screen absolute max-h-screen xl:overflow-hidden">
         <Meteors number={100} className="max-xl:hidden" />
       </div>
@@ -52,18 +52,14 @@ function Experience() {
             <MapDescriptions descriptions={experienceContent.education.description} />
           </CardHeader>
 
-          <CardContent>
-            <TabsComponent contents={experienceContent.education.stack} />
-          </CardContent>
+          <TabsComponent contents={experienceContent.education.stack} />
         </div>
         <div>
           <CardHeader className="text-center">
             <CardTitle>{experienceContent.professional.title}</CardTitle>
             <MapDescriptions descriptions={experienceContent.professional.description} />
           </CardHeader>
-          <CardContent>
-            <TabsComponent contents={experienceContent.professional.stack} />
-          </CardContent>
+          <TabsComponent contents={experienceContent.professional.stack} />
         </div>
       </div>
     </div>

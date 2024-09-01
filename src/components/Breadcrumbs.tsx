@@ -102,7 +102,6 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                         <ScrollArea className="max-h-96 rounded-md">
                           {options
                             .filter((_, index) => index <= 10)
-                            .reverse()
                             .map(({ to, title }, index) => (
                               <BreadcrumbLink
                                 key={`desktop-breadcrumbs-${index}-${to}`}
@@ -137,7 +136,6 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                           <ScrollArea className="h-96 rounded-md">
                             {options
                               .filter((_, index) => index <= 10)
-                              .reverse()
                               .map(({ to, title }, index) => (
                                 <BreadcrumbLink
                                   key={`mobile-breadcrumbs-${index}-${to}`}

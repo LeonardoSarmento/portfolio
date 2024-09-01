@@ -1,4 +1,4 @@
-import gfmFlavorMarkdown from '@assets/data/en-US/posts/multipleSSH.md';
+import ApplyI18nProject from '@assets/data/en-US/projects/applyingI18n.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
@@ -20,7 +20,7 @@ export const projects_en_us: PublicationType[] = [
     date: new Date('August 30, 2024 09:54:00'),
     title: 'Applying i18n in practice',
     description: 'Show you how you can internationalize your project',
-    body: gfmFlavorMarkdown,
+    body: ApplyI18nProject,
     tags: [TAGS_OPTIONS_PROJECTS[0], TAGS_OPTIONS_PROJECTS[1]],
     file: null,
   },
