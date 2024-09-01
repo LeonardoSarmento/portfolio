@@ -1,6 +1,6 @@
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { CardContent, CardTitle } from './ui/card';
-import { MY_PHOTO } from '@services/utils/Images';
+import { PENDING_PHOTO } from '@services/utils/Images';
 import { useTranslation } from 'react-i18next';
 
 export function PendingComponent() {
@@ -8,7 +8,7 @@ export function PendingComponent() {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <CardContent className="flex flex-col items-center justify-center">
-        <img className="h-80 rounded-md" src={MY_PHOTO} alt={t('aboutMe.header.alt')} />
+        <img className="h-80 rounded-md" src={PENDING_PHOTO} alt={t('aboutMe.header.alt')} />
         <p className="mt-6 text-center text-xs leading-tight text-muted-foreground">
           {t('aboutMe.header.description')}
         </p>

@@ -2,7 +2,7 @@ import { posts_en_us } from '@assets/data/en-US/posts';
 import { posts_pt_br } from '@assets/data/pt-BR/posts';
 import { PAGE_SIZE_OPTIONS } from '@components/FilterMenuComponent';
 import { TMenuContent } from '@services/types/constants/menu-navigation';
-import { MY_PHOTO } from '@services/utils/Images';
+import { PENDING_PHOTO } from '@services/utils/Images';
 import { Contact, FolderGit2, GraduationCap, Handshake } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -12,7 +12,7 @@ export const MENUCONTENT: () => TMenuContent = () => {
   return {
     about: {
       title: t('about.title', { ns: 'menuNavigation', returnObjects: true }),
-      image: { src: MY_PHOTO, alt: t('about.image.alt', { ns: 'menuNavigation', returnObjects: true }) },
+      image: { src: PENDING_PHOTO, alt: t('about.image.alt', { ns: 'menuNavigation', returnObjects: true }) },
       subtitle: t('about.subtitle', { ns: 'menuNavigation', returnObjects: true }),
       description: t('about.description', { ns: 'menuNavigation', returnObjects: true }),
       path: { to: '/' },
