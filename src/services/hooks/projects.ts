@@ -44,14 +44,14 @@ export const fetchProjectsWithFilter = async ({ tags, pageSize, title, page = '1
     filteredProjects = filteredProjects.slice(offset);
   }
 
-  return filteredProjects;
+  return filteredProjects.reverse();
 };
 
 export const fetchProjects = async (language: string) => {
   console.log('Fetching Project...');
   // await new Promise((r) => setTimeout(r, 500));
   const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
-  return projects;
+  return projects.reverse();
 };
 
 export const fetchProjectsUrl = async (language: string) => {
@@ -59,7 +59,7 @@ export const fetchProjectsUrl = async (language: string) => {
   // await new Promise((r) => setTimeout(r, 500));
   const projects = language === 'pt-BR' ? projects_pt_br : projects_en_us;
   const projectsUrl = projects.map((project) => ({ to: project.id, title: project.title }));
-  return projectsUrl;
+  return projectsUrl.reverse();
 };
 
 export const fetchProjectsTags = async () => {

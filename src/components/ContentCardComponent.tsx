@@ -17,7 +17,7 @@ import {
 import { Button } from '@components/ui/button';
 import { DROPDOWNMENUCONTENT } from '@constants/dropdown-share';
 import { handleDeleteContent } from '@services/utils/toasts';
-import { cn } from '@lib/utils';
+import { cn, normalizeDate } from '@lib/utils';
 import { PublicationType } from '@services/types/Publication';
 import { TOASTMESSAGESCONTENT } from '@constants/by-id-content';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,11 @@ export function ContentCardComponent(props: TContentCard) {
         params={{ projectId: props.content.id, postId: props.content.id }}
         // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
       >
-        <img className="aspect-video w-full h-full rounded-md" src={props.content.thumbnail} alt={props.content.title} />
+        <img
+          className="aspect-video h-full w-full rounded-md"
+          src={props.content.thumbnail}
+          alt={props.content.title}
+        />
         <CardHeader className="lg:16 h-32">{props.content.title}</CardHeader>
         <ScrollArea className="h-16 rounded-md lg:h-24">
           <div className="flex flex-wrap justify-center gap-2 px-0">
@@ -63,7 +67,7 @@ export function ContentCardComponent(props: TContentCard) {
           <CardDescription>{props.content.description}</CardDescription>
         </ScrollArea>
         <CardFooter className={`flex ${!props.dropdownMenu ? 'justify-center' : 'justify-between'}`}>
-          <p className="text-center">{props.content.date.toLocaleDateString()}</p>
+          <p className="text-center text-sm">{normalizeDate(props.content.date)}</p>
           {props.dropdownMenu ? (
             <DropdownMenuComponent
               editable={props.content.editable}

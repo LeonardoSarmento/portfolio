@@ -22,7 +22,7 @@ export function NavigationMenuGroup() {
       <NavigationMenu className="flex text-center md:mx-16">
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-2 xs:px-8">{menuContent.about.title}</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="xs:px-8 px-2">{menuContent.about.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                 <li className="row-span-3">
@@ -50,11 +50,12 @@ export function NavigationMenuGroup() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-4 xs:px-8">{menuContent.posts.title}</NavigationMenuTrigger>
+            <NavigationMenuTrigger className="xs:px-8 px-4">{menuContent.posts.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                 {menuContent.posts.contents
                   .filter((_, index) => index <= 5)
+                  .reverse()
                   .map((component, index) => (
                     <ListItem
                       key={`ListItem-${index}-${component.id}`}
@@ -73,12 +74,12 @@ export function NavigationMenuGroup() {
           <NavigationMenuItem>
             <ListItem
               {...menuContent.options.filter((opt) => opt.to === '/contact')[0]}
-              className="data-[state=open]:bg-accent/50' inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 xs:px-8"
+              className="data-[state=open]:bg-accent/50' xs:px-8 inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50"
             />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex min-w-full justify-evenly md:justify-between md:min-w-fit md:w-[220px]">
+      <div className="flex min-w-full justify-evenly md:w-[220px] md:min-w-fit md:justify-between">
         <ResumeDialog />
         <UserToggle />
         <SelectLanguage />
@@ -108,7 +109,7 @@ const ListItem = ({ className, title, children, icon, ...props }: ListItemType) 
           <div className="text-xs font-medium leading-none">{title}</div>
           <div className="ml-2">{icon}</div>
         </div>
-        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground ">{children}</p>
+        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">{children}</p>
       </Link>
     </NavigationMenuLink>
   );

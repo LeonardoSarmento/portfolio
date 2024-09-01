@@ -164,7 +164,7 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="basis-5/6 md:basis-1/3">
+                <CarouselItem key={`${publication.id}-${index}`} className="basis-5/6 flex md:basis-1/3">
                   <ContentCardComponent
                     content={publication}
                     index={index}

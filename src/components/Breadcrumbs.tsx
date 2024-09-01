@@ -64,7 +64,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
 
     return (
       <Breadcrumb ref={ref} className={className} {...props}>
-        <BreadcrumbList className='max-sm:justify-center mb-5'>
+        <BreadcrumbList className="mb-5 max-sm:justify-center">
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
               <Link to={initial ? initial.to : '/'}>{initial ? initial.title : t('home')}</Link>
@@ -83,7 +83,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
                     <Link to={routeId} params={{ postId: options[0].to }}>
-                      {options[0].to}
+                      {options[0].title}
                     </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
@@ -102,6 +102,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                         <ScrollArea className="max-h-96 rounded-md">
                           {options
                             .filter((_, index) => index <= 10)
+                            .reverse()
                             .map(({ to, title }, index) => (
                               <BreadcrumbLink
                                 key={`desktop-breadcrumbs-${index}-${to}`}
@@ -123,7 +124,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                     </DropdownMenu>
                   ) : (
                     <Drawer open={open} onOpenChange={setOpen}>
-                      <DrawerTrigger aria-label="Toggle Menu" className='flex items-center gap-2'>
+                      <DrawerTrigger aria-label="Toggle Menu" className="flex items-center gap-2">
                         {filtredOption ? filtredOption.title : t('wrongUrl')}
                         <ChevronDownIcon />
                       </DrawerTrigger>
@@ -136,6 +137,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                           <ScrollArea className="h-96 rounded-md">
                             {options
                               .filter((_, index) => index <= 10)
+                              .reverse()
                               .map(({ to, title }, index) => (
                                 <BreadcrumbLink
                                   key={`mobile-breadcrumbs-${index}-${to}`}

@@ -21,7 +21,7 @@ export const fetchPosts = async (language: string) => {
   console.log('Fetching posts...');
   // await new Promise((r) => setTimeout(r, 500));
   const posts = language === 'pt-BR' ? PostsPtBR : PostsEnUS;
-  return posts;
+  return posts.reverse();
 };
 
 export const fetchPostsWithFilter = async (
@@ -56,7 +56,7 @@ export const fetchPostsWithFilter = async (
     filteredPosts = filteredPosts.slice(offset);
   }
   console.log(filteredPosts);
-  return filteredPosts;
+  return filteredPosts.reverse();
 };
 
 export const fetchPostsUrl = async (language: string) => {
@@ -64,7 +64,7 @@ export const fetchPostsUrl = async (language: string) => {
   // await new Promise((r) => setTimeout(r, 500));
   const posts = language === 'pt-BR' ? PostsPtBR : PostsEnUS;
   const postsUrl = posts.map((post) => ({ to: post.id, title: post.title }));
-  return postsUrl;
+  return postsUrl.reverse();
 };
 
 export const fetchPostsTags = async () => {
