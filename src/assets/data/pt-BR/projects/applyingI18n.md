@@ -6,7 +6,7 @@ A internacionalização (`i18n`) é essencial para expandir o alcance de aplica�
 
 #### Meu Projeto de Implementação de i18n
 
-Recentemente, criei um site dedicado à implementação de `i18n` em aplicações `React`. Nesse site, você encontrará tutoriais detalhados sobre como configurar o i18n, diferentes maneiras de utilizar suas funções e até uma página de exemplo mostrando como integrar o i18n ao `Zod`, junto ao `react-hook-form`. O objetivo é fornecer um guia completo para quem deseja internacionalizar suas aplicações com essas ferramentas poderosas.
+Recentemente, criei um site dedicado à implementação de `i18n` em aplicações `Vite + React`. Nesse site, você encontrará tutoriais detalhados sobre como configurar o i18n, diferentes maneiras de utilizar suas funções e até uma página de exemplo mostrando como integrar o i18n ao `Zod`, junto ao `react-hook-form`. O objetivo é fornecer um guia completo para quem deseja internacionalizar suas aplicações com essas ferramentas poderosas.
 
 #### Vantagens da Implementação com Essas Bibliotecas
 

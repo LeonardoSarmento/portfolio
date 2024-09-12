@@ -52,8 +52,8 @@ export default {
 
 ## Libraries used to obtain `markdown` CSS
 
- - Github Markdown: [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css): (^5.5.1)
- - Generate CSS: [`generate-github-markdown-css`](https://github.com/sindresorhus/generate-github-markdown-css): (^6.2.1)
+- Github Markdown: [`github-markdown-css`](https://github.com/sindresorhus/github-markdown-css): (^5.5.1)
+- Generate CSS: [`generate-github-markdown-css`](https://github.com/sindresorhus/generate-github-markdown-css): (^6.2.1)
 
 Setup the file to generate based on the markdown file you want.
 
@@ -85,7 +85,6 @@ githubMarkdownCss({
 }).then((css: string | NodeJS.ArrayBufferView) => {
   fs.writeFileSync('src/github-markdown.css', css);
 });
-
 ```
 
 Use terminal to run the code.
@@ -99,15 +98,11 @@ npx tsx src/lib/generate-markdown-css.ts
 Generate sha256 hash in terminal
 
 ```bash
-
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-
 ```
 
 Update dependencies
 
 ```bash
-
 npx npm-check-updates -u
-
 ```
