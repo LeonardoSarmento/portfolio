@@ -29,7 +29,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'two-ssh-github-account-configuration',
-    thumbnail: 'https://devconnected.com/wp-content/uploads/2019/10/featured-12.png',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK2oSg0yJi5UptCnS36zQO49TwhEXgeIqNAYoB',
     date: new Date('August 30, 2024 19:35:00'),
     title: 'Two SSH github account configuration.',
     description: `I'll show you how I manage my personal and work profiles with SSH keys.`,
@@ -39,7 +39,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'configuring-i18n',
-    thumbnail: 'https://magepow.com/blog/wp-content/uploads/2021/03/42as4j86k92eqqi3z148d6l3ydij-1.png',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKXEL6P8zHc0gvrkVfbGUZM5Fd98KeauQCP3zA',
     date: new Date('August 31, 2024 21:54:00'),
     title: 'I18n and its configurations',
     description: 'How to configure i18n in your React project with type safety and its applications.',
