@@ -28,6 +28,8 @@ Recentemente, desenvolvi um projeto que utiliza **Vite** como bundler, **React**
 
 4. **Desenvolvimento Rápido**: O Vite.js acelera o desenvolvimento com build instantâneo e atualizações de página em tempo real, otimizando a experiência de desenvolvimento.
 
+#### Experimente
+
 Confira o projeto que desenvolvi, [Roteamento Dinâmico com TanStack Router](https://routing.leosarmento.com), onde você pode ver um tutorial detalhado sobre a configuração do roteamento dinâmico e exemplos práticos de como integrar o TanStack Query para gerenciar estados com dados assíncronos. Esta combinação de ferramentas é ideal para desenvolvedores que desejam construir aplicações React performáticas e escaláveis.
 
 Caso queira explorar mais o código, também deixo o repositório do projeto no `Github`: [Routing-use-case](https://github.com/LeonardoSarmento/routing-use-case)

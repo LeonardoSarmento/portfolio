@@ -26,6 +26,8 @@ Recently, I created a website dedicated to implementing `i18n` in `Vite + React`
 
 4. **Ease of Implementation**: Intuitive and well-documented APIs simplify the adoption of these technologies.
 
+#### Try It Out
+
 Check out the website I created, [Applying i18n](https://i18n.leosarmento.com), to explore all the ways to configure i18n, utilize its functions, and see practical examples of integrating with `Zod` and `react-hook-form`. It's the perfect resource for developers looking to internationalize their applications efficiently and scalably.
 
 If you want to find out from the source, I'll also leave you the project's repository on `Github`: [I18n-use-case](https://github.com/LeonardoSarmento/i18n-use-case)

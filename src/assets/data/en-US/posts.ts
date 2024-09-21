@@ -24,7 +24,7 @@ export const posts_en_us: PublicationType[] = [
     title: 'Welcome to my portfolio',
     description: `A conversation about what's here on this site`,
     body: DevelopingThePortfolio,
-    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[1]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[3]],
     file: null,
   },
   {
@@ -34,7 +34,7 @@ export const posts_en_us: PublicationType[] = [
     title: 'Two SSH github account configuration.',
     description: `I'll show you how I manage my personal and work profiles with SSH keys.`,
     body: MultipleSSHPost,
-    tags: [TAGS_OPTIONS_POSTS[2], TAGS_OPTIONS_POSTS[3]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[2], TAGS_OPTIONS_POSTS[4]],
     file: null,
   },
   {
@@ -44,7 +44,7 @@ export const posts_en_us: PublicationType[] = [
     title: 'I18n and its configurations',
     description: 'How to configure i18n in your React project with type safety and its applications.',
     body: I18nPost,
-    tags: [TAGS_OPTIONS_POSTS[4], TAGS_OPTIONS_POSTS[5]],
+    tags: [TAGS_OPTIONS_POSTS[0], TAGS_OPTIONS_POSTS[1], TAGS_OPTIONS_POSTS[5]],
     file: null,
   },
 ];

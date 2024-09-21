@@ -1,5 +1,6 @@
 import ApplyI18nProject from '@assets/data/pt-BR/projects/applyingI18n.md';
 import Routing from '@assets/data/pt-BR/projects/routing.md';
+import Tables from '@assets/data/pt-BR/projects/tables.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
@@ -22,7 +23,7 @@ export const projects_pt_br: PublicationType[] = [
     title: 'Aplicando i18n na prática',
     description: 'Te mostrar como você pode internacionalizar o seu projeto.',
     body: ApplyI18nProject,
-    tags: [TAGS_OPTIONS_PROJECTS[0], TAGS_OPTIONS_PROJECTS[1]],
+    tags: [TAGS_OPTIONS_PROJECTS[0], TAGS_OPTIONS_PROJECTS[5]],
     file: null,
   },
   {
@@ -32,7 +33,17 @@ export const projects_pt_br: PublicationType[] = [
     title: 'Roteamento e Gerenciamento de estados',
     description: 'Como você pode aplicar um roteamento dinâmico com gerencimento de estados.',
     body: Routing,
-    tags: [TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[4]],
+    tags: [TAGS_OPTIONS_PROJECTS[1], TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[4]],
+    file: null,
+  },
+  {
+    id: 'tables',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK71PxxQlPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    date: new Date('September 21, 2024 14:45:44'),
+    title: 'Caso de uso de uma tabela gerenciada por parâmetros de URL',
+    description: 'Como aplicar o gerenciamento de filtros usando parâmetros de URL a uma tabela em um projeto.',
+    body: Tables,
+    tags: [TAGS_OPTIONS_PROJECTS[1], TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[4]],
     file: null,
   },
 ];

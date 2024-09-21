@@ -1,5 +1,6 @@
 import ApplyI18nProject from '@assets/data/en-US/projects/applyingI18n.md';
 import Routing from '@assets/data/en-US/projects/routing.md';
+import Tables from '@assets/data/en-US/projects/tables.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
@@ -22,7 +23,7 @@ export const projects_en_us: PublicationType[] = [
     title: 'Applying i18n in practice',
     description: 'Show you how you can internationalize your project',
     body: ApplyI18nProject,
-    tags: [TAGS_OPTIONS_PROJECTS[0], TAGS_OPTIONS_PROJECTS[1]],
+    tags: [TAGS_OPTIONS_PROJECTS[0], TAGS_OPTIONS_PROJECTS[5]],
     file: null,
   },
   {
@@ -32,7 +33,17 @@ export const projects_en_us: PublicationType[] = [
     title: 'Routing and State Managment use case',
     description: 'Use case to apply routing and state managment to a project.',
     body: Routing,
-    tags: [TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[4]],
+    tags: [TAGS_OPTIONS_PROJECTS[1], TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[4]],
+    file: null,
+  },
+  {
+    id: 'tables',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK71PxxQlPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    date: new Date('September 21, 2024 14:45:44'),
+    title: 'Use case for a table managed by URL Parameters',
+    description: 'How to apply filter management using URL parameters to a table in a project.',
+    body: Tables,
+    tags: [TAGS_OPTIONS_PROJECTS[1], TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[4]],
     file: null,
   },
 ];

@@ -26,6 +26,8 @@ Recentemente, criei um site dedicado à implementação de `i18n` em aplicaçõe
 
 4. **Facilidade de Implementação**: APIs intuitivas e bem documentadas simplificam a adoção dessas tecnologias.
 
+#### Experimente
+
 Confira o site que criei, [Aplicando o i18n](https://i18n.leosarmento.com), para explorar todas as maneiras de configurar o `i18n`, utilizar suas funções e ver exemplos práticos de integração com `Zod` e `react-hook-form`. É o recurso ideal para desenvolvedores que desejam internacionalizar suas aplicações de forma eficiente e escalável.
 
 Caso deseje descobrir na fonte, deixarei também o repositório do projeto no `Github`: [I18n-use-case](https://github.com/LeonardoSarmento/i18n-use-case)
