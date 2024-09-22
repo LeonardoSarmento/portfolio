@@ -28,7 +28,7 @@ export const useQueryProjectsUrl = () => {
   const { i18n } = useTranslation();
   const language = i18n.language;
   return useQuery({
-    queryKey: ['projects-url'],
+    queryKey: ['projects-url', { language }],
     queryFn: () => fetchProjectsUrl(language),
   });
 };

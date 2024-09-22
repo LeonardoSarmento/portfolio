@@ -151,7 +151,7 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="flex flex-col gap-4 text-center">
+    <div className="flex w-full flex-col gap-4 text-center md:my-0 xl:col-span-1">
       <CardTitle className="text-lg">{title}</CardTitle>
       <Carousel
         className="flex-1"
@@ -165,7 +165,7 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="flex basis-5/6 md:basis-1/3">
+                <CarouselItem key={`${publication.id}-${index}`} className="flex basis-11/12 md:basis-1/2 lg:basis-1/3 xl:basis-7/12 2xl:basis-1/3">
                   <ContentCardComponent content={publication} index={index} path={path} />
                 </CarouselItem>
               ))}

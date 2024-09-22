@@ -1,4 +1,4 @@
-### Implementando uma tabela de dados com filtros dinâmicos usando o TanStack Table, o TanStack Router, o TanStack Query e o Shadcn/UI
+### Implementando uma tabela de dados com filtros dinâmicos
 
 #### Introdução
 
