@@ -39,7 +39,7 @@ type TContentCard =
     } & TBaseContentCard);
 export function ContentCardComponent(props: TContentCard) {
   return (
-    <Card className={cn('p-2 text-center', props.className)}>
+    <Card className={cn('text-center', props.className)}>
       <Link
         className="flex flex-col"
         to={props.path.to}
@@ -47,11 +47,11 @@ export function ContentCardComponent(props: TContentCard) {
         // mask={{ to: '/posts/$postId', params: { postId: post.id } }}
       >
         <img
-          className="aspect-video h-full w-full rounded-md"
+          className="m-2 aspect-video rounded-md"
           src={props.content.thumbnail}
           alt={props.content.title}
         />
-        <CardHeader className="lg:16 h-32">{props.content.title}</CardHeader>
+        <CardHeader className='h-32'>{props.content.title}</CardHeader>
         <ScrollArea className="h-16 rounded-md lg:h-24">
           <div className="flex flex-wrap justify-center gap-2 px-0">
             {props.content.tags
@@ -64,7 +64,7 @@ export function ContentCardComponent(props: TContentCard) {
           </div>
         </ScrollArea>
         <ScrollArea className="m-2 h-28 rounded-md">
-          <CardDescription>{props.content.description}</CardDescription>
+          <CardDescription className='mx-4'>{props.content.description}</CardDescription>
         </ScrollArea>
         <CardFooter className={`flex ${!props.dropdownMenu ? 'justify-center' : 'justify-between'}`}>
           <p className="text-center text-sm">{normalizeDate(props.content.date)}</p>

@@ -151,9 +151,10 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="my-3 flex w-full flex-col gap-4 text-center md:my-0 xl:col-span-1">
+    <div className="flex flex-col gap-4 text-center">
       <CardTitle className="text-lg">{title}</CardTitle>
       <Carousel
+        className="flex-1"
         opts={{ loop: true }}
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
@@ -164,13 +165,8 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="basis-5/6 flex md:basis-1/3">
-                  <ContentCardComponent
-                    content={publication}
-                    index={index}
-                    path={path}
-                    className="col-span-2 row-span-1"
-                  />
+                <CarouselItem key={`${publication.id}-${index}`} className="flex basis-5/6 md:basis-1/3">
+                  <ContentCardComponent content={publication} index={index} path={path} />
                 </CarouselItem>
               ))}
         </CarouselContent>
