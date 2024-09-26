@@ -44,12 +44,12 @@ function Introduction() {
         {introductionContent.header.initial} {''}
         <Highlight className="px-4 text-black dark:text-white">{introductionContent.header.punchline}</Highlight>
       </motion.h1>
-      <div className="mx-auto flex flex-col justify-center gap-16 p-12 xl:flex-row xl:justify-evenly xl:gap-10 xl:space-x-20">
+      <div className="flex flex-col justify-center gap-16 p-12 xl:flex-row xl:justify-evenly xl:gap-10 2xl:mx-40">
         {/* <Avatar className="h-[380px] w-[380px] shadow-[0_0px_50px_rgba(27,_113,_18,_0.7)]"> */}
         <Avatar className="mx-auto h-64 w-64 shadow-[0_0px_50px_rgba(209,_171,_32,_0.7)] md:h-72 md:w-72 xl:h-96 xl:w-96">
           <AvatarImage src={introductionContent.image.src} alt={introductionContent.image.alt} />
         </Avatar>
-        <div className="mx-auto flex flex-col justify-center gap-2 lg:w-[700px]">
+        <div className="mx-auto flex flex-col justify-center gap-2 xl:w-3/4 2xl:w-1/2">
           <h2 className="scroll-m-20 whitespace-break-spaces pb-2 text-3xl font-semibold tracking-tight first:mt-0">
             {introductionContent.introduction.h1}
           </h2>
