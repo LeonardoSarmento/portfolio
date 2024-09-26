@@ -16,11 +16,13 @@
   "carrouselOptions": [
     {
       "buttonTitle": "See all Posts",
-      "title": "Posts"
+      "title": "Posts",
+      "description": "Find out about some topics I discovered and found interesting"
     },
     {
       "buttonTitle": "See all Projects",
-      "title": "Projects"
+      "title": "Projects",
+      "description": "Find my developed projects with use case demonstrations here"
     }
   ]
 }

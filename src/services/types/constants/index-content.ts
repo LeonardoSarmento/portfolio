@@ -13,6 +13,7 @@ export type TCardContent = {
 
 export type TCarrouselComponent = {
   title: string;
+  description: string;
   publication?: PublicationType[];
   path: LinkOptions;
   buttonPath: LinkOptions;

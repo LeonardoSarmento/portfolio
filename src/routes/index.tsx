@@ -79,6 +79,7 @@ function Index() {
             key={option.title}
             publication={option.publication}
             title={option.title}
+            description={option.description}
             path={option.path}
             buttonPath={option.buttonPath}
             buttonTitle={option.buttonTitle}
@@ -128,7 +129,7 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
       </CardContent>
       <CardContent className="flex items-center justify-center xl:w-1/2">
         <ScrollArea className="my-3 h-[250px] rounded-md xl:h-[450px]">
-          <MapDescriptions className='my-10' descriptions={contents.content.description} />
+          <MapDescriptions className="my-10" descriptions={contents.content.description} />
         </ScrollArea>
       </CardContent>
     </Card>
@@ -141,8 +142,10 @@ const CarrouselComponent = ({
   path,
   buttonPath,
   buttonTitle,
+  description,
 }: {
   title: string;
+  description: string;
   publication?: PublicationType[];
   path: LinkOptions;
   buttonPath: LinkOptions;
@@ -151,8 +154,11 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="flex w-full flex-col gap-4 text-center md:my-0 xl:col-span-1">
-      <CardTitle className="text-lg">{title}</CardTitle>
+    <div className="flex w-full flex-col text-center md:my-0 xl:col-span-1">
+      <CardHeader>
+        <CardTitle className="text-lg">{title}</CardTitle>
+        <CardDescription className="text-lg">{description}</CardDescription>
+      </CardHeader>
       <Carousel
         className="flex-1"
         opts={{ loop: true }}
@@ -165,7 +171,10 @@ const CarrouselComponent = ({
             publication
               .filter((_, index) => index <= 10)
               .map((publication, index) => (
-                <CarouselItem key={`${publication.id}-${index}`} className="flex basis-11/12 md:basis-1/2 lg:basis-1/3 xl:basis-7/12 2xl:basis-1/3">
+                <CarouselItem
+                  key={`${publication.id}-${index}`}
+                  className="flex basis-11/12 md:basis-1/2 lg:basis-1/3 xl:basis-7/12 2xl:basis-1/3"
+                >
                   <ContentCardComponent content={publication} index={index} path={path} />
                 </CarouselItem>
               ))}
