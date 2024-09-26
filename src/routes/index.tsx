@@ -73,7 +73,7 @@ function Index() {
           <CardExperience contents={TABSPROFESSIONAL()} />
         </CardWithScroll>
       </div>
-      <div className="flex flex-wrap justify-center gap-8 px-10 xl:grid xl:grid-cols-2 xl:flex-nowrap xl:gap-x-32 xl:px-10">
+      <div className="flex flex-wrap-reverse justify-center gap-8 px-10 xl:grid xl:grid-cols-2 xl:flex-nowrap xl:gap-x-32 xl:px-10">
         {CARROUSELOPTIONS.map((option) => (
           <CarrouselComponent
             key={option.title}
@@ -154,10 +154,10 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="flex w-full flex-col text-center md:my-0 xl:col-span-1">
+    <div className="flex w-full flex-col text-center md:my-0 gap-4 xl:col-span-1">
       <CardHeader>
         <CardTitle className="text-lg">{title}</CardTitle>
-        <CardDescription className="text-lg">{description}</CardDescription>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <Carousel
         className="flex-1"

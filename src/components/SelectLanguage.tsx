@@ -1,7 +1,7 @@
 import { Button, ButtonProps } from '@components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@components/ui/dropdown-menu';
 import { useTranslation } from 'react-i18next';
-import Flags from 'country-flag-icons/react/3x2';
+import * as Flags from 'country-flag-icons/react/3x2';
 import { useRouter } from '@tanstack/react-router';
 
 type SelectLanguageBtn = ButtonProps & React.RefAttributes<HTMLButtonElement>;
