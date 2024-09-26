@@ -8,10 +8,8 @@
     },
     "content": {
       "description": [
-        "As a dedicated Software Engineer Fellow at the SENAI Institute of Technology — Operational Efficiency, I have been actively developing web and mobile applications for various clients.",
-        "My expertise lies in using ReactJs, React Native, and TypeScript for frontend development and integrating REST APIs with Node.Js on the backend, always ensuring agility in my work. In my pursuit of specialization, I have embarked on postgraduate studies in Software Architecture and Solutions, with a keen focus on understanding the comprehensive Cloud environment.",
-        "Currently, I am honing my skills in React Native through a project targeted at industry professionals in occupational health and safety. This project involves capturing data via Bluetooth connection with various sensors, storing it in the application with an offline-first approach, and displaying the data through real-time graphs. The technologies I’m using include Expo, React Native, TypeScript, React-native-ble-plx, Redux-toolkit, React Query with Axios, React-hook-form, and Zod.",
-        "In addition, I have contributed to a health sector project, where we developed a management system for companies to analyze their employees’ mental health data. This involved creating a Progressive Web Application (PWA) for employees to manage their appointments, available clinics for consultations, and mental health forms. A separate website was also developed for the company and clinics to manage all their employees’ data, appointments, and forms."
+        "I am a Software Engineer Fellow at the SENAI Institute of Technology — Operational Efficiency, with experience in developing web and mobile applications for various clients. My expertise includes using ReactJs, React Native, and TypeScript on the frontend, as well as integrating REST APIs with Node.Js on the backend. I am continuously improving my skills and currently pursuing a postgraduate degree in Software Architecture and Solutions, with a focus on Cloud Computing.",
+        "Currently, I am working on a React Native project focused on occupational health, which involves collecting data via Bluetooth sensors and displaying real-time graphs. I also contributed to the development of a management system for companies in the healthcare sector, aimed at analyzing employees' mental health data."
       ]
     }
   },

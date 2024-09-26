@@ -58,24 +58,46 @@ function Introduction() {
           </code>
         </div>
       </div>
-      {/* <div className="flex w-screen justify-evenly gap-10 p-12">
-        <div className="flex flex-col justify-center gap-2 w-2/4">
-          <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">
-            #Divulgue aqui
-          </p>
-          <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">
-            Tudo começo no fatídico dia de 07 de fevereiro de 1996 uma quarta-feira, em Vitória - ES. Eu, um bebê,
-            estava fadado a pagar contas no futuro. Portanto agora que estou velho, apresento a vocês o meu portifolio.
-          </p>
+      <div className="flex flex-col justify-evenly gap-10 p-12 2xl:mx-40">
+        <h2 className="mx-auto w-fit scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+          {introductionContent.aboutme} &#128521;
+        </h2>
+        <div className="flex flex-wrap 2xl:mx-20">
+          <div className="flex flex-wrap items-center justify-center xl:flex-nowrap">
+            <div className="flex flex-col p-4 xl:w-3/4">
+              <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">{introductionContent.description[0]}</p>
+              <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">{introductionContent.description[1]}</p>
+            </div>
+            <div className="flex justify-center p-4 xl:w-1/4">
+              <img
+                className="h-80 w-64 rounded-md"
+                src="https://utfs.io/f/7UcJCClPcgLK0Au4mmNC5B20jYShq8QzmTFkfeoMtDgZirnL"
+                alt="fotinha dando joinha com zé"
+              />
+            </div>
+          </div>
+          <div className="flex flex-wrap-reverse items-center justify-center xl:flex-nowrap">
+            <div className="flex justify-center p-4 xl:w-1/4">
+              <img
+                className="h-80 w-64 rounded-md"
+                src="https://utfs.io/f/7UcJCClPcgLK8yv0OaJi3Yqj6fR1l0crt2npeVkxsTUN45am"
+                alt="fotinha no Inspire 2024 comendo e sorrindo"
+              />
+            </div>
+            <div className="flex flex-col p-4 xl:w-3/4">
+              <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">{introductionContent.description[2]}</p>
+              <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">{introductionContent.description[3]}</p>
+            </div>
+          </div>
+          {/* <div className="flex justify-center w-full">
+            <img
+              className="h-80 w-64 rounded-md"
+              src="https://utfs.io/f/7UcJCClPcgLK0PvWY8NC5B20jYShq8QzmTFkfeoMtDgZirnL"
+              alt="fotinha no meu aniversário"
+            />
+          </div> */}
         </div>
-        <div className="flex flex-col justify-center gap-2 w-1/3">
-          <p className="text-xl leading-7 [&:not(:first-child)]:mt-6">
-            Tudo começo no fatídico dia de 07 de fevereiro de 1996 uma quarta-feira, em Vitória - ES. <br /> Eu, um
-            bebê, estava fadado a pagar contas no futuro. Portanto agora que estou velho, apresento a vocês o meu
-            portifolio.
-          </p>
-        </div>
-      </div> */}
+      </div>
     </HeroHighlight>
   );
 }

@@ -72,8 +72,8 @@
       "value": "IEL",
       "title": "IEL",
       "header": {
-        "avatar": { "avatarFallback": "IEL - Fellow" },
-        "title": "IEL - Software Engineer Fellow",
+        "avatar": { "avatarFallback": "IEL" },
+        "title": "IEL - Software Engineer",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Feb 2024 - Present", "Vitória, Espírito Santo, Brazil · Hybrid"] }
       },
@@ -83,7 +83,7 @@
           "description": [
             "Working on software development projects, focusing on the frontend and mobile applications.",
             "• Collaborated with a cross-functional team in an Agile environment to successfully deliver multiple software projects on time and within budget",
-            "• Participated in calls with 2 companies, helping the development of 3 innovative projects and securing R$150K plus in funding.",
+            "• Participated in calls with 3 companies, helping the development of 4 innovative projects and securing R$1M plus in funding.",
             "• Developing projects using React, React Native, TypeScript, Expo, Tanstack Query, Tanstack Router, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN and Agile Methodologies."
           ]
         }
@@ -94,8 +94,8 @@
       "value": "FAPES",
       "title": "FAPES",
       "header": {
-        "avatar": { "avatarFallback": "FAPES - Fellow" },
-        "title": "FAPES - Software Engineer Fellow",
+        "avatar": { "avatarFallback": "FAPES" },
+        "title": "FAPES - Software Engineer",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Feb 2023 - Feb 2024 · 1 yr", "Vitória, Espírito Santo, Brazil · Hybrid"] }
       },

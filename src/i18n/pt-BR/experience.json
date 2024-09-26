@@ -68,8 +68,8 @@
       "value": "IEL",
       "title": "IEL",
       "header": {
-        "avatar": { "avatarFallback": "IEL - Bolsista" },
-        "title": "IEL - Bolsista em Desenvolvimento de Software",
+        "avatar": { "avatarFallback": "IEL" },
+        "title": "IEL - Desenvolvedor de Software",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Fev 2024 - Presente", "Vitória, Espírito Santo, Brasil · Híbrido"] }
       },
@@ -79,7 +79,7 @@
           "description": [
             "Trabalhando em projetos de desenvolvimento de software, com foco no frontend e aplicativos mobile.",
             "• Colaborou com uma equipe multifuncional em um ambiente Ágil para entregar com sucesso vários projetos de software no prazo e dentro do orçamento.",
-            "• Participou de chamadas com 2 empresas, ajudando no desenvolvimento de 3 projetos inovadores e garantindo mais de R$150K em financiamento.",
+            "• Participou de chamadas com 3 empresas, ajudando no desenvolvimento de 4 projetos inovadores e garantindo mais de R$1M em financiamento.",
             "• Desenvolvendo projetos usando React, React Native, TypeScript, Expo, Tanstack Query, Tanstack Router, Axios, Zod, React-hook-form, React-native-ble-plx, Redux Toolkit, REST API, BPMN e Metodologias Ágeis."
           ]
         }
@@ -90,8 +90,8 @@
       "value": "FAPES",
       "title": "FAPES",
       "header": {
-        "avatar": { "avatarFallback": "FAPES - Bolsista" },
-        "title": "FAPES - Bolsista em Desenvolvimento de Software",
+        "avatar": { "avatarFallback": "FAPES" },
+        "title": "FAPES - Desenvolvedor de Software",
         "description": "ISTEO - Instituto SENAI de Tecnologia em Eficiência Operacional",
         "content": { "description": ["Fev 2023 - Fev 2024 · 1 ano", "Vitória, Espírito Santo, Brasil · Híbrido"] }
       },

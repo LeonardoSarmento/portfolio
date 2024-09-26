@@ -46,9 +46,9 @@ function RootComponent() {
         {path.pathname !== '/contact' ? <Footer /> : null}
       </div>
       <Toaster richColors closeButton />
-      <Suspense>
+      {/* <Suspense>
         <TanStackRouterDevtools position="bottom-right" />
-      </Suspense>
+      </Suspense> */}
       {/* </BackgroundGradientAnimation> */}
     </>
   );

@@ -128,7 +128,7 @@ function CardAboutMe({ contents }: { contents: TCardContent['about'] }) {
       </CardContent>
       <CardContent className="flex items-center justify-center xl:w-1/2">
         <ScrollArea className="my-3 h-[250px] rounded-md xl:h-[450px]">
-          <MapDescriptions descriptions={contents.content.description} />
+          <MapDescriptions className='my-10' descriptions={contents.content.description} />
         </ScrollArea>
       </CardContent>
     </Card>
