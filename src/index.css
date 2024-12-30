@@ -73,6 +73,20 @@
     --hljs-emphasis: italic;
     --hljs-strong: bold;
     --hljs-link: underline;
+
+    --tile-0: 210 15% 85%; /* Light gray for empty tiles */
+    --tile-2: 0 80% 60%; /* Red for 2 */
+    --tile-4: 30 80% 60%; /* Orange for 4 */
+    --tile-8: 60 80% 60%; /* Yellow for 8 */
+    --tile-16: 90 80% 60%; /* Light green for 16 */
+    --tile-32: 150 80% 60%; /* Green for 32 */
+    --tile-64: 180 80% 60%; /* Cyan for 64 */
+    --tile-128: 210 80% 60%; /* Blue for 128 */
+    --tile-256: 270 80% 60%; /* Violet for 256 */
+    --tile-512: 300 80% 60%; /* Magenta for 512 */
+    --tile-1024: 330 80% 60%; /* Deep red for 1024 */
+    --tile-2048: 0 90% 50%; /* Intense red for 2048 */
+    --tile: 0 90% 40%; /* Dark red for higher values */
   }
 
   .dark {
@@ -176,6 +190,20 @@
     --hljs-emphasis: italic;
     --hljs-strong: bold;
     --hljs-link: underline;
+
+    --tile-0: 210 15% 30%; /* Dark gray for empty tiles */
+    --tile-2: 0 80% 45%; /* Red for 2 */
+    --tile-4: 30 80% 45%; /* Orange for 4 */
+    --tile-8: 60 80% 45%; /* Yellow for 8 */
+    --tile-16: 90 80% 45%; /* Light green for 16 */
+    --tile-32: 150 80% 45%; /* Green for 32 */
+    --tile-64: 180 80% 45%; /* Cyan for 64 */
+    --tile-128: 210 80% 45%; /* Blue for 128 */
+    --tile-256: 270 80% 45%; /* Violet for 256 */
+    --tile-512: 300 80% 45%; /* Magenta for 512 */
+    --tile-1024: 330 80% 45%; /* Deep red for 1024 */
+    --tile-2048: 0 90% 30%; /* Intense red for 2048 */
+    --tile: 0 90% 20%; /* Dark red for higher values */
   }
 
   .markdown-body > * {

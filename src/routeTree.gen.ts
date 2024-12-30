@@ -24,6 +24,14 @@ import { Route as PostsIndexImport } from './routes/posts.index'
 import { Route as ProjectsChartsImport } from './routes/projects.charts'
 import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
+import { Route as InteractiveComponentsImport } from './routes/interactive/components'
+import { Route as InteractiveGamesIndexImport } from './routes/interactive/games.index'
+import { Route as InteractiveGamesTictactoeImport } from './routes/interactive/games/tictactoe'
+import { Route as InteractiveGamesSudokuImport } from './routes/interactive/games/sudoku'
+import { Route as InteractiveGamesSnakeImport } from './routes/interactive/games/snake'
+import { Route as InteractiveGamesMinesweepImport } from './routes/interactive/games/minesweep'
+import { Route as InteractiveGames2048Import } from './routes/interactive/games/2048'
+import { Route as InteractiveComponentsChartsImport } from './routes/interactive/components/charts'
 import { Route as AuthProjectsCreateImport } from './routes/_auth.projects.create'
 import { Route as AuthPostsCreateImport } from './routes/_auth.posts.create'
 import { Route as AuthProjectsProjectIdEditImport } from './routes/_auth.projects.$projectId.edit'
@@ -95,6 +103,47 @@ const PostsPostIdRoute = PostsPostIdImport.update({
   path: '/$postId',
   getParentRoute: () => PostsRoute,
 } as any)
+
+const InteractiveComponentsRoute = InteractiveComponentsImport.update({
+  path: '/interactive/components',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesIndexRoute = InteractiveGamesIndexImport.update({
+  path: '/interactive/games/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesTictactoeRoute = InteractiveGamesTictactoeImport.update({
+  path: '/interactive/games/tictactoe',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesSudokuRoute = InteractiveGamesSudokuImport.update({
+  path: '/interactive/games/sudoku',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesSnakeRoute = InteractiveGamesSnakeImport.update({
+  path: '/interactive/games/snake',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesMinesweepRoute = InteractiveGamesMinesweepImport.update({
+  path: '/interactive/games/minesweep',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGames2048Route = InteractiveGames2048Import.update({
+  path: '/interactive/games/2048',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveComponentsChartsRoute =
+  InteractiveComponentsChartsImport.update({
+    path: '/charts',
+    getParentRoute: () => InteractiveComponentsRoute,
+  } as any)
 
 const AuthProjectsCreateRoute = AuthProjectsCreateImport.update({
   path: '/projects/create',
@@ -176,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsImport
       parentRoute: typeof rootRoute
     }
+    '/interactive/components': {
+      id: '/interactive/components'
+      path: '/interactive/components'
+      fullPath: '/interactive/components'
+      preLoaderRoute: typeof InteractiveComponentsImport
+      parentRoute: typeof rootRoute
+    }
     '/posts/$postId': {
       id: '/posts/$postId'
       path: '/$postId'
@@ -225,6 +281,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthProjectsCreateImport
       parentRoute: typeof AuthImport
     }
+    '/interactive/components/charts': {
+      id: '/interactive/components/charts'
+      path: '/charts'
+      fullPath: '/interactive/components/charts'
+      preLoaderRoute: typeof InteractiveComponentsChartsImport
+      parentRoute: typeof InteractiveComponentsImport
+    }
+    '/interactive/games/2048': {
+      id: '/interactive/games/2048'
+      path: '/interactive/games/2048'
+      fullPath: '/interactive/games/2048'
+      preLoaderRoute: typeof InteractiveGames2048Import
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/minesweep': {
+      id: '/interactive/games/minesweep'
+      path: '/interactive/games/minesweep'
+      fullPath: '/interactive/games/minesweep'
+      preLoaderRoute: typeof InteractiveGamesMinesweepImport
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/snake': {
+      id: '/interactive/games/snake'
+      path: '/interactive/games/snake'
+      fullPath: '/interactive/games/snake'
+      preLoaderRoute: typeof InteractiveGamesSnakeImport
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/sudoku': {
+      id: '/interactive/games/sudoku'
+      path: '/interactive/games/sudoku'
+      fullPath: '/interactive/games/sudoku'
+      preLoaderRoute: typeof InteractiveGamesSudokuImport
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/tictactoe': {
+      id: '/interactive/games/tictactoe'
+      path: '/interactive/games/tictactoe'
+      fullPath: '/interactive/games/tictactoe'
+      preLoaderRoute: typeof InteractiveGamesTictactoeImport
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/': {
+      id: '/interactive/games/'
+      path: '/interactive/games'
+      fullPath: '/interactive/games'
+      preLoaderRoute: typeof InteractiveGamesIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/posts/$postId/edit': {
       id: '/_auth/posts/$postId/edit'
       path: '/posts/$postId/edit'
@@ -262,6 +367,15 @@ export const routeTree = rootRoute.addChildren({
     ProjectsChartsRoute,
     ProjectsIndexRoute,
   }),
+  InteractiveComponentsRoute: InteractiveComponentsRoute.addChildren({
+    InteractiveComponentsChartsRoute,
+  }),
+  InteractiveGames2048Route,
+  InteractiveGamesMinesweepRoute,
+  InteractiveGamesSnakeRoute,
+  InteractiveGamesSudokuRoute,
+  InteractiveGamesTictactoeRoute,
+  InteractiveGamesIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -279,7 +393,14 @@ export const routeTree = rootRoute.addChildren({
         "/introduction",
         "/login",
         "/posts",
-        "/projects"
+        "/projects",
+        "/interactive/components",
+        "/interactive/games/2048",
+        "/interactive/games/minesweep",
+        "/interactive/games/snake",
+        "/interactive/games/sudoku",
+        "/interactive/games/tictactoe",
+        "/interactive/games/"
       ]
     },
     "/": {
@@ -321,6 +442,12 @@ export const routeTree = rootRoute.addChildren({
         "/projects/"
       ]
     },
+    "/interactive/components": {
+      "filePath": "interactive/components.tsx",
+      "children": [
+        "/interactive/components/charts"
+      ]
+    },
     "/posts/$postId": {
       "filePath": "posts.$postId.tsx",
       "parent": "/posts"
@@ -348,6 +475,28 @@ export const routeTree = rootRoute.addChildren({
     "/_auth/projects/create": {
       "filePath": "_auth.projects.create.tsx",
       "parent": "/_auth"
+    },
+    "/interactive/components/charts": {
+      "filePath": "interactive/components/charts.tsx",
+      "parent": "/interactive/components"
+    },
+    "/interactive/games/2048": {
+      "filePath": "interactive/games/2048.tsx"
+    },
+    "/interactive/games/minesweep": {
+      "filePath": "interactive/games/minesweep.tsx"
+    },
+    "/interactive/games/snake": {
+      "filePath": "interactive/games/snake.tsx"
+    },
+    "/interactive/games/sudoku": {
+      "filePath": "interactive/games/sudoku.tsx"
+    },
+    "/interactive/games/tictactoe": {
+      "filePath": "interactive/games/tictactoe.tsx"
+    },
+    "/interactive/games/": {
+      "filePath": "interactive/games.index.tsx"
     },
     "/_auth/posts/$postId/edit": {
       "filePath": "_auth.posts.$postId.edit.tsx",
