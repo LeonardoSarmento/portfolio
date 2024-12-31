@@ -26,10 +26,12 @@ import { Route as ProjectsProjectIdImport } from './routes/projects.$projectId'
 import { Route as PostsPostIdImport } from './routes/posts.$postId'
 import { Route as InteractiveComponentsImport } from './routes/interactive/components'
 import { Route as InteractiveGamesIndexImport } from './routes/interactive/games.index'
+import { Route as InteractiveGamesWordleImport } from './routes/interactive/games/wordle'
 import { Route as InteractiveGamesTictactoeImport } from './routes/interactive/games/tictactoe'
 import { Route as InteractiveGamesSudokuImport } from './routes/interactive/games/sudoku'
 import { Route as InteractiveGamesSnakeImport } from './routes/interactive/games/snake'
 import { Route as InteractiveGamesMinesweepImport } from './routes/interactive/games/minesweep'
+import { Route as InteractiveGamesHangmanImport } from './routes/interactive/games/hangman'
 import { Route as InteractiveGames2048Import } from './routes/interactive/games/2048'
 import { Route as InteractiveComponentsChartsImport } from './routes/interactive/components/charts'
 import { Route as AuthProjectsCreateImport } from './routes/_auth.projects.create'
@@ -114,6 +116,11 @@ const InteractiveGamesIndexRoute = InteractiveGamesIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const InteractiveGamesWordleRoute = InteractiveGamesWordleImport.update({
+  path: '/interactive/games/wordle',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const InteractiveGamesTictactoeRoute = InteractiveGamesTictactoeImport.update({
   path: '/interactive/games/tictactoe',
   getParentRoute: () => rootRoute,
@@ -131,6 +138,11 @@ const InteractiveGamesSnakeRoute = InteractiveGamesSnakeImport.update({
 
 const InteractiveGamesMinesweepRoute = InteractiveGamesMinesweepImport.update({
   path: '/interactive/games/minesweep',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const InteractiveGamesHangmanRoute = InteractiveGamesHangmanImport.update({
+  path: '/interactive/games/hangman',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -295,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InteractiveGames2048Import
       parentRoute: typeof rootRoute
     }
+    '/interactive/games/hangman': {
+      id: '/interactive/games/hangman'
+      path: '/interactive/games/hangman'
+      fullPath: '/interactive/games/hangman'
+      preLoaderRoute: typeof InteractiveGamesHangmanImport
+      parentRoute: typeof rootRoute
+    }
     '/interactive/games/minesweep': {
       id: '/interactive/games/minesweep'
       path: '/interactive/games/minesweep'
@@ -321,6 +340,13 @@ declare module '@tanstack/react-router' {
       path: '/interactive/games/tictactoe'
       fullPath: '/interactive/games/tictactoe'
       preLoaderRoute: typeof InteractiveGamesTictactoeImport
+      parentRoute: typeof rootRoute
+    }
+    '/interactive/games/wordle': {
+      id: '/interactive/games/wordle'
+      path: '/interactive/games/wordle'
+      fullPath: '/interactive/games/wordle'
+      preLoaderRoute: typeof InteractiveGamesWordleImport
       parentRoute: typeof rootRoute
     }
     '/interactive/games/': {
@@ -371,10 +397,12 @@ export const routeTree = rootRoute.addChildren({
     InteractiveComponentsChartsRoute,
   }),
   InteractiveGames2048Route,
+  InteractiveGamesHangmanRoute,
   InteractiveGamesMinesweepRoute,
   InteractiveGamesSnakeRoute,
   InteractiveGamesSudokuRoute,
   InteractiveGamesTictactoeRoute,
+  InteractiveGamesWordleRoute,
   InteractiveGamesIndexRoute,
 })
 
@@ -396,10 +424,12 @@ export const routeTree = rootRoute.addChildren({
         "/projects",
         "/interactive/components",
         "/interactive/games/2048",
+        "/interactive/games/hangman",
         "/interactive/games/minesweep",
         "/interactive/games/snake",
         "/interactive/games/sudoku",
         "/interactive/games/tictactoe",
+        "/interactive/games/wordle",
         "/interactive/games/"
       ]
     },
@@ -483,6 +513,9 @@ export const routeTree = rootRoute.addChildren({
     "/interactive/games/2048": {
       "filePath": "interactive/games/2048.tsx"
     },
+    "/interactive/games/hangman": {
+      "filePath": "interactive/games/hangman.tsx"
+    },
     "/interactive/games/minesweep": {
       "filePath": "interactive/games/minesweep.tsx"
     },
@@ -494,6 +527,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/interactive/games/tictactoe": {
       "filePath": "interactive/games/tictactoe.tsx"
+    },
+    "/interactive/games/wordle": {
+      "filePath": "interactive/games/wordle.tsx"
     },
     "/interactive/games/": {
       "filePath": "interactive/games.index.tsx"

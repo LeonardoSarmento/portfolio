@@ -10,9 +10,9 @@ export const Route = createFileRoute('/interactive/games/sudoku')({
 function TheSudokuGame() {
   const MAX_ERRORS = 3;
 
-  const errorCountRef = useRef(0); // Track errors
-  const previousInvalidCells = useRef<Set<string>>(new Set()); // Track invalid cells
-  const [modifiedCells, setModifiedCells] = useState<Set<string>>(new Set()); // Track modified cells
+  const errorCountRef = useRef(0);
+  const previousInvalidCells = useRef<Set<string>>(new Set()); 
+  const [modifiedCells, setModifiedCells] = useState<Set<string>>(new Set());
 
   const generateRandomPositions = (): [number, number][] => {
     const positions: [number, number][] = [];
@@ -52,48 +52,46 @@ function TheSudokuGame() {
 
     // Prevent input if the selected cell is fixed
     if (grid[row][col].isFixed) {
-      return; // Do nothing if the cell is fixed
+      return;
     }
 
     setGrid((prevGrid) => {
       const newGrid = prevGrid.map((row) => row.map((cell) => ({ ...cell })));
 
       const currentCell = newGrid[row][col];
-      const wasInvalid = currentCell.isInvalid; // Track if the previous value was invalid
+      const wasInvalid = currentCell.isInvalid;
 
-      // Validate the input
       const isValid = validateInput(num, row, col);
 
       if (isValid) {
         currentCell.value = num;
-        currentCell.isInvalid = false; // Correcting the cell if valid
+        currentCell.isInvalid = false;
 
         // If it was previously invalid, DO NOT decrement the error count
         if (wasInvalid) {
           const cellKey = `${row}-${col}`;
           if (previousInvalidCells.current.has(cellKey)) {
-            previousInvalidCells.current.delete(cellKey); // Remove from invalid tracking
+            previousInvalidCells.current.delete(cellKey);
             // Do NOT decrement error count here
           }
         }
       } else {
         currentCell.value = num;
-        currentCell.isInvalid = true; // Mark the cell as invalid
+        currentCell.isInvalid = true;
 
         // If it was not previously invalid, increase the error count
         const cellKey = `${row}-${col}`;
         if (!wasInvalid && !previousInvalidCells.current.has(cellKey)) {
-          previousInvalidCells.current.add(cellKey); // Mark this cell as invalid for the first time
-          errorCountRef.current += 1; // Increment the error count
+          previousInvalidCells.current.add(cellKey);
+          errorCountRef.current += 1;
         }
       }
 
       // Track modified cells (those filled by the player)
       setModifiedCells((prev) => new Set(prev).add(`${row}-${col}`));
 
-      // Check if the error count has exceeded the limit
       if (errorCountRef.current >= MAX_ERRORS) {
-        setGameOver(true); // End the game if error count exceeds the max
+        setGameOver(true); 
       }
 
       return newGrid;
@@ -139,9 +137,9 @@ function TheSudokuGame() {
 
   const handleNewGame = () => {
     setGrid(initializeGrid());
-    errorCountRef.current = 0; // Reset error count stored in ref
-    previousInvalidCells.current.clear(); // Reset invalid cells tracker
-    setModifiedCells(new Set()); // Clear modified cells
+    errorCountRef.current = 0; 
+    previousInvalidCells.current.clear();
+    setModifiedCells(new Set());
     setGameOver(false);
     setSelectedCell(null);
   };
@@ -152,7 +150,7 @@ function TheSudokuGame() {
       const newGrid = prevGrid.map((row, rowIndex) =>
         row.map((cell, colIndex) => {
           if (!cell.isFixed && modifiedCells.has(`${rowIndex}-${colIndex}`)) {
-            return { ...cell, value: 0, isInvalid: false }; // Reset modified cells
+            return { ...cell, value: 0, isInvalid: false };
           }
           return cell;
         }),
@@ -160,16 +158,14 @@ function TheSudokuGame() {
       return newGrid;
     });
 
-    // Reset modified cells
-    setModifiedCells(new Set()); // Clear the list of modified cells
 
-    // Reset error count and invalid cells tracker
-    errorCountRef.current = 0; // Reset error count
-    previousInvalidCells.current.clear(); // Reset invalid cells tracker
+    setModifiedCells(new Set());
 
-    // Enable the game if it was over
+    errorCountRef.current = 0;
+    previousInvalidCells.current.clear();
+
     if (gameOver) {
-      setGameOver(false); // Allow further inputs if the game was over
+      setGameOver(false);
     }
   };
 
@@ -177,18 +173,15 @@ function TheSudokuGame() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (gameOver) return;
 
-      // Prevent page scroll with arrow keys
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
         event.preventDefault();
       }
 
       const { key } = event;
 
-      // Ensure that selectedCell is not null before using it
       if (selectedCell) {
         const { row, col } = selectedCell;
 
-        // Update the selected cell based on arrow keys
         if (key === 'ArrowUp' || key === 'w') {
           if (row > 0) {
             setSelectedCell({ row: row - 1, col });
@@ -208,20 +201,17 @@ function TheSudokuGame() {
         }
       }
 
-      // Handle number input (1 to 9) for the selected cell
       if (key >= '1' && key <= '9') {
         handleNumberInput(Number(key));
       }
     };
 
-    // Attach event listener for keydown on the window
     window.addEventListener('keydown', handleKeyDown);
 
-    // Cleanup event listener on component unmount
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [selectedCell, gameOver]); // Depend on selectedCell and gameOver to update behavior
+  }, [selectedCell, gameOver]);
 
   return (
     <div className="mx-auto flex flex-col items-center space-y-6 rounded-lg p-8" tabIndex={-1}>
