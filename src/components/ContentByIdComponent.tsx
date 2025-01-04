@@ -38,7 +38,7 @@ export function HeaderContentComponent({
             ? content.tags.map((tag) => (
                 <Link
                   key={tag.value}
-                  to={`/${shareComponent.breadcrumb.title}`}
+                  to={`/${shareComponent.breadcrumb.title}` as string}
                   search={{ tags: [tag.value], page: '1', pageSize: '15' }}
                 >
                   <Badge className="w-fit">

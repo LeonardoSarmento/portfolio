@@ -456,7 +456,7 @@ function PaginationComponent({
               }}
             >
               <ChevronLeftIcon className="h-4 w-4" />
-              <p className="text-sm">{filterMenuContent.pagination.back}</p>
+              <p className="text-sm pb-1">{filterMenuContent.pagination.back}</p>
             </Button>
           )}
         </PaginationButton>
@@ -497,7 +497,7 @@ function PaginationComponent({
                 navigatePagination({ page });
               }}
             >
-              <p className="text-sm">{filterMenuContent.pagination.foward}</p>
+              <p className="text-sm pb-1">{filterMenuContent.pagination.foward}</p>
               <ChevronRightIcon className="h-4 w-4" />
             </Button>
           )}

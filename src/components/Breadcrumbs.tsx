@@ -73,7 +73,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
-              <Link to={FolderId}>{t(currentFolder.title as keyof typeof breadcrumbContent)}</Link>
+              <Link to={FolderId as string}>{t(currentFolder.title as keyof typeof breadcrumbContent)}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           {options ? (
@@ -82,7 +82,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild className="max-w-20 truncate md:max-w-none">
-                    <Link to={routeId} params={{ postId: options[0].to }}>
+                    <Link to={routeId as string} params={{ postId: options[0].to }}>
                       {options[0].title}
                     </Link>
                   </BreadcrumbLink>
@@ -108,13 +108,13 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                                 asChild
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                <Link to={routeId} params={{ postId: to, projectId: to }}>
+                                <Link to={routeId as string} params={{ postId: to, projectId: to }}>
                                   <DropdownMenuItem>{title}</DropdownMenuItem>
                                 </Link>
                               </BreadcrumbLink>
                             ))}
                           <BreadcrumbLink key={routeId} asChild onClick={(e) => e.stopPropagation()}>
-                            <Link to={FolderId}>
+                            <Link to={FolderId as string}>
                               <DropdownMenuItem>{t('seeAll')}</DropdownMenuItem>
                             </Link>
                           </BreadcrumbLink>
@@ -144,7 +144,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                                   className="flex flex-col"
                                 >
                                   <Link
-                                    to={routeId}
+                                    to={routeId as string}
                                     params={{ postId: to, projectId: to }}
                                     onClick={() => setOpen(false)}
                                     className="py-1 text-sm"
@@ -154,7 +154,7 @@ export const BreadcrumbResponsive = React.forwardRef<HTMLDivElement, BreadcrumbP
                                 </BreadcrumbLink>
                               ))}
                             <BreadcrumbLink key={routeId} asChild onClick={(e) => e.stopPropagation()}>
-                              <Link to={FolderId} onClick={() => setOpen(false)}>
+                              <Link to={FolderId as string} onClick={() => setOpen(false)}>
                                 <span>{t('seeAll')}</span>
                               </Link>
                             </BreadcrumbLink>
