@@ -27,20 +27,6 @@ export const Route = createFileRoute('/')({
   },
   pendingComponent: PendingComponent,
   component: Index,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Leonardo's portfolio`,
-      content:
-        'Explore the portfolio of a skilled software engineer. Learn about me, view my resume, and browse through my blog posts and projects showcased in an interactive carousel.',
-    },
-  ],
 });
 
 function Index() {
@@ -154,7 +140,7 @@ const CarrouselComponent = ({
   const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
 
   return (
-    <div className="flex w-full flex-col text-center md:my-0 gap-4 xl:col-span-1">
+    <div className="flex w-full flex-col gap-4 text-center md:my-0 xl:col-span-1">
       <CardHeader>
         <CardTitle className="text-lg">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

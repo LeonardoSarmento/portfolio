@@ -3,6 +3,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { faker } from '@faker-js/faker';
 import { useEffect, useState, useCallback } from 'react';
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 
 export const Route = createFileRoute('/interactive/games/hangman')({
   component: HangmanGame,
@@ -125,14 +127,7 @@ function HangmanGame() {
 
   return (
     <div className="mx-auto flex flex-col items-center space-y-6 rounded-lg p-8">
-      <motion.h1
-        className="text-5xl font-extrabold"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        Hangman
-      </motion.h1>
+      <GamesHeader routeId={Route.id} />
       <motion.pre
         className="font-mono text-2xl text-red-600"
         initial={{ scale: 0.8, opacity: 0 }}
@@ -168,9 +163,12 @@ function HangmanGame() {
         ))}
       </div>
       <div className="flex w-full flex-col items-center space-y-4">
-        <p className="text-xl font-semibold">
-          Wrong Guesses: {wrongGuesses} / {maxAttempts}
-        </p>
+        <div className='flex items-center gap-x-1'>
+          <Icons.losses />
+          <p className="text-xl font-semibold pb-1">
+            : {wrongGuesses} / {maxAttempts}
+          </p>
+        </div>
         {isGameOver && (
           <motion.p
             className="text-2xl font-bold text-red-600"
@@ -192,7 +190,7 @@ function HangmanGame() {
           </motion.p>
         )}
         <Button onClick={resetGame} className="rounded-lg bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">
-          Restart
+          <Icons.restart />
         </Button>
       </div>
     </div>

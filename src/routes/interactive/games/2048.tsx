@@ -1,3 +1,5 @@
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 import { Button } from '@components/ui/button';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
@@ -140,14 +142,7 @@ function The2048Game() {
 
   return (
     <div className="mx-auto flex flex-col items-center space-y-6 rounded-lg p-8">
-      <motion.h1
-        className="text-5xl font-extrabold"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        2048
-      </motion.h1>
+      <GamesHeader routeId={Route.id} />
       <div className="mb-6 grid grid-cols-4 gap-4">
         {grid.flat().map((cell, index) => (
           <motion.div
@@ -170,8 +165,7 @@ function The2048Game() {
           </motion.div>
         ))}
       </div>
-      <div className="flex w-full items-center justify-between text-xl font-semibold">
-        <p>Score: {score}</p>
+      <div className="flex w-full items-center justify-center gap-x-10 text-xl font-semibold">
         <Button
           onClick={() => {
             setGrid(initializeGrid());
@@ -179,8 +173,11 @@ function The2048Game() {
           }}
           className="rounded-lg bg-red-500 px-4 py-2 text-white transition hover:bg-red-600"
         >
-          Restart
+          <Icons.restart />
         </Button>
+        <p className="flex items-center gap-x-2">
+          <Icons.score />: {score}
+        </p>
       </div>
     </div>
   );

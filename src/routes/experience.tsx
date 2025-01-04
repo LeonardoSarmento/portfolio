@@ -14,20 +14,6 @@ import { TExperienceStack, TTabsContent } from '@services/types/constants/experi
 
 export const Route = createFileRoute('/experience')({
   component: Experience,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Experiences | Leonardo`,
-      content:
-        'Discover my professional journey and academic background. Learn about where I worked and studied, the roles I held, and the technologies I mastered.',
-    },
-  ],
 });
 
 function Experience() {

@@ -61,5 +61,20 @@ export const MENUCONTENT: () => TMenuContent = () => {
         },
       ],
     },
+    interactives: {
+      title: t('interactives.title', { ns: 'menuNavigation', returnObjects: true }),
+      items: [
+        // {
+        //   title: t('interactives.items', { ns: 'menuNavigation', returnObjects: true })[0].title,
+        //   to: '/interactive/components',
+        //   children: t('interactives.items', { ns: 'menuNavigation', returnObjects: true })[0].children,
+        // },
+        {
+          title: t('interactives.items', { ns: 'menuNavigation', returnObjects: true })[1].title,
+          to: '/interactive/games',
+          children: t('interactives.items', { ns: 'menuNavigation', returnObjects: true })[1].children,
+        },
+      ],
+    },
   };
 };

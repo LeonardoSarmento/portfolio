@@ -1,8 +1,10 @@
 import byIdContent from './by-id-content.json';
+import components from './components-content.json';
 import contact from './contact.json';
 import dropdownShare from './dropdown-share.json';
 import experience from './experience.json';
 import filterMenu from './filter-menu.json';
+import games from './games-content.json';
 import home from './home.json';
 import introduction from './introduction.json';
 import login from './login.json';
@@ -14,10 +16,12 @@ import notFoundComponent from './notFoundComponent.json';
 
 const resources_en_US = {
   byIdContent,
+  components,
   contact,
   dropdownShare,
   experience,
   filterMenu,
+  games,
   home,
   introduction,
   login,
@@ -25,7 +29,7 @@ const resources_en_US = {
   errorsMessageSchema,
   breadcrumbs,
   errorComponent,
-  notFoundComponent
+  notFoundComponent,
 };
 
 export default resources_en_US;

@@ -1,6 +1,6 @@
-import { ListItemType } from "@components/NavigationMenu";
-import { LinkOptions } from "@tanstack/react-router";
-import { PublicationType } from "../Publication";
+import { ListItemType } from '@components/NavigationMenu';
+import { LinkOptions } from '@tanstack/react-router';
+import { PublicationType } from '../Publication';
 
 export type TMenuContent = {
   about: {
@@ -15,6 +15,10 @@ export type TMenuContent = {
     title: string;
     contents: PublicationType[];
     path: LinkOptions;
+    items: ListItemType[];
+  };
+  interactives: {
+    title: string;
     items: ListItemType[];
   };
 };

@@ -1,0 +1,36 @@
+{
+  "content": {
+    "title": "Games",
+    "description": "Explore and play a variety of fun and challenging games.",
+    "items": [
+      { "link": "/interactive/games/2048", "title": "2048", "description": "Combine numbers to reach 2048!" },
+      {
+        "link": "/interactive/games/hangman",
+        "title": "Hangman",
+        "description": "Guess the word before its too late."
+      },
+      {
+        "link": "/interactive/games/minesweeper",
+        "title": "Minesweeper",
+        "description": "Find all the mines without detonating them."
+      },
+      {
+        "link": "/interactive/games/snake",
+        "title": "Snake",
+        "description": "Eat, grow, and avoid hitting the walls!"
+      },
+      { "link": "/interactive/games/sudoku", "title": "Sudoku", "description": "Solve challenging Sudoku puzzles." },
+      {
+        "link": "/interactive/games/tic-tac-toe",
+        "title": "Tic Tac Toe",
+        "description": "Outsmart your opponent in this classic game."
+      },
+      {
+        "link": "/interactive/games/wordle",
+        "title": "Wordle",
+        "description": "Guess the 5-letter word in six attempts."
+      }
+    ],
+    "button": "Play Now!"
+  }
+}

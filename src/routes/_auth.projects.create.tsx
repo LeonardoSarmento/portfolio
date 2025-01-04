@@ -18,19 +18,6 @@ import { createMarkdownFile } from '@services/utils/utils';
 export const Route = createFileRoute('/_auth/projects/create')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(useQueryProjectsTags),
   component: CreateProjectComponent,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Create a project | Leonardo`,
-      content: 'Tell me a project that you had fun and learned something.',
-    },
-  ],
 });
 
 function CreateProjectComponent() {

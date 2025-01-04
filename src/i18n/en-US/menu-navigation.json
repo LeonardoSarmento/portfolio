@@ -31,7 +31,20 @@
       },
       {
         "title": "New Post",
-        "children": "Create a new post here"
+        "children": "Create a new post here."
+      }
+    ]
+  },
+  "interactives": {
+    "title": "Interactives",
+    "items": [
+      {
+        "title": "Components",
+        "children": "Discover reusable UI components with live demos."
+      },
+      {
+        "title": "Games",
+        "children": "Explore and play a variety of fun and challenging games."
       }
     ]
   },

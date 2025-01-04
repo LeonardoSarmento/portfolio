@@ -38,7 +38,7 @@ export function CopyToClipboardRoute({ url, messages }: { url: string; messages:
     copyToClipboard(url);
     toast.success(messages.success.title, { description: messages.success.description });
   } catch (error) {
-    toast.error('Não foi possível copiar o link', { description: 'Sinto mt falhei fui mlk :(' });
+    toast.error(messages.error.title, { description: messages.error.description });
   }
 }
 
@@ -78,6 +78,6 @@ export function handleOnDrop(acceptedFiles: FileList | null, form: UseFormReturn
 
 export function createMarkdownFile(filename: string, content: string): void {
   const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
-    saveAs(blob, `${filename}.md`);
-    console.log(`File ${filename} has been created.`);
+  saveAs(blob, `${filename}.md`);
+  console.log(`File ${filename} has been created.`);
 }

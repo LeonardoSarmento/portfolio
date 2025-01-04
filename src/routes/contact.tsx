@@ -13,20 +13,6 @@ import { Fragment } from 'react/jsx-runtime';
 
 export const Route = createFileRoute('/contact')({
   component: Contact,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Contact | Leonardo`,
-      content:
-        'Get in touch with me through my social media profiles on LinkedIn, GitHub, Instagram, or via email. Connect with me to discuss opportunities, collaborations, or just to say hello.',
-    },
-  ],
 });
 type TWords = { text: string; className?: string };
 
@@ -105,7 +91,7 @@ function Contact() {
           />
         </div>
         <div className="z-[1] flex flex-wrap items-center justify-center gap-2 xl:px-0">
-          <div className="px-4 text-center flex flex-wrap justify-center w-full xl:px-0">
+          <div className="flex w-full flex-wrap justify-center px-4 text-center xl:px-0">
             {isDesktop ? (
               <TypewriterEffectSmooth
                 textClassName="xl:text-xl lg:text-2xl bg-white dark:bg-transparent pb-0.5"
@@ -113,7 +99,7 @@ function Contact() {
                 words={contactContent.sideContent.content.typewriter}
               />
             ) : (
-              <CardDescription className="flex gap-1 justify-center flex-wrap text-black dark:text-white">
+              <CardDescription className="flex flex-wrap justify-center gap-1 text-black dark:text-white">
                 {words.flatMap((word) => (
                   <p
                     className={cn(

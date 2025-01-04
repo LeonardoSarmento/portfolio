@@ -1,3 +1,5 @@
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 import { Button } from '@components/ui/button';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
@@ -133,26 +135,8 @@ function SnakeGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="mb-4 flex space-x-4">
-        <Button onClick={handleStart} disabled={isRunning && !isPaused}>
-          Start
-        </Button>
-        <Button onClick={handleRestart}>Restart</Button>
-        {isPaused ? (
-          <Button onClick={handleResume}>Resume</Button>
-        ) : (
-          <Button onClick={handleStop} disabled={!isRunning}>
-            Stop
-          </Button>
-        )}
-      </div>
-
-      <div className="mb-4 flex space-x-8">
-        <div>Score: {score}</div>
-        <div>Time: {timer}s</div>
-      </div>
-
+    <div className="flex flex-col items-center justify-center gap-y-5">
+      <GamesHeader routeId={Route.id} />
       {gameOver ? (
         <div className="text-center">
           <h1 className="mb-4 text-3xl">Game Over</h1>
@@ -181,6 +165,31 @@ function SnakeGame() {
           })}
         </motion.div>
       )}
+      <div className="flex space-x-8">
+        <div className="flex items-center gap-x-2">
+          <Icons.time />: {timer}s
+        </div>
+        <div className="flex items-center gap-x-2">
+          <Icons.score />: {score}
+        </div>
+      </div>
+      <div className="flex space-x-4">
+        <Button onClick={handleStart} disabled={isRunning && !isPaused}>
+          <Icons.startGame />
+        </Button>
+        <Button onClick={handleRestart}>
+          <Icons.restart />
+        </Button>
+        {isPaused ? (
+          <Button onClick={handleResume}>
+            <Icons.start />
+          </Button>
+        ) : (
+          <Button onClick={handleStop} disabled={!isRunning}>
+            <Icons.pause />
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

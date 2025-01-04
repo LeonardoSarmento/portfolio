@@ -1,0 +1,9 @@
+{
+  "content": {
+    "title": "Componentes",
+    "items": [
+      { "link": "/interactive/components/charts", "title": "Gráficos", "description": "Descubra como funciona os gráficos!" }
+    ],
+    "button": "Descobrir!"
+  }
+}

@@ -13,19 +13,6 @@ export const Route = createFileRoute('/projects/$projectId')({
     queryClient.ensureQueryData(projectQueryOptions(projectId, i18n.language)),
   errorComponent: ProjectErrorComponent as any,
   component: ProjectComponent,
-  meta: ({ loaderData }) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `${loaderData.title} | Leonardo`,
-      content: loaderData.description,
-    },
-  ],
 });
 
 export function ProjectErrorComponent({ error }: ErrorComponentProps) {

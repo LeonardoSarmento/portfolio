@@ -9,22 +9,10 @@ import { MovetoTopButton } from '@components/MoveToTop';
 import i18n from '../i18n/config';
 
 export const Route = createFileRoute('/posts/$postId')({
-  loader: ({ context: { queryClient }, params: { postId } }) => queryClient.ensureQueryData(postQueryOptions(postId, i18n.language)),
+  loader: ({ context: { queryClient }, params: { postId } }) =>
+    queryClient.ensureQueryData(postQueryOptions(postId, i18n.language)),
   // errorComponent: PostErrorComponent as any,
   component: PostComponent,
-  meta: ({ loaderData }) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `${loaderData.title} | Leonardo`,
-      content: loaderData.description,
-    },
-  ],
 });
 
 export function PostErrorComponent({ error }: ErrorComponentProps) {

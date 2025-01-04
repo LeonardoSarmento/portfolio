@@ -19,8 +19,8 @@ export function NavigationMenuGroup() {
   const menuContent = MENUCONTENT();
   return (
     <div className="m-5 flex flex-col-reverse items-center justify-center gap-4 md:flex-row md:justify-end">
-      <NavigationMenu className="flex text-center md:mx-16">
-        <NavigationMenuList>
+      <NavigationMenu className="text-center md:mx-16">
+        <NavigationMenuList className="flex max-sm:flex-wrap justify-center max-sm:gap-y-3">
           <NavigationMenuItem>
             <NavigationMenuTrigger className="xs:px-8 px-2">{menuContent.about.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -72,6 +72,16 @@ export function NavigationMenuGroup() {
             </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
+            <NavigationMenuTrigger className="xs:px-8 px-4">{menuContent.interactives.title}</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {menuContent.interactives.items.map((option) => (
+                  <ListItem key={option.title} {...option} />
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
             <ListItem
               {...menuContent.options.filter((opt) => opt.to === '/contact')[0]}
               className="data-[state=open]:bg-accent/50' xs:px-8 inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50"
@@ -105,7 +115,7 @@ const ListItem = ({ className, title, children, icon, ...props }: ListItemType) 
         )}
         {...props}
       >
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center">
           <div className="text-xs font-medium leading-none">{title}</div>
           <div className="ml-2">{icon}</div>
         </div>

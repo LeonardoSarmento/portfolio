@@ -2,19 +2,6 @@ import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/projects/charts')({
   component: Charts,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Charts | Leonardo`,
-      content: 'Something about Shadcn/ui charts components...',
-    },
-  ],
 });
 
 function Charts() {

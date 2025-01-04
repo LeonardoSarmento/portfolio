@@ -19,19 +19,6 @@ export const Route = createFileRoute('/_auth/projects/$projectId/edit')({
   loader: ({ context: { queryClient }, params: { projectId } }) =>
     queryClient.ensureQueryData(projectQueryOptions(projectId, i18n.language)),
   component: EditPostsComponent,
-  meta: ({ loaderData }) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Edit ${loaderData.title} | Leonardo`,
-      content: loaderData.description,
-    },
-  ],
 });
 
 function EditPostsComponent() {

@@ -6,20 +6,6 @@ import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/introduction')({
   component: Introduction,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Intro | Leonardo`,
-      content:
-        'Get to know me! Read a brief introduction about who I am, my passions, and what drives me as a software engineer.',
-    },
-  ],
 });
 
 function Introduction() {

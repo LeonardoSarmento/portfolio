@@ -1,10 +1,12 @@
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 import { Button } from '@components/ui/button';
 import { Card } from '@components/ui/card';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-export const Route = createFileRoute('/interactive/games/tictactoe')({
+export const Route = createFileRoute('/interactive/games/tic-tac-toe')({
   component: TicTacToe,
 });
 
@@ -102,14 +104,7 @@ function TicTacToe() {
 
   return (
     <div className="flex flex-col items-center justify-center space-y-6">
-      <motion.h1
-        className="text-4xl font-extrabold"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        Tic Tac Toe
-      </motion.h1>
+      <GamesHeader routeId={Route.id} />
       <div className="flex space-x-4">
         <Button
           onClick={() => startGame('Player')}
@@ -137,7 +132,7 @@ function TicTacToe() {
         </Button>
       </div>
       <p className="text-lg">
-        Current Mode:{' '}
+        Mode:{' '}
         <span className="font-bold">{gameMode === 'Player' ? 'Player vs Player' : `AI (${aiDifficulty})`}</span>
       </p>
       <Card className="grid grid-cols-3 gap-3 p-3">
@@ -173,7 +168,7 @@ function TicTacToe() {
         >
           <p className="text-xl font-semibold">{winner === 'Draw' ? "It's a draw!" : `Winner: ${winner}`}</p>
           <Button onClick={resetGame} className="mt-4 bg-red-500 px-4 py-2 text-white">
-            Play Again
+            <Icons.restart />
           </Button>
         </motion.div>
       )}

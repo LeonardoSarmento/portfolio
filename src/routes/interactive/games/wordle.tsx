@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { faker } from '@faker-js/faker';
 import { useState, useEffect, useCallback } from 'react';
 import { Delete } from 'lucide-react';
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 
 export const Route = createFileRoute('/interactive/games/wordle')({
   component: WordleGame,
@@ -195,37 +197,41 @@ function WordleGame() {
   };
 
   return (
-    <div className="mx-auto flex flex-col items-center space-y-6 p-8">
-      <motion.h1 className="text-5xl font-extrabold">Wordle</motion.h1>
-      <div className="flex flex-col space-y-4">{renderBoard()}</div>
-      <div className="flex flex-col items-center space-y-2">{renderKeyboard()}</div>
-      {isGameOver && (
-        <motion.p
-          className="text-2xl font-bold text-red-600"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          Game Over! The word was "{word.toUpperCase()}".
-        </motion.p>
-      )}
-      {isGameWon && (
-        <motion.p
-          className="text-2xl font-bold text-green-600"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          Congratulations! You guessed the word!
-        </motion.p>
-      )}
-      <div className="mt-4">
-        <p>Wins: {stats.wins}</p>
-        <p>Losses: {stats.losses}</p>
+    <div className="flex">
+      <div className="mx-auto flex flex-1 flex-col items-end space-y-6 p-8">
+        <GamesHeader routeId={Route.id} className="mx-20" />
+        <div className="mx-20 flex flex-col space-y-4">{renderBoard()}</div>
+        <div className="flex flex-col items-center space-y-2">{renderKeyboard()}</div>
+        {isGameOver && (
+          <motion.p
+            className="text-2xl font-bold text-red-600"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            Game Over! The word was "{word.toUpperCase()}".
+          </motion.p>
+        )}
+        {isGameWon && (
+          <motion.p
+            className="text-2xl font-bold text-green-600"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            Congratulations! You guessed the word!
+          </motion.p>
+        )}
       </div>
-      <div className="mt-6 flex space-x-4">
+      <div className="flex w-1/3 flex-col items-start justify-center gap-y-6">
+        <p className="flex items-center gap-x-2">
+          <Icons.score />: {stats.wins}
+        </p>
+        <p className="flex items-center gap-x-2">
+          <Icons.losses />: {stats.losses}
+        </p>
         <Button variant="destructive" onClick={resetGame}>
-          Restart
+          <Icons.restart />
         </Button>
       </div>
     </div>

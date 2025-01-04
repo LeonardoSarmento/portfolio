@@ -31,7 +31,20 @@
       },
       {
         "title": "Nova Publicação",
-        "children": "Crie uma nova publicação aqui"
+        "children": "Crie uma nova publicação aqui."
+      }
+    ]
+  },
+  "interactives": {
+    "title": "Interativos",
+    "items": [
+      {
+        "title": "Componentes",
+        "children": "Descubra componentes de interface do usuário reutilizáveis com demonstrações ao vivo."
+      },
+      {
+        "title": "Jogos",
+        "children": "Explore e jogue uma variedade de jogos divertidos e desafiadores."
       }
     ]
   },

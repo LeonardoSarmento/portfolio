@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 
 import './index.css';
-import './App.css';
 import './github-markdown.css';
 import './githubFlavor.css';
 

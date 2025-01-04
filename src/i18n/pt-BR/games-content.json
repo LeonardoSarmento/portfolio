@@ -1,0 +1,36 @@
+{
+  "content": {
+    "title": "Jogos",
+    "description": "Explore e jogue uma variedade de jogos divertidos e desafiadores.",
+    "items": [
+      { "link": "/interactive/games/2048", "title": "2048", "description": "Combine números para alcançar 2048!" },
+      {
+        "link": "/interactive/games/hangman",
+        "title": "Forca",
+        "description": "Adivinhe a palavra antes que seja tarde demais."
+      },
+      {
+        "link": "/interactive/games/minesweeper",
+        "title": "Campo Minado",
+        "description": "Encontre todas as minas sem detoná-las."
+      },
+      {
+        "link": "/interactive/games/snake",
+        "title": "Cobrinha",
+        "description": "Coma, cresça e evite bater nas paredes!"
+      },
+      { "link": "/interactive/games/sudoku", "title": "Sudoku", "description": "Resolva desafios de Sudoku." },
+      {
+        "link": "/interactive/games/tic-tac-toe",
+        "title": "Jogo da Velha",
+        "description": "Supere seu oponente neste clássico jogo."
+      },
+      {
+        "link": "/interactive/games/wordle",
+        "title": "Wordle",
+        "description": "Adivinhe a palavra de 5 letras em seis tentativas."
+      }
+    ],
+    "button": "Jogue agora!"
+  }
+}

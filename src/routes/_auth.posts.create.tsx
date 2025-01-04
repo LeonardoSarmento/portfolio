@@ -18,19 +18,6 @@ import { createMarkdownFile } from '@services/utils/utils';
 export const Route = createFileRoute('/_auth/posts/create')({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData(useQueryPostsTags),
   component: CreatePostsComponent,
-  meta: ({}) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Create a post | Leonardo`,
-      content: 'Write about something fun.',
-    },
-  ],
 });
 
 function CreatePostsComponent() {

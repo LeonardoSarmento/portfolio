@@ -19,26 +19,13 @@ export const Route = createFileRoute('/_auth/posts/$postId/edit')({
   loader: ({ context: { queryClient }, params: { postId } }) =>
     queryClient.ensureQueryData(postQueryOptions(postId, i18n.language)),
   component: EditPostsComponent,
-  meta: ({ loaderData }) => [
-    {
-      charSet: 'utf-8',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: `Edit ${loaderData.title} | Leonardo`,
-      content: loaderData.description,
-    },
-  ],
 });
 
 function EditPostsComponent() {
   const headerCardPostContent = HEADERCARDPOSTCONTENT();
   const menageMarkdownContent = MANAGEMARKDOWNCONTENT();
   const toastMessages = TOASTMESSAGESCONTENT();
-  const TAGS = useSuspenseQuery(useQueryPostsTags)
+  const TAGS = useSuspenseQuery(useQueryPostsTags);
   const auth = useAuth();
 
   const post = Route.useLoaderData();

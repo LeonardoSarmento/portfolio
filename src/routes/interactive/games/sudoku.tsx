@@ -1,6 +1,9 @@
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 import { Button } from '@components/ui/button';
 import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
+import { Eraser } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 
 export const Route = createFileRoute('/interactive/games/sudoku')({
@@ -11,7 +14,7 @@ function TheSudokuGame() {
   const MAX_ERRORS = 3;
 
   const errorCountRef = useRef(0);
-  const previousInvalidCells = useRef<Set<string>>(new Set()); 
+  const previousInvalidCells = useRef<Set<string>>(new Set());
   const [modifiedCells, setModifiedCells] = useState<Set<string>>(new Set());
 
   const generateRandomPositions = (): [number, number][] => {
@@ -91,7 +94,7 @@ function TheSudokuGame() {
       setModifiedCells((prev) => new Set(prev).add(`${row}-${col}`));
 
       if (errorCountRef.current >= MAX_ERRORS) {
-        setGameOver(true); 
+        setGameOver(true);
       }
 
       return newGrid;
@@ -137,7 +140,7 @@ function TheSudokuGame() {
 
   const handleNewGame = () => {
     setGrid(initializeGrid());
-    errorCountRef.current = 0; 
+    errorCountRef.current = 0;
     previousInvalidCells.current.clear();
     setModifiedCells(new Set());
     setGameOver(false);
@@ -157,7 +160,6 @@ function TheSudokuGame() {
       );
       return newGrid;
     });
-
 
     setModifiedCells(new Set());
 
@@ -213,77 +215,81 @@ function TheSudokuGame() {
     };
   }, [selectedCell, gameOver]);
 
-  return (
-    <div className="mx-auto flex flex-col items-center space-y-6 rounded-lg p-8" tabIndex={-1}>
-      <motion.h1
-        className="text-5xl font-extrabold"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        Sudoku
-      </motion.h1>
-
-      <div className="mb-6 grid grid-cols-9 gap-1">
-        {grid.map((row, rowIndex) =>
-          row.map((cell, colIndex) => (
-            <motion.div
-              key={`${rowIndex}-${colIndex}`}
-              className={`flex h-16 w-16 items-center justify-center rounded-lg border transition-all duration-300 ${
-                selectedCell?.row === rowIndex && selectedCell?.col === colIndex ? 'scale-105 bg-blue-200' : ''
-              } ${cell.isInvalid ? 'border-red-500 bg-red-200' : ''} ${
-                cell.value === 0 && selectedCell?.row === rowIndex && selectedCell?.col === colIndex
-                  ? 'bg-gray-200'
-                  : ''
-              }`}
-              onClick={() => handleCellClick(rowIndex, colIndex)}
-              whileHover={{ scale: 1.1 }}
-            >
-              {cell.value !== 0 && (
-                <motion.span
-                  className={`text-3xl font-bold ${cell.isInvalid ? 'text-red-500' : ''}`}
-                  initial={{ scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {cell.value}
-                </motion.span>
-              )}
-            </motion.div>
-          )),
-        )}
+  function AmountOfWrongGuesses() {
+    return (
+      <div className="flex items-center gap-x-1">
+        <Icons.losses />
+        <p className="pb-1">
+          : {errorCountRef.current}/{MAX_ERRORS}
+        </p>
       </div>
+    );
+  }
 
-      <div className="flex w-full items-center justify-between text-xl font-semibold">
-        <p>{gameOver ? 'Você perdeu!' : `Tentativas erradas: ${errorCountRef.current}/${MAX_ERRORS}`}</p>
+  return (
+    <div className="flex">
+      <div className="flex flex-1 flex-col items-end space-y-6 rounded-lg px-8" tabIndex={-1}>
+        <GamesHeader routeId={Route.id} />
+        <div className="mb-6 grid grid-cols-9 gap-1">
+          {grid.map((row, rowIndex) =>
+            row.map((cell, colIndex) => (
+              <motion.div
+                key={`${rowIndex}-${colIndex}`}
+                className={`flex h-16 w-16 items-center justify-center rounded-lg border transition-all duration-300 ${
+                  selectedCell?.row === rowIndex && selectedCell?.col === colIndex ? 'scale-105 bg-blue-200' : ''
+                } ${cell.isInvalid ? 'border-red-500 bg-red-200' : ''} ${
+                  cell.value === 0 && selectedCell?.row === rowIndex && selectedCell?.col === colIndex
+                    ? 'bg-gray-200'
+                    : ''
+                }`}
+                onClick={() => handleCellClick(rowIndex, colIndex)}
+                whileHover={{ scale: 1.1 }}
+              >
+                {cell.value !== 0 && (
+                  <motion.span
+                    className={`text-3xl font-bold ${cell.isInvalid ? 'text-red-500' : ''}`}
+                    initial={{ scale: 0.5, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {cell.value}
+                  </motion.span>
+                )}
+              </motion.div>
+            )),
+          )}
+        </div>
+        {gameOver && (
+          <p className="mr-16 mt-4 flex items-center gap-x-4 text-xl text-red-500">
+            Você perdeu! Clique em {<Eraser />} para tentar novamente.
+          </p>
+        )}
+        <div className="mt-4 flex space-x-4">
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+            <Button
+              key={num}
+              onClick={() => handleNumberInput(num)}
+              className="h-14 w-14 rounded-lg bg-gray-300 text-2xl font-bold transition hover:bg-gray-400"
+            >
+              {num}
+            </Button>
+          ))}
+        </div>
+      </div>
+      <div className="flex w-1/3 flex-col items-start justify-center gap-y-5 text-xl font-semibold">
+        <p>{gameOver ? 'Você perdeu!' : <AmountOfWrongGuesses />}</p>
         <Button
           onClick={handleNewGame}
           className="rounded-lg bg-red-500 px-4 py-2 text-white transition hover:bg-red-600"
         >
-          Novo Jogo
+          <Icons.startGame />
         </Button>
         <Button
           onClick={handleClearInputs}
           className="rounded-lg bg-yellow-500 px-4 py-2 text-white transition hover:bg-yellow-600"
         >
-          Limpar Entradas
+          <Eraser />
         </Button>
-      </div>
-
-      {gameOver && (
-        <p className="mt-4 text-xl text-red-500">Você perdeu! Clique em "Novo Jogo" para tentar novamente.</p>
-      )}
-
-      <div className="mt-4 flex space-x-4">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-          <Button
-            key={num}
-            onClick={() => handleNumberInput(num)}
-            className="h-14 w-14 rounded-lg bg-gray-300 text-2xl font-bold transition hover:bg-gray-400"
-          >
-            {num}
-          </Button>
-        ))}
       </div>
     </div>
   );

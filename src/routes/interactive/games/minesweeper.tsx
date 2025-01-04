@@ -1,3 +1,5 @@
+import { GamesHeader } from '@components/GamesHeader';
+import { Icons } from '@components/icons/icon';
 import { Button } from '@components/ui/button';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@components/ui/select';
 import useSessionStorage from '@services/hooks/useSessionStorage';
@@ -5,7 +7,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import React from 'react';
 
-export const Route = createFileRoute('/interactive/games/minesweep')({
+export const Route = createFileRoute('/interactive/games/minesweeper')({
   component: MineSweepGame,
 });
 
@@ -206,120 +208,127 @@ function MineSweepGame() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-6">
-      <h1 className="mb-4 text-4xl font-semibold">Minesweeper</h1>
-
-      <div className="mb-4">
-        <label htmlFor="difficulty" className="mr-2 text-lg">
-          Difficulty:
-        </label>
-        <Select onValueChange={handleDifficultyChange}>
-          <SelectTrigger className="w-40 rounded-md p-2">
-            <SelectValue placeholder="Select Difficulty" />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.keys(DIFFICULTIES).map((level) => (
-              <SelectItem key={level} value={level}>
-                {level}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+    <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-1 justify-center">
+        <GamesHeader routeId={Route.id} className="mx-20" />
+        <div className="flex w-1/4 items-end justify-start gap-x-5">
+          <div className="text-center">
+            <label htmlFor="difficulty" className="mr-2 text-lg">
+              Difficulty:
+            </label>
+            <Select onValueChange={handleDifficultyChange}>
+              <SelectTrigger className="w-40 rounded-md p-2">
+                <SelectValue placeholder="Select Difficulty" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(DIFFICULTIES).map((level) => (
+                  <SelectItem key={level} value={level}>
+                    {level}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <Button
+            className="rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700"
+            onClick={() => {
+              if (!difficulty) {
+                alert('Please select a difficulty level before starting the game!');
+                return;
+              }
+              try {
+                initializeBoard();
+                setGameStarted(true);
+              } catch (error) {
+                console.error('Error starting the game:', error);
+                alert('An error occurred while starting the game.');
+              }
+            }}
+            disabled={!difficulty}
+          >
+            <Icons.startGame />
+          </Button>
+        </div>
       </div>
+      <div className="flex justify-center gap-x-5">
+        <div className="flex flex-col items-center justify-center space-y-6">
+          {isGameOver && (
+            <motion.div
+              className="text-2xl text-red-600"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              Game Over! 💣
+            </motion.div>
+          )}
+          {isWin && (
+            <motion.div
+              className="text-2xl text-green-600"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              You Win! 🎉
+            </motion.div>
+          )}
+          {gameStarted && board.length > 0 && (
+            <div className="flex flex-col items-center gap-y-3">
+              <span className="text-lg">
+                <Icons.score />: {score}
+              </span>
 
-      <div className="mb-4">
-        <span className="text-lg">Score: {score}</span>
-      </div>
-
-      <Button
-        className="rounded-md bg-blue-600 px-4 py-2 hover:bg-blue-700"
-        onClick={() => {
-          if (!difficulty) {
-            alert('Please select a difficulty level before starting the game!');
-            return;
-          }
-          try {
-            initializeBoard();
-            setGameStarted(true);
-          } catch (error) {
-            console.error('Error starting the game:', error);
-            alert('An error occurred while starting the game.');
-          }
-        }}
-        disabled={!difficulty}
-      >
-        Start Game
-      </Button>
-
-      {isGameOver && (
-        <motion.div
-          className="text-2xl text-red-600"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          Game Over! 💣
-        </motion.div>
-      )}
-      {isWin && (
-        <motion.div
-          className="text-2xl text-green-600"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          You Win! 🎉
-        </motion.div>
-      )}
-
-      {/* Display the grid only after the game has started */}
-      {gameStarted && board.length > 0 && (
-        <div
-          className="grid"
-          style={{
-            gridTemplateRows: `repeat(${difficulty.rows}, 1fr)`,
-            gridTemplateColumns: `repeat(${difficulty.cols}, 1fr)`,
-          }}
-        >
-          {board.map((row, rIdx) =>
-            row.map((cell, cIdx) => (
               <div
-                key={`${rIdx}-${cIdx}`}
-                className={`relative flex h-10 w-10 items-center justify-center border text-sm transition-all duration-500 cursor-pointer ${
-                  cell.isRevealed ? (cell.isMine ? 'bg-red-500 text-white' : 'bg-gray-300 text-black') : 'bg-gray-700'
-                }`}
-                onClick={() => handleCellClick(rIdx, cIdx)}
-                onContextMenu={(e) => handleFlag(e, rIdx, cIdx)}
+                className="grid"
+                style={{
+                  gridTemplateRows: `repeat(${difficulty.rows}, 1fr)`,
+                  gridTemplateColumns: `repeat(${difficulty.cols}, 1fr)`,
+                }}
               >
-                {/* Explosion animation overlay */}
-                {isExploding && cell.isMine && (
-                  <motion.div
-                    className="absolute inset-0 flex items-center justify-center rounded-full bg-red-500"
-                    initial={{ scale: 1, opacity: 1 }}
-                    animate={{ scale: 1.5, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  ></motion.div>
-                )}
+                {board.map((row, rIdx) =>
+                  row.map((cell, cIdx) => (
+                    <div
+                      key={`${rIdx}-${cIdx}`}
+                      className={`relative flex h-10 w-10 cursor-pointer items-center justify-center border text-sm transition-all duration-500 ${
+                        cell.isRevealed
+                          ? cell.isMine
+                            ? 'bg-red-500 text-white'
+                            : 'bg-gray-300 text-black'
+                          : 'bg-gray-700'
+                      }`}
+                      onClick={() => handleCellClick(rIdx, cIdx)}
+                      onContextMenu={(e) => handleFlag(e, rIdx, cIdx)}
+                    >
+                      {/* Explosion animation overlay */}
+                      {isExploding && cell.isMine && (
+                        <motion.div
+                          className="absolute inset-0 flex items-center justify-center rounded-full bg-red-500"
+                          initial={{ scale: 1, opacity: 1 }}
+                          animate={{ scale: 1.5, opacity: 0 }}
+                          transition={{ duration: 0.5, ease: 'easeInOut' }}
+                        ></motion.div>
+                      )}
 
-                {/* Smooth mine reveal */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-                    cell.isRevealed && cell.isMine ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  💣
-                </div>
+                      {/* Smooth mine reveal */}
+                      <div
+                        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${cell.isRevealed && cell.isMine ? 'opacity-100' : 'opacity-0'}`}
+                      >
+                        💣
+                      </div>
 
-                {/* Adjacent mine numbers or flags */}
-                {cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 && (
-                  <span className="relative">{cell.adjacentMines}</span>
+                      {/* Adjacent mine numbers or flags */}
+                      {cell.isRevealed && !cell.isMine && cell.adjacentMines > 0 && (
+                        <span className="relative">{cell.adjacentMines}</span>
+                      )}
+                      {cell.isFlagged && !cell.isRevealed && <span className="relative">🚩</span>}
+                    </div>
+                  )),
                 )}
-                {cell.isFlagged && !cell.isRevealed && <span className="relative">🚩</span>}
               </div>
-            )),
+            </div>
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

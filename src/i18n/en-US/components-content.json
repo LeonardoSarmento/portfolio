@@ -1,0 +1,9 @@
+{
+  "content": {
+    "title": "Components",
+    "items": [
+      { "link": "/interactive/components/charts", "title": "Charts", "description": "Find out how the graphics work!" }
+    ],
+    "button": "Find out!"
+  }
+}
