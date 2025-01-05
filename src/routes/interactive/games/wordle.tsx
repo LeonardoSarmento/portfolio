@@ -1,11 +1,11 @@
 import { Button } from '@components/ui/button';
-import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { faker } from '@faker-js/faker';
 import { useState, useEffect, useCallback } from 'react';
 import { Delete } from 'lucide-react';
 import { GamesHeader } from '@components/GamesHeader';
 import { Icons } from '@components/icons/icon';
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/interactive/games/wordle')({
   component: WordleGame,
@@ -23,7 +23,7 @@ function WordleGame() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isGameWon, setIsGameWon] = useState(false);
   const [letterHistory, setLetterHistory] = useState<Record<string, string>>({});
-  const [guessHistory, setGuessHistory] = useState<string[][]>([]); // Store history of guess results (colors)
+  const [guessHistory, setGuessHistory] = useState<string[][]>([]);
 
   const [stats, setStats] = useState({ wins: 0, losses: 0 });
 
@@ -60,39 +60,33 @@ function WordleGame() {
     const guessArr = guess.split('');
     const remainingLetters: (string | null)[] = [...wordArr];
 
-    // Store colors for this guess (green, yellow, red)
-    const guessResult = Array(wordLength).fill(''); // Start with empty result
+    const guessResult = Array(wordLength).fill('');
 
-    // Step 1: Check for exact matches (green)
     guessArr.forEach((letter, index) => {
       if (wordArr[index] === letter) {
         guessResult[index] = 'green';
-        remainingLetters[index] = null; // Mark letter as used
+        remainingLetters[index] = null;
       }
     });
 
-    // Step 2: Check for misplaced matches (yellow)
     guessArr.forEach((letter, index) => {
       if (guessResult[index] !== 'green') {
         const letterIndex = remainingLetters.indexOf(letter);
         if (letterIndex !== -1) {
           guessResult[index] = 'yellow';
-          remainingLetters[letterIndex] = null; // Mark letter as used
+          remainingLetters[letterIndex] = null;
         } else {
           guessResult[index] = 'red';
         }
       }
     });
 
-    // Add result to guessHistory (don't modify previous results)
     setGuessHistory((prev) => [...prev, guessResult]);
 
-    // Update letter history for keyboard colors (global)
     const newHistory: Record<string, string> = {};
     guessArr.forEach((letter, index) => {
-      const currentColor = newHistory[letter] || 'gray'; // default to gray
+      const currentColor = newHistory[letter] || 'gray';
       const newColor = guessResult[index];
-      // Only update if the new color is stronger (green > yellow > red)
       if (newColor === 'green' || (newColor === 'yellow' && currentColor !== 'green') || currentColor === 'gray') {
         newHistory[letter] = newColor;
       }
@@ -108,12 +102,24 @@ function WordleGame() {
     setIsGameWon(false);
     setLetterHistory({});
     setGuessHistory([]);
+
+    // Ensure focus is restored to the document
+    setTimeout(() => {
+      const activeElement = document.activeElement as HTMLElement | null;
+      activeElement?.blur(); // Call blur() only if it's an HTMLElement
+      window.focus(); // Ensure the window is focused
+    }, 0);
   };
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+    const handleKeyDownWrapper = (event: KeyboardEvent) => {
+      if (isGameOver || isGameWon) return;
+      handleKeyDown(event);
+    };
+
+    window.addEventListener('keydown', handleKeyDownWrapper);
+    return () => window.removeEventListener('keydown', handleKeyDownWrapper);
+  }, [handleKeyDown, isGameOver, isGameWon]);
 
   const renderBoard = () => {
     return Array.from({ length: maxAttempts }, (_, attemptIndex) => {
@@ -181,16 +187,32 @@ function WordleGame() {
           );
         })}
         {rowIndex === 2 && (
-          <Button
-            key="backspace"
-            disabled={isGameOver || isGameWon}
-            className="rounded-md px-4 py-2"
-            onClick={() => {
-              setCurrentGuess((prev) => prev.slice(0, -1));
-            }}
-          >
-            <Delete />
-          </Button>
+          <>
+            <Button
+              key="enter"
+              disabled={isGameOver || isGameWon}
+              className="rounded-md px-4 py-2"
+              onClick={() => {
+                if (currentGuess.length === wordLength) {
+                  setAttempts((prev) => [...prev, currentGuess]);
+                  evaluateGuess(currentGuess);
+                  setCurrentGuess('');
+                }
+              }}
+            >
+              Enter
+            </Button>
+            <Button
+              key="backspace"
+              disabled={isGameOver || isGameWon}
+              className="rounded-md px-4 py-2"
+              onClick={() => {
+                setCurrentGuess((prev) => prev.slice(0, -1));
+              }}
+            >
+              <Delete />
+            </Button>
+          </>
         )}
       </div>
     ));
@@ -200,11 +222,11 @@ function WordleGame() {
     <div className="flex">
       <div className="mx-auto flex flex-1 flex-col items-end space-y-6 p-8">
         <GamesHeader routeId={Route.id} className="mx-20" />
-        <div className="mx-20 flex flex-col space-y-4">{renderBoard()}</div>
-        <div className="flex flex-col items-center space-y-2">{renderKeyboard()}</div>
+        <div className="mx-32 flex flex-col space-y-4">{renderBoard()}</div>
+        <div className="mx-12 flex flex-col items-center space-y-2">{renderKeyboard()}</div>
         {isGameOver && (
           <motion.p
-            className="text-2xl font-bold text-red-600"
+            className="mx-20 text-2xl font-bold text-red-600"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -214,7 +236,7 @@ function WordleGame() {
         )}
         {isGameWon && (
           <motion.p
-            className="text-2xl font-bold text-green-600"
+            className="mx-16 text-2xl font-bold text-green-600"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.3 }}

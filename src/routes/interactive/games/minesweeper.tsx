@@ -274,9 +274,10 @@ function MineSweepGame() {
           )}
           {gameStarted && board.length > 0 && (
             <div className="flex flex-col items-center gap-y-3">
-              <span className="text-lg">
-                <Icons.score />: {score}
-              </span>
+              <div className="gap-x1 flex items-center">
+                <Icons.score />
+                <span className="text-lg">: {score}</span>
+              </div>
 
               <div
                 className="grid"
@@ -332,5 +333,3 @@ function MineSweepGame() {
     </div>
   );
 }
-
-export default MineSweepGame;

@@ -3,32 +3,40 @@
     "title": "Games",
     "description": "Explore and play a variety of fun and challenging games.",
     "items": [
-      { "link": "/interactive/games/2048", "title": "2048", "description": "Combine numbers to reach 2048!" },
+      {
+        "link": "/interactive/games/2048",
+        "title": "2048: The Ultimate Tile-Twisting Challenge!",
+        "description": "Slide and merge tiles to reach the elusive 2048 tile."
+      },
       {
         "link": "/interactive/games/hangman",
-        "title": "Hangman",
+        "title": "Hangman: Guess the Word Before Time Runs Out!",
         "description": "Guess the word before its too late."
       },
       {
         "link": "/interactive/games/minesweeper",
-        "title": "Minesweeper",
+        "title": "Minesweeper: Can You Defuse the Danger?",
         "description": "Find all the mines without detonating them."
       },
       {
         "link": "/interactive/games/snake",
-        "title": "Snake",
+        "title": "Snake: Slither Your Way to Victory!",
         "description": "Eat, grow, and avoid hitting the walls!"
       },
-      { "link": "/interactive/games/sudoku", "title": "Sudoku", "description": "Solve challenging Sudoku puzzles." },
+      {
+        "link": "/interactive/games/sudoku",
+        "title": "Sudoku: The Number Puzzle That Never Gets Old!",
+        "description": "Solve challenging puzzles with logic and skill."
+      },
       {
         "link": "/interactive/games/tic-tac-toe",
-        "title": "Tic Tac Toe",
+        "title": "Tic Tac Toe: Classic Fun, Endless Strategy!",
         "description": "Outsmart your opponent in this classic game."
       },
       {
         "link": "/interactive/games/wordle",
-        "title": "Wordle",
-        "description": "Guess the 5-letter word in six attempts."
+        "title": "Wordle: Guess the Word and Show Off Your Smarts!",
+        "description": "Guess the 5-letter word in six attempts or less."
       }
     ],
     "button": "Play Now!"

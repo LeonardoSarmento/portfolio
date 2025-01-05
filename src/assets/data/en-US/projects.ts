@@ -1,6 +1,10 @@
 import ApplyI18nProject from '@assets/data/en-US/projects/applyingI18n.md';
 import Routing from '@assets/data/en-US/projects/routing.md';
 import Tables from '@assets/data/en-US/projects/tables.md';
+import Games from '@assets/data/en-US/projects/games.md';
+import DynamicForm from '@assets/data/en-US/projects/dynamicform.md';
+import DataTable from '@assets/data/en-US/projects/datatable.md';
+import Template from '@assets/data/en-US/projects/template.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
@@ -44,6 +48,47 @@ export const projects_en_us: PublicationType[] = [
     description: 'How to apply filter management using URL parameters to a table in a project.',
     body: Tables,
     tags: [TAGS_OPTIONS_PROJECTS[1], TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[4]],
+    file: null,
+  },
+  {
+    id: 'template',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK7dQQTblPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    date: new Date('December 06, 2024 18:33:14'),
+    title: 'Template for front-end applications',
+    description: 'All around template for front-end applications.',
+    body: Template,
+    tags: [TAGS_OPTIONS_PROJECTS[4], TAGS_OPTIONS_PROJECTS[6], TAGS_OPTIONS_PROJECTS[8]],
+    file: null,
+  },
+  {
+    id: 'data-table',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKyFNpNa0GikrIoDYxfvmXthAce94qHPJsZzK2',
+    date: new Date('December 15, 2024 21:12:27'),
+    title: 'A DataTable for front-end applications',
+    description:
+      'A robust and customizable DataTable component with advanced features for filtering, pagination, and more.',
+    body: DataTable,
+    tags: [TAGS_OPTIONS_PROJECTS[2], TAGS_OPTIONS_PROJECTS[3], TAGS_OPTIONS_PROJECTS[6], TAGS_OPTIONS_PROJECTS[8]],
+    file: null,
+  },
+  {
+    id: 'dynamic-form',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKkF0jWKDl36HN0cyQmU7ubkZvr1wEhYoAIGq2',
+    date: new Date('December 20, 2024 09:53:50'),
+    title: 'A reusable DynamicForm component for you',
+    description: 'A Form component with multiple input field types, validations, and type-safe features.',
+    body: DynamicForm,
+    tags: [TAGS_OPTIONS_PROJECTS[5], TAGS_OPTIONS_PROJECTS[6], TAGS_OPTIONS_PROJECTS[8]],
+    file: null,
+  },
+  {
+    id: 'games',
+    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKUnrwmJfH9dm7C0LnbJYSOMxl3aPjz1iFvWQN',
+    date: new Date('December 28, 2024 01:27:08'),
+    title: 'Lots of games for you to enjoy',
+    description: 'Explore interactive experiences with smooth animations and responsive designs!',
+    body: Games,
+    tags: [TAGS_OPTIONS_PROJECTS[7]],
     file: null,
   },
 ];

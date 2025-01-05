@@ -112,7 +112,7 @@ export function FilterMenuComponent({
         <div className="flex flex-col justify-center space-y-4 xl:mx-14">
           <div className="mx-7 flex gap-4 max-sm:flex-col max-sm:flex-wrap xl:mx-0 xl:mr-14">
             {auth.isAuthenticated ? (
-              <Button onClick={() => navigate(createPath)} type="button" className="w-32 flex-none max-sm:w-full">
+              <Button onClick={() => navigate(createPath)} type="button" className="w-40 flex-none max-sm:w-full">
                 {filterMenuContent.createButton.title}
               </Button>
             ) : null}
@@ -295,7 +295,7 @@ function SideMenuComponent({
 }) {
   const filterMenuContent = FILTERMENUCONTENT();
   return (
-    <Card className={cn('z-[1] h-fit xl:relative xl:mx-0 xl:w-32', className)}>
+    <Card className={cn('z-[1] h-fit xl:relative xl:mx-0 xl:w-40', className)}>
       <CardHeader>
         <CardTitle className="text-center">{filterMenuContent.filter.title}</CardTitle>
       </CardHeader>
@@ -456,7 +456,7 @@ function PaginationComponent({
               }}
             >
               <ChevronLeftIcon className="h-4 w-4" />
-              <p className="text-sm pb-1">{filterMenuContent.pagination.back}</p>
+              <p className="text-sm pb-0.5">{filterMenuContent.pagination.back}</p>
             </Button>
           )}
         </PaginationButton>
@@ -497,7 +497,7 @@ function PaginationComponent({
                 navigatePagination({ page });
               }}
             >
-              <p className="text-sm pb-1">{filterMenuContent.pagination.foward}</p>
+              <p className="text-sm pb-0.5">{filterMenuContent.pagination.foward}</p>
               <ChevronRightIcon className="h-4 w-4" />
             </Button>
           )}

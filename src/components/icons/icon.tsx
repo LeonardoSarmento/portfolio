@@ -50,6 +50,8 @@ import {
   Trophy,
   Clock,
   CircleX,
+  LayoutList,
+  NotebookPen,
 } from 'lucide-react';
 
 export const Icons = {
@@ -85,6 +87,9 @@ export const Icons = {
   add: Plus,
   addCircle: CirclePlus,
   warning: AlertTriangle,
+  form: NotebookPen,
+  datatable: TableProperties,
+  template: LayoutList,
   user: User,
   users: Users,
   languages: Languages,
