@@ -14,15 +14,13 @@ export default function GamesPage() {
       <Card className="ml-16 h-fit w-48 items-center space-y-4 rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
         <CardHeader className="border-b pb-3 text-center">
           <CardTitle className="text-lg font-semibold">{ComponentsPage.content.title}</CardTitle>
-          <CardDescription>
-            {ComponentsPage.content.description}
-          </CardDescription>
+          <CardDescription>{ComponentsPage.content.description}</CardDescription>
         </CardHeader>
         <ScrollArea className="h-96 w-full">
           <CardContent className="flex flex-col space-y-4 px-4">
             {ComponentsPage.content.items.map((content) => (
               <Link
-                key={content.title}
+                key={content.cardTitle}
                 to={content.link}
                 className="block rounded-lg px-2 text-center text-muted-foreground transition-transform duration-500 hover:scale-110 hover:bg-muted hover:text-primary"
               >

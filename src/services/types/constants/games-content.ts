@@ -4,6 +4,7 @@ export type InteracitvesPageContentType = {
     description: string;
     items: {
       title: string;
+      cardTitle: string;
       description: string;
       link: string;
     }[];

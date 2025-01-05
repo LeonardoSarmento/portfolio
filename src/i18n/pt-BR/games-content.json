@@ -5,37 +5,44 @@
     "items": [
       {
         "link": "/interactive/games/2048",
-        "title": "2048: O Desafio Máximo de Quebra-Cabeça!",
+        "title": "2048",
+        "cardTitle": "2048: O Desafio Máximo de Quebra-Cabeça!",
         "description": "Deslize e mescle peças para alcançar a peça indescritível de 2048."
       },
       {
         "link": "/interactive/games/hangman",
-        "title": "Forca: Adivinhe a Palavra Antes que o Tempo Acabe!",
+        "title": "Forca",
+        "cardTitle": "Forca: Adivinhe a Palavra Antes que o Tempo Acabe!",
         "description": "Adivinhe a palavra antes que seja tarde demais."
       },
       {
         "link": "/interactive/games/minesweeper",
-        "title": "Campo Minado: Você Consegue Desarmar o Perigo?",
+        "title": "Campo Minado",
+        "cardTitle": "Campo Minado: Você Consegue Desarmar o Perigo?",
         "description": "Encontre todas as minas sem detoná-las."
       },
       {
         "link": "/interactive/games/snake",
-        "title": "Cobrinha: Deslize Rumo à Vitória!",
+        "title": "Cobrinha",
+        "cardTitle": "Cobrinha: Deslize Rumo à Vitória!",
         "description": "Coma, cresça e evite bater nas paredes!"
       },
       {
         "link": "/interactive/games/sudoku",
-        "title": "Sudoku: O Desafio Numérico Que Nunca Sai de Moda!",
+        "title": "Sudoku",
+        "cardTitle": "Sudoku: O Desafio Numérico Que Nunca Sai de Moda!",
         "description": "Resolva quebra-cabeças desafiadores com lógica e habilidade."
       },
       {
         "link": "/interactive/games/tic-tac-toe",
-        "title": "Jogo da Velha: Diversão Clássica, Estratégia Sem Fim!",
+        "title": "Jogo da Velha",
+        "cardTitle": "Jogo da Velha: Diversão Clássica, Estratégia Sem Fim!",
         "description": "Supere seu oponente neste clássico jogo."
       },
       {
         "link": "/interactive/games/wordle",
-        "title": "Wordle: Adivinhe a Palavra e Mostre Seu Conhecimento!",
+        "title": "Wordle",
+        "cardTitle": "Wordle: Adivinhe a Palavra e Mostre Seu Conhecimento!",
         "description": "Adivinhe a palavra de 5 letras em seis tentativas ou menos."
       }
     ],

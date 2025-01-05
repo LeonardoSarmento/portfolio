@@ -14,7 +14,7 @@ export function InteracitvesPageComponent({ content }: InteracitvesPageContentTy
           {content.items.map((c, index) => (
             <Card key={index} className="shadow-md transition-shadow hover:shadow-lg">
               <CardHeader>
-                <CardTitle className="text-lg font-semibold capitalize">{c.title}</CardTitle>
+                <CardTitle className="text-lg font-semibold capitalize">{c.cardTitle}</CardTitle>
                 <CardDescription>{c.description}</CardDescription>
               </CardHeader>
               <CardFooter>

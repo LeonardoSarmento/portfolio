@@ -5,37 +5,44 @@
     "items": [
       {
         "link": "/interactive/games/2048",
-        "title": "2048: The Ultimate Tile-Twisting Challenge!",
+        "title": "2048",
+        "cardTitle": "2048: The Ultimate Tile-Twisting Challenge!",
         "description": "Slide and merge tiles to reach the elusive 2048 tile."
       },
       {
         "link": "/interactive/games/hangman",
-        "title": "Hangman: Guess the Word Before Time Runs Out!",
+        "title": "Hangman",
+        "cardTitle": "Hangman: Guess the Word Before Time Runs Out!",
         "description": "Guess the word before its too late."
       },
       {
         "link": "/interactive/games/minesweeper",
-        "title": "Minesweeper: Can You Defuse the Danger?",
+        "title": "Minesweeper",
+        "cardTitle": "Minesweeper: Can You Defuse the Danger?",
         "description": "Find all the mines without detonating them."
       },
       {
         "link": "/interactive/games/snake",
-        "title": "Snake: Slither Your Way to Victory!",
+        "title": "Snake",
+        "cardTitle": "Snake: Slither Your Way to Victory!",
         "description": "Eat, grow, and avoid hitting the walls!"
       },
       {
         "link": "/interactive/games/sudoku",
-        "title": "Sudoku: The Number Puzzle That Never Gets Old!",
+        "title": "Sudoku",
+        "cardTitle": "Sudoku",
         "description": "Solve challenging puzzles with logic and skill."
       },
       {
         "link": "/interactive/games/tic-tac-toe",
-        "title": "Tic Tac Toe: Classic Fun, Endless Strategy!",
+        "title": "Tic Tac Toe",
+        "cardTitle": "Tic Tac Toe: Classic Fun, Endless Strategy!",
         "description": "Outsmart your opponent in this classic game."
       },
       {
         "link": "/interactive/games/wordle",
-        "title": "Wordle: Guess the Word and Show Off Your Smarts!",
+        "title": "Wordle",
+        "cardTitle": "Wordle: Guess the Word and Show Off Your Smarts!",
         "description": "Guess the 5-letter word in six attempts or less."
       }
     ],
