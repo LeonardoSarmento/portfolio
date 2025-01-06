@@ -221,7 +221,7 @@ function WordleGame() {
   return (
     <div className="flex">
       <div className="mx-auto flex flex-1 flex-col items-end space-y-6 p-8">
-        <GamesHeader routeId={Route.id} className="mx-20" />
+        <GamesHeader routeId={Route.id} className="mx-6" />
         <div className="mx-32 flex flex-col space-y-4">{renderBoard()}</div>
         <div className="mx-12 flex flex-col items-center space-y-2">{renderKeyboard()}</div>
         {isGameOver && (

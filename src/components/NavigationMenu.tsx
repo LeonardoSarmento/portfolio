@@ -89,7 +89,7 @@ export function NavigationMenuGroup() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex min-w-full justify-evenly md:w-[220px] md:min-w-fit md:justify-between">
+      <div className="flex min-w-full justify-evenly md:w-[220px] gap-x-1 md:min-w-fit md:justify-between">
         <ResumeDialog />
         <UserToggle />
         <SelectLanguage />

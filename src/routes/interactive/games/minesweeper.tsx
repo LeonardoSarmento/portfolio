@@ -25,9 +25,9 @@ type Difficulty = {
 };
 
 const DIFFICULTIES: Record<string, Difficulty> = {
-  Easy: { rows: 8, cols: 8, mines: 10 },
-  Medium: { rows: 16, cols: 16, mines: 40 },
-  Hard: { rows: 16, cols: 30, mines: 99 },
+  Easy: { rows: 8, cols: 8, mines: 30 },
+  Medium: { rows: 16, cols: 16, mines: 99 },
+  Hard: { rows: 16, cols: 30, mines: 200 },
 };
 
 function MineSweepGame() {

@@ -1,45 +1,56 @@
-import { Button } from '@components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
-import { ScrollArea } from '@components/ui/scroll-area';
+import { CardDescription, CardHeader, CardTitle } from '@components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { GAMESCONTENT } from '@constants/games-content';
-import { createFileRoute, Link, Outlet } from '@tanstack/react-router';
+import { createFileRoute, Link, Outlet, useLocation } from '@tanstack/react-router';
+import Autoplay from 'embla-carousel-autoplay';
+import React from 'react';
 
 export const Route = createFileRoute('/interactive/games')({
   component: GamesPage,
 });
 export default function GamesPage() {
-  const ComponentsPage = GAMESCONTENT();
+  const path = useLocation();
   return (
-    <div className="flex space-x-3">
-      <Card className="ml-16 h-fit w-48 items-center space-y-4 rounded-lg shadow-lg transition-shadow duration-300 hover:shadow-xl">
-        <CardHeader className="border-b pb-3 text-center">
-          <CardTitle className="text-lg font-semibold">{ComponentsPage.content.title}</CardTitle>
-          <CardDescription>{ComponentsPage.content.description}</CardDescription>
-        </CardHeader>
-        <ScrollArea className="h-96 w-full">
-          <CardContent className="flex flex-col space-y-4 px-4">
-            {ComponentsPage.content.items.map((content) => (
-              <Link
-                key={content.cardTitle}
-                to={content.link}
-                className="block rounded-lg px-2 text-center text-muted-foreground transition-transform duration-500 hover:scale-110 hover:bg-muted hover:text-primary"
-              >
-                {content.title}
-              </Link>
-            ))}
-          </CardContent>
-        </ScrollArea>
-        <CardFooter className="flex w-full justify-center pt-3">
-          <Button asChild className="transition-transform duration-300 hover:scale-105">
-            <Link to="/interactive/games" className="px-4 py-2">
-              Todos Jogos
-            </Link>
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="flex flex-1 flex-col justify-start gap-y-10">
+      {path.pathname !== '/interactive/games' ? <SideMenuGames /> : null}
       <div className="flex-1">
         <Outlet />
       </div>
+    </div>
+  );
+}
+
+function SideMenuGames() {
+  const ComponentsPage = GAMESCONTENT();
+  const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: false }));
+  return (
+    <div className="px-16">
+      <CardHeader className="text-center">
+        <CardTitle className="text-lg font-semibold">{ComponentsPage.content.title}</CardTitle>
+        <CardDescription>{ComponentsPage.content.description}</CardDescription>
+      </CardHeader>
+      <Carousel
+        opts={{ loop: true }}
+        plugins={[plugin.current]}
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        className="flex-1"
+      >
+        <CarouselContent className="py-2 2xl:justify-center">
+          {ComponentsPage.content.items.map((content) => (
+            <CarouselItem key={content.cardTitle} className="flex basis-1/2 md:basis-1/3 lg:basis-2/12 xl:basis-2/12 2xl:basis-1/12">
+              <Link
+                to={content.link}
+                className="block flex-1 text-nowrap rounded-lg border px-2 text-center text-muted-foreground transition-transform duration-500 hover:scale-110 hover:bg-muted hover:text-primary"
+              >
+                {content.title}
+              </Link>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
     </div>
   );
 }
