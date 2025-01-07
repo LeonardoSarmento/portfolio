@@ -46,6 +46,14 @@
         "description": "Adivinhe a palavra de 5 letras em seis tentativas ou menos."
       }
     ],
-    "button": "Jogue agora!"
+    "button": "Jogue agora!",
+    "notReady": {
+      "title": "Não sufoque o artista",
+      "description": "Ok eu sei já vou fazer 😔",
+      "content": {
+        "title": "Essa parte da casa só tá pronta pra computador! Nada de celular ainda!",
+        "description": "Bate perna pelo site ai por enquanto :)"
+      }
+    }
   }
 }

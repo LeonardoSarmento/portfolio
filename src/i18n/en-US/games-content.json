@@ -46,6 +46,14 @@
         "description": "Guess the 5-letter word in six attempts or less."
       }
     ],
-    "button": "Play Now!"
+    "button": "Play Now!",
+    "notReady": {
+      "title": "WIP",
+      "description": "Yeah, I know, I will get it done 😔",
+      "content": {
+        "title": "This section is Web only for now!",
+        "description": "The game is in another castle"
+      }
+    }
   }
 }

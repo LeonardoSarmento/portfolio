@@ -9,5 +9,13 @@ export type InteracitvesPageContentType = {
       link: string;
     }[];
     button: string;
+    notReady: {
+      title: string;
+      description: string;
+      content: {
+        title: string;
+        description: string;
+      };
+    };
   };
 };

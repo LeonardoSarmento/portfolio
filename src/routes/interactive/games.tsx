@@ -1,6 +1,9 @@
-import { CardDescription, CardHeader, CardTitle } from '@components/ui/card';
+import { H4 } from '@components/typography/h4';
+import { Muted } from '@components/typography/muted';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@components/ui/carousel';
 import { GAMESCONTENT } from '@constants/games-content';
+import { useIsMobile } from '@services/hooks/use-mobile';
 import { createFileRoute, Link, Outlet, useLocation } from '@tanstack/react-router';
 import Autoplay from 'embla-carousel-autoplay';
 import React from 'react';
@@ -10,11 +13,25 @@ export const Route = createFileRoute('/interactive/games')({
 });
 export default function GamesPage() {
   const path = useLocation();
+  const ComponentsPage = GAMESCONTENT();
   return (
     <div className="flex flex-1 flex-col justify-start gap-y-10">
       {path.pathname !== '/interactive/games' ? <SideMenuGames /> : null}
       <div className="flex-1">
-        <Outlet />
+        {useIsMobile() ? (
+          <Card className="mx-10">
+            <CardHeader className="text-center">
+              <CardTitle className="text-lg font-semibold">{ComponentsPage.content.notReady.title}</CardTitle>
+              <CardDescription>{ComponentsPage.content.notReady.description}</CardDescription>
+            </CardHeader>
+            <CardContent className="text-center">
+              <H4>{ComponentsPage.content.notReady.content.title}</H4>
+              <Muted>{ComponentsPage.content.notReady.content.description}</Muted>
+            </CardContent>
+          </Card>
+        ) : (
+          <Outlet />
+        )}
       </div>
     </div>
   );
@@ -38,7 +55,10 @@ function SideMenuGames() {
       >
         <CarouselContent className="py-2 2xl:justify-center">
           {ComponentsPage.content.items.map((content) => (
-            <CarouselItem key={content.cardTitle} className="flex basis-1/2 md:basis-1/3 lg:basis-2/12 xl:basis-2/12 2xl:basis-1/12">
+            <CarouselItem
+              key={content.cardTitle}
+              className="flex basis-1/2 md:basis-1/3 lg:basis-2/12 xl:basis-2/12 2xl:basis-1/12"
+            >
               <Link
                 to={content.link}
                 className="block flex-1 text-nowrap rounded-lg border px-2 text-center text-muted-foreground transition-transform duration-500 hover:scale-110 hover:bg-muted hover:text-primary"
