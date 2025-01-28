@@ -14,9 +14,15 @@ import './githubFlavor.css';
 import { routeTree } from './routeTree.gen';
 import { ThemeProvider } from '@components/Theme-provider';
 import { AuthProvider, useAuth } from '@services/hooks/auth';
-import './i18n/config'
+import './i18n/config';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      networkMode: 'offlineFirst',
+    },
+  },
+});
 
 // Create a new router instance
 const router = createRouter({
@@ -55,6 +61,19 @@ function App() {
       </Provider>
     </AuthProvider>
   );
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration);
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError);
+      });
+  });
 }
 
 const container = document.getElementById('root');

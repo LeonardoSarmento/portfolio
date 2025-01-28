@@ -16,9 +16,24 @@ export default defineConfig({
         enabled: true,
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.origin === self.location.origin,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'static-resources',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
+              },
+            },
+          },
+        ],
         globPatterns: ['**/*.{js,css,html,ico,jpg,png,svg,pdf,webmanifest}'],
+        globDirectory: 'dist',
       },
-      includeAssets: ['**/*.{js,css,html,ico,jpg,png,svg,pdf,webmanifest}'],
+      includeAssets: [],
       manifest: {
         background_color: '#f0f0f0',
         description: 'My portfolio where I share all my experiences with you.',

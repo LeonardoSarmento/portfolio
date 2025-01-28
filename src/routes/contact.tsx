@@ -54,7 +54,7 @@ function Contact() {
           <CardHeader className="text-center">
             <CardTitle className="text-2xl">{contactContent.title}</CardTitle>
             {contactContent.description.map((cardDesc, index) => (
-              <Fragment key={cardDesc}>
+              <Fragment key={`${cardDesc}-${index}`}>
                 <CardDescription>{cardDesc}</CardDescription>
                 {contactContent.description.length !== index + 1 ? <Separator /> : null}
               </Fragment>
@@ -99,18 +99,19 @@ function Contact() {
                 words={contactContent.sideContent.content.typewriter}
               />
             ) : (
-              <CardDescription className="flex flex-wrap justify-center gap-1 text-black dark:text-white">
-                {words.flatMap((word) => (
+              <>
+                {words.flatMap((word, index) => (
                   <p
                     className={cn(
                       'lg:text:3xl whitespace-nowrap text-xs font-bold sm:text-base md:text-xl xl:flex-nowrap xl:text-5xl',
                       word.className,
                     )}
+                    key={`${word.text}-${index}`}
                   >
                     {word.text}
                   </p>
                 ))}
-              </CardDescription>
+              </>
             )}
           </div>
           <CardTitle className="relative bottom-1 bg-white pb-0.5 dark:bg-transparent xl:ml-2">
