@@ -57,8 +57,8 @@ function Introduction() {
             <div className="flex justify-center p-4 xl:w-1/4">
               <img
                 className="h-80 w-64 rounded-md"
-                src="https://utfs.io/f/7UcJCClPcgLK0Au4mmNC5B20jYShq8QzmTFkfeoMtDgZirnL"
-                alt="fotinha dando joinha com zé"
+                src={introductionContent.introimage.src}
+                alt={introductionContent.introimage.alt}
               />
             </div>
           </div>
@@ -66,8 +66,8 @@ function Introduction() {
             <div className="flex justify-center p-4 xl:w-1/4">
               <img
                 className="h-80 w-64 rounded-md"
-                src="https://utfs.io/f/7UcJCClPcgLK8yv0OaJi3Yqj6fR1l0crt2npeVkxsTUN45am"
-                alt="fotinha no Inspire 2024 comendo e sorrindo"
+                src={introductionContent.aboutmeimage.src}
+                alt={introductionContent.aboutmeimage.alt}
               />
             </div>
             <div className="flex flex-col p-4 xl:w-3/4">

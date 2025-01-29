@@ -7,5 +7,13 @@ export const INTRODUCTIONCONTENT: () => TIntroductionContent = () => {
   return {
     ...t('intro', { ns: 'introduction', returnObjects: true }),
     image: { ...t('intro.image', { ns: 'introduction', returnObjects: true }), src: LEO_BARZINHO },
+    introimage: {
+      ...t('intro.introimage', { ns: 'introduction', returnObjects: true }),
+      src: 'https://utfs.io/f/7UcJCClPcgLK0Au4mmNC5B20jYShq8QzmTFkfeoMtDgZirnL',
+    },
+    aboutmeimage: {
+      ...t('intro.aboutmeimage', { ns: 'introduction', returnObjects: true }),
+      src: 'https://utfs.io/f/7UcJCClPcgLK8yv0OaJi3Yqj6fR1l0crt2npeVkxsTUN45am',
+    },
   };
 };

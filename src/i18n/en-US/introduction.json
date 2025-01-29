@@ -2,6 +2,8 @@
   "intro": {
     "header": { "initial": "Hello, welcome to the world of", "punchline": "Leonardo." },
     "image": { "alt": "Leonardo drinking beer and making a toast" },
+    "introimage": { "alt": "Doing thumbs up with my dog zé" },
+    "aboutmeimage": { "alt": "Eating and smiling at Inspire 2024 event" },
     "introduction": {
       "h1": "It all started on the fateful day of February 7, 1996, a Wednesday, in Vitória - ES. \nI, a baby, was destined to pay bills in the future. So now that I'm old, I present to you my portfolio.",
       "code": "Make yourselves at home."
