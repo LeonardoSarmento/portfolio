@@ -8,6 +8,7 @@ import DataTable from '@assets/data/pt-BR/projects/datatable.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
+import { PROJECTDATATABLE, PROJECTDYNAMICFORM, PROJECTGAMES, PROJECTI18N, PROJECTROUTING, PROJECTTABLEUSECASE, PROJECTTEMPLATE } from '../thumbnails/projects/links';
 
 export type ProjectMenuNavigation = {
   id: string;
@@ -22,7 +23,7 @@ export type ProjectMenuNavigation = {
 export const projects_pt_br: PublicationType[] = [
   {
     id: 'applying-i18n-to-projects',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK27w9dGi5UptCnS36zQO49TwhEXgeIqNAYoBZ',
+    thumbnail: PROJECTI18N,
     date: new Date('August 30, 2024 09:54:00'),
     title: 'Aplicando i18n na prática',
     description: 'Te mostrar como você pode internacionalizar o seu projeto.',
@@ -32,7 +33,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'routing',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK7Ru2oalPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTROUTING,
     date: new Date('September 19, 2024 19:31:00'),
     title: 'Roteamento e Gerenciamento de estados',
     description: 'Como você pode aplicar um roteamento dinâmico com gerencimento de estados.',
@@ -42,7 +43,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'tables',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK71PxxQlPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTTABLEUSECASE,
     date: new Date('September 21, 2024 14:45:44'),
     title: 'Caso de uso de uma tabela gerenciada por parâmetros de URL',
     description: 'Como aplicar o gerenciamento de filtros usando parâmetros de URL a uma tabela em um projeto.',
@@ -52,7 +53,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'template',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK7dQQTblPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTTEMPLATE,
     date: new Date('December 06, 2024 18:33:14'),
     title: 'Modelo para aplicativos de front-end',
     description: 'Modelo completo para aplicativos de front-end.',
@@ -62,7 +63,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'data-table',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKyFNpNa0GikrIoDYxfvmXthAce94qHPJsZzK2',
+    thumbnail: PROJECTDATATABLE,
     date: new Date('December 15, 2024 21:12:27'),
     title: 'Um DataTable para aplicativos de front-end',
     description:
@@ -73,7 +74,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'dynamic-form',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKkF0jWKDl36HN0cyQmU7ubkZvr1wEhYoAIGq2',
+    thumbnail: PROJECTDYNAMICFORM,
     date: new Date('December 20, 2024 09:53:50'),
     title: 'Um componente DynamicForm reutilizável para você',
     description:
@@ -84,7 +85,7 @@ export const projects_pt_br: PublicationType[] = [
   },
   {
     id: 'games',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKUnrwmJfH9dm7C0LnbJYSOMxl3aPjz1iFvWQN',
+    thumbnail: PROJECTGAMES,
     date: new Date('December 28, 2024 01:27:08'),
     title: 'Vários jogos para você se divertir',
     description: 'Explore experiências interativas com animações suaves e designs responsivos!',

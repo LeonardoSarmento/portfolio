@@ -10,5 +10,7 @@ export const FAPES_LOGO = new URL('/assets/fapes logo.png', import.meta.url).hre
 export const IEL_LOGO = new URL('/assets/iel-blue.png', import.meta.url).href;
 export const LEO_DIA_D = new URL('/assets/leonardo-dia-d-with-qrcode.svg', import.meta.url).href;
 export const LEO_BARZINHO = new URL('/assets/leo-barzinho.jpg', import.meta.url).href;
+export const LEO_ZE = new URL('/assets/fotinha joinha com ze.jpg', import.meta.url).href;
+export const LEO_INSPIRE = new URL('//assets/fotinha inspire comendo.jpg', import.meta.url).href;
 export const QRCODE_GORJETA = new URL('/assets/qrcodegorjeta.jpeg', import.meta.url).href;
 // const gif = new URL('/public/assets/Animation - 1707702469299.gif', import.meta.url).href;

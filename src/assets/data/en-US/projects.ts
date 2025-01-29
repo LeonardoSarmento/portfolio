@@ -8,6 +8,15 @@ import Template from '@assets/data/en-US/projects/template.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_PROJECTS } from '@constants/tags';
+import {
+  PROJECTI18N,
+  PROJECTROUTING,
+  PROJECTTABLEUSECASE,
+  PROJECTTEMPLATE,
+  PROJECTDATATABLE,
+  PROJECTDYNAMICFORM,
+  PROJECTGAMES,
+} from '../thumbnails/projects/links';
 
 export type ProjectMenuNavigation = {
   id: string;
@@ -22,7 +31,7 @@ export type ProjectMenuNavigation = {
 export const projects_en_us: PublicationType[] = [
   {
     id: 'applying-i18n-to-projects',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK27w9dGi5UptCnS36zQO49TwhEXgeIqNAYoBZ',
+    thumbnail: PROJECTI18N,
     date: new Date('August 30, 2024 09:54:00'),
     title: 'Applying i18n in practice',
     description: 'Show you how you can internationalize your project',
@@ -32,7 +41,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'routing',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK7Ru2oalPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTROUTING,
     date: new Date('September 19, 2024 19:31:00'),
     title: 'Routing and State Managment use case',
     description: 'Use case to apply routing and state managment to a project.',
@@ -42,7 +51,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'tables',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK71PxxQlPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTTABLEUSECASE,
     date: new Date('September 21, 2024 14:45:44'),
     title: 'Use case for a table managed by URL Parameters',
     description: 'How to apply filter management using URL parameters to a table in a project.',
@@ -52,7 +61,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'template',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK7dQQTblPcgLKn2mI6ARSbDkxFXoTG1HNpeV8',
+    thumbnail: PROJECTTEMPLATE,
     date: new Date('December 06, 2024 18:33:14'),
     title: 'Template for front-end applications',
     description: 'All around template for front-end applications.',
@@ -62,7 +71,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'data-table',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKyFNpNa0GikrIoDYxfvmXthAce94qHPJsZzK2',
+    thumbnail: PROJECTDATATABLE,
     date: new Date('December 15, 2024 21:12:27'),
     title: 'A DataTable for front-end applications',
     description:
@@ -73,7 +82,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'dynamic-form',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKkF0jWKDl36HN0cyQmU7ubkZvr1wEhYoAIGq2',
+    thumbnail: PROJECTDYNAMICFORM,
     date: new Date('December 20, 2024 09:53:50'),
     title: 'A reusable DynamicForm component for you',
     description: 'A Form component with multiple input field types, validations, and type-safe features.',
@@ -83,7 +92,7 @@ export const projects_en_us: PublicationType[] = [
   },
   {
     id: 'games',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKUnrwmJfH9dm7C0LnbJYSOMxl3aPjz1iFvWQN',
+    thumbnail: PROJECTGAMES,
     date: new Date('December 28, 2024 01:27:08'),
     title: 'Lots of games for you to enjoy',
     description: 'Explore interactive experiences with smooth animations and responsive designs!',
