@@ -50,9 +50,9 @@ HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_personal
 
-# Work Account: (Your-Github-Account-Name)
+# Work Account: (Your-Work-Github-Account-Name)
 
-Host github.com-(Your-Github-Account-Name)
+Host github.com-(Your-Work-Github-Account-Name)
 HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_work
@@ -106,7 +106,9 @@ Try to pull or clone a repo from either account and see if it works. You might h
 In step 3, we created a field called Host for each of our SSH keys. In my example, I named them after the website used for source control. If you decided to name yours something else, make sure you reference it when you clone a new repo. In my case, I can clone the repository with the following command:
 
 ```bash
-git clone git@github.com-(Your-Github-Account-Name):(Your-Github-Account-Name)/repo-name.git
+git clone git@github.com-(Chosen-Name-For-Configuration-User-Or-Work):(name-of-account-organization)/repo-name.git
+
+Example: git clone git@github.com-PersonalConfig:LeonardoSarmento/portfolio.git
 ```
 
 Hopefully that helps!

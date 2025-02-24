@@ -46,9 +46,9 @@ HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_pessoal
 
-# Conta de Trabalho: (Nome-Da-Sua-Conta-No-Github)
+# Conta de Trabalho: (Nome-Da-Sua-Conta-De-Trabalho-No-Github)
 
-Host github.com-(Nome-Da-Sua-Conta-No-Github)
+Host github.com-(Nome-Da-Sua-Conta-De-Trabalho-No-Github)
 HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_trabalho
@@ -92,7 +92,9 @@ Tente puxar ou clonar um repositório de qualquer conta e veja se funciona. Voc�
 No passo 3, criamos um campo chamado Host para cada uma de nossas chaves SSH. No meu exemplo, eu os nomeei após o site usado para controle de versão. Se você decidiu nomear os seus de outra forma, certifique-se de referenciá-los ao clonar um novo repositório. No meu caso, posso clonar o repositório com o seguinte comando:
 
 ``` bash
-git clone git@github.com-(Nome-Da-Sua-Conta-No-Github):(Nome-Da-Sua-Conta-No-Github)/nome-do-repo.git
+git clone git@github.com-(Nome-Escolhido-Para-Configuração-Usuário-Ou-Trabalho):(nome-da-conta-ou-organização)/nome-do-repo.git
+
+Exemplo: git clone git@github.com-ConfiguraçãoPessoal:LeonardoSarmento/portfolio.git
 ```
 
 Espero que isso ajude!
