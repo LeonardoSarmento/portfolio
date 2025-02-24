@@ -1,1 +1,0 @@
-export const PORTFOLIO_TN = new URL('../thumbnails/portfolio-thumbnail.png', import.meta.url).href;

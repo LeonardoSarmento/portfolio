@@ -11,7 +11,18 @@ import GameWordle from '@assets/data/en-US/posts/wordle.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_POSTS } from '@constants/tags';
-import { PORTFOLIO_TN } from '../thumbnails/links';
+import {
+  PORTFOLIO_TN,
+  TNPOST2048,
+  TNPOSTCONFIGI18N,
+  TNPOSTHANGMAN,
+  TNPOSTMINESWEEPER,
+  TNPOSTSNAKE,
+  TNPOSTSSHKEY,
+  TNPOSTSUDOKU,
+  TNPOSTTICTACTOE,
+  TNPOSTWORDLE,
+} from '../thumbnails/posts/links';
 
 export type PostMenuNavigation = {
   id: string;
@@ -36,7 +47,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'two-ssh-github-account-configuration',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK2oSg0yJi5UptCnS36zQO49TwhEXgeIqNAYoB',
+    thumbnail: TNPOSTSSHKEY,
     date: new Date('August 30, 2024 19:35:00'),
     title: 'Two SSH github account configuration.',
     description: `I'll show you how I manage my personal and work profiles with SSH keys.`,
@@ -46,7 +57,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'configuring-i18n',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKXEL6P8zHc0gvrkVfbGUZM5Fd98KeauQCP3zA',
+    thumbnail: TNPOSTCONFIGI18N,
     date: new Date('August 31, 2024 21:54:00'),
     title: 'I18n and its configurations',
     description: 'How to configure i18n in your React project with type safety and its applications.',
@@ -56,7 +67,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: '2048',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKc6ixSsyBIMESgOKyLxqZ1pkrXN5VR7jbQTlC',
+    thumbnail: TNPOST2048,
     date: new Date('December 17, 2024 23:37:45'),
     title: '2048: The Ultimate Tile-Twisting Challenge!',
     description: 'Slide and merge tiles to reach the elusive 2048 tile.',
@@ -66,7 +77,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'hangman',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKr4Jg8RvaR62Mwfxp9UlKXJ5d1bYmFZByDk4V',
+    thumbnail: TNPOSTHANGMAN,
     date: new Date('December 18, 2024 11:08:13'),
     title: 'Hangman: Guess the Word Before Time Runs Out!',
     description: 'Guess the word before running out of attempts.',
@@ -76,7 +87,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'minesweeper',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKBimkVdbtCfpPhM0T7qc81dr3LHXK4u9SsvZ6',
+    thumbnail: TNPOSTMINESWEEPER,
     date: new Date('December 19, 2024 15:10:57'),
     title: 'Minesweeper: Can You Defuse the Danger?',
     description: 'Find all the mines without detonating them.',
@@ -86,7 +97,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'snake',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK0sCjhBNC5B20jYShq8QzmTFkfeoMtDgZirnL',
+    thumbnail: TNPOSTSNAKE,
     date: new Date('December 21, 2024 15:43:45'),
     title: 'Snake: Slither Your Way to Victory!',
     description: 'Eat, grow, and avoid hitting the walls!',
@@ -96,7 +107,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'sudoku',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKmOKw9DQ924TL6RIuMXvzfcC1EaSOWdJKgoFw',
+    thumbnail: TNPOSTSUDOKU,
     date: new Date('December 23, 2024 17:07:24'),
     title: 'Sudoku: The Number Puzzle That Never Gets Old!',
     description: 'Solve challenging puzzles with logic and skill.',
@@ -106,7 +117,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'tic-tac-toe',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKsRdSCYmKzCo4yESsZT05Jeu9HnOdlAtVxvLa',
+    thumbnail: TNPOSTTICTACTOE,
     date: new Date('December 26, 2024 22:31:07'),
     title: 'Tic Tac Toe: Classic Fun, Endless Strategy!',
     description: 'Outsmart your opponent in this timeless classic.',
@@ -116,7 +127,7 @@ export const posts_en_us: PublicationType[] = [
   },
   {
     id: 'wordle',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKjvLScwgimR2ON6k0MCIJVld7Y4pK9BGh3Urw',
+    thumbnail: TNPOSTWORDLE,
     date: new Date('December 27, 2024 23:12:41'),
     title: 'Wordle: Guess the Word and Show Off Your Smarts!',
     description: 'Guess the 5-letter word in six attempts or less.',

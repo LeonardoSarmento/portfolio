@@ -11,7 +11,7 @@ import GameWordle from '@assets/data/pt-BR/posts/wordle.md';
 import { TagType } from '@services/types/Tag';
 import { PublicationType } from '@services/types/Publication';
 import { TAGS_OPTIONS_POSTS } from '@constants/tags';
-import { PORTFOLIO_TN } from '../thumbnails/links';
+import { PORTFOLIO_TN, TNPOST2048, TNPOSTCONFIGI18N, TNPOSTHANGMAN, TNPOSTMINESWEEPER, TNPOSTSNAKE, TNPOSTSSHKEY, TNPOSTSUDOKU, TNPOSTTICTACTOE, TNPOSTWORDLE } from '../thumbnails/posts/links';
 
 export type PostMenuNavigation = {
   id: string;
@@ -36,7 +36,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'two-ssh-github-account-configuration',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK2oSg0yJi5UptCnS36zQO49TwhEXgeIqNAYoB',
+    thumbnail: TNPOSTSSHKEY,
     date: new Date('August 30, 2024 19:35:00'),
     title: 'Configurando duas chaves SSH para o Github',
     description: 'Te mostrar como gerencio meus perfis pessoal e de trabalho com chaves SSH.',
@@ -46,7 +46,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'configuring-i18n',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKXEL6P8zHc0gvrkVfbGUZM5Fd98KeauQCP3zA',
+    thumbnail: TNPOSTCONFIGI18N,
     date: new Date('August 31, 2024 21:54:00'),
     title: 'I18n e suas configurações',
     description: 'Como configurar i18n no seu projeto React com tipagem e suas aplicações.',
@@ -56,7 +56,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: '2048',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKc6ixSsyBIMESgOKyLxqZ1pkrXN5VR7jbQTlC',
+    thumbnail: TNPOST2048,
     date: new Date('December 17, 2024 23:37:45'),
     title: '2048: O Desafio Máximo de Quebra-Cabeça!',
     description: 'Deslize e mescle peças para alcançar a peça indescritível de 2048.',
@@ -66,7 +66,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'hangman',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKr4Jg8RvaR62Mwfxp9UlKXJ5d1bYmFZByDk4V',
+    thumbnail: TNPOSTHANGMAN,
     date: new Date('December 18, 2024 11:08:13'),
     title: 'Forca: Adivinhe a Palavra Antes que o Tempo Acabe!',
     description: 'Adivinhe a palavra antes de ficar sem tentativas.',
@@ -76,7 +76,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'minesweeper',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKBimkVdbtCfpPhM0T7qc81dr3LHXK4u9SsvZ6',
+    thumbnail: TNPOSTMINESWEEPER,
     date: new Date('December 19, 2024 15:10:57'),
     title: 'Campo Minado: Você Consegue Desarmar o Perigo?',
     description: 'Encontre todas as minas sem detoná-las.',
@@ -86,7 +86,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'snake',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLK0sCjhBNC5B20jYShq8QzmTFkfeoMtDgZirnL',
+    thumbnail: TNPOSTSNAKE,
     date: new Date('December 21, 2024 15:43:45'),
     title: 'Cobrinha: Deslize Rumo à Vitória!',
     description: 'Coma, cresça e evite bater nas paredes!',
@@ -96,7 +96,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'sudoku',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKmOKw9DQ924TL6RIuMXvzfcC1EaSOWdJKgoFw',
+    thumbnail: TNPOSTSUDOKU,
     date: new Date('December 23, 2024 17:07:24'),
     title: 'Sudoku: O Desafio Numérico Que Nunca Sai de Moda!',
     description: 'Resolva quebra-cabeças desafiadores com lógica e habilidade.',
@@ -106,7 +106,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'tic-tac-toe',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKsRdSCYmKzCo4yESsZT05Jeu9HnOdlAtVxvLa',
+    thumbnail: TNPOSTTICTACTOE,
     date: new Date('December 26, 2024 22:31:07'),
     title: 'Jogo da Velha: Diversão Clássica, Estratégia Sem Fim!',
     description: 'Supere seu oponente neste clássico jogo.',
@@ -116,7 +116,7 @@ export const posts_pt_br: PublicationType[] = [
   },
   {
     id: 'wordle',
-    thumbnail: 'https://utfs.io/f/7UcJCClPcgLKjvLScwgimR2ON6k0MCIJVld7Y4pK9BGh3Urw',
+    thumbnail: TNPOSTWORDLE,
     date: new Date('December 27, 2024 23:12:41'),
     title: 'Wordle: Adivinhe a Palavra e Mostre Seu Conhecimento!',
     description: 'Adivinhe a palavra de 5 letras em seis tentativas ou menos.',

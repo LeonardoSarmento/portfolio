@@ -1,0 +1,10 @@
+export const PORTFOLIO_TN = new URL('./portfolio-thumbnail.png', import.meta.url).href;
+export const TNPOSTSSHKEY = new URL('./SetupSSHKeys.webp', import.meta.url).href;
+export const TNPOSTCONFIGI18N = new URL('./Reacti18n.webp', import.meta.url).href;
+export const TNPOST2048 = new URL('./2048 2025-01-04 at 19-09-48.png', import.meta.url).href;
+export const TNPOSTHANGMAN = new URL('./Hangman 2025-01-04 at 19-10-05.png', import.meta.url).href;
+export const TNPOSTMINESWEEPER = new URL('./Minesweeper 2025-01-04 at 19-13-16.png', import.meta.url).href;
+export const TNPOSTSNAKE = new URL('./Snake 2025-01-04 at 19-13-38.png', import.meta.url).href;
+export const TNPOSTSUDOKU = new URL('./Sudoku 2025-01-04 at 19-14-01.png', import.meta.url).href;
+export const TNPOSTTICTACTOE = new URL('./Tic Tac Toe 2025-01-04 at 19-14-16.png', import.meta.url).href;
+export const TNPOSTWORDLE = new URL('./Wordle 2025-01-04 at 20-30-07.png', import.meta.url).href;
